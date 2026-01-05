@@ -2,27 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Revision Hub – Neon Cards</title>
+  <title>Revision Hub – ACC & Belonging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <style>
     :root {
-      --bg: #05010b;
-      --bg-soft: #090316;
-      --bg-elevated: #100820;
-      --accent: #a855f7;
-      --accent-soft: rgba(168, 85, 247, 0.18);
-      --accent-strong: #c084fc;
-      --accent-border: #7c3aed;
-      --border: #221435;
-      --text: #f3e8ff;
-      --text-muted: #a78bfa;
-      --danger: #fb7185;
+      --bg: #050816;
+      --bg-soft: #0a1020;
+      --panel: #0d1224;
+      --panel-soft: #121932;
+      --accent: #8b5cf6;
+      --accent-soft: rgba(139, 92, 246, 0.14);
+      --accent-strong: #a855f7;
+      --border: #1e293b;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
       --radius-lg: 18px;
       --radius-md: 12px;
-      --radius-sm: 8px;
-      --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.8);
-      --transition-fast: 0.14s ease-out;
-      --transition-med: 0.22s ease-out;
+      --shadow: 0 14px 40px rgba(0, 0, 0, 0.75);
+      --fast: 0.12s ease-out;
+      --med: 0.2s ease-out;
     }
 
     * {
@@ -32,600 +30,505 @@
     html, body {
       margin: 0;
       padding: 0;
+      height: 100%;
     }
 
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, #3b0764 0, transparent 55%),
-        radial-gradient(circle at top right, #4c1d95 0, transparent 60%),
-        radial-gradient(circle at bottom, #1e1b4b 0, #020014 60%);
+      background: radial-gradient(circle at top, #020617 0, #020617 50%, #000 100%);
       color: var(--text);
-      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
       display: flex;
       flex-direction: column;
-      -webkit-font-smoothing: antialiased;
-      padding-bottom: 10px;
-    }
-
-    ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: rgba(15, 23, 42, 0.3);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: rgba(129, 140, 248, 0.7);
-      border-radius: 999px;
     }
 
     header {
-      padding: 10px 16px;
-      border-bottom: 1px solid rgba(76, 29, 149, 0.7);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(
-        to right,
-        rgba(5, 0, 20, 0.9),
-        rgba(24, 0, 44, 0.85)
-      );
       position: sticky;
       top: 0;
-      z-index: 30;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.65);
+      z-index: 20;
+      background: rgba(2, 6, 23, 0.95);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 10px 16px 6px;
     }
 
-    header h1 {
-      font-size: 18px;
-      margin: 0;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .header-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .logo-row {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
-    @media (min-width: 900px) {
-      header h1 {
-        font-size: 20px;
-      }
-    }
-
-    .logo-orb {
+    .logo-dot {
       width: 18px;
       height: 18px;
       border-radius: 999px;
-      background:
-        radial-gradient(circle at 30% 30%, #f5f3ff, #c084fc 45%, #6d28d9 70%);
+      background: radial-gradient(circle at 30% 30%, #e5e7eb, #a855f7 55%, #4c1d95 80%);
       box-shadow:
-        0 0 20px rgba(192, 132, 252, 0.9),
-        0 0 40px rgba(147, 51, 234, 0.9);
-      position: relative;
-      overflow: hidden;
+        0 0 18px rgba(168, 85, 247, 0.8),
+        0 0 32px rgba(59, 130, 246, 0.6);
     }
 
-    .logo-orb::after {
-      content: "";
-      position: absolute;
-      inset: 2px;
-      border-radius: inherit;
-      border: 1px solid rgba(248, 250, 252, 0.5);
-      opacity: 0.7;
-    }
-
-    header small {
-      color: var(--text-muted);
-      font-size: 11px;
-      margin-top: 2px;
-      display: block;
-    }
-
-    .tag {
-      padding: 4px 11px;
-      border-radius: 999px;
-      border: 1px solid rgba(147, 51, 234, 0.7);
-      font-size: 11px;
-      color: #f5f3ff;
-      background: radial-gradient(circle at top, #3b0764 0, #020014 70%);
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .tag-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
-    }
-
-    .app-shell {
-      flex: 1;
-      display: flex;
-      min-height: 0;
-    }
-
-    .sidebar {
-      width: 220px;
-      background: radial-gradient(circle at top left, #120824 0, #050015 70%);
-      border-right: 1px solid rgba(76, 29, 149, 0.7);
-      padding: 14px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (max-width: 820px) {
-      .sidebar {
-        display: none;
-      }
-    }
-
-    .sidebar-title {
-      font-size: 11px;
+    .app-title {
+      font-size: 18px;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: var(--text-muted);
-      margin: 0 8px 6px;
     }
 
-    .nav-list {
+    .subtitle {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-tabs {
       display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .nav-btn {
+      gap: 6px;
+      padding: 4px;
+      background: rgba(15, 23, 42, 0.9);
       border-radius: 999px;
-      border: 1px solid transparent;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+    }
+
+    .nav-tab {
+      border: none;
       background: transparent;
-      padding: 10px 12px;
-      font-size: 13px;
-      color: var(--text-muted);
+      color: var(--muted);
+      padding: 6px 14px;
+      font-size: 12px;
+      border-radius: 999px;
       cursor: pointer;
-      text-align: left;
-      display: flex;
-      align-items: center;
-      gap: 7px;
-      transition:
-        background var(--transition-fast),
-        border-color var(--transition-fast),
-        color var(--transition-fast),
-        transform var(--transition-fast);
+      white-space: nowrap;
+      transition: background var(--fast), color var(--fast), transform var(--fast);
     }
 
-    .nav-btn span.icon {
-      font-size: 15px;
-    }
-
-    .nav-btn:hover {
-      background: rgba(15, 6, 35, 0.9);
-      border-color: rgba(88, 28, 135, 0.7);
-      color: var(--text);
+    .nav-tab.active {
+      background: var(--accent-soft);
+      color: #f9fafb;
       transform: translateY(-0.5px);
     }
 
-    .nav-btn.active {
-      background: radial-gradient(circle at top left, #4c1d95 0, #020014 70%);
-      border-color: rgba(216, 180, 254, 0.95);
-      color: #fef9ff;
+    .nav-tab span {
+      margin-right: 4px;
     }
 
-    .main {
+    main {
       flex: 1;
-      padding: 12px 12px 16px;
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-      min-width: 0;
-    }
-
-    @media (min-width: 900px) {
-      .main {
-        padding: 18px;
-      }
-    }
-
-    .mobile-nav {
+      padding: 10px 14px 16px;
       display: flex;
-      margin-bottom: 10px;
-      gap: 6px;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      padding-bottom: 2px;
-      position: sticky;
-      top: 44px;
-      z-index: 25;
-      background: linear-gradient(
-        to bottom,
-        rgba(5, 0, 20, 0.96),
-        rgba(5, 0, 20, 0.85),
-        transparent
-      );
-    }
-
-    .mobile-nav .nav-btn {
-      flex: 1;
       justify-content: center;
-      white-space: nowrap;
-      font-size: 13px;
-      padding: 8px 10px;
     }
 
-    @media (min-width: 821px) {
-      .mobile-nav {
-        display: none;
-      }
+    .main-inner {
+      max-width: 980px;
+      width: 100%;
     }
 
-    .view {
+    section.view {
       display: none;
+      min-height: calc(100vh - 90px);
     }
 
-    .view.active {
+    section.view.active {
       display: block;
     }
 
     .panel {
-      background: linear-gradient(
-        145deg,
-        rgba(16, 8, 32, 0.98),
-        rgba(8, 2, 24, 0.98)
-      );
+      background: linear-gradient(145deg, var(--panel) 0%, var(--panel-soft) 100%);
       border-radius: var(--radius-lg);
-      border: 1px solid rgba(88, 28, 135, 0.9);
-      box-shadow: var(--shadow-soft);
-      padding: 12px 12px 14px;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 10px;
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      box-shadow: var(--shadow);
+      padding: 14px 14px 16px;
+      margin-bottom: 12px;
     }
 
     @media (min-width: 900px) {
       .panel {
-        padding: 14px 14px 16px;
-        margin-bottom: 14px;
+        padding: 16px 18px 18px;
       }
     }
 
     .panel-header {
       display: flex;
-      align-items: baseline;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 6px;
+      align-items: baseline;
+      margin-bottom: 8px;
     }
 
     .panel-header h2 {
       margin: 0;
       font-size: 15px;
-      text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: #e9d5ff;
-    }
-
-    @media (min-width: 900px) {
-      .panel-header h2 {
-        font-size: 16px;
-        letter-spacing: 0.16em;
-      }
+      text-transform: uppercase;
+      color: #e5e7f5;
     }
 
     .panel-header small {
-      color: var(--text-muted);
       font-size: 11px;
+      color: var(--muted);
     }
 
     .panel-body {
-      margin-top: 4px;
-    }
-
-    button {
-      border-radius: 999px;
-      border: 1px solid rgba(88, 28, 135, 0.85);
-      background: radial-gradient(circle at top, #1e1034 0, #050014 80%);
-      color: var(--text);
-      padding: 8px 13px;
-      font-size: 12px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition:
-        transform var(--transition-fast),
-        box-shadow var(--transition-fast),
-        border-color var(--transition-fast),
-        background var(--transition-fast),
-        color var(--transition-fast);
-    }
-
-    button span.icon {
       font-size: 13px;
-      opacity: 0.92;
+      color: var(--text);
     }
 
-    button:hover {
-      transform: translateY(-0.5px);
-      border-color: rgba(216, 180, 254, 0.9);
-      box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
+    h3 {
+      margin: 8px 0 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #c4b5fd;
     }
 
-    button:active {
-      transform: translateY(0.4px) scale(0.98);
-      box-shadow: none;
+    p {
+      margin: 4px 0;
+      line-height: 1.5;
     }
 
-    button.primary {
-      border-color: rgba(192, 132, 252, 0.9);
-      background: linear-gradient(135deg, #7c3aed, #a855f7, #e879f9);
-      color: #fdf4ff;
-    }
-
-    button.danger {
-      border-color: rgba(248, 113, 113, 0.8);
-      background: radial-gradient(circle at top, #7f1d1d 0, #180006 80%);
-      color: #fee2e2;
-    }
-
-    button.ghost {
-      background: rgba(10, 5, 24, 0.95);
-      border-color: rgba(76, 29, 149, 0.7);
-    }
-
-    .small-text {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    /* DASHBOARD */
-    .dashboard-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    @media (max-width: 900px) {
-      .dashboard-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .stats-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .stat-card {
-      flex: 1 1 130px;
-      min-width: 0;
-      background: rgba(15, 6, 35, 0.95);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(88, 28, 135, 0.9);
-      padding: 8px 10px;
-    }
-
-    .stat-label {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .stat-value {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--accent-strong);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .pill {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(88, 28, 135, 0.8);
-      background: rgba(12, 6, 30, 0.98);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .checklist {
-      list-style: none;
-      padding-left: 0;
-      margin: 6px 0 0;
+    .muted {
+      color: var(--muted);
       font-size: 12px;
     }
 
-    .checklist li {
-      margin-bottom: 4px;
-      display: flex;
-      align-items: flex-start;
-      gap: 6px;
-    }
-
-    .checklist span.bullet {
-      color: #4ade80;
-      margin-top: 1px;
-    }
-
-    /* FLASHCARDS LAYOUT */
-    .flashcards-layout {
+    .grid-two {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 10px;
     }
 
-    @media (max-width: 980px) {
-      .flashcards-layout {
+    @media (max-width: 820px) {
+      .grid-two {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    .deck-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-      margin-bottom: 8px;
+    ul.clean {
+      list-style: none;
+      padding-left: 0;
+      margin: 4px 0 0;
+      font-size: 13px;
     }
 
-    .deck-row label {
-      font-size: 11px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-    }
-
-    .input-inline {
+    ul.clean li {
+      margin-bottom: 4px;
       display: flex;
       gap: 6px;
     }
-    .input-inline input {
-      flex: 1;
+
+    ul.clean li span.b {
+      color: var(--accent-strong);
+      font-size: 12px;
+      margin-top: 1px;
     }
 
-    select,
-    input[type="text"],
-    textarea {
-      background: rgba(16, 8, 32, 0.98);
+    .quote-list {
       border-radius: var(--radius-md);
+      border: 1px solid rgba(51, 65, 85, 0.9);
+      background: rgba(15, 23, 42, 0.65);
+      padding: 8px 10px;
+      margin-top: 4px;
+    }
+
+    .quote-item {
+      margin-bottom: 6px;
+    }
+
+    .quote-text {
+      font-style: italic;
+      font-size: 13px;
+    }
+
+    .quote-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* FLASHCARDS */
+    .fc-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .fc-top-row label {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    select, textarea {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 12px;
       border: 1px solid var(--border);
       color: var(--text);
-      font-size: 13px;
       padding: 7px 10px;
+      font-size: 13px;
       outline: none;
       width: 100%;
-      resize: vertical;
-      min-height: 0;
-      transition:
-        border-color var(--transition-fast),
-        box-shadow var(--transition-fast),
-        background var(--transition-fast);
+      transition: border var(--fast), box-shadow var(--fast), background var(--fast);
     }
 
-    select:hover,
-    input[type="text"]:hover,
-    textarea:hover {
-      border-color: rgba(168, 85, 247, 0.6);
-    }
-
-    select:focus,
-    input[type="text"]:focus,
-    textarea:focus {
+    select:focus, textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.7);
-      background: rgba(15, 6, 35, 1);
+      box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.8);
+      background: #020617;
     }
 
-    .chips {
+    .pill-info {
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      color: var(--muted);
+    }
+
+    .flashcard-box {
+      border-radius: 18px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: radial-gradient(circle at top left, #111827 0%, #020617 70%);
+      padding: 14px 14px 12px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: transform var(--fast), box-shadow var(--fast), border-color var(--fast);
+    }
+
+    .flashcard-box:active {
+      transform: scale(0.99);
+    }
+
+    .flashcard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .flashcard-tag {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(99, 102, 241, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      box-shadow:
+        0 0 10px rgba(139, 92, 246, 0.9),
+        0 0 18px rgba(59, 130, 246, 0.8);
+    }
+
+    .flashcard-text {
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .flashcard-text.empty {
+      font-style: italic;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .flashcard-footer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .fc-controls {
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin: 4px 0 10px;
     }
 
-    .chip {
-      padding: 3px 9px;
+    button {
       border-radius: 999px;
-      background: rgba(15, 6, 35, 0.96);
-      border: 1px solid rgba(88, 28, 135, 0.7);
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .chip strong {
-      color: var(--accent-strong);
-    }
-
-    .section-title {
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text);
       font-size: 12px;
-      margin: 8px 0 4px;
-      color: #e9d5ff;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
+      padding: 7px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      gap: 6px;
+      align-items: center;
+      transition: background var(--fast), border var(--fast), transform var(--fast), box-shadow var(--fast);
     }
 
-    .card-form {
+    button span.icon {
+      font-size: 13px;
+    }
+
+    button.primary {
+      border-color: rgba(129, 140, 248, 0.95);
+      background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+    }
+
+    button:hover {
+      transform: translateY(-0.5px);
+      box-shadow: 0 0 12px rgba(15, 23, 42, 0.9);
+    }
+
+    button:active {
+      transform: translateY(0.5px) scale(0.98);
+      box-shadow: none;
+    }
+
+    .switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .switch input {
+      appearance: none;
+      width: 28px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background var(--fast), border var(--fast);
+    }
+
+    .switch input::before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #f9fafb;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
+      transition: transform var(--fast);
+    }
+
+    .switch input:checked {
+      background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+      border-color: rgba(129, 140, 248, 0.9);
+    }
+
+    .switch input:checked::before {
+      transform: translateX(10px);
+    }
+
+    details {
       margin-top: 4px;
+    }
+
+    details summary {
+      font-size: 12px;
+      color: var(--muted);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    details summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .summary-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .summary-row span.chevron {
+      font-size: 12px;
+    }
+
+    .edit-grid {
+      margin-top: 8px;
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 8px;
     }
 
-    @media (max-width: 600px) {
-      .card-form {
+    @media (max-width: 700px) {
+      .edit-grid {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    .card-form textarea {
+    textarea {
       min-height: 70px;
-      font-size: 12px;
     }
 
-    .card-form-actions {
-      margin-top: 6px;
+    .edit-actions {
+      margin-top: 8px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: 8px;
       flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--muted);
     }
 
     .card-list {
-      margin-top: 6px;
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(76, 29, 149, 0.9);
-      background: linear-gradient(
-        145deg,
-        rgba(15, 6, 35, 0.98),
-        rgba(10, 3, 24, 0.98)
-      );
-      max-height: 240px;
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      max-height: 210px;
       overflow: hidden auto;
       font-size: 12px;
     }
 
-    .card-list-header,
     .card-row {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) 70px;
       gap: 6px;
-      padding: 7px 9px;
+      padding: 6px 8px;
       align-items: center;
     }
 
-    .card-list-header {
-      position: sticky;
-      top: 0;
-      z-index: 1;
-      background: rgba(24, 16, 48, 0.98);
-      border-bottom: 1px solid rgba(129, 140, 248, 0.85);
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      color: #a5b4fc;
-    }
-
     .card-row:nth-child(odd) {
-      background: rgba(15, 6, 35, 0.96);
+      background: rgba(15, 23, 42, 0.9);
     }
 
     .card-row:nth-child(even) {
-      background: rgba(10, 3, 24, 0.98);
-    }
-
-    .card-row:hover {
-      background: rgba(24, 12, 50, 0.98);
+      background: rgba(17, 24, 39, 0.95);
     }
 
     .card-cell {
@@ -634,965 +537,705 @@
       white-space: nowrap;
     }
 
-    .upload-row {
-      margin-top: 6px;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      align-items: center;
-    }
-
-    input[type="file"] {
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .study-status {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      gap: 8px;
-      font-size: 11px;
-      color: var(--text-muted);
-      flex-wrap: wrap;
-    }
-
-    .study-status strong {
-      color: #f5f3ff;
-    }
-
-    .study-controls {
-      display: flex;
-      flex-wrap: wrap;
+    .card-list-header {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #020617;
+      border-bottom: 1px solid rgba(75, 85, 99, 0.95);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      padding: 6px 8px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) 70px;
       gap: 6px;
-      margin-bottom: 10px;
-    }
-
-    .switch {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .switch input {
-      appearance: none;
-      width: 30px;
-      height: 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(76, 29, 149, 0.8);
-      background: rgba(15, 6, 35, 0.95);
-      position: relative;
-      cursor: pointer;
-      outline: none;
-      transition:
-        background var(--transition-fast),
-        border-color var(--transition-fast);
-    }
-
-    .switch input::before {
-      content: "";
-      width: 13px;
-      height: 13px;
-      border-radius: 999px;
-      background: #f4f4ff;
-      position: absolute;
-      top: 1px;
-      left: 2px;
-      transition: transform var(--transition-fast);
-      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
-    }
-
-    .switch input:checked {
-      background: radial-gradient(circle at top, #7c3aed, #4338ca);
-      border-color: rgba(192, 132, 252, 0.95);
-    }
-
-    .switch input:checked::before {
-      transform: translateX(11px);
-    }
-
-    .flashcard {
-      margin-top: 4px;
-      border-radius: 20px;
-      padding: 16px 14px 16px;
-      background: radial-gradient(circle at top left, #13072b 0, #020014 70%);
-      border: 1px solid rgba(129, 140, 248, 0.85);
-      box-shadow: var(--shadow-soft);
-      min-height: 170px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .flashcard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .flashcard-header .pill {
-      padding: 3px 10px;
-      border-radius: 999px;
-      background: rgba(15, 6, 35, 0.9);
-      border: 1px solid rgba(129, 140, 248, 0.9);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .pill-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow:
-        0 0 12px rgba(168, 85, 247, 0.9),
-        0 0 24px rgba(129, 140, 248, 0.8);
-    }
-
-    .flashcard-content {
-      flex: 1;
-      display: flex;
-      align-items: center;
-    }
-
-    .flashcard-text {
-      font-size: 15px;
-      line-height: 1.55;
-      white-space: pre-wrap;
-    }
-
-    .flashcard-text.empty {
-      color: var(--text-muted);
-      font-size: 13px;
-      font-style: italic;
-    }
-
-    .flashcard-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 8px;
-      flex-wrap: wrap;
-      gap: 4px;
-    }
-
-    .flashcard-footer small strong {
-      color: #f5f3ff;
-    }
-
-    .study-nav {
-      margin-top: 10px;
-      display: flex;
-      justify-content: space-between;
-      gap: 8px;
-      flex-wrap: wrap;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 4px;
+      gap: 6px;
       font-size: 11px;
       padding: 3px 9px;
       border-radius: 999px;
-      border: 1px solid rgba(129, 140, 248, 0.7);
-      background: rgba(15, 6, 35, 0.95);
-      color: var(--text-muted);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--muted);
     }
 
     .badge-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 11px rgba(34, 197, 94, 0.9);
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
     }
 
-    .hint {
-      margin-top: 8px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .hint code {
+    code {
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         "Liberation Mono", "Courier New", monospace;
       font-size: 11px;
-      background: rgba(15, 6, 35, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 2px 6px;
       border-radius: 999px;
-      border: 1px solid rgba(76, 29, 149, 0.9);
-      padding: 2px 7px;
-      color: #ddd6fe;
+      border: 1px solid rgba(51, 65, 85, 0.9);
     }
 
-    /* ACC QUOTES */
-    .quotes-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    @media (max-width: 900px) {
-      .quotes-layout {
-        grid-template-columns: minmax(0, 1fr);
+    @media (max-width: 480px) {
+      header {
+        padding-inline: 10px;
       }
-    }
-
-    .quote-card {
-      background: rgba(15, 6, 35, 0.98);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(88, 28, 135, 0.9);
-      padding: 8px 10px;
-      margin-bottom: 6px;
-      font-size: 13px;
-    }
-
-    .quote-text {
-      font-style: italic;
-      color: #ede9fe;
-    }
-
-    .quote-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    /* ENGLISH PAPERS */
-    .papers-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    @media (max-width: 900px) {
-      .papers-grid {
-        grid-template-columns: minmax(0, 1fr);
+      main {
+        padding-inline: 10px;
       }
-    }
-
-    .paper-card {
-      background: rgba(15, 6, 35, 0.98);
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(88, 28, 135, 0.9);
-      padding: 9px 11px;
-      font-size: 13px;
-    }
-
-    .paper-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #e9d5ff;
-      margin-bottom: 3px;
-    }
-
-    .paper-meta {
-      font-size: 11px;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-    }
-
-    .paper-card ul {
-      margin: 4px 0 0;
-      padding-left: 18px;
-      font-size: 12px;
-    }
-
-    .paper-card li {
-      margin-bottom: 3px;
+      .panel {
+        padding-inline: 12px;
+      }
+      .nav-tabs {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .nav-tab {
+        flex: 1;
+        text-align: center;
+        padding-inline: 8px;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div>
-      <h1>
-        <span class="logo-orb"></span> REVISION HUB
-      </h1>
-      <small>Flashcards · A Christmas Carol · AQA English papers</small>
-    </div>
-    <div>
-      <span class="tag">
-        <span class="tag-dot"></span>
-        Dark · Purple · Local only
-      </span>
+    <div class="header-inner">
+      <div class="title-block">
+        <div class="logo-row">
+          <div class="logo-dot"></div>
+          <div class="app-title">REVISION HUB</div>
+        </div>
+        <div class="subtitle">A Christmas Carol · Belonging Anthology · English papers</div>
+      </div>
+      <nav class="nav-tabs">
+        <button class="nav-tab active" data-view="acc">
+          <span>📘</span> ACC
+        </button>
+        <button class="nav-tab" data-view="flashcards">
+          <span>🃏</span> Flashcards
+        </button>
+        <button class="nav-tab" data-view="papers">
+          <span>📝</span> Papers
+        </button>
+      </nav>
     </div>
   </header>
 
-  <div class="app-shell">
-    <nav class="sidebar">
-      <p class="sidebar-title">NAVIGATION</p>
-      <div class="nav-list">
-        <button class="nav-btn active" data-view="dashboard">
-          <span class="icon">🏠</span> Dashboard
-        </button>
-        <button class="nav-btn" data-view="flashcards">
-          <span class="icon">🃏</span> Flashcards
-        </button>
-        <button class="nav-btn" data-view="acc">
-          <span class="icon">📘</span> A Christmas Carol
-        </button>
-        <button class="nav-btn" data-view="english">
-          <span class="icon">📝</span> English Papers
-        </button>
-      </div>
-    </nav>
-
-    <main class="main">
-      <!-- Mobile nav -->
-      <div class="mobile-nav">
-        <button class="nav-btn active" data-view="dashboard">
-          <span class="icon">🏠</span> Dash
-        </button>
-        <button class="nav-btn" data-view="flashcards">
-          <span class="icon">🃏</span> Cards
-        </button>
-        <button class="nav-btn" data-view="acc">
-          <span class="icon">📘</span> ACC
-        </button>
-        <button class="nav-btn" data-view="english">
-          <span class="icon">📝</span> Papers
-        </button>
-      </div>
-
-      <!-- DASHBOARD -->
-      <section id="view-dashboard" class="view active">
-        <div class="dashboard-grid">
-          <section class="panel">
-            <div class="panel-header">
+  <main>
+    <div class="main-inner">
+      <!-- ACC FRONT PAGE -->
+      <section id="view-acc" class="view active">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>A Christmas Carol – overview</h2>
+              <small>Structure, themes, and how to revise it</small>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="grid-two">
               <div>
-                <h2>Overview</h2>
-                <small>Flashcards + English revision in one place</small>
-              </div>
-            </div>
-            <div class="panel-body">
-              <div class="stats-row">
-                <div class="stat-card">
-                  <div class="stat-label">Decks</div>
-                  <div class="stat-value" id="stat-decks">0</div>
-                  <div class="small-text">Total flashcard decks saved</div>
-                </div>
-                <div class="stat-card">
-                  <div class="stat-label">Cards</div>
-                  <div class="stat-value" id="stat-cards">0</div>
-                  <div class="small-text">All cards across decks</div>
-                </div>
-              </div>
-              <div class="pill-row">
-                <span class="pill">Use cards for quotes, methods, formulas</span>
-                <span class="pill">Short daily sessions beat last-minute cramming</span>
-              </div>
-              <ul class="checklist">
-                <li>
-                  <span class="bullet">✓</span>
-                  <span>Turn key quotes into cards (front = quote, back = who / where / why).</span>
-                </li>
-                <li>
-                  <span class="bullet">✓</span>
-                  <span>Do 10–15 cards at a time, then take a break.</span>
-                </li>
-                <li>
-                  <span class="bullet">✓</span>
-                  <span>Use the ACC + Papers sections as reference while building decks.</span>
-                </li>
-              </ul>
-            </div>
-          </section>
+                <h3>5-stave structure</h3>
+                <ul class="clean">
+                  <li><span class="b">1</span><span><strong>Marley’s Ghost:</strong> Scrooge introduced; refuses charity; visited by Marley who warns him.</span></li>
+                  <li><span class="b">2</span><span><strong>Past:</strong> Childhood loneliness, Fezziwig’s party, Belle breaking off the engagement.</span></li>
+                  <li><span class="b">3</span><span><strong>Present:</strong> Cratchit family, Tiny Tim, Fred’s party, Ignorance and Want.</span></li>
+                  <li><span class="b">4</span><span><strong>Yet to Come:</strong> People reacting to Scrooge’s death; neglected grave; fear + regret.</span></li>
+                  <li><span class="b">5</span><span><strong>Redemption:</strong> Scrooge wakes changed; generosity to Cratchits; becomes “as good a man”.</span></li>
+                </ul>
 
-          <section class="panel">
-            <div class="panel-header">
+                <p class="muted" style="margin-top:8px;">
+                  Fast revision idea: make one mini paragraph plan per stave – what happens, what Scrooge learns, and one key quote.
+                </p>
+              </div>
               <div>
-                <h2>Today</h2>
-                <small>Simple plan for one session</small>
+                <h3>Big themes</h3>
+                <ul class="clean">
+                  <li><span class="b">★</span><span><strong>Responsibility to others</strong> – Marley and the spirits show that “mankind” should be Scrooge’s “business”.</span></li>
+                  <li><span class="b">★</span><span><strong>Poverty and charity</strong> – Cratchits, Tiny Tim, Ignorance and Want criticise Victorian attitudes to the poor.</span></li>
+                  <li><span class="b">★</span><span><strong>Family and companionship</strong> – Fred and the Cratchits contrast Scrooge’s isolation.</span></li>
+                  <li><span class="b">★</span><span><strong>Redemption</strong> – it’s never “too late” to change if you accept responsibility for the past.</span></li>
+                </ul>
               </div>
             </div>
-            <div class="panel-body">
-              <ul class="checklist">
-                <li>
-                  <span class="bullet">①</span>
-                  <span>Pick <strong>one deck</strong> and run it once in Study mode.</span>
-                </li>
-                <li>
-                  <span class="bullet">②</span>
-                  <span>Read the <strong>ACC quotes</strong> tab and add 3–5 quotes you don’t know.</span>
-                </li>
-                <li>
-                  <span class="bullet">③</span>
-                  <span>Check the <strong>English Papers</strong> tab so you remember what’s in each paper.</span>
-                </li>
-              </ul>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Key ACC quotes (already in cards)</h2>
+              <small>Front = quote · back = who / where / what it shows</small>
             </div>
-          </section>
+            <button id="go-to-acc-cards" class="primary">
+              <span class="icon">🃏</span> Open ACC deck
+            </button>
+          </div>
+          <div class="panel-body">
+            <div class="quote-list">
+              <div class="quote-item">
+                <div class="quote-text">“Marley was dead: to begin with.”</div>
+                <div class="quote-note">Opens the novella; confirms Marley’s death and sets up the ghost story.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“As solitary as an oyster.”</div>
+                <div class="quote-note">Simile – Scrooge is closed and hard, but could contain a “pearl” of goodness.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“If they would rather die, they had better do it, and decrease the surplus population.”</div>
+                <div class="quote-note">Scrooge’s cruel view of the poor; Dickens attacks this attitude.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“Mankind was my business!”</div>
+                <div class="quote-note">Marley’s regret – real “business” is caring for others, not profit.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“God bless us, every one!”</div>
+                <div class="quote-note">Tiny Tim – moral heart of the story; inclusive message.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“I am not the man I was.”</div>
+                <div class="quote-note">Scrooge’s turning point; admits genuine change.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“He became as good a friend, as good a master, and as good a man.”</div>
+                <div class="quote-note">Narrator confirms his lasting redemption.</div>
+              </div>
+            </div>
+            <p class="muted" style="margin-top:8px;">
+              All of these are already in the <strong>“ACC – Key Quotes”</strong> deck in the Flashcards tab – you don’t need to type them.
+            </p>
+          </div>
         </div>
       </section>
 
       <!-- FLASHCARDS -->
       <section id="view-flashcards" class="view">
-        <div class="flashcards-layout">
-          <section class="panel">
-            <div class="panel-header">
-              <div>
-                <h2>Flashcards</h2>
-                <small>Manage decks and cards</small>
-              </div>
-            </div>
-            <div class="panel-body">
-              <div class="deck-row">
-                <div style="flex: 1 1 180px;">
-                  <label for="deck-select">Deck</label>
-                  <select id="deck-select"></select>
-                </div>
-                <div class="input-inline" style="flex: 1 1 180px;">
-                  <input
-                    type="text"
-                    id="new-deck-name"
-                    placeholder="New deck (ACC Quotes, Paper 2, Maths...)"
-                  />
-                  <button id="create-deck-btn" class="primary" title="Create deck">
-                    <span class="icon">＋</span> Deck
-                  </button>
-                </div>
-              </div>
-              <div class="deck-row">
-                <button id="rename-deck-btn" class="ghost" title="Rename deck">
-                  Rename
-                </button>
-                <button id="delete-deck-btn" class="danger" title="Delete deck">
-                  Delete
-                </button>
-                <span class="small-text" id="deck-summary"></span>
-              </div>
-
-              <div class="chips" id="deck-chips"></div>
-
-              <p class="section-title">Add / edit card</p>
-              <form id="card-form">
-                <div class="card-form">
-                  <div>
-                    <label for="card-front" class="small-text">Front (question / cue)</label>
-                    <textarea id="card-front" placeholder="Who says 'Bah! Humbug!'?"></textarea>
-                  </div>
-                  <div>
-                    <label for="card-back" class="small-text">Back (answer)</label>
-                    <textarea id="card-back" placeholder="Scrooge – at the start of the novella."></textarea>
-                  </div>
-                </div>
-                <div class="card-form-actions">
-                  <div>
-                    <button type="submit" class="primary" id="add-card-btn">
-                      <span class="icon">＋</span> Save card
-                    </button>
-                    <button type="button" class="ghost" id="clear-form-btn">
-                      Clear
-                    </button>
-                  </div>
-                  <div class="small-text">
-                    One idea per card = easier to memorise.
-                  </div>
-                </div>
-              </form>
-
-              <p class="section-title">Cards in deck</p>
-              <div class="card-list" id="card-list">
-                <div class="card-list-header">
-                  <div>Front</div>
-                  <div>Back</div>
-                  <div>Actions</div>
-                </div>
-              </div>
-
-              <p class="section-title">Import / export</p>
-              <div class="upload-row">
-                <label class="small-text">
-                  Import JSON
-                  <input type="file" id="import-file" accept=".json" />
-                </label>
-                <button id="export-deck-btn" class="ghost">
-                  Export current deck (.json)
-                </button>
-              </div>
-              <p class="small-text">
-                JSON format:
-                <code>[{"front":"Q","back":"A"}, ...]</code> or
-                <code>{"name":"My deck","cards":[...]}</code>
-              </p>
-            </div>
-          </section>
-
-          <section class="panel">
-            <div class="panel-header">
-              <div>
-                <h2>Study mode</h2>
-                <small>Flip and step through cards</small>
-              </div>
-            </div>
-            <div class="panel-body">
-              <div class="study-status">
-                <span>Deck: <strong id="study-deck-name">—</strong></span>
-                <span>
-                  Cards: <strong id="study-count">0</strong> ·
-                  Card <strong id="study-position">0 / 0</strong>
-                </span>
-              </div>
-
-              <div class="study-controls">
-                <button id="restart-btn" class="primary">
-                  <span class="icon">▶</span> Start / restart
-                </button>
-                <button id="flip-btn" class="ghost">
-                  <span class="icon">⟲</span> Flip
-                </button>
-                <div class="switch">
-                  <input type="checkbox" id="shuffle-toggle" />
-                  <label for="shuffle-toggle">Shuffle deck</label>
-                </div>
-              </div>
-
-              <div
-                class="flashcard"
-                id="flashcard"
-                title="Tap card to flip"
-              >
-                <div class="flashcard-header">
-                  <div class="pill">
-                    <span class="pill-dot"></span>
-                    <span id="flashcard-side-label">Front · Question</span>
-                  </div>
-                  <span id="flashcard-meta" class="small-text"></span>
-                </div>
-                <div class="flashcard-content">
-                  <div class="flashcard-text empty" id="flashcard-text">
-                    No cards yet. Add some on the left.
-                  </div>
-                </div>
-                <div class="flashcard-footer">
-                  <small>
-                    Tap to flip · <strong>Space</strong> to flip ·
-                    <strong>← / →</strong> to move (if you use a keyboard)
-                  </small>
-                  <small id="flashcard-progress"></small>
-                </div>
-              </div>
-
-              <div class="study-nav">
-                <div>
-                  <button id="prev-btn" class="ghost">◀ Previous</button>
-                  <button id="next-btn" class="ghost">Next ▶</button>
-                </div>
-                <div>
-                  <span class="badge">
-                    <span class="badge-dot"></span>
-                    Keyboard shortcuts enabled
-                  </span>
-                </div>
-              </div>
-
-              <p class="hint">
-                Good pattern: run the whole deck, then remake a smaller deck of only the ones you got wrong.
-              </p>
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <!-- A CHRISTMAS CAROL -->
-      <section id="view-acc" class="view">
-        <div class="quotes-layout">
-          <section class="panel">
-            <div class="panel-header">
-              <div>
-                <h2>ACC quotes</h2>
-                <small>Key quotations by stave</small>
-              </div>
-            </div>
-            <div class="panel-body">
-              <!-- STAVE 1 -->
-              <p class="section-title">Stave 1 – Scrooge & Marley</p>
-              <div class="quote-card">
-                <div class="quote-text">“Marley was dead: to begin with.”</div>
-                <div class="quote-meta">
-                  Opens the novella; establishes certainty of death and sets up the supernatural.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“As solitary as an oyster.”</div>
-                <div class="quote-meta">
-                  Simile – Scrooge is closed, hard, isolated, but could contain a “pearl” of goodness.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“Are there no prisons? … And the Union workhouses?”</div>
-                <div class="quote-meta">
-                  Shows Scrooge’s cruel attitude to the poor and criticises Victorian poor laws.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“If they would rather die, they had better do it, and decrease the surplus population.”</div>
-                <div class="quote-meta">
-                  Inhuman, Malthusian language; Dickens attacks this lack of empathy.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“Mankind was my business!”</div>
-                <div class="quote-meta">
-                  Marley’s warning – business should be helping others, not just making money.
-                </div>
-              </div>
-
-              <!-- STAVE 2 -->
-              <p class="section-title">Stave 2 – Christmas Past</p>
-              <div class="quote-card">
-                <div class="quote-text">“A solitary child, neglected by his friends.”</div>
-                <div class="quote-meta">
-                  Explains Scrooge’s coldness – childhood loneliness as root of his behaviour.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“He has the power to render us happy or unhappy.”</div>
-                <div class="quote-meta">
-                  Scrooge on Fezziwig – realises good employers can change lives (contrast to himself).
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“Another idol has displaced me… a golden one.”</div>
-                <div class="quote-meta">
-                  Belle says money has replaced love in Scrooge’s life.
-                </div>
-              </div>
-
-              <!-- STAVE 3 -->
-              <p class="section-title">Stave 3 – Christmas Present</p>
-              <div class="quote-card">
-                <div class="quote-text">“A jolly Giant, glorious to see.”</div>
-                <div class="quote-meta">
-                  Ghost of Christmas Present – warmth, generosity, abundance of Christmas.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“God bless us, every one!”</div>
-                <div class="quote-meta">
-                  Tiny Tim – innocent, inclusive blessing; moral heart of the novella.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“This boy is Ignorance. This girl is Want.”</div>
-                <div class="quote-meta">
-                  Personification of social problems; warning about neglecting the poor.
-                </div>
-              </div>
-
-              <!-- STAVE 4 -->
-              <p class="section-title">Stave 4 – Christmas Yet to Come</p>
-              <div class="quote-card">
-                <div class="quote-text">“Shrouded in a deep black garment.”</div>
-                <div class="quote-meta">
-                  Ghost of Christmas Yet to Come – death, fear, mystery of the future.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“The Phantom… seemed to scatter gloom and mystery.”</div>
-                <div class="quote-meta">
-                  Creates dread; forces Scrooge to face the consequences of his life.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“I am not the man I was.”</div>
-                <div class="quote-meta">
-                  Scrooge’s turning point; he admits genuine inner change.
-                </div>
-              </div>
-
-              <!-- STAVE 5 -->
-              <p class="section-title">Stave 5 – Redemption</p>
-              <div class="quote-card">
-                <div class="quote-text">“I am as light as a feather, I am as happy as an angel.”</div>
-                <div class="quote-meta">
-                  Joyful similes – Scrooge’s emotional transformation and sense of freedom.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“I will honour Christmas in my heart, and try to keep it all the year.”</div>
-                <div class="quote-meta">
-                  Shows long-term change; message that generosity should last beyond one day.
-                </div>
-              </div>
-              <div class="quote-card">
-                <div class="quote-text">“He became as good a friend, as good a master, and as good a man.”</div>
-                <div class="quote-meta">
-                  Final narrator summary – proof that redemption is possible.
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <section class="panel">
-            <div class="panel-header">
-              <div>
-                <h2>How to use</h2>
-                <small>Turn ACC quotes into marks</small>
-              </div>
-            </div>
-            <div class="panel-body">
-              <p class="small-text">
-                Make a deck called <strong>“ACC Quotes”</strong> and put these in.
-              </p>
-              <ul class="checklist">
-                <li>
-                  <span class="bullet">✓</span>
-                  <span>Front: the quote. Back: who says it, which stave, and what it shows.</span>
-                </li>
-                <li>
-                  <span class="bullet">✓</span>
-                  <span>Always link to themes: poverty, responsibility, family, Christmas, redemption.</span>
-                </li>
-                <li>
-                  <span class="bullet">✓</span>
-                  <span>Use short quotes – easier to embed inside your sentences in the exam.</span>
-                </li>
-              </ul>
-            </div>
-          </section>
-        </div>
-      </section>
-
-      <!-- ENGLISH PAPERS -->
-      <section id="view-english" class="view">
-        <section class="panel">
+        <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>English Papers</h2>
-              <small>AQA GCSE – simple breakdown</small>
+              <h2>Flashcards – study</h2>
+              <small>ACC · Belonging anthology · English papers</small>
             </div>
           </div>
           <div class="panel-body">
-            <div class="papers-grid">
-              <!-- LIT PAPER 1 -->
-              <div class="paper-card">
-                <div class="paper-title">Literature Paper 1</div>
-                <div class="paper-meta">Shakespeare & 19th-century novel (ACC)</div>
-                <ul>
-                  <li>Section A – Shakespeare: one essay question on your play.</li>
-                  <li>Section B – 19th-century novel: one essay on <strong>A Christmas Carol</strong>.</li>
-                  <li>Usually: short extract printed + link it to the whole text.</li>
-                  <li>Plan: 2–3 paragraphs on the extract, 2–3 on the rest of the novel.</li>
-                </ul>
-              </div>
+            <div class="fc-top-row">
+              <label>
+                Deck
+                <select id="deck-select"></select>
+              </label>
+              <span class="pill-info" id="deck-info">0 cards</span>
+              <span class="badge">
+                <span class="badge-dot"></span>
+                Saved on this device only
+              </span>
+            </div>
 
-              <!-- LIT PAPER 2 -->
-              <div class="paper-card">
-                <div class="paper-title">Literature Paper 2</div>
-                <div class="paper-meta">Modern Texts & Poetry</div>
-                <ul>
-                  <li>Section A – Modern text (e.g. <em>An Inspector Calls</em>).</li>
-                  <li>Section B – Poetry Anthology (e.g. Belonging / Power & Conflict) – comparison essay.</li>
-                  <li>Section C – Unseen poetry: one question + a short comparison.</li>
-                  <li>Key skills: comparison, methods, and clear thesis about the question.</li>
-                </ul>
+            <div class="flashcard-box" id="study-card" title="Tap to flip">
+              <div class="flashcard-header">
+                <div class="flashcard-tag">
+                  <span class="tag-dot"></span>
+                  <span id="card-side-label">Front · Question</span>
+                </div>
+                <span id="card-meta" class="muted"></span>
               </div>
-
-              <!-- LANG PAPER 1 -->
-              <div class="paper-card">
-                <div class="paper-title">Language Paper 1</div>
-                <div class="paper-meta">Creative reading & writing</div>
-                <ul>
-                  <li>Q1–4 – Reading: one fiction extract (language + structure analysis).</li>
-                  <li>Q5 – Writing: narrative or descriptive piece based on an image / prompt.</li>
-                  <li>Big marks: structure (clear beginning–middle–end) and detailed description.</li>
-                </ul>
+              <div class="flashcard-text empty" id="card-text">
+                No cards yet in this deck.
               </div>
-
-              <!-- LANG PAPER 2 -->
-              <div class="paper-card">
-                <div class="paper-title">Language Paper 2</div>
-                <div class="paper-meta">Viewpoints & perspectives</div>
-                <ul>
-                  <li>Q1–4 – Reading: two non-fiction texts, compare ideas and how they’re presented.</li>
-                  <li>Q5 – Writing: transactional (letter, article, speech) giving your viewpoint.</li>
-                  <li>Use a clear structure for Q5: intro, 2–3 main points, strong conclusion.</li>
-                </ul>
+              <div class="flashcard-footer">
+                <span>
+                  <strong id="card-position">0 / 0</strong>
+                  · deck: <span id="deck-name-label">—</span>
+                </span>
+                <span class="muted">
+                  Tap to flip · <code>space</code> flip · <code>← / →</code> move
+                </span>
               </div>
             </div>
 
-            <p class="section-title">Turning this into revision</p>
-            <ul class="checklist">
-              <li>
-                <span class="bullet">✓</span>
-                <span>Make one deck for each paper: “Lit P2 – Anthology”, “Lang P2 – Q5 structures”, etc.</span>
-              </li>
-              <li>
-                <span class="bullet">✓</span>
-                <span>Front: “Lit P2 Section B” · Back: “Anthology comparison, 30 marks, comparison + methods.”</span>
-              </li>
-              <li>
-                <span class="bullet">✓</span>
-                <span>Test yourself on <strong>what’s in each paper</strong> until you can list sections from memory.</span>
-              </li>
-            </ul>
+            <div class="fc-controls">
+              <button id="fc-restart" class="primary">
+                <span class="icon">▶</span> Start / restart
+              </button>
+              <button id="fc-prev">
+                ◀ Prev
+              </button>
+              <button id="fc-next">
+                Next ▶
+              </button>
+              <button id="fc-flip">
+                ⟲ Flip
+              </button>
+              <div class="switch">
+                <input type="checkbox" id="fc-shuffle" />
+                <label for="fc-shuffle">Shuffle</label>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Edit / add cards</h2>
+              <small>Optional – defaults are already filled for you</small>
+            </div>
+          </div>
+          <div class="panel-body">
+            <details>
+              <summary>
+                <span class="summary-row">
+                  <span class="chevron">▸</span>
+                  <span>Open editor</span>
+                </span>
+              </summary>
+              <div>
+                <div class="edit-grid">
+                  <div>
+                    <div class="muted">Front (question / cue)</div>
+                    <textarea id="edit-front" placeholder="e.g. Who says &quot;God bless us, every one!&quot;?"></textarea>
+                  </div>
+                  <div>
+                    <div class="muted">Back (answer / explanation)</div>
+                    <textarea id="edit-back" placeholder="Tiny Tim – Stave 3, symbol of innocence and generosity."></textarea>
+                  </div>
+                </div>
+                <div class="edit-actions">
+                  <div>
+                    <button id="save-card" class="primary">
+                      <span class="icon">＋</span> Save card
+                    </button>
+                    <button id="clear-card">
+                      Clear
+                    </button>
+                  </div>
+                  <div>
+                    <span>Editing deck: <strong id="edit-deck-label">—</strong></span>
+                  </div>
+                </div>
+
+                <div class="card-list" id="card-list">
+                  <div class="card-list-header">
+                    <div>Front</div>
+                    <div>Back</div>
+                    <div>Actions</div>
+                  </div>
+                  <!-- rows injected by JS -->
+                </div>
+                <p class="muted" style="margin-top:6px;">
+                  You can tweak or add to the pre-made decks. Everything is stored in <code>localStorage</code> on your phone.
+                </p>
+              </div>
+            </details>
+          </div>
+        </div>
       </section>
-    </main>
-  </div>
+
+      <!-- PAPERS -->
+      <section id="view-papers" class="view">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>English papers – quick breakdown</h2>
+              <small>Use alongside the “English Papers – Overview” deck</small>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="grid-two">
+              <div>
+                <h3>Literature</h3>
+                <ul class="clean">
+                  <li><span class="b">Lit P1</span><span>Shakespeare + 19th-century novel (<strong>A Christmas Carol</strong>). Extract on the page + links to whole text.</span></li>
+                  <li><span class="b">Lit P2</span><span>Modern text, anthology poetry (e.g. <strong>Belonging</strong>), unseen poetry: one modern text essay, one comparison of two anthology poems, then unseen.</span></li>
+                </ul>
+                <p class="muted" style="margin-top:8px;">
+                  Turn this into cards: paper name on the front, sections + marks + skills on the back.
+                </p>
+              </div>
+              <div>
+                <h3>Language</h3>
+                <ul class="clean">
+                  <li><span class="b">Lang P1</span><span>Reading a fiction extract (Q1–4) + descriptive / narrative writing (Q5).</span></li>
+                  <li><span class="b">Lang P2</span><span>Two non-fiction texts (Q1–4) + viewpoint / transactional writing (Q5).</span></li>
+                </ul>
+                <p class="muted" style="margin-top:8px;">
+                  The <strong>“English Papers – Overview”</strong> deck already has structure + timing tips pre-loaded.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
   <script>
-    // ===== NAVIGATION (switch views) =========================
-    const navButtons = document.querySelectorAll(".nav-btn");
-    const views = {
-      dashboard: document.getElementById("view-dashboard"),
-      flashcards: document.getElementById("view-flashcards"),
-      acc: document.getElementById("view-acc"),
-      english: document.getElementById("view-english"),
+    // ---------- PRELOADED DECKS ----------
+    const DEFAULT_DECKS = {
+      "ACC – Key Quotes": [
+        {
+          front: "\"Marley was dead: to begin with.\"",
+          back: "Opening line. Establishes certainty of Marley's death and sets up the supernatural frame of the novella (Stave 1)."
+        },
+        {
+          front: "\"As solitary as an oyster.\"",
+          back: "Narrator describing Scrooge in Stave 1 – isolated, hard and closed off, but with potential for change (a 'pearl' inside)."
+        },
+        {
+          front: "\"Bah! Humbug!\"",
+          back: "Scrooge rejecting Christmas in Stave 1 – shows cynicism and lack of empathy for others."
+        },
+        {
+          front: "\"If they would rather die, they had better do it, and decrease the surplus population.\"",
+          back: "Scrooge talking about the poor in Stave 1 – cruel, Malthusian attitude that Dickens attacks."
+        },
+        {
+          front: "\"Mankind was my business!\"",
+          back: "Marley's Ghost in Stave 1 – regrets focusing on money instead of caring for others."
+        },
+        {
+          front: "\"A solitary child, neglected by his friends.\"",
+          back: "Narrator about young Scrooge in Stave 2 – explains the roots of his loneliness and bitterness."
+        },
+        {
+          front: "\"Another idol has displaced me... a golden one.\"",
+          back: "Belle in Stave 2 – says money has replaced love in Scrooge's life."
+        },
+        {
+          front: "\"A jolly Giant, glorious to see.\"",
+          back: "Description of the Ghost of Christmas Present (Stave 3) – symbol of warmth, generosity and abundance."
+        },
+        {
+          front: "\"God bless us, every one!\"",
+          back: "Tiny Tim in Stave 3 – innocent, inclusive blessing; moral centre of the novella."
+        },
+        {
+          front: "\"This boy is Ignorance. This girl is Want.\"",
+          back: "Ghost of Christmas Present in Stave 3 – personifies social problems caused by neglecting the poor."
+        },
+        {
+          front: "\"I am not the man I was.\"",
+          back: "Scrooge in Stave 4 – openly admits he has changed after what he has seen."
+        },
+        {
+          front: "\"I will honour Christmas in my heart, and try to keep it all the year.\"",
+          back: "Scrooge in Stave 4–5 – promises lasting generosity, not just a one-off gesture."
+        },
+        {
+          front: "\"He became as good a friend, as good a master, and as good a man.\"",
+          back: "Narrator in Stave 5 – confirms Scrooge's full redemption and new identity."
+        }
+      ],
+      "Belonging – All 15 Poems": [
+        {
+          front: "Captain Cook (To My Brother)",
+          back: "Themes: memory, lost innocence, family. The speaker recalls childhood games about Captain Cook and realises how adult life and class expectations have damaged the carefree closeness with her brother."
+        },
+        {
+          front: "Clear and Gentle Stream",
+          back: "Themes: nature, happiness, peace. An idealised rural landscape; the stream symbolises calm, continuity and a simple, harmonious life that the speaker feels they belong to."
+        },
+        {
+          front: "In Wales, Wanting to be Italian",
+          back: "Themes: cultural identity, longing, performance. The speaker grows up in Wales but fantasises about being Italian – using food, films and language to explore how we 'try on' identities to feel we belong."
+        },
+        {
+          front: "I Remember, I Remember",
+          back: "Themes: childhood vs adulthood, memory, disillusion. The speaker revisits his childhood home and realises the past was not as happy as he once believed, challenging nostalgic ideas of belonging."
+        },
+        {
+          front: "Island Man",
+          back: "Themes: migration, homesickness, split identity. Caribbean island dreams clash with grey London mornings; the speaker is caught between two homes and never feels fully rooted in either."
+        },
+        {
+          front: "Jamaican British",
+          back: "Themes: mixed heritage, language, exclusion. The speaker faces stereotypes about how a 'Jamaican British' person should look and sound, showing how accent, race and deafness affect belonging."
+        },
+        {
+          front: "Kumukanda",
+          back: "Themes: initiation, masculinity, diaspora. The title refers to a Zambian coming-of-age ritual; the speaker never completed it and feels 'unfinished', torn between African heritage and British upbringing."
+        },
+        {
+          front: "Mild the Mist Upon the Hill",
+          back: "Themes: memory, nature, mood. A Romantic poem where a soft, misty landscape mirrors a reflective, slightly melancholic mood; nature becomes a space of emotional belonging and calm."
+        },
+        {
+          front: "My Mother’s Kitchen",
+          back: "Themes: migration, inheritance, home. The cluttered kitchen objects symbolise a fragile but powerful sense of family and cultural roots passed down despite displacement and repeated moves."
+        },
+        {
+          front: "Peckham Rye Lane",
+          back: "Themes: city life, diversity, modern belonging. A busy South London street filled with noise and crowds; suggests belonging in messy, multicultural urban spaces rather than quiet countryside."
+        },
+        {
+          front: "To My Sister",
+          back: "Themes: family relationships, nature, encouragement. The speaker urges his sister to come outside and enjoy spring, presenting belonging as shared experience in the natural world and in sibling bonds."
+        },
+        {
+          front: "The Émigrée",
+          back: "Themes: memory, exile, idealised homeland. The speaker remembers a city she left as a child; even though it became dangerous, her childlike love for it remains, showing how memory shapes belonging."
+        },
+        {
+          front: "Sunday Dip",
+          back: "Themes: childhood joy, nature, community. Vivid description of children bathing in a river; water symbolises freedom and shared rural belonging in the Romantic countryside."
+        },
+        {
+          front: "Us",
+          back: "Themes: language, intimacy, couple identity. A short, compressed poem about the tiny word 'us' and how a relationship creates a private world of belonging between two people."
+        },
+        {
+          front: "We Refugees",
+          back: "Themes: refugees, shared humanity, prejudice. Zephaniah uses a collective 'we' voice to show that anyone could become a refugee, challenging stereotypes and emphasising universal human belonging."
+        }
+      ],
+      "English Papers – Overview": [
+        {
+          front: "Literature Paper 1 – what’s in it?",
+          back: "Shakespeare + 19th-century novel. One essay on your Shakespeare play and one on A Christmas Carol. You get an extract and must link it to the whole text."
+        },
+        {
+          front: "Literature Paper 2 – what’s in it?",
+          back: "Modern text, anthology poetry, unseen poetry. One essay on your modern text, one comparison of two anthology poems, then one unseen poem and a short comparison question."
+        },
+        {
+          front: "Language Paper 1 – question focus",
+          back: "Q1–4: reading a fiction extract (information, language, structure, evaluation). Q5: descriptive or narrative writing based on a picture or prompt."
+        },
+        {
+          front: "Language Paper 2 – question focus",
+          back: "Q1–4: reading two non-fiction texts and comparing ideas and methods. Q5: transactional writing (letter, article, speech etc.) giving your viewpoint."
+        },
+        {
+          front: "Anthology comparison – what do they want?",
+          back: "Compare how two poets present the same theme. You must cover key ideas, language methods, structure and some context, with clear links between the poems."
+        },
+        {
+          front: "Unseen poetry – how to structure",
+          back: "First paragraph: overall message + tone. Then 2–3 short paragraphs on key methods (imagery, structure, sound). Finish with a quick summary of how the poem answers the question."
+        },
+        {
+          front: "Language Paper 2 Q5 – easy plan",
+          back: "Intro with clear viewpoint. 2–3 main paragraphs each with a strong argument and examples. Use persuasive techniques (triples, rhetorical questions) and finish with a powerful conclusion."
+        },
+        {
+          front: "Timing tip for each paper",
+          back: "Try to leave at least 40% of the paper time for the big writing question (Lang) or main essay (Lit). If you’re running out of time, write a quick conclusion instead of another paragraph."
+        }
+      ]
     };
 
-    function setActiveView(viewName) {
-      Object.values(views).forEach((v) => v.classList.remove("active"));
-      const target = views[viewName];
-      if (target) target.classList.add("active");
+    const STORAGE_KEY = "revHubDecks_v1";
 
-      navButtons.forEach((btn) => {
-        if (btn.dataset.view === viewName) {
-          btn.classList.add("active");
-        } else {
-          btn.classList.remove("active");
-        }
-      });
-      updateDashboardStats();
-    }
-
-    navButtons.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const view = btn.dataset.view;
-        if (view) setActiveView(view);
-      });
-    });
-
-    // ===== FLASHCARD DATA & STORAGE ==========================
-    const STORAGE_KEY = "flashcardStudioDecks_v1";
     let decks = {};
     let currentDeckName = null;
     let studyOrder = [];
     let currentStudyIndex = 0;
     let showingFront = true;
 
-    function loadDecksFromStorage() {
+    // ---------- NAV ----------
+    const navTabs = document.querySelectorAll(".nav-tab");
+    const views = {
+      acc: document.getElementById("view-acc"),
+      flashcards: document.getElementById("view-flashcards"),
+      papers: document.getElementById("view-papers")
+    };
+
+    function setView(name) {
+      Object.values(views).forEach(v => v.classList.remove("active"));
+      if (views[name]) views[name].classList.add("active");
+      navTabs.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.view === name);
+      });
+    }
+
+    navTabs.forEach(btn => {
+      btn.addEventListener("click", () => {
+        setView(btn.dataset.view);
+      });
+    });
+
+    document.getElementById("go-to-acc-cards").addEventListener("click", () => {
+      setView("flashcards");
+      const deckSelect = document.getElementById("deck-select");
+      if (decks["ACC – Key Quotes"]) {
+        currentDeckName = "ACC – Key Quotes";
+        deckSelect.value = currentDeckName;
+        renderDeckInfo();
+        resetStudyOrder();
+        renderCardList();
+      }
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // ---------- STORAGE & INIT ----------
+    function deepCopyDefaults() {
+      return JSON.parse(JSON.stringify(DEFAULT_DECKS));
+    }
+
+    function loadDecks() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) {
-          decks = { "Default deck": [] };
-          currentDeckName = "Default deck";
-          saveDecksToStorage();
-          return;
-        }
-        decks = JSON.parse(raw);
-        const names = Object.keys(decks);
-        if (names.length === 0) {
-          decks = { "Default deck": [] };
-          currentDeckName = "Default deck";
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          decks = parsed && typeof parsed === "object" ? parsed : {};
         } else {
-          currentDeckName = names[0];
+          decks = {};
         }
       } catch (e) {
-        decks = { "Default deck": [] };
-        currentDeckName = "Default deck";
+        decks = {};
+      }
+
+      // Merge in any missing default decks
+      const defaults = deepCopyDefaults();
+      for (const name in defaults) {
+        if (!Object.prototype.hasOwnProperty.call(decks, name)) {
+          decks[name] = defaults[name];
+        }
+      }
+
+      const names = Object.keys(decks);
+      if (!names.length) {
+        decks = deepCopyDefaults();
+      }
+      if (!currentDeckName || !decks[currentDeckName]) {
+        currentDeckName = "ACC – Key Quotes";
+        if (!decks[currentDeckName]) {
+          currentDeckName = Object.keys(decks)[0];
+        }
+      }
+      saveDecks();
+    }
+
+    function saveDecks() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
+      } catch (e) {
+        // ignore
       }
     }
 
-    function saveDecksToStorage() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
-      updateDashboardStats();
-    }
-
-    // ===== DASHBOARD STATS ===================================
-    const statDecksEl = document.getElementById("stat-decks");
-    const statCardsEl = document.getElementById("stat-cards");
-
-    function updateDashboardStats() {
-      const deckNames = Object.keys(decks || {});
-      const deckCount = deckNames.length;
-      let cardCount = 0;
-      deckNames.forEach((name) => {
-        cardCount += (decks[name] || []).length;
-      });
-      statDecksEl.textContent = deckCount;
-      statCardsEl.textContent = cardCount;
-    }
-
-    // ===== UI ELEMENTS (Flashcards) ==========================
+    // ---------- FLASHCARD UI ----------
     const deckSelectEl = document.getElementById("deck-select");
-    const deckSummaryEl = document.getElementById("deck-summary");
-    const deckChipsEl = document.getElementById("deck-chips");
+    const deckInfoEl = document.getElementById("deck-info");
+    const deckNameLabelEl = document.getElementById("deck-name-label");
+    const cardTextEl = document.getElementById("card-text");
+    const cardSideLabelEl = document.getElementById("card-side-label");
+    const cardMetaEl = document.getElementById("card-meta");
+    const cardPositionEl = document.getElementById("card-position");
+    const studyCardEl = document.getElementById("study-card");
+    const shuffleToggleEl = document.getElementById("fc-shuffle");
+
+    const editFrontEl = document.getElementById("edit-front");
+    const editBackEl = document.getElementById("edit-back");
+    const editDeckLabelEl = document.getElementById("edit-deck-label");
     const cardListEl = document.getElementById("card-list");
-
-    const cardFrontEl = document.getElementById("card-front");
-    const cardBackEl = document.getElementById("card-back");
-    const cardFormEl = document.getElementById("card-form");
-
-    const studyDeckNameEl = document.getElementById("study-deck-name");
-    const studyCountEl = document.getElementById("study-count");
-    const studyPositionEl = document.getElementById("study-position");
-
-    const flashcardEl = document.getElementById("flashcard");
-    const flashcardTextEl = document.getElementById("flashcard-text");
-    const flashcardSideLabelEl = document.getElementById("flashcard-side-label");
-    const flashcardMetaEl = document.getElementById("flashcard-meta");
-    const flashcardProgressEl = document.getElementById("flashcard-progress");
 
     function renderDeckOptions() {
       deckSelectEl.innerHTML = "";
       const names = Object.keys(decks);
-      if (names.length === 0) {
-        decks["Default deck"] = [];
-        currentDeckName = "Default deck";
-      }
-      Object.keys(decks).forEach((name) => {
+      names.forEach(name => {
         const opt = document.createElement("option");
         opt.value = name;
         opt.textContent = name;
         deckSelectEl.appendChild(opt);
       });
       if (!currentDeckName || !decks[currentDeckName]) {
-        currentDeckName = Object.keys(decks)[0];
+        currentDeckName = names[0];
       }
       deckSelectEl.value = currentDeckName;
-      updateDeckSummaryAndChips();
-      renderCardList();
+      renderDeckInfo();
       refreshStudyState();
-      updateDashboardStats();
+      renderCardList();
     }
 
-    function updateDeckSummaryAndChips() {
+    function renderDeckInfo() {
       const cards = decks[currentDeckName] || [];
-      deckSummaryEl.textContent = `Cards in deck: ${cards.length}`;
-      deckChipsEl.innerHTML = "";
+      deckInfoEl.textContent = `${cards.length} card${cards.length === 1 ? "" : "s"}`;
+      deckNameLabelEl.textContent = currentDeckName || "—";
+      editDeckLabelEl.textContent = currentDeckName || "—";
+    }
 
-      const chip1 = document.createElement("div");
-      chip1.className = "chip";
-      chip1.innerHTML = `<strong>${Object.keys(decks).length}</strong> decks total`;
-      deckChipsEl.appendChild(chip1);
+    function resetStudyOrder() {
+      const cards = decks[currentDeckName] || [];
+      studyOrder = cards.map((_, i) => i);
+      if (shuffleToggleEl.checked) {
+        for (let i = studyOrder.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [studyOrder[i], studyOrder[j]] = [studyOrder[j], studyOrder[i]];
+        }
+      }
+      currentStudyIndex = 0;
+      showingFront = true;
+      refreshStudyState();
+    }
 
-      const chip2 = document.createElement("div");
-      chip2.className = "chip";
-      chip2.innerHTML = `<strong>${cards.length}</strong> cards in “${currentDeckName}”`;
-      deckChipsEl.appendChild(chip2);
+    function refreshStudyState() {
+      const cards = decks[currentDeckName] || [];
+      renderDeckInfo();
+
+      if (!cards.length) {
+        cardTextEl.textContent = "No cards yet in this deck.";
+        cardTextEl.classList.add("empty");
+        cardSideLabelEl.textContent = "Front · Question";
+        cardMetaEl.textContent = "";
+        cardPositionEl.textContent = "0 / 0";
+        return;
+      }
+
+      if (!studyOrder.length || studyOrder.length !== cards.length) {
+        studyOrder = cards.map((_, i) => i);
+      }
+
+      if (currentStudyIndex < 0) currentStudyIndex = 0;
+      if (currentStudyIndex >= studyOrder.length) currentStudyIndex = studyOrder.length - 1;
+
+      const cardIndex = studyOrder[currentStudyIndex];
+      const card = cards[cardIndex];
+
+      const text = showingFront ? card.front : card.back;
+      cardTextEl.textContent = text || "(empty)";
+      cardTextEl.classList.toggle("empty", !text);
+
+      cardSideLabelEl.textContent = showingFront ? "Front · Question" : "Back · Answer";
+      cardMetaEl.textContent = `Card ${cardIndex + 1} in deck`;
+      cardPositionEl.textContent = `${currentStudyIndex + 1} / ${cards.length}`;
+    }
+
+    function flipCard() {
+      const cards = decks[currentDeckName] || [];
+      if (!cards.length) return;
+      showingFront = !showingFront;
+      refreshStudyState();
+    }
+
+    function moveCard(delta) {
+      const cards = decks[currentDeckName] || [];
+      if (!cards.length) return;
+      currentStudyIndex += delta;
+      if (currentStudyIndex < 0) currentStudyIndex = cards.length - 1;
+      if (currentStudyIndex >= cards.length) currentStudyIndex = 0;
+      showingFront = true;
+      refreshStudyState();
+    }
+
+    // ---------- EDITOR ----------
+    function clearEditForm() {
+      editFrontEl.value = "";
+      editBackEl.value = "";
+      delete editFrontEl.dataset.index;
     }
 
     function renderCardList() {
       const cards = decks[currentDeckName] || [];
-      const children = Array.from(cardListEl.children).slice(1);
-      children.forEach((c) => c.remove());
+      const oldRows = Array.from(cardListEl.children).slice(1);
+      oldRows.forEach(r => r.remove());
 
       cards.forEach((card, idx) => {
         const row = document.createElement("div");
@@ -1600,38 +1243,32 @@
 
         const frontCell = document.createElement("div");
         frontCell.className = "card-cell";
-        frontCell.textContent = card.front || "(empty front)";
+        frontCell.textContent = card.front || "(front empty)";
 
         const backCell = document.createElement("div");
         backCell.className = "card-cell";
-        backCell.textContent = card.back || "(empty back)";
+        backCell.textContent = card.back || "(back empty)";
 
         const actionsCell = document.createElement("div");
 
         const editBtn = document.createElement("button");
-        editBtn.className = "ghost";
-        editBtn.style.fontSize = "11px";
         editBtn.textContent = "Edit";
+        editBtn.style.fontSize = "11px";
         editBtn.addEventListener("click", () => {
-          cardFrontEl.value = card.front;
-          cardBackEl.value = card.back;
-          cardFrontEl.dataset.editIndex = String(idx);
-          cardBackEl.dataset.editIndex = String(idx);
+          editFrontEl.value = card.front || "";
+          editBackEl.value = card.back || "";
+          editFrontEl.dataset.index = String(idx);
         });
 
         const delBtn = document.createElement("button");
-        delBtn.className = "danger";
-        delBtn.style.fontSize = "11px";
         delBtn.textContent = "✕";
-        delBtn.title = "Delete card";
+        delBtn.style.fontSize = "11px";
         delBtn.addEventListener("click", () => {
-          if (confirm("Delete this card?")) {
-            decks[currentDeckName].splice(idx, 1);
-            saveDecksToStorage();
-            renderCardList();
-            updateDeckSummaryAndChips();
-            refreshStudyState();
-          }
+          if (!confirm("Delete this card?")) return;
+          decks[currentDeckName].splice(idx, 1);
+          saveDecks();
+          resetStudyOrder();
+          renderCardList();
         });
 
         actionsCell.appendChild(editBtn);
@@ -1645,161 +1282,31 @@
       });
     }
 
-    // ===== STUDY MODE =======================================
-    function refreshStudyState() {
-      const cards = decks[currentDeckName] || [];
-      studyDeckNameEl.textContent = currentDeckName || "—";
-      studyCountEl.textContent = cards.length;
-      if (cards.length === 0) {
-        studyPositionEl.textContent = "0 / 0";
-        flashcardTextEl.textContent = "No cards in this deck yet.";
-        flashcardTextEl.classList.add("empty");
-        flashcardSideLabelEl.textContent = "Front · Question";
-        flashcardMetaEl.textContent = "";
-        flashcardProgressEl.textContent = "";
-        return;
-      }
-
-      if (!studyOrder || studyOrder.length !== cards.length) {
-        resetStudyOrder();
-      } else {
-        updateStudyCardDisplay();
-      }
-    }
-
-    function resetStudyOrder() {
-      const cards = decks[currentDeckName] || [];
-      studyOrder = cards.map((_, idx) => idx);
-      const shuffleToggle = document.getElementById("shuffle-toggle");
-      if (shuffleToggle.checked) shuffleArray(studyOrder);
-      currentStudyIndex = 0;
-      showingFront = true;
-      updateStudyCardDisplay();
-    }
-
-    function shuffleArray(arr) {
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-    }
-
-    function updateStudyCardDisplay() {
-      const cards = decks[currentDeckName] || [];
-      if (!cards.length || currentStudyIndex >= cards.length) {
-        flashcardTextEl.textContent = "No cards in this deck.";
-        flashcardTextEl.classList.add("empty");
-        flashcardSideLabelEl.textContent = "Front · Question";
-        studyPositionEl.textContent = "0 / 0";
-        flashcardMetaEl.textContent = "";
-        flashcardProgressEl.textContent = "";
-        return;
-      }
-
-      const cardIndex = studyOrder[currentStudyIndex];
-      const card = cards[cardIndex];
-
-      const sideText = showingFront ? card.front : card.back;
-      flashcardTextEl.textContent = sideText || "(empty)";
-      flashcardTextEl.classList.toggle("empty", !sideText);
-
-      flashcardSideLabelEl.textContent = showingFront
-        ? "Front · Question"
-        : "Back · Answer";
-
-      studyPositionEl.textContent = `${currentStudyIndex + 1} / ${cards.length}`;
-      flashcardMetaEl.textContent = `Card #${cardIndex + 1} in deck`;
-      flashcardProgressEl.textContent = `Position ${currentStudyIndex + 1} of ${cards.length}`;
-    }
-
-    function flipCurrentCard() {
-      const cards = decks[currentDeckName] || [];
-      if (!cards.length) return;
-      showingFront = !showingFront;
-      updateStudyCardDisplay();
-    }
-
-    function moveStudy(delta) {
-      const cards = decks[currentDeckName] || [];
-      if (!cards.length) return;
-      currentStudyIndex += delta;
-      if (currentStudyIndex < 0) currentStudyIndex = cards.length - 1;
-      if (currentStudyIndex >= cards.length) currentStudyIndex = 0;
-      showingFront = true;
-      updateStudyCardDisplay();
-    }
-
-    // ===== EVENT LISTENERS ==================================
-    document.getElementById("create-deck-btn").addEventListener("click", () => {
-      const nameInput = document.getElementById("new-deck-name");
-      const rawName = nameInput.value.trim();
-      if (!rawName) {
-        alert("Enter a name for your new deck.");
-        return;
-      }
-      if (decks[rawName]) {
-        alert("A deck with that name already exists.");
-        return;
-      }
-      decks[rawName] = [];
-      currentDeckName = rawName;
-      nameInput.value = "";
-      saveDecksToStorage();
-      renderDeckOptions();
-    });
-
+    // ---------- EVENT LISTENERS ----------
     deckSelectEl.addEventListener("change", () => {
       currentDeckName = deckSelectEl.value;
-      updateDeckSummaryAndChips();
-      renderCardList();
       resetStudyOrder();
+      renderCardList();
     });
 
-    document.getElementById("rename-deck-btn").addEventListener("click", () => {
-      if (!currentDeckName) return;
-      const newName = prompt("New name for this deck:", currentDeckName);
-      if (!newName) return;
-      const trimmed = newName.trim();
-      if (!trimmed || trimmed === currentDeckName) return;
-      if (decks[trimmed]) {
-        alert("A deck with that name already exists.");
-        return;
-      }
-      decks[trimmed] = decks[currentDeckName];
-      delete decks[currentDeckName];
-      currentDeckName = trimmed;
-      saveDecksToStorage();
-      renderDeckOptions();
-    });
+    document.getElementById("fc-restart").addEventListener("click", resetStudyOrder);
+    document.getElementById("fc-prev").addEventListener("click", () => moveCard(-1));
+    document.getElementById("fc-next").addEventListener("click", () => moveCard(1));
+    document.getElementById("fc-flip").addEventListener("click", flipCard);
+    shuffleToggleEl.addEventListener("change", resetStudyOrder);
+    studyCardEl.addEventListener("click", flipCard);
 
-    document.getElementById("delete-deck-btn").addEventListener("click", () => {
-      if (!currentDeckName) return;
-      if (!confirm(`Delete deck “${currentDeckName}”?`)) return;
-      delete decks[currentDeckName];
-      const names = Object.keys(decks);
-      if (!names.length) {
-        decks["Default deck"] = [];
-        currentDeckName = "Default deck";
-      } else {
-        currentDeckName = names[0];
-      }
-      saveDecksToStorage();
-      renderDeckOptions();
-    });
-
-    cardFormEl.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const front = cardFrontEl.value.trim();
-      const back = cardBackEl.value.trim();
+    document.getElementById("save-card").addEventListener("click", () => {
+      const front = editFrontEl.value.trim();
+      const back = editBackEl.value.trim();
       if (!front && !back) {
-        alert("Add something on the front or back first.");
+        alert("Add something to the front or back first.");
         return;
       }
-      const editIndexStr = cardFrontEl.dataset.editIndex;
       const cards = decks[currentDeckName] || [];
-
-      if (editIndexStr !== undefined) {
-        const idx = parseInt(editIndexStr, 10);
+      const idxStr = editFrontEl.dataset.index;
+      if (idxStr !== undefined) {
+        const idx = parseInt(idxStr, 10);
         if (!Number.isNaN(idx) && cards[idx]) {
           cards[idx] = { front, back };
         }
@@ -1807,152 +1314,37 @@
         cards.push({ front, back });
       }
       decks[currentDeckName] = cards;
-      saveDecksToStorage();
-      cardFrontEl.value = "";
-      cardBackEl.value = "";
-      delete cardFrontEl.dataset.editIndex;
-      delete cardBackEl.dataset.editIndex;
+      saveDecks();
+      clearEditForm();
+      resetStudyOrder();
       renderCardList();
-      updateDeckSummaryAndChips();
-      resetStudyOrder();
     });
 
-    document.getElementById("clear-form-btn").addEventListener("click", () => {
-      cardFrontEl.value = "";
-      cardBackEl.value = "";
-      delete cardFrontEl.dataset.editIndex;
-      delete cardBackEl.dataset.editIndex;
-    });
-
-    document.getElementById("import-file").addEventListener("change", (event) => {
-      const file = event.target.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        try {
-          const text = e.target.result;
-          const json = JSON.parse(text);
-
-          let importedName = currentDeckName;
-          let importedCards = [];
-
-          if (Array.isArray(json)) {
-            importedCards = json.filter(
-              (c) => c && typeof c.front === "string" && typeof c.back === "string"
-            );
-          } else if (json && typeof json === "object") {
-            if (json.name && typeof json.name === "string") {
-              importedName = json.name.trim() || currentDeckName;
-            }
-            if (Array.isArray(json.cards)) {
-              importedCards = json.cards.filter(
-                (c) =>
-                  c &&
-                  typeof c.front === "string" &&
-                  typeof c.back === "string"
-              );
-            }
-          }
-
-          if (!importedCards.length) {
-            alert("No cards found in file. Expected JSON with {front, back}.");
-            return;
-          }
-
-          const createNewDeck =
-            importedName && !decks[importedName]
-              ? confirm(
-                  `Create a new deck called “${importedName}” for these cards?`
-                )
-              : false;
-
-          if (createNewDeck) {
-            decks[importedName] = importedCards;
-            currentDeckName = importedName;
-          } else {
-            decks[currentDeckName] = [
-              ...(decks[currentDeckName] || []),
-              ...importedCards,
-            ];
-          }
-          saveDecksToStorage();
-          renderDeckOptions();
-          resetStudyOrder();
-          alert(
-            `Imported ${importedCards.length} card(s) ${
-              createNewDeck ? "into new deck" : "into current deck"
-            }.`
-          );
-        } catch (err) {
-          alert("Could not read file. Make sure it's valid JSON.");
-        } finally {
-          event.target.value = "";
-        }
-      };
-      reader.readAsText(file);
-    });
-
-    document.getElementById("export-deck-btn").addEventListener("click", () => {
-      const cards = decks[currentDeckName] || [];
-      const data = { name: currentDeckName, cards };
-      const blob = new Blob([JSON.stringify(data, null, 2)], {
-        type: "application/json",
-      });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      const safeName = currentDeckName.replace(/[^a-z0-9\-]+/gi, "_");
-      a.download = `flashcards_${safeName}.json`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    });
-
-    document.getElementById("restart-btn").addEventListener("click", () => {
-      resetStudyOrder();
-    });
-
-    document.getElementById("flip-btn").addEventListener("click", () => {
-      flipCurrentCard();
-    });
-
-    document.getElementById("prev-btn").addEventListener("click", () => {
-      moveStudy(-1);
-    });
-
-    document.getElementById("next-btn").addEventListener("click", () => {
-      moveStudy(1);
-    });
-
-    document.getElementById("shuffle-toggle").addEventListener("change", () => {
-      resetStudyOrder();
-    });
-
-    flashcardEl.addEventListener("click", () => {
-      flipCurrentCard();
-    });
+    document.getElementById("clear-card").addEventListener("click", clearEditForm);
 
     window.addEventListener("keydown", (e) => {
-      if (["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) return;
-      if (e.key === "ArrowRight") {
+      const tag = e.target.tagName;
+      if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT") return;
+
+      if (e.key === " " || e.key === "Spacebar") {
         e.preventDefault();
-        moveStudy(1);
+        flipCard();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        moveCard(1);
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
-        moveStudy(-1);
-      } else if (e.key === " " || e.key === "Spacebar") {
-        e.preventDefault();
-        flipCurrentCard();
+        moveCard(-1);
       } else if (e.key === "Enter") {
+        e.preventDefault();
         resetStudyOrder();
       }
     });
 
-    // ===== INIT =============================================
-    loadDecksFromStorage();
+    // ---------- START ----------
+    loadDecks();
     renderDeckOptions();
-    setActiveView("dashboard");
+    setView("acc");
   </script>
 </body>
-</html
+</html>
