@@ -6,15 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <style>
     :root {
-      --bg: #050514;
-      --bg-soft: #0b0b20;
-      --bg-softer: #111129;
-      --card: #141432;
-      --accent: #a855ff;
-      --accent-soft: rgba(168, 85, 255, 0.35);
-      --accent-strong: #c084fc;
-      --accent-text: #f5e9ff;
-      --border-subtle: rgba(255, 255, 255, 0.06);
+      --bg: #020202;
+      --bg-soft: #09090f;
+      --bg-softer: #101014;
+      --card: #111117;
+      --accent: #dc2626;
+      --accent-soft: rgba(220, 38, 38, 0.25);
+      --accent-strong: #f97373;
+      --accent-text: #fee2e2;
+      --border-subtle: rgba(148, 163, 184, 0.24);
       --text-main: #f9fafb;
       --text-muted: #9ca3af;
       --danger: #f97373;
@@ -22,8 +22,8 @@
       --radius-md: 12px;
       --radius-pill: 999px;
       --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.65);
-      --shadow-glow: 0 0 30px rgba(168, 85, 255, 0.35);
-      --transition-fast: 0.18s ease-out;
+      --shadow-glow: 0 0 34px rgba(248, 113, 113, 0.45);
+      --transition-fast: 0.16s ease-out;
       --transition-med: 0.24s ease-out;
       --blur-bg: blur(16px);
     }
@@ -40,9 +40,9 @@
         "Segoe UI", sans-serif;
       color: var(--text-main);
       background:
-        radial-gradient(circle at top, rgba(168, 85, 255, 0.25), transparent 55%),
-        radial-gradient(circle at bottom, rgba(37, 99, 235, 0.24), transparent 60%),
-        var(--bg);
+        radial-gradient(circle at top, rgba(127, 29, 29, 0.35), transparent 55%),
+        radial-gradient(circle at bottom, rgba(30, 64, 175, 0.28), transparent 60%),
+        #020617;
       display: flex;
       justify-content: center;
     }
@@ -64,11 +64,11 @@
       border-radius: var(--radius-lg);
       background: linear-gradient(
           135deg,
-          rgba(15, 23, 42, 0.85),
-          rgba(17, 24, 39, 0.96)
+          rgba(15, 23, 42, 0.9),
+          rgba(15, 23, 42, 0.98)
         );
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      box-shadow: var(--shadow-soft), 0 0 45px rgba(88, 28, 135, 0.4);
+      border: 1px solid rgba(248, 250, 252, 0.08);
+      box-shadow: var(--shadow-soft), 0 0 45px rgba(153, 27, 27, 0.7);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -87,9 +87,9 @@
 
     .app-title-main {
       font-size: 1.12rem;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      color: var(--accent-strong);
+      color: var(--accent-text);
       font-weight: 700;
       display: flex;
       align-items: center;
@@ -97,11 +97,13 @@
     }
 
     .app-logo-dot {
-      width: 9px;
-      height: 9px;
+      width: 11px;
+      height: 11px;
       border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 16px rgba(168, 85, 255, 0.9);
+      background: radial-gradient(circle at center, #fee2e2, #b91c1c);
+      box-shadow:
+        0 0 18px rgba(248, 113, 113, 0.95),
+        0 0 34px rgba(248, 113, 113, 0.7);
     }
 
     .app-subtitle {
@@ -112,17 +114,19 @@
     .quick-buttons {
       display: flex;
       gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .pill-btn {
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.35);
+      border: 1px solid rgba(148, 163, 184, 0.4);
       padding: 6px 12px;
       font-size: 0.76rem;
       display: flex;
       align-items: center;
       gap: 6px;
-      background: radial-gradient(circle at top, rgba(24, 24, 44, 0.9), rgba(6, 6, 20, 0.9));
+      background: radial-gradient(circle at top, rgba(10, 10, 16, 0.98), rgba(6, 6, 10, 0.98));
       color: var(--text-main);
       cursor: pointer;
       transition:
@@ -134,9 +138,11 @@
     }
 
     .pill-btn.primary {
-      border-color: rgba(168, 85, 255, 0.7);
-      background: radial-gradient(circle at top, rgba(76, 29, 149, 0.9), rgba(24, 24, 44, 0.96));
-      box-shadow: 0 12px 30px rgba(88, 28, 135, 0.6);
+      border-color: rgba(248, 113, 113, 0.9);
+      background: radial-gradient(circle at top, rgba(127, 29, 29, 0.96), rgba(24, 24, 30, 0.98));
+      box-shadow:
+        0 12px 30px rgba(127, 29, 29, 0.8),
+        0 0 28px rgba(248, 113, 113, 0.6);
     }
 
     .pill-btn span.icon {
@@ -157,7 +163,7 @@
 
     .card-shell {
       border-radius: var(--radius-lg);
-      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), #050515);
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), #020617);
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
       padding: 16px 14px 14px;
@@ -184,7 +190,7 @@
       font-size: 0.96rem;
       text-transform: uppercase;
       letter-spacing: 0.13em;
-      color: rgba(226, 232, 240, 0.85);
+      color: rgba(254, 242, 242, 0.9);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -192,11 +198,11 @@
 
     .section-heading h2::before {
       content: "";
-      width: 7px;
-      height: 7px;
+      width: 8px;
+      height: 8px;
       border-radius: 999px;
       background: radial-gradient(circle at center, var(--accent), transparent);
-      box-shadow: 0 0 16px rgba(168, 85, 255, 0.9);
+      box-shadow: 0 0 20px rgba(248, 113, 113, 0.95);
     }
 
     .section-heading small {
@@ -219,23 +225,16 @@
     .hero-panel {
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
-      background: radial-gradient(circle at top left, rgba(88, 28, 135, 0.35), transparent),
-        radial-gradient(circle at bottom right, rgba(15, 118, 110, 0.2), transparent),
-        rgba(10, 10, 31, 0.96);
+      background:
+        radial-gradient(circle at top left, rgba(127, 29, 29, 0.4), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(15, 23, 42, 0.5), transparent 60%),
+        rgba(10, 10, 20, 0.98);
       padding: 10px 11px;
       display: flex;
       flex-direction: column;
       gap: 8px;
       position: relative;
       overflow: hidden;
-    }
-
-    .hero-panel::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(248, 250, 252, 0.05), transparent 55%);
-      pointer-events: none;
     }
 
     .hero-title {
@@ -251,7 +250,7 @@
       font-size: 0.64rem;
       padding: 2px 6px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(209, 213, 219, 0.45);
+      border: 1px solid rgba(248, 250, 252, 0.4);
       color: var(--text-muted);
       text-transform: uppercase;
       letter-spacing: 0.1em;
@@ -267,7 +266,7 @@
       margin: 6px 0 0;
       padding-left: 16px;
       font-size: 0.76rem;
-      color: rgba(209, 213, 219, 0.92);
+      color: rgba(229, 231, 235, 0.95);
     }
 
     .hero-list li {
@@ -279,7 +278,6 @@
       flex-wrap: wrap;
       gap: 6px;
       margin-top: 4px;
-      z-index: 1;
     }
 
     .hero-pill {
@@ -287,7 +285,7 @@
       padding: 4px 8px;
       border-radius: var(--radius-pill);
       border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.94);
       color: var(--text-main);
       display: inline-flex;
       align-items: center;
@@ -303,21 +301,21 @@
       margin-top: 4px;
       padding: 8px;
       border-radius: 12px;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(55, 65, 81, 0.7);
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.8);
       font-size: 0.78rem;
-      color: rgba(229, 231, 235, 0.96);
+      color: rgba(229, 231, 235, 0.97);
       display: flex;
       flex-direction: column;
       gap: 6px;
-      box-shadow: 0 18px 35px rgba(15, 23, 42, 0.8);
+      box-shadow: 0 18px 35px rgba(0, 0, 0, 0.9);
     }
 
     .hero-question-label {
       font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 0.13em;
-      color: rgba(156, 163, 175, 0.95);
+      color: rgba(156, 163, 175, 0.96);
     }
 
     .hero-question-text {
@@ -338,8 +336,8 @@
 
     .btn-ghost {
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: rgba(15, 23, 42, 0.96);
       color: var(--accent-text);
       padding: 4px 10px;
       font-size: 0.75rem;
@@ -357,7 +355,7 @@
       transform: scale(0.97) translateY(1px);
     }
 
-    /* Flashcard controls */
+    /* FLASHCARD CONTROLS */
 
     .controls-row {
       display: flex;
@@ -376,23 +374,13 @@
       color: var(--text-muted);
     }
 
-    label {
-      font-size: 0.76rem;
-    }
-
-    select,
-    button,
-    input[type="checkbox"] {
-      font-family: inherit;
-    }
-
     .select {
       border-radius: var(--radius-pill);
       padding: 5px 28px 5px 10px;
-      border: 1px solid rgba(75, 85, 99, 0.9);
+      border: 1px solid rgba(75, 85, 99, 0.95);
       background:
-        radial-gradient(circle at top left, rgba(88, 28, 135, 0.35), transparent 55%),
-        rgba(15, 23, 42, 0.96);
+        radial-gradient(circle at top left, rgba(127, 29, 29, 0.6), transparent 55%),
+        rgba(15, 23, 42, 0.98);
       color: var(--text-main);
       font-size: 0.78rem;
       position: relative;
@@ -420,8 +408,8 @@
     .control-chip {
       padding: 4px 9px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(55, 65, 81, 0.85);
-      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.94);
       font-size: 0.72rem;
       color: var(--text-muted);
       display: inline-flex;
@@ -431,16 +419,16 @@
     }
 
     .control-chip input[type="checkbox"] {
-      accent-color: var(--accent);
       width: 13px;
       height: 13px;
+      accent-color: var(--accent);
     }
 
     .order-toggle {
       border-radius: var(--radius-pill);
       padding: 4px 10px;
       font-size: 0.72rem;
-      border: 1px solid rgba(55, 65, 81, 0.85);
+      border: 1px solid rgba(55, 65, 81, 0.9);
       background: rgba(15, 23, 42, 0.96);
       color: var(--text-muted);
       display: inline-flex;
@@ -454,7 +442,7 @@
       font-weight: 600;
     }
 
-    /* Flashcard */
+    /* FLASHCARD */
 
     .flashcard-outer {
       margin-top: 4px;
@@ -463,9 +451,9 @@
     .flashcard-frame {
       border-radius: var(--radius-lg);
       background:
-        radial-gradient(circle at top, rgba(148, 27, 255, 0.28), transparent 60%),
-        radial-gradient(circle at bottom, rgba(14, 116, 144, 0.22), transparent 60%),
-        linear-gradient(135deg, #050515, #050514);
+        radial-gradient(circle at top, rgba(127, 29, 29, 0.4), transparent 60%),
+        radial-gradient(circle at bottom, rgba(15, 23, 42, 0.5), transparent 65%),
+        linear-gradient(135deg, #020617, #020617);
       border: 1px solid rgba(148, 163, 184, 0.6);
       box-shadow: var(--shadow-soft), var(--shadow-glow);
       padding: 12px 12px 11px;
@@ -475,7 +463,7 @@
 
     .flashcard {
       border-radius: calc(var(--radius-lg) - 6px);
-      background: rgba(6, 6, 24, 0.98);
+      background: rgba(6, 6, 15, 0.98);
       min-height: 170px;
       max-height: 320px;
       overflow-y: auto;
@@ -494,15 +482,16 @@
 
     .flashcard:hover {
       transform: translateY(-1px);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.8),
-        0 0 30px rgba(168, 85, 255, 0.35);
+      box-shadow:
+        0 18px 45px rgba(0, 0, 0, 0.9),
+        0 0 34px rgba(248, 113, 113, 0.5);
     }
 
     .flashcard-face-label {
       font-size: 0.7rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: rgba(148, 163, 184, 0.9);
+      color: rgba(248, 250, 252, 0.7);
     }
 
     .flashcard-main-text {
@@ -540,8 +529,6 @@
       color: var(--accent-strong);
     }
 
-    /* Flashcard footer */
-
     .flashcard-footer {
       display: flex;
       align-items: center;
@@ -572,7 +559,7 @@
       height: 100%;
       width: 0%;
       border-radius: inherit;
-      background: linear-gradient(90deg, var(--accent), #38bdf8);
+      background: linear-gradient(90deg, #ef4444, #fb923c);
       transition: width 0.22s ease-out;
     }
 
@@ -584,12 +571,13 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      flex-wrap: wrap;
     }
 
     .nav-buttons button {
       border-radius: var(--radius-pill);
       border: 1px solid rgba(75, 85, 99, 0.9);
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(9, 9, 25, 0.98));
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.96), rgba(9, 9, 15, 0.98));
       color: var(--text-main);
       padding: 4px 10px;
       font-size: 0.76rem;
@@ -604,9 +592,15 @@
     }
 
     .nav-buttons button.primary {
-      border-color: rgba(168, 85, 255, 0.9);
-      background: radial-gradient(circle at top, rgba(76, 29, 149, 0.98), rgba(30, 64, 175, 0.95));
-      box-shadow: 0 10px 28px rgba(88, 28, 135, 0.7);
+      border-color: rgba(248, 113, 113, 0.95);
+      background: radial-gradient(circle at top, rgba(127, 29, 29, 0.98), rgba(30, 64, 175, 0.95));
+      box-shadow:
+        0 10px 28px rgba(127, 29, 29, 0.7),
+        0 0 26px rgba(248, 113, 113, 0.5);
+    }
+
+    .nav-buttons button.ghost {
+      border-color: rgba(75, 85, 99, 0.9);
     }
 
     .nav-buttons button:active {
@@ -614,7 +608,43 @@
       box-shadow: none;
     }
 
-    /* Extras: checklist + stats */
+    .mark-buttons {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .mark-buttons button {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 4px 9px;
+      font-size: 0.74rem;
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-main);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition:
+        background var(--transition-fast),
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .mark-buttons button.good {
+      border-color: rgba(34, 197, 94, 0.8);
+      color: #bbf7d0;
+    }
+
+    .mark-buttons button.bad {
+      border-color: rgba(248, 113, 113, 0.85);
+      color: #fee2e2;
+    }
+
+    .mark-buttons button:active {
+      transform: scale(0.97) translateY(1px);
+    }
 
     .extras-grid {
       display: grid;
@@ -631,11 +661,7 @@
     .extra-panel {
       border-radius: var(--radius-md);
       border: 1px solid var(--border-subtle);
-      background: linear-gradient(
-          135deg,
-          rgba(15, 23, 42, 0.95),
-          rgba(15, 23, 42, 0.98)
-        );
+      background: rgba(15, 23, 42, 0.98);
       padding: 10px 11px;
       display: flex;
       flex-direction: column;
@@ -644,7 +670,7 @@
 
     .extra-title {
       font-size: 0.8rem;
-      color: rgba(209, 213, 219, 0.98);
+      color: rgba(249, 250, 251, 0.96);
       text-transform: uppercase;
       letter-spacing: 0.13em;
       display: flex;
@@ -658,7 +684,7 @@
       height: 6px;
       border-radius: 999px;
       background: radial-gradient(circle at center, var(--accent), transparent);
-      box-shadow: 0 0 12px rgba(168, 85, 255, 0.85);
+      box-shadow: 0 0 12px rgba(248, 113, 113, 0.85);
     }
 
     .extra-body {
@@ -687,7 +713,7 @@
       gap: 6px;
       padding: 4px 6px;
       border-radius: 9px;
-      background: rgba(15, 23, 42, 0.9);
+      background: rgba(15, 23, 42, 0.96);
       border: 1px solid rgba(31, 41, 55, 0.95);
     }
 
@@ -729,7 +755,7 @@
       margin: 5px 0 0;
       padding-left: 16px;
       font-size: 0.75rem;
-      color: rgba(209, 213, 219, 0.96);
+      color: rgba(229, 231, 235, 0.96);
     }
 
     .papers-list li {
@@ -738,6 +764,95 @@
 
     .papers-list strong {
       color: var(--accent-strong);
+    }
+
+    .exam-row {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .exam-row input[type="date"] {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      color: var(--text-main);
+      font-size: 0.74rem;
+      padding: 4px 8px;
+    }
+
+    .structures-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.2fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 720px) {
+      .structures-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .structure-box {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(55, 65, 81, 0.95);
+      background: rgba(15, 23, 42, 0.96);
+      padding: 9px 10px;
+      font-size: 0.78rem;
+      color: rgba(229, 231, 235, 0.97);
+    }
+
+    .structure-box h3 {
+      margin: 0 0 4px;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      color: var(--accent-text);
+    }
+
+    .structure-box ul {
+      margin: 4px 0 0;
+      padding-left: 16px;
+    }
+
+    .structure-box li {
+      margin-bottom: 3px;
+    }
+
+    .structure-box code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 0.74rem;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 999px;
+      padding: 1px 6px;
+      border: 1px solid rgba(75, 85, 99, 0.9);
+      color: var(--accent-text);
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding-inline: 10px;
+      }
+      .app-shell {
+        padding-inline: 10px;
+      }
+      .card-shell {
+        padding-inline: 12px;
+      }
+      .controls-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    /* Focus mode: keep only flashcards visible */
+    body.focus-only #accSection,
+    body.focus-only #extrasSection,
+    body.focus-only #structuresSection {
+      display: none;
     }
   </style>
 </head>
@@ -749,7 +864,7 @@
           <span class="app-logo-dot"></span>
           ACC & Belonging – Revision Hub
         </div>
-        <div class="app-subtitle">Built for AQA Eng Lit & your phone screen</div>
+        <div class="app-subtitle">Dark / red · built for AQA Eng Lit, Year 11</div>
       </div>
       <div class="quick-buttons">
         <button class="pill-btn primary" id="quickAcc">
@@ -760,37 +875,41 @@
           <span class="icon">📝</span>
           Belonging quotes
         </button>
+        <button class="pill-btn" id="quickStructures">
+          <span class="icon">📚</span>
+          Structures
+        </button>
       </div>
     </header>
 
     <main>
-      <!-- HERO / ACC FRONT PAGE -->
-      <section class="card-shell">
+      <!-- ACC FRONT PAGE -->
+      <section class="card-shell" id="accSection">
         <div class="section-heading">
           <h2>A Christmas Carol – Front Page</h2>
-          <small>Staves | exam-style questions | quick overview</small>
+          <small>Staves · key ideas · random exam question generator</small>
         </div>
         <div class="hero-grid">
           <div class="hero-panel">
             <div class="hero-title">
               Core plot checkpoints
-              <span class="tag">ACC · Staves 1–5</span>
+              <span class="tag">ACC · staves 1–5</span>
             </div>
             <div class="hero-body">
-              Use this as a mental map before you hit the flashcards.
+              Keep this in your head before you write or revise quotes.
               <ul class="hero-list">
-                <li><strong>Stave 1:</strong> Miserly Scrooge, Marley’s warning, “chains I forged in life”.</li>
-                <li><strong>Stave 2:</strong> Past – lonely schoolboy, Fezziwig, Belle leaving: where he lost compassion.</li>
-                <li><strong>Stave 3:</strong> Present – Cratchits, Tiny Tim, Ignorance &amp; Want, “Mankind was my business”.</li>
-                <li><strong>Stave 4:</strong> Yet to Come – business men, thieves, the corpse, his own grave.</li>
-                <li><strong>Stave 5:</strong> Rebirth – generous Scrooge, helps Cratchits, “as happy as an angel”.</li>
+                <li><strong>Stave 1:</strong> Miser Scrooge, “Bah! Humbug”, rejects charity, Marley warns him about “chains”.</li>
+                <li><strong>Stave 2:</strong> Past – lonely schoolboy, Fezziwig’s party, Belle leaves when he chooses money.</li>
+                <li><strong>Stave 3:</strong> Present – Cratchit Christmas, Tiny Tim’s illness, Ignorance and Want.</li>
+                <li><strong>Stave 4:</strong> Yet to Come – people stealing his things, no one mourning him, his grave.</li>
+                <li><strong>Stave 5:</strong> Redemption – buys turkey, helps Cratchits, “good a man” as anyone.</li>
               </ul>
               <div class="hero-actions">
                 <div class="hero-pill">
-                  Current focus: <strong>A Christmas Carol</strong>
+                  Focus: <strong>know 2–3 quotes per stave</strong>
                 </div>
                 <div class="hero-pill">
-                  Tip: learn <strong>1–2 quotes</strong> per stave for safety.
+                  Use the <strong>ACC deck</strong> to lock them in.
                 </div>
               </div>
             </div>
@@ -808,7 +927,7 @@
                 • Scrooge • the poor • Dickens’ message.
               </div>
               <div class="hero-question-footer">
-                <small>Try: plan intro + 2–3 body paragraphs.</small>
+                <small>Try: intro + 3 paragraphs + short conclusion.</small>
                 <button class="btn-ghost" id="newQuestionBtn">
                   <span>New question</span>
                   <span>🎲</span>
@@ -819,11 +938,11 @@
         </div>
       </section>
 
-      <!-- FLASHCARD SECTION -->
-      <section class="card-shell">
+      <!-- FLASHCARDS -->
+      <section class="card-shell" id="flashSection">
         <div class="section-heading">
           <h2>Active Flashcards</h2>
-          <small>Tap the card to flip · swipe through your session</small>
+          <small>ACC · Belonging quotes · sentence starters deck</small>
         </div>
 
         <div class="controls-row">
@@ -856,6 +975,11 @@
               <input type="checkbox" id="startOnBack" />
               Start on analysis side
             </label>
+
+            <label class="control-chip">
+              <input type="checkbox" id="focusMode" />
+              Focus mode (cards only)
+            </label>
           </div>
         </div>
 
@@ -874,71 +998,154 @@
               </div>
             </div>
             <div class="flashcard-hint">
-              Tap anywhere on the card to <span>flip between quote and analysis.</span>
+              Tap anywhere on the card to <span>flip between quote and analysis / explanation.</span>
             </div>
           </div>
 
-          <div class="flashcard-footer">
-            <div class="progress">
-              <div class="progress-bar">
-                <div id="progressFill" class="progress-fill"></div>
-              </div>
-              <span id="progressLabel">0 / 0</span>
+        <div class="flashcard-footer">
+          <div class="progress">
+            <div class="progress-bar">
+              <div id="progressFill" class="progress-fill"></div>
             </div>
-            <div class="nav-buttons">
-              <button id="prevBtn">
-                ◀ Prev
-              </button>
-              <button id="restartBtn">
-                ↻ Restart session
-              </button>
-              <button id="nextBtn" class="primary">
-                Next ▶
-              </button>
+            <span id="progressLabel">0 / 0</span>
+          </div>
+          <div class="nav-buttons">
+            <button id="prevBtn" class="ghost">
+              ◀ Prev
+            </button>
+            <button id="restartBtn" class="ghost">
+              ↻ Restart
+            </button>
+            <button id="nextBtn" class="primary">
+              Next ▶
+            </button>
+          </div>
+        </div>
+
+        <div class="flashcard-footer">
+          <div class="mark-buttons">
+            <button id="gotItBtn" class="good">
+              ✓ Got it
+            </button>
+            <button id="notYetBtn" class="bad">
+              ? Not yet
+            </button>
+          </div>
+          <div class="stats-row">
+            <div class="stat-pill">
+              Got it:
+              <span class="value" id="statKnown">0</span>
+            </div>
+            <div class="stat-pill">
+              Not yet:
+              <span class="value" id="statUnsure">0</span>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- EXTRAS: CHECKLIST + PAPERS + STATS -->
-      <section class="card-shell">
+      <!-- SENTENCE STARTERS / STRUCTURES -->
+      <section class="card-shell" id="structuresSection">
+        <div class="section-heading">
+          <h2>Sentence Starters & Structures</h2>
+          <small>Use these in ACC, Belonging, unseen, Lang Q5</small>
+        </div>
+        <div class="structures-grid">
+          <div class="structure-box">
+            <h3>ACC & Lit essay paragraphs</h3>
+            <ul>
+              <li><code>Intro</code> – “In <em>A Christmas Carol</em>, Dickens presents <strong>[theme]</strong> as… in order to show that…”</li>
+              <li><code>Point</code> – “Firstly, Dickens suggests that Scrooge is…” / “At the start of the novella, Scrooge is presented as…”</li>
+              <li><code>Evidence</code> – “This is shown when Dickens writes, ‘…’ ” / “We see this in the quote, ‘…’ ”</li>
+              <li><code>Zoom</code> – “The adjective ‘…’ implies that…” / “The verb ‘…’ suggests that…”</li>
+              <li><code>Effect</code> – “This makes the reader feel…” / “This highlights Dickens’ criticism of…”</li>
+              <li><code>Context</code> – “This would shock a Victorian reader because…” / “This reflects Victorian attitudes to…”</li>
+              <li><code>Link</code> – “Overall, Dickens uses this moment to show that…” / “This links back to the idea that…”</li>
+            </ul>
+          </div>
+          <div class="structure-box">
+            <h3>Belonging comparisons (anthology)</h3>
+            <ul>
+              <li><code>Compare start</code> – “Both poets explore the idea of <strong>[belonging topic]</strong>, but in different ways.”</li>
+              <li><code>Similarity</code> – “Similarly, in <strong>[Poem B]</strong>, the poet also suggests that…”</li>
+              <li><code>Difference</code> – “However, unlike <strong>[Poem A]</strong>, <strong>[Poem B]</strong> presents…”</li>
+              <li><code>Method</code> – “The poet uses imagery such as ‘…’ to show that…” / “The use of structure here, where…, emphasises…”</li>
+              <li><code>Link back</code> – “This shows that both poets agree that…, but <strong>[Poem B]</strong> is more… in its view.”</li>
+              <li><code>Conclusion</code> – “Overall, while both poems present…, <strong>[Poem X]</strong> suggests that belonging is…, whereas <strong>[Poem Y]</strong>…”</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="structures-grid" style="margin-top:10px;">
+          <div class="structure-box">
+            <h3>Unseen poetry – quick frame</h3>
+            <ul>
+              <li><code>Opening</code> – “The poet presents <strong>[feeling / situation]</strong> as… using imagery and structure to show that…”</li>
+              <li><code>Idea paragraph</code> – “One important idea in the poem is that…”</li>
+              <li><code>Evidence</code> – “This is suggested by the phrase ‘…’ which implies that…”</li>
+              <li><code>Method</code> – “The poet’s use of <strong>[metaphor / enjambment / rhyme]</strong> here creates a sense of…”</li>
+              <li><code>Effect</code> – “This makes the reader think about…” / “This emphasises how strongly the speaker feels that…”</li>
+              <li><code>Comparison (unseen B)</code> – “In the second poem, the poet also explores…, but presents it as more…”</li>
+            </ul>
+          </div>
+          <div class="structure-box">
+            <h3>Lang Paper 2 Q5 (viewpoint)</h3>
+            <ul>
+              <li><code>Intro</code> – “I strongly believe that… because…” / “In today’s society, it is essential that…”</li>
+              <li><code>Para start</code> – “Firstly,…”, “Secondly,…”, “Most importantly,…”.</li>
+              <li><code>Develop</code> – “For example,…”, “This means that…”</li>
+              <li><code>Persuade</code> – “Surely we cannot ignore…”, “Is it really fair that…?”</li>
+              <li><code>Counter</code> – “Some people might argue that…, however this is flawed because…”</li>
+              <li><code>Ending</code> – “In conclusion, if we want a future where…, we must…”</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXTRAS -->
+      <section class="card-shell" id="extrasSection">
         <div class="section-heading">
           <h2>Extras – Belonging & Exam Info</h2>
-          <small>Track poems · know what’s on AQA papers</small>
+          <small>Tick poems · exam contents · countdown</small>
         </div>
         <div class="extras-grid">
           <div class="extra-panel">
             <div class="extra-title">Belonging anthology checklist</div>
             <div class="extra-body">
-              Tick when you feel confident on the poem’s quotes + meaning.
-              <ul class="poem-list" id="poemChecklist">
-                <!-- Filled by JS -->
-              </ul>
+              Tick when you feel confident on the key quotes + meaning for each poem.
+              <ul class="poem-list" id="poemChecklist"></ul>
             </div>
           </div>
 
           <div class="extra-panel">
-            <div class="extra-title">AQA English – Paper contents</div>
+            <div class="extra-title">AQA English – Papers & countdown</div>
             <div class="extra-body">
               Focus for you (Year 11):
               <ul class="papers-list">
                 <li>
-                  <strong>Eng Lit Paper 1:</strong> Shakespeare + 19th-century novel
-                  (that’s where <strong>ACC</strong> appears if your school chose it).
+                  <strong>Eng Lit Paper 1:</strong> Shakespeare + 19th-century novel (ACC if your school chose it).
                 </li>
                 <li>
-                  <strong>Eng Lit Paper 2:</strong> Modern text + Poetry anthology (Belonging if you’re doing Edexcel) + Unseen poetry.
+                  <strong>Eng Lit Paper 2:</strong> Modern text + Poetry anthology (Belonging if you’re on that spec) + Unseen poetry.
                 </li>
                 <li>
                   <strong>Eng Lang Paper 1:</strong> Fiction extract + descriptive / narrative writing.
                 </li>
                 <li>
-                  <strong>Eng Lang Paper 2:</strong> Non-fiction + transactional writing (Q8/9 type tasks).
+                  <strong>Eng Lang Paper 2:</strong> Non-fiction + transactional writing (argue / persuade).
                 </li>
               </ul>
+
+              <div class="exam-row">
+                <span>Exam date:</span>
+                <input type="date" id="examDateInput" />
+                <button class="btn-ghost" id="saveExamDateBtn">Save</button>
+                <span id="examCountdownText"></span>
+              </div>
+
               <div class="stats-row" style="margin-top:6px;">
                 <div class="stat-pill">
-                  Sessions today:
+                  Sessions this device:
                   <span class="value" id="statSessions">0</span>
                 </div>
                 <div class="stat-pill">
@@ -954,294 +1161,334 @@
   </div>
 
   <script>
-    // --------- VERSIONING (so your updated decks actually load) ----------
-    const APP_VERSION = "2";
+    const APP_VERSION = "3";
 
-    // --------- DEFAULT DECK DATA ----------
-    // ACC is public domain; Belonging quotes are short, exam-style lines from
-    // the official Edexcel Belonging anthology and public quote banks.  [oai_citation:0‡Save My Exams](https://cdn.savemyexams.com/uploads/2023/01/1et0-2p-que-20211123.pdf?utm_source=chatgpt.com)
+    // -------- DEFAULT DECKS (ACC, Belonging quotes, structures) --------
     const DEFAULT_DECKS = {
       "A Christmas Carol – Key Moments & Quotes": [
         {
-          front: "Stave 1 – Overview\n\nMarley’s ghost warns Scrooge he’ll wear “chains” of his own selfish life.",
+          front: "Stave 1 – overview\n\nMarley’s ghost warns Scrooge he’ll wear “chains” of his own selfish life.",
           back:
-            "Stave 1 sets Scrooge up as cold and isolated (“solitary as an oyster”), rejects charity, and shows Marley suffering for focusing on profit not people – the moral problem Dickens will fix."
+            "Stave 1 sets Scrooge up as cold and isolated (“solitary as an oyster”), rejecting charity and speaking cruelly about the poor. Marley arrives in chains to show that a life focused on money leads to punishment and regret."
         },
         {
-          front: "Stave 2 – Overview\n\nGhost of Christmas Past shows Scrooge his younger self.",
+          front: "Stave 2 – overview\n\nGhost of Christmas Past shows Scrooge his younger self.",
           back:
-            "We see his lonely schooldays, warmth at Fezziwig’s party, and Belle breaking the engagement. This proves Scrooge wasn’t always heartless – greed slowly replaced love and belonging."
+            "We see his lonely schooldays, Fezziwig’s joyful party and Belle ending the engagement. This proves Scrooge wasn’t always heartless – greed slowly replaced love and belonging, which explains but doesn’t excuse his behaviour."
         },
         {
-          front: "Stave 3 – Overview\n\nGhost of Christmas Present and the Cratchits.",
+          front: "Stave 3 – overview\n\nGhost of Christmas Present and the Cratchits.",
           back:
-            "We see the Cratchits’ loving but poor Christmas, Tiny Tim’s fragility, and Ignorance & Want. Dickens contrasts Scrooge’s wealth with their warmth to attack selfish attitudes to the poor."
+            "We visit the Cratchits’ poor but warm Christmas, see Tiny Tim’s fragility and meet Ignorance and Want. Dickens contrasts Scrooge’s wealth with their kindness to criticise selfish attitudes to the poor."
         },
         {
-          front: "Stave 4 – Overview\n\nGhost of Christmas Yet to Come and Scrooge’s death.",
+          front: "Stave 4 – overview\n\nGhost of Christmas Yet to Come and Scrooge’s death.",
           back:
-            "Scrooge is shown businessmen joking about his death, thieves stealing his things, and his own grave. No one mourns him – a warning that a loveless life ends in a lonely death."
+            "Scrooge witnesses businessmen mocking his death, thieves stealing his belongings and an unvisited grave. No one cares that he has died, warning that a life without generosity leads to a lonely, meaningless end."
         },
         {
-          front: "Stave 5 – Overview\n\nScrooge wakes up changed.",
+          front: "Stave 5 – overview\n\nScrooge wakes up changed.",
           back:
-            "He is “as happy as an angel”, buys the prize turkey, raises Bob’s wages and becomes “a second father” to Tiny Tim. Dickens shows redemption is possible if you change your priorities."
+            "He wakes grateful to be alive, buys the prize turkey, donates to charity, goes to Fred’s party and raises Bob’s wages. Dickens ends by showing that true happiness comes from relationships and generosity, not money."
         },
         {
           front: "\"solitary as an oyster\" (Stave 1)",
           back:
-            "Simile suggests Scrooge is closed off, hard-shelled and difficult to open; but an oyster can hide a pearl, hinting he has potential for goodness if he opens up to others."
+            "Simile emphasising Scrooge’s isolation and hard exterior. An oyster is closed and difficult to open, but it may hide a pearl – hinting that Scrooge has hidden potential for kindness and change."
         },
         {
           front: "\"Bah! Humbug!\"",
           back:
-            "His catchphrase rejects Christmas as nonsense. It symbolises his dismissal of joy, generosity and social responsibility – everything Dickens wants the reader to value."
+            "Scrooge’s catchphrase dismissing Christmas as nonsense. It symbolises his rejection of joy, community and generosity – everything Dickens wants Victorian society to value."
         },
         {
           front: "\"Are there no prisons?\" / \"And the Union workhouses?\"",
           back:
-            "Scrooge parrots harsh Victorian attitudes, treating poverty as a crime. Dickens uses this to criticise a system that punishes the poor instead of supporting them."
+            "Scrooge uses the names of cruel institutions instead of helping the poor. Dickens criticises the Victorian belief that poverty is a crime and that harsh workhouses are an acceptable ‘solution’."
         },
         {
           front: "\"Mankind was my business!\" – Marley",
           back:
-            "Marley confesses his sin was caring only about “trade” not people. Dickens’ message: our duty is to humanity, not just profit; otherwise we carry ‘chains’ of guilt like Marley."
+            "Marley regrets that he cared only about ‘trade’ instead of people. Dickens’ main moral: our real duty is to other human beings, not just making profit."
         },
         {
           front: "\"A solitary child, neglected by his friends\"",
           back:
-            "Scrooge’s childhood loneliness explains – but doesn’t excuse – his later coldness. It shows how lack of love and belonging can twist someone’s character over time."
+            "Narrator describing young Scrooge. His childhood loneliness explains why he fears emotional pain and shuts people out, showing how lack of love and belonging can damage someone."
         },
         {
-          front: "\"Another idol has displaced me\" – Belle",
+          front: "\"Another idol has displaced me… a golden one\" – Belle",
           back:
-            "Belle says Scrooge now worships money. Calling it an “idol” suggests a false god – Dickens attacks greed as something people wrongly dedicate their lives to."
+            "Belle tells Scrooge that money has replaced her in his heart. Calling wealth an ‘idol’ suggests he worships it like a false god – Dickens attacks greed as something people wrongly devote their lives to."
         },
         {
           front: "\"jolly Giant\" – Ghost of Christmas Present",
           back:
-            "The spirit is huge, generous and overflowing with food and warmth. He embodies the spirit of Christmas: abundance, laughter and sharing with others."
+            "The spirit is huge, warm and full of food. He represents generosity, abundance and the true spirit of Christmas – sharing and caring for others."
         },
         {
           front: "\"This boy is Ignorance. This girl is Want.\"",
           back:
-            "The personified children show social problems created by neglecting the poor. Dickens warns “doom” will follow if society ignores ignorance and extreme poverty."
+            "The children personify social problems created by neglecting the poor. Dickens warns that if society ignores ignorance and extreme poverty, the future will be ‘doom’. It’s a direct attack on selfishness."
         },
         {
           front: "\"deep black garment\" – Ghost of Christmas Yet to Come",
           back:
-            "The spirit’s dark, faceless robe makes it mysterious and terrifying, like the Grim Reaper. It represents the unknown future and the fear of what will happen if Scrooge doesn’t change."
+            "The faceless, dark robe makes the spirit look like Death and creates fear. It symbolises the unknown future and the judgement that awaits Scrooge if he does not change."
         },
         {
-          front: "Scrooge at his own grave – \"trembling\" and begging",
+          front: "Scrooge at his grave – \"trembling\" and begging",
           back:
-            "When he sees his name on the gravestone, Scrooge is horrified that his life leads only to fear and loneliness. His terror pushes him to genuinely promise change."
+            "When Scrooge sees his own name on the grave, he realises this lonely death is the result of his choices. His fear and desperation show genuine regret and create the turning point for his redemption."
         },
         {
           front: "\"I will honour Christmas in my heart\"",
           back:
-            "Scrooge links Christmas to an attitude, not just one day. He commits to kindness and generosity all year – what Dickens wants from his readers."
+            "Scrooge promises to live out the values of Christmas (kindness, generosity, empathy) all year round. Dickens suggests that Christmas is an attitude, not just a single day."
         },
         {
           front: "\"as happy as an angel\" / \"as merry as a school-boy\" (Stave 5)",
           back:
-            "Similes show how completely Scrooge has transformed – childlike joy replaces bitterness. Dickens ends with a positive, energetic tone to prove redemption is real."
+            "Joyful similes show Scrooge’s complete transformation. Childlike happiness replaces his bitterness, proving that emotional change is possible even for someone as ‘hard’ as him."
         },
         {
           front: "Tiny Tim – \"God bless us, every one!\"",
           back:
-            "Tim’s repeated blessing makes him a symbol of innocence, forgiveness and Christian charity. His survival at the end shows that Scrooge’s change has real, human impact."
+            "Tim’s blessing is repeated at the end of the novella. He represents innocence, faith and the vulnerable poor. Scrooge’s help saving Tim shows that individual kindness can literally save lives."
         }
       ],
 
       "Belonging – All 15 Poems": [
-        // Nature / childhood cluster
+        // Nature / childhood / memory
         {
           front: "\"It is the first mild day of March\"",
           back:
-            "To My Sister – Nature and early spring symbolise new beginnings and simple joy. Belonging comes from shared time outdoors with his sister, not from work or duty."
+            "To My Sister – nature and early spring symbolise new beginnings and hope. The speaker’s sense of belonging comes from sharing this simple outdoor moment with his sister, not from school or work."
         },
         {
           front: "\"There is a blessing in the air\"",
           back:
-            "To My Sister – The air itself feels like a ‘blessing’, suggesting nature offers spiritual comfort and a sense of peace and belonging outside strict routines."
+            "To My Sister – the ‘blessing’ suggests that nature itself is comforting and almost spiritual. Being outside together makes human relationships feel calmer and more meaningful."
         },
         {
           front: "\"The morning road is thronged with merry boys\"",
           back:
-            "Sunday Dip – Collective “merry boys” show childhood as communal and carefree. Belonging is found in shared play and tradition rather than status or wealth."
+            "Sunday Dip – ‘thronged’ shows a crowd of children; the plural ‘merry boys’ emphasises a shared, joyful community. Belonging here is about being part of a group tradition, not standing out."
         },
         {
           front: "\"And duck about, and try to lose their fears\"",
           back:
-            "Sunday Dip – The boys literally duck under the water but also try to overcome fear together. Belonging helps them face worries in a safe, playful environment."
+            "Sunday Dip – the boys try to ‘lose their fears’ in the water. Playing together helps them feel safer; the group gives them the confidence they don’t have alone."
         },
         {
           front: "\"Mild the mist upon the hill\"",
           back:
-            "Mild the Mist upon the Hill – Soft weather mirrors gentle, nostalgic feelings. The hill and mist become symbols of a calm, familiar place the speaker emotionally belongs to."
+            "Mild the Mist upon the Hill – the soft ‘mist’ matches the gentle mood. The familiar hill is a place where the speaker’s emotions are held and understood – a quiet kind of belonging to landscape."
         },
         {
           front: "\"I am a child once more\"",
           back:
-            "Mild the Mist upon the Hill – Returning to childhood in memory shows how powerful place is for identity. The speaker belongs to their past as much as the present."
+            "Mild the Mist upon the Hill – returning to childhood in memory shows how tied identity is to place. Even as an adult, the speaker mentally belongs to the hill where their younger self felt safe."
         },
         {
           front: "\"Clear and gentle stream! Known and loved so long\"",
           back:
-            "Clear and Gentle Stream – The stream is personified as an old friend. Repeated visits show continuity: the speaker’s sense of self is tied to this stable, natural place."
+            "Clear and Gentle Stream – the stream is personified as something the speaker ‘knows’ and ‘loves’. It feels like an old friend, showing that they belong to this landscape through long-term familiarity."
         },
         {
           front: "\"Many an afternoon of the summer day dreaming here I lay\"",
           back:
-            "Clear and Gentle Stream – The stream is where the speaker daydreamed as a child. It’s a private, imaginative space that shapes who they are, so they still feel they belong there."
+            "Clear and Gentle Stream – the speaker daydreams at the stream as a child. It’s a private, imaginative space that shapes their sense of self, so they still feel attached to it later in life."
         },
         {
           front: "\"I remember, I remember, / The house where I was born\"",
           back:
-            "I Remember, I Remember – Repetition shows obsession with childhood home. Belonging is rooted in early memories, even though adult life feels heavier and less hopeful."
+            "I Remember, I Remember – repetition emphasises obsession with the childhood home. Even though adult life is disappointing, the speaker’s identity is still rooted in that original place."
         },
         {
           front: "\"My spirit flew in feathers then, / That is so heavy now\"",
           back:
-            "I Remember, I Remember – Contrasts light ‘feathers’ with ‘heavy’ spirit. Growing up has made the speaker feel less free, less at home in the world than in childhood."
+            "I Remember, I Remember – contrasts light ‘feathers’ with a ‘heavy’ spirit. Growing up has made the speaker feel weighed down and less free; adulthood feels less like home than childhood did."
         },
 
-        // Urban & migration / identity
+        // Urban / migration / split identity
         {
           front: "\"Wild seabirds / and fishermen pushing out to sea\"",
           back:
-            "Island Man – Natural, Caribbean images show a lively community. The man’s mind returns here each morning, so he emotionally belongs to this island more than London."
+            "Island Man – lively, natural images of the Caribbean show an active, communal world. This is the place the speaker’s mind returns to, suggesting his true emotional home is there, not in London."
         },
         {
-          front: "\"Comes back to sands / of a grey metallic soar\"",
+          front: "\"comes back to sands / of a grey metallic soar\"",
           back:
-            "Island Man – The shift to grey, metallic London sounds harsh and industrial. He is physically in London but spiritually pulled back to the island – split sense of belonging."
+            "Island Man – the shift to ‘grey metallic’ London sounds harsh and industrial. The man is physically in the city but mentally on the island – he doesn’t fully belong in either place."
         },
         {
           front: "\"We can all be refugees\"",
           back:
-            "We Refugees – Zephaniah universalises the refugee experience. Belonging becomes fragile and conditional; anyone could lose their home due to events beyond their control."
+            "We Refugees – direct, inclusive statement that anyone could lose their home. Belonging here is fragile and conditional; it can be taken away suddenly, regardless of who you are."
         },
         {
           front: "\"We can be hated by someone / for being someone\"",
           back:
-            "We Refugees – Simple, direct statement that identity alone can cause hatred. It criticises prejudice and shows how belonging can be denied for reasons you can’t change."
+            "We Refugees – shows that people are targeted simply for their identity. It criticises prejudice and shows how belonging can be refused just because of who you are, not what you’ve done."
         },
         {
-          front: "\"Island man heaves himself / Another London day\"",
+          front: "\"Peckham Rye Lane is tight / As damp and crammed as a coconut shell\"",
           back:
-            "Island Man – The verb “heaves” suggests effort and reluctance. He forces himself into London life, implying that he doesn’t feel fully at home there."
-        },
-        {
-          front: "\"Peckham Rye lane is tight / As damp and crammed as a coconut shell\"",
-          back:
-            "Peckham Rye Lane – The simile makes the street feel crowded but alive. The poem presents busy, multicultural London as a place where many different people still belong together."
+            "Peckham Rye Lane – the simile makes the street seem crowded but full of life. The poem shows belonging in a busy, multicultural London setting where different people coexist closely."
         },
         {
           front: "\"Each person is a sturdy hairbrush bristle\"",
           back:
-            "Peckham Rye Lane – People are compared to bristles in a brush: individually small but together forming something strong. Suggests community strength in a packed urban space."
+            "Peckham Rye Lane – comparing people to bristles suggests they’re small individually but strong together. The image presents community as something made up of many different individuals working as one."
         },
 
-        // Identity / language cluster
+        // Identity / language
         {
           front: "\"Us takes in undulations – / each wave in the sea\"",
           back:
-            "Us – ‘Us’ is compared to waves: constantly moving and hard to pin down. Kunial shows belonging as fluid and complicated, not a simple, fixed label."
+            "Us – the pronoun ‘us’ is compared to waves: constantly moving and hard to pin down. The speaker’s sense of belonging is fluid, not fixed; it shifts with language and relationships."
         },
         {
           front: "\"Oi, you, tell us where yer from\"",
           back:
-            "Us – Colloquial voice shows how others demand identity labels. The phrase suggests pressure to explain your background, highlighting how belonging can feel like a test."
+            "Us – the aggressive question shows how other people demand labels and clear answers. It suggests belonging is often something you have to justify or defend to others."
         },
         {
           front: "\"Dying to be French, dying to shrug and pout\"",
           back:
-            "In Wales, wanting to be Italian – The speaker romanticises ‘being French’ as cool and expressive. As a teenager, she longs to belong to a more glamorous identity than her own."
+            "In Wales, wanting to be Italian – teenage exaggeration (‘dying’) shows intense longing to be someone else. The speaker craves a more glamorous identity than her own, showing insecurity about where she belongs."
         },
         {
           front: "\"Is there a name for that thing / you do when you are young?\"",
           back:
-            "In Wales, wanting to be Italian – Rhetorical question captures the universal teenage feeling of wanting to be someone else. Belonging feels unfinished and experimental."
+            "In Wales, wanting to be Italian – rhetorical question captures a universal teen behaviour: trying on different identities. It suggests belonging is something you experiment with, not something fixed."
         },
         {
           front: "\"Being sixteen in Wales, longing to be Italian\"",
           back:
-            "In Wales, wanting to be Italian – Very specific moment: stuck in one place, dreaming of another. Shows how belonging is partly about imagination and stereotype, not just reality."
+            "In Wales, wanting to be Italian – a very specific, personal moment: stuck in one place but imagining another life. Her feeling of ‘home’ is shaped as much by fantasy as by reality."
         },
         {
           front: "\"think me unfinished – / a child who never sloughed off the childish estate\"",
           back:
-            "Kumukanda – The speaker sees himself as ‘unfinished’ without the traditional initiation. He feels caught between cultures, unsure where he fully belongs."
+            "Kumukanda – the speaker feels ‘unfinished’ without the traditional initiation ritual. He hasn’t fully crossed into adult status in his culture, leaving him unsure where he truly belongs."
         },
         {
           front: "\"I was raised in a strange land\"",
           back:
-            "Kumukanda – Being raised somewhere ‘strange’ highlights distance from ancestral culture. His identity is shaped by two places, so belonging is complicated and split."
+            "Kumukanda – ‘strange’ emphasises distance from ancestral culture. He is shaped by two places at once, which complicates his identity and sense of belonging."
         },
         {
           front: "\"Some people would deny that I’m Jamaican British\"",
           back:
-            "Jamaican British – Others question his identity because of how he looks or speaks. Belonging here is something debated and policed rather than simply accepted."
+            "Jamaican British – others question his identity, refusing him the label he chooses. It shows how belonging is controlled by social expectations about race, accent and nationality."
         },
         {
           front: "\"you cannot love sugar and hate your sweetness\"",
           back:
-            "Jamaican British – His father’s metaphor means you can’t enjoy Jamaican culture but reject Jamaican people. It’s a reminder to accept your whole mixed identity."
-        },
-        {
-          front: "\"I come from a musical place / Where they shoot me for my song\"",
-          back:
-            "We Refugees – Juxtaposes ‘musical’ and violent persecution. Even joyful culture becomes dangerous under oppression, forcing people to flee the place they belong to."
+            "Jamaican British – metaphor from his father: you can’t enjoy Jamaican culture (‘sugar’) but reject Jamaican people (‘sweetness’). It’s a reminder to accept your whole mixed identity."
         },
 
         // Home & memory
         {
           front: "\"It may be at war, it may be sick with tyrants\"",
           back:
-            "The Émigrée – Her country is politically damaged, but she still loves it. Shows conflict between harsh reality and emotional loyalty to your homeland."
+            "The Émigrée – the speaker’s homeland is politically damaged, but she still loves it. Her emotional belonging doesn’t disappear even when the place becomes dangerous and corrupted."
         },
         {
           front: "\"I am branded by an impression of sunlight\"",
           back:
-            "The Émigrée – ‘Branded’ suggests a permanent mark; ‘sunlight’ is positive. Her identity is stamped by an idealised memory of home, even if the present is dark."
+            "The Émigrée – ‘branded’ suggests a permanent mark, but ‘sunlight’ is positive. Her identity is stamped by a warm, idealised memory of home that cannot be erased."
         },
         {
           front: "\"I comb its hair and love its shining eyes\"",
           back:
-            "The Émigrée – Personifying the city like a loved child or friend shows deep affection. She still nurtures the idea of her home, even from a distance."
+            "The Émigrée – treating the city like a child or friend shows deep affection. She nurtures the idea of her home place, even though she cannot safely live there."
         },
         {
           front: "\"an ugly collection\"",
           back:
-            "My Mother’s Kitchen – The mismatched plates look ‘ugly’, but they carry family history. They symbolise how a messy, migrant life can still hold powerful belonging."
+            "My Mother’s Kitchen – the mismatched plates are ‘ugly’, but they are full of history. They symbolise how migrant families carry bits of home with them and build belonging out of imperfect objects."
         },
         {
           front: "\"Planning another escape\"",
           back:
-            "My Mother’s Kitchen – Repeated escapes show instability. The family never fully settles, so belonging is temporary and packed away in objects and memories."
+            "My Mother’s Kitchen – repeated escapes show constant moving and instability. The kitchen becomes the only stable space where the family can feel at home for a while."
         },
         {
           front: "\"I will never inherit my mother’s trees\"",
           back:
-            "My Mother’s Kitchen – She can inherit kitchen objects but not the trees of her homeland. Shows the limits of inheritance: she can’t fully inherit the roots of her mother’s home."
+            "My Mother’s Kitchen – she can inherit kitchen objects but not the trees of the homeland. It shows that some parts of belonging (like landscape and deep roots) can’t be passed on fully to the next generation."
         },
         {
           front: "\"Ah! We both of us are alter’d, and now we talk no more\"",
           back:
-            "Captain Cook (To My Brother) – The siblings have grown apart. Physical distance and adulthood weaken their bond, questioning how stable belonging in family really is."
+            "Captain Cook (To My Brother) – the siblings have changed and grown apart. Belonging in family is shown as something that can fade with time and distance."
         },
         {
           front: "\"We leave in leaving childhood, life’s fairy land behind\"",
           back:
-            "Captain Cook (To My Brother) – Childhood is a magical ‘fairy land’ that vanishes. Growing up means losing that simple, shared world where you once belonged together."
+            "Captain Cook (To My Brother) – childhood is described as a magical ‘fairy land’ that is lost. Becoming an adult means losing that simple shared world where the siblings once belonged together."
+        }
+      ],
+
+      "Sentence Starters & Structures": [
+        {
+          front: "Lit intro – ACC or anthology",
+          back:
+            "“In <text>, <author> presents <theme> as… in order to show that…”.\n\nExample: “In A Christmas Carol, Dickens presents greed as dangerous in order to show that caring for others is more important than money.”"
+        },
+        {
+          front: "ACC paragraph – strong start",
+          back:
+            "“At the beginning of the novella, Scrooge is presented as…”\n“Later on, Dickens develops this idea when…”\n“By the end of the novella, Scrooge is shown to have…”"
+        },
+        {
+          front: "Zoom in on a word / method",
+          back:
+            "“The adjective ‘…’ suggests that…”\n“The verb ‘…’ implies that…”\n“By using a simile here, Dickens shows…”"
+        },
+        {
+          front: "Linking to reader / context",
+          back:
+            "“This would shock a Victorian reader because…”\n“This reflects Victorian attitudes to…”\n“For a modern reader, this might suggest that…”"
+        },
+        {
+          front: "Comparison sentence – Belonging poems",
+          back:
+            "“Both poets explore the idea of <theme>, but in different ways.”\n“Similarly, in <poem B>, the poet also suggests that…”\n“However, unlike <poem A>, <poem B> presents…”"
+        },
+        {
+          front: "Unseen poetry – opening sentence",
+          back:
+            "“The poet presents <feeling / situation> as… using imagery and structure to suggest that…”"
+        },
+        {
+          front: "Unseen comparison – one line",
+          back:
+            "“While the first poem presents <theme> as…, the second poem suggests that it is more…”"
+        },
+        {
+          front: "Lang Paper 2 Q5 – intro",
+          back:
+            "“I strongly believe that… because…”\n“In today’s society, it is essential that…”\n“It is unacceptable that…”"
+        },
+        {
+          front: "Lang Paper 2 Q5 – persuasive lines",
+          back:
+            "“Surely we cannot ignore…?”\n“Is it really fair that…?”\n“If we do nothing now, then in the future…”"
+        },
+        {
+          front: "Lang Paper 2 Q5 – conclusion",
+          back:
+            "“In conclusion, if we want a future where…, we must…”\n“Ultimately, it is our responsibility to…”"
         }
       ],
 
       "English Exams – Quick Info & Tips": [
         {
-          front: "Eng Lit Paper 2 – Overall structure",
+          front: "Eng Lit Paper 2 – overall structure",
           back:
             "Section A: Modern prose/drama.\nSection B: Poetry anthology comparison.\nSection C: Unseen poetry (single poem + comparison).\n\nUse this deck mainly to remind yourself what each section expects."
         },
@@ -1253,12 +1500,12 @@
         {
           front: "Anthology comparison – what examiners want",
           back:
-            "You must: (1) Answer the question (theme/idea). (2) Write about BOTH poems. (3) Compare – similarities and differences. (4) Use quotes. (5) Comment on methods (language/structure) and context where relevant."
+            "You must: (1) Answer the question. (2) Write about BOTH poems. (3) Compare similarities and differences. (4) Use quotes. (5) Comment on methods (language/structure) and some context where relevant."
         },
         {
           front: "Timed essay – basic paragraph frame",
           back:
-            "Point: answer the question.\nEvidence: short, accurate quote.\nMethod: zoom on a word / technique.\nExplain: effect + what it suggests about the idea.\nLink: back to question or compare to other poem."
+            "Point: answer the question.\nEvidence: short, accurate quote.\nMethod: zoom on a word / technique.\nExplain: effect + what it suggests.\nLink: back to question or compare to other poem."
         }
       ]
     };
@@ -1289,7 +1536,7 @@
       "The Émigrée – Carol Rumens"
     ];
 
-    // --------- STATE ----------
+    // -------- STATE --------
     let decks = {};
     let currentDeckName = "";
     let currentDeck = [];
@@ -1300,8 +1547,14 @@
 
     let sessionCount = 0;
     let cardFlipCount = 0;
+    let knownCount = 0;
+    let unsureCount = 0;
 
-    // --------- HELPERS ----------
+    // -------- HELPERS --------
+    function deepCopy(obj) {
+      return JSON.parse(JSON.stringify(obj));
+    }
+
     function shuffle(array) {
       const arr = array.slice();
       for (let i = arr.length - 1; i > 0; i--) {
@@ -1319,15 +1572,15 @@
           if (parsed.version === APP_VERSION && parsed.decks) {
             decks = parsed.decks;
           } else {
-            decks = structuredClone(DEFAULT_DECKS);
+            decks = deepCopy(DEFAULT_DECKS);
           }
           sessionCount = parsed.sessions || 0;
           cardFlipCount = parsed.cards || 0;
         } catch {
-          decks = structuredClone(DEFAULT_DECKS);
+          decks = deepCopy(DEFAULT_DECKS);
         }
       } else {
-        decks = structuredClone(DEFAULT_DECKS);
+        decks = deepCopy(DEFAULT_DECKS);
       }
       updateStatsUI();
     }
@@ -1353,6 +1606,13 @@
       });
     }
 
+    function resetSessionCounts() {
+      knownCount = 0;
+      unsureCount = 0;
+      document.getElementById("statKnown").textContent = knownCount;
+      document.getElementById("statUnsure").textContent = unsureCount;
+    }
+
     function resetStudyOrder() {
       if (!currentDeck || currentDeck.length === 0) {
         studyOrder = [];
@@ -1372,6 +1632,7 @@
       studyIndex = 0;
       const startOnBack = document.getElementById("startOnBack").checked;
       showBack = !!startOnBack;
+      resetSessionCounts();
     }
 
     function renderCard() {
@@ -1432,8 +1693,9 @@
     function restartSession() {
       resetStudyOrder();
       sessionCount++;
-      saveState();
+      cardFlipCount++;
       updateStatsUI();
+      saveState();
       renderCard();
     }
 
@@ -1459,6 +1721,8 @@
     function updateStatsUI() {
       document.getElementById("statSessions").textContent = sessionCount;
       document.getElementById("statCards").textContent = cardFlipCount;
+      document.getElementById("statKnown").textContent = knownCount;
+      document.getElementById("statUnsure").textContent = unsureCount;
     }
 
     function buildPoemChecklist() {
@@ -1483,7 +1747,28 @@
       });
     }
 
-    // --------- INIT ----------
+    function updateExamCountdown() {
+      const input = document.getElementById("examDateInput");
+      const text = document.getElementById("examCountdownText");
+      const value = input.value;
+      if (!value) {
+        text.textContent = "";
+        return;
+      }
+      const today = new Date();
+      const examDate = new Date(value + "T00:00:00");
+      const diffMs = examDate - today;
+      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
+      if (diffDays > 0) {
+        text.textContent = `· ${diffDays} day(s) to go`;
+      } else if (diffDays === 0) {
+        text.textContent = "· Exam is today – you’ve got this.";
+      } else {
+        text.textContent = "· That date is in the past.";
+      }
+    }
+
+    // -------- INIT --------
     document.addEventListener("DOMContentLoaded", () => {
       loadState();
       buildDeckSelect();
@@ -1495,6 +1780,16 @@
       const orderToggle = document.getElementById("orderToggle");
       const orderLabel = document.getElementById("orderLabel");
       const startOnBack = document.getElementById("startOnBack");
+      const focusMode = document.getElementById("focusMode");
+      const examDateInput = document.getElementById("examDateInput");
+      const saveExamDateBtn = document.getElementById("saveExamDateBtn");
+
+      // load exam date if stored
+      const storedDate = localStorage.getItem("exam_date");
+      if (storedDate) {
+        examDateInput.value = storedDate;
+        updateExamCountdown();
+      }
 
       deckSelect.addEventListener("change", () => {
         selectDeck();
@@ -1517,6 +1812,10 @@
         renderCard();
       });
 
+      focusMode.addEventListener("change", () => {
+        document.body.classList.toggle("focus-only", focusMode.checked);
+      });
+
       flashcardElem.addEventListener("click", () => {
         if (!currentDeck || currentDeck.length === 0) return;
         showBack = !showBack;
@@ -1530,19 +1829,59 @@
       document.getElementById("prevBtn").addEventListener("click", goPrev);
       document.getElementById("restartBtn").addEventListener("click", restartSession);
 
+      document.getElementById("gotItBtn").addEventListener("click", () => {
+        if (!currentDeck || currentDeck.length === 0 || studyOrder.length === 0) return;
+        knownCount++;
+        cardFlipCount++;
+        updateStatsUI();
+        saveState();
+        if (studyIndex < studyOrder.length - 1) {
+          studyIndex++;
+          showBack = false;
+          renderCard();
+        }
+      });
+
+      document.getElementById("notYetBtn").addEventListener("click", () => {
+        if (!currentDeck || currentDeck.length === 0 || studyOrder.length === 0) return;
+        unsureCount++;
+        cardFlipCount++;
+        updateStatsUI();
+        saveState();
+        if (studyIndex < studyOrder.length - 1) {
+          studyIndex++;
+          showBack = false;
+          renderCard();
+        }
+      });
+
       document.getElementById("newQuestionBtn").addEventListener("click", randomAccQuestion);
 
       document.getElementById("quickAcc").addEventListener("click", () => {
         selectDeck("A Christmas Carol – Key Moments & Quotes");
-        document.querySelector(".app-shell").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("flashSection").scrollIntoView({ behavior: "smooth" });
       });
 
       document.getElementById("quickBelonging").addEventListener("click", () => {
         selectDeck("Belonging – All 15 Poems");
-        document.querySelector(".app-shell").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("flashSection").scrollIntoView({ behavior: "smooth" });
       });
 
-      // Default: ACC deck selected
+      document.getElementById("quickStructures").addEventListener("click", () => {
+        selectDeck("Sentence Starters & Structures");
+        document.getElementById("structuresSection").scrollIntoView({ behavior: "smooth" });
+      });
+
+      saveExamDateBtn.addEventListener("click", () => {
+        const value = examDateInput.value;
+        if (!value) return;
+        localStorage.setItem("exam_date", value);
+        updateExamCountdown();
+      });
+
+      examDateInput.addEventListener("change", updateExamCountdown);
+
+      // Default deck: ACC
       const defaultDeckName = "A Christmas Carol – Key Moments & Quotes";
       if (decks[defaultDeckName]) {
         selectDeck(defaultDeckName);
