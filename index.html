@@ -2,1587 +2,1613 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>ACC & Belonging – Revision Hub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revision Hub – ACC & Belonging</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <style>
     :root {
       --bg: #020617;
-      --panel: #050814;
-      --panel-soft: #070915;
-      --accent: #dc2626;
-      --accent-soft: rgba(220, 38, 38, 0.2);
-      --accent-strong: #f97373;
-      --text: #f9fafb;
+      --bg-soft: #030712;
+      --panel: #020617;
+      --panel-soft: #020617;
+      --border: #1f2933;
+      --accent: #6366f1;
+      --accent-soft: rgba(99, 102, 241, 0.13);
+      --accent-strong: #a855f7;
+      --accent-subtle: #4c1d95;
+      --text: #e5e7eb;
       --muted: #9ca3af;
-      --border: rgba(148, 163, 184, 0.35);
+      --muted-soft: #6b7280;
       --radius-lg: 18px;
       --radius-md: 12px;
-      --radius-pill: 999px;
-      --shadow: 0 22px 50px rgba(0, 0, 0, 0.75);
-      --fast: 0.16s ease-out;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+      --fast: 0.12s ease-out;
+      --med: 0.2s ease-out;
     }
 
-    * {
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
     }
 
     body {
-      margin: 0;
-      min-height: 100vh;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
         "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at top, rgba(127, 29, 29, 0.3), transparent 55%),
-        radial-gradient(circle at bottom, rgba(15, 23, 42, 0.7), transparent 60%),
-        var(--bg);
+        radial-gradient(circle at top, #020617 0, #020617 55%, #000 100%);
       color: var(--text);
+      -webkit-font-smoothing: antialiased;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
     }
 
-    .app {
-      width: 100%;
-      max-width: 860px;
-      padding: 18px 12px 32px;
-    }
-
-    @media (min-width: 720px) {
-      .app {
-        padding: 24px 16px 40px;
-      }
-    }
+    /* Header / Nav */
 
     header {
-      border-radius: var(--radius-lg);
-      background: linear-gradient(135deg, #020617, #050814);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      padding: 12px 14px;
       position: sticky;
       top: 0;
-      z-index: 10;
-      backdrop-filter: blur(14px);
+      z-index: 20;
+      background: rgba(2, 6, 23, 0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(30, 64, 175, 0.45);
     }
 
-    .header-main {
+    .header-inner {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 10px 14px 8px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 8px;
       flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
     }
 
     .title-block {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
-    .title-row {
+    .logo-row {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
 
     .logo-dot {
-      width: 11px;
-      height: 11px;
-      border-radius: 50%;
-      background: radial-gradient(circle at center, #fee2e2, #b91c1c);
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 30%, #e5e7eb 0, #a855f7 45%, #4c1d95 80%);
       box-shadow:
-        0 0 18px rgba(248, 113, 113, 0.95),
-        0 0 30px rgba(248, 113, 113, 0.7);
+        0 0 16px rgba(129, 140, 248, 0.9),
+        0 0 32px rgba(59, 130, 246, 0.6);
     }
 
     .app-title {
-      font-size: 1rem;
+      font-size: 18px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
     }
 
     .subtitle {
-      font-size: 0.78rem;
-      color: var(--muted);
+      font-size: 11px;
+      color: var(--muted-soft);
     }
 
-    .quick-buttons {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: #020617;
-      color: var(--text);
-      font-size: 0.74rem;
-      padding: 4px 9px;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      cursor: pointer;
-      transition: background var(--fast), transform var(--fast), box-shadow var(--fast);
-    }
-
-    .chip span.icon {
-      font-size: 0.9rem;
-    }
-
-    .chip.primary {
-      border-color: rgba(248, 113, 113, 0.9);
-      background: radial-gradient(circle at top, rgba(127, 29, 29, 0.9), #020617);
-      box-shadow: 0 10px 26px rgba(127, 29, 29, 0.85);
-    }
-
-    .chip:active {
-      transform: scale(0.97) translateY(1px);
-      box-shadow: none;
-    }
-
-    .tabs {
+    .nav-tabs {
       display: flex;
       gap: 6px;
       padding: 4px;
-      border-radius: var(--radius-pill);
-      background: #020617;
-      border: 1px solid rgba(30, 64, 175, 0.3);
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      border: 1px solid rgba(30, 64, 175, 0.8);
     }
 
-    .tab {
-      flex: 1;
-      border-radius: var(--radius-pill);
+    .nav-tab {
       border: none;
       background: transparent;
       color: var(--muted);
-      font-size: 0.78rem;
-      padding: 5px 6px;
+      padding: 6px 13px;
+      font-size: 12px;
+      border-radius: 999px;
       cursor: pointer;
-      transition: background var(--fast), color var(--fast), transform var(--fast);
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        background var(--fast),
+        color var(--fast),
+        transform var(--fast);
     }
 
-    .tab.active {
+    .nav-tab span.icon {
+      font-size: 14px;
+    }
+
+    .nav-tab.active {
       background: var(--accent-soft);
-      color: var(--text);
+      color: #f9fafb;
       transform: translateY(-0.5px);
     }
 
     main {
-      margin-top: 16px;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 10px 14px 16px;
     }
+
+    .main-inner {
+      max-width: 980px;
+      width: 100%;
+    }
+
+    section.view {
+      display: none;
+      min-height: calc(100vh - 90px);
+    }
+
+    section.view.active {
+      display: block;
+    }
+
+    /* Panels */
 
     .panel {
-      border-radius: var(--radius-lg);
       background: var(--panel);
-      border: 1px solid rgba(31, 41, 55, 0.9);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(30, 64, 175, 0.65);
       box-shadow: var(--shadow);
       padding: 14px 14px 16px;
+      margin-bottom: 12px;
     }
 
-    @media (min-width: 720px) {
+    @media (min-width: 900px) {
       .panel {
         padding: 16px 18px 18px;
+        margin-bottom: 16px;
       }
     }
 
-    .panel + .panel {
-      margin-top: 12px;
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      align-items: baseline;
+      margin-bottom: 8px;
     }
 
-    .section-title {
-      margin: 0 0 8px;
-      font-size: 0.9rem;
+    .panel-header h2 {
+      margin: 0;
+      font-size: 15px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
-      letter-spacing: 0.13em;
-      color: #fee2e2;
+      color: #e5e7f5;
     }
 
-    .section-sub {
-      font-size: 0.76rem;
+    .panel-header small {
+      font-size: 11px;
       color: var(--muted);
-      margin-bottom: 10px;
     }
 
-    .two-col {
+    .panel-body {
+      font-size: 13px;
+      color: var(--text);
+    }
+
+    h3 {
+      margin: 8px 0 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #c4b5fd;
+    }
+
+    p {
+      margin: 4px 0;
+      line-height: 1.55;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .muted-soft {
+      color: var(--muted-soft);
+      font-size: 12px;
+    }
+
+    .grid-two {
       display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 10px;
     }
 
-    @media (max-width: 720px) {
-      .two-col {
+    @media (max-width: 820px) {
+      .grid-two {
         grid-template-columns: minmax(0, 1fr);
       }
     }
 
     ul.clean {
       list-style: none;
-      margin: 0;
       padding-left: 0;
-      font-size: 0.8rem;
-      color: #e5e7eb;
+      margin: 4px 0 0;
+      font-size: 13px;
     }
 
-    ul.clean li + li {
-      margin-top: 3px;
+    ul.clean li {
+      margin-bottom: 4px;
+      display: flex;
+      gap: 6px;
     }
 
-    ul.clean li span.tag {
-      display: inline-block;
-      min-width: 60px;
-      font-size: 0.72rem;
+    ul.clean li span.b {
       color: var(--accent-strong);
+      font-size: 12px;
+      margin-top: 1px;
     }
 
-    .small {
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
-
-    /* Controls */
-
-    .controls-row {
+    .chip-row {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      margin-bottom: 8px;
-    }
-
-    .control-block {
-      display: flex;
-      align-items: center;
       gap: 6px;
-      flex-wrap: wrap;
-      font-size: 0.78rem;
-      color: var(--muted);
-    }
-
-    .select-wrap {
-      position: relative;
-      display: inline-flex;
-      align-items: center;
-    }
-
-    select {
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background:
-        radial-gradient(circle at top, rgba(127, 29, 29, 0.5), transparent 55%),
-        #020617;
-      color: var(--text);
-      font-size: 0.78rem;
-      padding: 5px 26px 5px 9px;
-      appearance: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      min-width: 130px;
-    }
-
-    .select-wrap::after {
-      content: "▾";
-      position: absolute;
-      right: 9px;
-      font-size: 0.7rem;
-      color: var(--muted);
-      pointer-events: none;
-    }
-
-    label.checkbox {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 0.76rem;
-      color: var(--muted);
-    }
-
-    label.checkbox input {
-      width: 13px;
-      height: 13px;
-      accent-color: var(--accent);
-    }
-
-    /* Flashcard */
-
-    .card-shell {
-      border-radius: var(--radius-lg);
-      background:
-        radial-gradient(circle at top, rgba(127, 29, 29, 0.35), transparent 55%),
-        #020617;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      box-shadow: var(--shadow);
-      padding: 12px;
-    }
-
-    .flashcard {
-      border-radius: var(--radius-md);
-      background: #020617;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      min-height: 170px;
-      max-height: 310px;
-      padding: 10px 11px 12px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      overflow-y: auto;
-      transition: transform var(--fast), box-shadow var(--fast), border-color var(--fast);
-    }
-
-    .flashcard:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.9);
-      border-color: rgba(248, 113, 113, 0.9);
-    }
-
-    .face-label {
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: rgba(248, 250, 252, 0.7);
-    }
-
-    .face-text {
-      font-size: 0.92rem;
-      line-height: 1.5;
-      white-space: pre-line;
-      color: #f9fafb;
-    }
-
-    .face-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 6px;
-      font-size: 0.74rem;
-      color: var(--muted);
-    }
-
-    .face-meta span.deck {
-      color: var(--accent-strong);
-    }
-
-    .hint {
-      font-size: 0.72rem;
-      color: var(--muted);
       margin-top: 6px;
     }
 
-    .hint span {
-      color: var(--accent-strong);
+    .chip {
+      border-radius: 999px;
+      border: 1px solid rgba(30, 64, 175, 0.7);
+      padding: 3px 9px;
+      font-size: 11px;
+      color: var(--muted);
+      background: rgba(15,23,42,0.95);
     }
 
-    .footer-row {
-      margin-top: 8px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.76rem;
+    .quote-list {
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(30, 64, 175, 0.6);
+      background: rgba(15, 23, 42, 0.7);
+      padding: 8px 10px;
+      margin-top: 4px;
+    }
+
+    .quote-item {
+      margin-bottom: 6px;
+    }
+
+    .quote-text {
+      font-style: italic;
+      font-size: 13px;
+    }
+
+    .quote-note {
+      font-size: 12px;
       color: var(--muted);
     }
 
-    .progress {
+    /* Buttons / switches */
+
+    button {
+      border-radius: 999px;
+      border: 1px solid rgba(30, 64, 175, 0.9);
+      background: rgba(15, 23, 42, 0.97);
+      color: var(--text);
+      font-size: 12px;
+      padding: 7px 12px;
+      cursor: pointer;
       display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        transform var(--fast),
+        box-shadow var(--fast),
+        border var(--fast),
+        background var(--fast);
+    }
+
+    button span.icon {
+      font-size: 13px;
+    }
+
+    button.primary {
+      border-color: rgba(129, 140, 248, 0.95);
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+    }
+
+    button.soft {
+      border-color: rgba(30, 64, 175, 0.8);
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    button:hover {
+      transform: translateY(-0.5px);
+      box-shadow: 0 0 12px rgba(15, 23, 42, 0.9);
+    }
+
+    button:active {
+      transform: translateY(0.5px) scale(0.98);
+      box-shadow: none;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 64, 175, 0.9);
+      background: rgba(15, 23, 42, 0.92);
+      color: var(--muted);
+    }
+
+    .badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
+    }
+
+    .switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .switch input {
+      appearance: none;
+      width: 28px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition: background var(--fast), border var(--fast);
+    }
+
+    .switch input::before {
+      content: "";
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      width: 12px;
+      height: 12px;
+      border-radius: 999px;
+      background: #f9fafb;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.7);
+      transition: transform var(--fast);
+    }
+
+    .switch input:checked {
+      background: linear-gradient(135deg, #4f46e5, #6366f1);
+      border-color: rgba(129, 140, 248, 0.95);
+    }
+
+    .switch input:checked::before {
+      transform: translateX(10px);
+    }
+
+    /* Flashcards */
+
+    .fc-top-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .fc-top-row label {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
       align-items: center;
       gap: 6px;
     }
 
+    select, textarea {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 10px;
+      font-size: 13px;
+      outline: none;
+      width: 100%;
+      transition: border var(--fast), box-shadow var(--fast), background var(--fast);
+    }
+
+    select:focus, textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(129, 140, 248, 0.9);
+      background: #020617;
+    }
+
+    .quick-decks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .flashcard-shell {
+      margin-top: 10px;
+    }
+
     .progress-bar {
-      width: 120px;
-      height: 4px;
+      height: 5px;
       border-radius: 999px;
-      background: rgba(31, 41, 55, 0.95);
+      background: rgba(30, 64, 175, 0.45);
       overflow: hidden;
+      margin-bottom: 8px;
     }
 
     .progress-fill {
       height: 100%;
       width: 0%;
-      border-radius: inherit;
-      background: linear-gradient(90deg, #ef4444, #fb923c);
+      background: linear-gradient(90deg, #6366f1, #a855f7);
       transition: width 0.2s ease-out;
     }
 
-    .button-row {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .btn {
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(75, 85, 99, 0.9);
-      background: #020617;
-      color: var(--text);
-      padding: 4px 10px;
-      font-size: 0.76rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
+    .flashcard-box {
+      border-radius: 18px;
+      border: 1px solid rgba(30, 64, 175, 0.8);
+      background: radial-gradient(circle at top left, #020617 0, #020617 70%);
+      padding: 14px 14px 12px;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       cursor: pointer;
-      transition: background var(--fast), transform var(--fast), box-shadow var(--fast);
+      transition:
+        border var(--fast),
+        box-shadow var(--fast),
+        transform var(--fast);
     }
 
-    .btn.primary {
-      border-color: rgba(248, 113, 113, 0.9);
-      background: radial-gradient(circle at top, rgba(127, 29, 29, 0.95), #020617);
-      box-shadow: 0 8px 20px rgba(127, 29, 29, 0.8);
+    .flashcard-box:active {
+      transform: scale(0.99);
     }
 
-    .btn:active {
-      transform: scale(0.97) translateY(1px);
-      box-shadow: none;
-    }
-
-    .btn.good {
-      border-color: rgba(22, 163, 74, 0.9);
-      color: #bbf7d0;
-    }
-
-    .btn.bad {
-      border-color: rgba(248, 113, 113, 0.9);
-      color: #fee2e2;
-    }
-
-    .stats-line {
-      display: inline-flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .stat {
-      display: inline-flex;
-      gap: 4px;
-      align-items: center;
-    }
-
-    .stat span.value {
-      color: var(--accent-strong);
-      font-weight: 600;
-    }
-
-    /* Question + sentence starters */
-
-    .question-box {
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: #020617;
-      padding: 9px 10px;
-      font-size: 0.8rem;
-      color: #e5e7eb;
-      margin-top: 6px;
-    }
-
-    .question-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .question-footer {
-      margin-top: 6px;
+    .flashcard-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 6px;
-      font-size: 0.72rem;
-      color: var(--muted);
+      font-size: 11px;
+      color: var(--muted-soft);
+      margin-bottom: 6px;
     }
 
-    .starters-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
-      gap: 10px;
-    }
-
-    @media (max-width: 720px) {
-      .starters-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .box {
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: #020617;
-      padding: 9px 10px;
-      font-size: 0.8rem;
-      color: #e5e7eb;
-    }
-
-    .box h3 {
-      margin: 0 0 4px;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: #fee2e2;
-    }
-
-    .box ul {
-      margin: 4px 0 0;
-      padding-left: 16px;
-      font-size: 0.78rem;
-    }
-
-    .box li + li {
-      margin-top: 3px;
-    }
-
-    .box code {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-        "Liberation Mono", "Courier New", monospace;
-      font-size: 0.74rem;
-      background: #020617;
+    .flashcard-tag {
+      padding: 3px 9px;
       border-radius: 999px;
-      padding: 1px 6px;
-      border: 1px solid rgba(75, 85, 99, 0.9);
-      color: #fee2e2;
-    }
-
-    /* Checklist & exam info */
-
-    .poem-list {
-      list-style: none;
-      margin: 6px 0 0;
-      padding-left: 0;
-      font-size: 0.78rem;
-      color: #e5e7eb;
-      display: grid;
-      grid-template-columns: minmax(0, 1fr);
-      gap: 4px;
-    }
-
-    @media (min-width: 640px) {
-      .poem-list {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      }
-    }
-
-    .poem-item {
-      border-radius: 9px;
-      border: 1px solid rgba(31, 41, 55, 0.95);
-      background: #020617;
-      padding: 4px 6px;
-      display: flex;
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      background: rgba(15, 23, 42, 0.96);
+      display: inline-flex;
       align-items: center;
       gap: 6px;
     }
 
-    .poem-item input {
-      width: 13px;
-      height: 13px;
-      accent-color: var(--accent);
+    .tag-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      box-shadow:
+        0 0 10px rgba(139, 92, 246, 0.9),
+        0 0 18px rgba(59, 130, 246, 0.8);
     }
 
-    .exam-row {
+    .flashcard-text {
+      font-size: 15px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .flashcard-text.empty {
+      font-style: italic;
+      color: var(--muted-soft);
+      font-size: 13px;
+    }
+
+    .flashcard-footer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-top: 8px;
+      font-size: 11px;
+      color: var(--muted-soft);
+    }
+
+    .fc-controls {
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
       align-items: center;
-      font-size: 0.78rem;
+      justify-content: flex-start;
+    }
+
+    .fc-status {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted-soft);
+    }
+
+    /* Editor */
+
+    details {
+      margin-top: 4px;
+    }
+
+    details summary {
+      font-size: 12px;
+      color: var(--muted-soft);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    details summary::-webkit-details-marker { display: none; }
+
+    .summary-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .summary-row span.chevron {
+      font-size: 11px;
+    }
+
+    .edit-grid {
+      margin-top: 8px;
+      display: grid;
+      grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 700px) {
+      .edit-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    textarea {
+      min-height: 70px;
+    }
+
+    .edit-actions {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--muted-soft);
+    }
+
+    .card-list {
+      margin-top: 8px;
+      border-radius: 12px;
+      border: 1px solid rgba(30, 64, 175, 0.7);
+      max-height: 210px;
+      overflow: hidden auto;
+      font-size: 12px;
+    }
+
+    .card-list-header {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: #020617;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.9);
+      padding: 6px 8px;
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr) 70px;
+      gap: 6px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted-soft);
+    }
+
+    .card-row {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr) 70px;
+      gap: 6px;
+      padding: 6px 8px;
+      align-items: center;
+    }
+
+    .card-row:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .card-row:nth-child(even) {
+      background: rgba(17, 24, 39, 0.98);
+    }
+
+    .card-cell {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* Anthology view */
+
+    .poem-table {
+      margin-top: 4px;
+      border-radius: 12px;
+      border: 1px solid rgba(30, 64, 175, 0.75);
+      overflow: hidden;
+      font-size: 12px;
+    }
+
+    .poem-header, .poem-row {
+      display: grid;
+      grid-template-columns: 130px minmax(0,1fr);
+      gap: 6px;
+      padding: 6px 8px;
+      align-items: flex-start;
+    }
+
+    .poem-header {
+      background: #020617;
+      border-bottom: 1px solid rgba(30, 64, 175, 0.9);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted-soft);
+    }
+
+    .poem-row:nth-child(odd) {
+      background: rgba(15, 23, 42, 0.96);
+    }
+
+    .poem-row:nth-child(even) {
+      background: rgba(17, 24, 39, 0.98);
+    }
+
+    .poem-title {
+      font-weight: 500;
+      color: #e5e7f5;
+    }
+
+    .poem-note {
       color: var(--muted);
     }
 
-    .exam-row input[type="date"] {
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: #020617;
-      color: var(--text);
-      font-size: 0.76rem;
-      padding: 4px 8px;
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      background: rgba(15, 23, 42, 0.95);
+      padding: 2px 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(30, 64, 175, 0.7);
     }
 
-    /* Views */
-
-    .view {
-      display: none;
-    }
-
-    .view.active {
-      display: block;
+    @media (max-width: 480px) {
+      .header-inner {
+        padding-inline: 10px;
+      }
+      main {
+        padding-inline: 10px;
+      }
+      .panel {
+        padding-inline: 12px;
+      }
+      .nav-tabs {
+        width: 100%;
+        justify-content: space-between;
+      }
+      .nav-tab {
+        flex: 1;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="app">
-    <header>
-      <div class="header-main">
-        <div class="title-block">
-          <div class="title-row">
-            <div class="logo-dot"></div>
-            <div class="app-title">ACC & Belonging – Revision Hub</div>
-          </div>
-          <div class="subtitle">Black / dark red · AQA English · Year 11</div>
+  <header>
+    <div class="header-inner">
+      <div class="title-block">
+        <div class="logo-row">
+          <div class="logo-dot"></div>
+          <div class="app-title">REVISION HUB</div>
         </div>
-        <div class="quick-buttons">
-          <button class="chip primary" id="quick-acc">
-            <span class="icon">📖</span> ACC
-          </button>
-          <button class="chip" id="quick-belonging">
-            <span class="icon">📝</span> Belonging
-          </button>
-          <button class="chip" id="quick-starters">
-            <span class="icon">✍️</span> Starters
-          </button>
-        </div>
+        <div class="subtitle">A Christmas Carol · Belonging Anthology · GCSE English</div>
       </div>
-      <div class="tabs">
-        <button class="tab active" data-view="cards">Cards</button>
-        <button class="tab" data-view="starters">Sentence starters</button>
-        <button class="tab" data-view="checklist">Checklist & papers</button>
-      </div>
-    </header>
+      <nav class="nav-tabs">
+        <button class="nav-tab active" data-view="acc">
+          <span class="icon">📘</span> ACC
+        </button>
+        <button class="nav-tab" data-view="anthology">
+          <span class="icon">📚</span> Belonging
+        </button>
+        <button class="nav-tab" data-view="flashcards">
+          <span class="icon">🃏</span> Flashcards
+        </button>
+        <button class="nav-tab" data-view="papers">
+          <span class="icon">📝</span> Papers
+        </button>
+      </nav>
+    </div>
+  </header>
 
-    <main>
-      <!-- CARDS VIEW -->
-      <section class="view active" id="view-cards">
+  <main>
+    <div class="main-inner">
+      <!-- ACC FRONT PAGE -->
+      <section id="view-acc" class="view active">
         <div class="panel">
-          <h2 class="section-title">A Christmas Carol – quick map</h2>
-          <p class="section-sub">Use this as a mental checklist, then hit the cards.</p>
-          <div class="two-col">
+          <div class="panel-header">
             <div>
-              <ul class="clean">
-                <li><span class="tag">Stave 1</span><span>Miser Scrooge, “Bah! Humbug”, refuses charity, Marley warns him about chains.</span></li>
-                <li><span class="tag">Stave 2</span><span>Past – lonely schoolboy, Fezziwig’s party, Belle leaves when he chooses money.</span></li>
-                <li><span class="tag">Stave 3</span><span>Present – Cratchit Christmas, Tiny Tim, Ignorance and Want.</span></li>
-                <li><span class="tag">Stave 4</span><span>Future – people steal his things, no one cares he’s dead, his grave.</span></li>
-                <li><span class="tag">Stave 5</span><span>New Scrooge – generous, helps Cratchits, “as good a man”.</span></li>
-              </ul>
+              <h2>A Christmas Carol – core revision</h2>
+              <small>Plot · themes · how to use this hub</small>
             </div>
-            <div>
-              <h3 class="section-sub" style="margin:0 0 4px;font-weight:600;">What to know</h3>
-              <ul class="clean">
-                <li>✔ 2–3 quotes per stave</li>
-                <li>✔ how he changes from start → end</li>
-                <li>✔ link to themes: poverty, family, responsibility, redemption</li>
-              </ul>
-            </div>
+            <button id="acc-open-deck" class="soft">
+              <span class="icon">🃏</span> ACC deck
+            </button>
           </div>
-        </div>
-
-        <div class="panel">
-          <h2 class="section-title">Flashcards</h2>
-          <p class="section-sub">ACC · Belonging quotes · sentence starters · exam tips</p>
-
-          <div class="controls-row">
-            <div class="control-block">
-              <span>Deck</span>
-              <div class="select-wrap">
-                <select id="deck-select"></select>
-              </div>
-            </div>
-            <div class="control-block">
-              <span>Session</span>
-              <div class="select-wrap">
-                <select id="session-size">
-                  <option value="5">5</option>
-                  <option value="10" selected>10</option>
-                  <option value="20">20</option>
-                  <option value="all">All</option>
-                </select>
-              </div>
-              <button class="btn" id="order-toggle">
-                Order: <span id="order-label">Shuffled</span>
-              </button>
-              <label class="checkbox">
-                <input type="checkbox" id="start-back" />
-                Start on back
-              </label>
-            </div>
-          </div>
-
-          <div class="card-shell">
-            <div id="flashcard" class="flashcard">
-              <div id="face-label" class="face-label">Quote</div>
-              <div id="face-text" class="face-text">
-                Loading cards…
-              </div>
-              <div class="face-meta">
-                <span class="deck" id="deck-name"></span>
-                <span id="card-index"></span>
-              </div>
-            </div>
-            <div class="hint">
-              Tap the card to <span>flip between quote and analysis / explanation.</span>
-            </div>
-
-            <div class="footer-row" style="margin-top:10px;">
-              <div class="progress">
-                <div class="progress-bar">
-                  <div id="progress-fill" class="progress-fill"></div>
+          <div class="panel-body">
+            <div class="grid-two">
+              <div>
+                <h3>5 staves in one glance</h3>
+                <ul class="clean">
+                  <li><span class="b">1</span><span><strong>Marley’s Ghost</strong> – Scrooge introduced; refuses charity; Marley warns him he must change.</span></li>
+                  <li><span class="b">2</span><span><strong>Past</strong> – lonely school, Fezziwig’s party, Belle leaves; money replaces love.</span></li>
+                  <li><span class="b">3</span><span><strong>Present</strong> – Cratchits, Tiny Tim, Fred’s party, Ignorance and Want.</span></li>
+                  <li><span class="b">4</span><span><strong>Yet to Come</strong> – no one misses Scrooge when he dies; stolen belongings; neglected grave.</span></li>
+                  <li><span class="b">5</span><span><strong>Redemption</strong> – Scrooge wakes joyful, helps Cratchits, becomes “as good a man”.</span></li>
+                </ul>
+                <div class="chip-row">
+                  <span class="chip">Idea: one quote per stave in your ACC deck.</span>
+                  <span class="chip">Think: what does Scrooge learn in each stave?</span>
                 </div>
-                <span id="progress-label">0 / 0</span>
               </div>
-              <div class="button-row">
-                <button class="btn" id="prev-btn">◀ Prev</button>
-                <button class="btn" id="restart-btn">↻ Restart</button>
-                <button class="btn primary" id="next-btn">Next ▶</button>
-              </div>
-            </div>
-
-            <div class="footer-row">
-              <div class="button-row">
-                <button class="btn good" id="got-btn">✓ Got it</button>
-                <button class="btn bad" id="not-btn">? Not yet</button>
-              </div>
-              <div class="stats-line">
-                <span class="stat">Got it: <span class="value" id="stat-known">0</span></span>
-                <span class="stat">Not yet: <span class="value" id="stat-unsure">0</span></span>
+              <div>
+                <h3>Big themes</h3>
+                <ul class="clean">
+                  <li><span class="b">★</span><span><strong>Poverty & charity</strong> – Cratchits, Tiny Tim, Ignorance and Want attack cruel Victorian attitudes.</span></li>
+                  <li><span class="b">★</span><span><strong>Responsibility to others</strong> – “Mankind was my business!” – Marley’s warning about selfishness.</span></li>
+                  <li><span class="b">★</span><span><strong>Family & community</strong> – Fred and the Cratchits show warmth and belonging that Scrooge rejects at first.</span></li>
+                  <li><span class="b">★</span><span><strong>Redemption</strong> – it’s never too late to change, if you accept your past and act differently.</span></li>
+                </ul>
               </div>
             </div>
           </div>
         </div>
 
         <div class="panel">
-          <h2 class="section-title">ACC random exam question</h2>
-          <div class="question-box">
-            <div class="question-label">Practice prompt</div>
-            <div id="acc-question">
-              How does Dickens present Scrooge’s attitude to the poor in Stave 1? Write about:
-              • Scrooge • the poor • Dickens’ message.
+          <div class="panel-header">
+            <div>
+              <h2>ACC key quotes (already in cards)</h2>
+              <small>Front = quote · back = who / where / what it shows</small>
             </div>
-            <div class="question-footer">
-              <span>Plan: intro + 3 paragraphs + conclusion.</span>
-              <button class="btn" id="new-q-btn">New question 🎲</button>
+          </div>
+          <div class="panel-body">
+            <div class="quote-list">
+              <div class="quote-item">
+                <div class="quote-text">“Marley was dead: to begin with.”</div>
+                <div class="quote-note">Opens the novella; confirms Marley’s death and sets up the ghost story.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“As solitary as an oyster.”</div>
+                <div class="quote-note">Scrooge – closed, hard, isolated, but with potential for change (a “pearl” inside).</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“If they would rather die, they had better do it, and decrease the surplus population.”</div>
+                <div class="quote-note">Scrooge’s cruel view of the poor; Dickens attacks this inhuman attitude.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“Mankind was my business!”</div>
+                <div class="quote-note">Marley – regrets focusing on money instead of caring for others.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“God bless us, every one!”</div>
+                <div class="quote-note">Tiny Tim – moral heart of the story; inclusive blessing.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“I am not the man I was.”</div>
+                <div class="quote-note">Scrooge – clear turning point after seeing his future.</div>
+              </div>
+              <div class="quote-item">
+                <div class="quote-text">“He became as good a friend, as good a master, and as good a man.”</div>
+                <div class="quote-note">Narrator – confirms his long-term redemption.</div>
+              </div>
+            </div>
+            <p class="muted" style="margin-top:8px;">
+              All of these are already in the <strong>“ACC – Key Quotes”</strong> deck in the Flashcards tab – you don’t have to add them yourself.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BELONGING ANTHOLOGY VIEW -->
+      <section id="view-anthology" class="view">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Belonging Anthology – map</h2>
+              <small>All 15 poems with quick themes</small>
+            </div>
+            <button id="anthology-open-deck" class="soft">
+              <span class="icon">🃏</span> Belonging deck
+            </button>
+          </div>
+          <div class="panel-body">
+            <p class="muted-soft">
+              Use this like a contents page. All of these are already in the <strong>“Belonging – All 15 Poems”</strong> deck.
+            </p>
+            <div class="poem-table">
+              <div class="poem-header">
+                <div>Poem</div>
+                <div>Key idea / belonging angle</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Captain Cook (To My Brother)</div>
+                <div class="poem-note">Childhood games and adult distance – family and class make belonging more complicated.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Clear and Gentle Stream</div>
+                <div class="poem-note">Idealised nature and peace – belonging in a calm rural landscape.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">In Wales, Wanting to be Italian</div>
+                <div class="poem-note">Performing identity – wanting to be Italian to feel confident and glamorous.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">I Remember, I Remember</div>
+                <div class="poem-note">Returning to childhood home – challenges the idea that childhood was happy or simple.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Island Man</div>
+                <div class="poem-note">Split between Caribbean home and London – never fully belonging in one place.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Jamaican British</div>
+                <div class="poem-note">Accent, race and deafness – stereotypes about what “Jamaican British” should look/sound like.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Kumukanda</div>
+                <div class="poem-note">Missing a traditional initiation ritual – feeling “unfinished” between cultures.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Mild the Mist Upon the Hill</div>
+                <div class="poem-note">Romantic nature – misty landscape mirrors quiet, reflective mood.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">My Mother’s Kitchen</div>
+                <div class="poem-note">Everyday objects carry memory and culture – kitchen as core of family belonging.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Peckham Rye Lane</div>
+                <div class="poem-note">Busy South London street – belonging in messy, multicultural city life.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">To My Sister</div>
+                <div class="poem-note">Speaker invites his sister to enjoy spring – belonging in nature and sibling bond.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">The Émigrée</div>
+                <div class="poem-note">Idealised memory of a dangerous homeland – belonging shaped by childhood perspective.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Sunday Dip</div>
+                <div class="poem-note">Children bathing in a river – community and freedom in a rural setting.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">Us</div>
+                <div class="poem-note">Tiny word “us” stands for an intimate couple – private belonging between two people.</div>
+              </div>
+              <div class="poem-row">
+                <div class="poem-title">We Refugees</div>
+                <div class="poem-note">Anyone can become a refugee – shared humanity and challenging prejudice.</div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- STARTERS VIEW -->
-      <section class="view" id="view-starters">
+      <!-- FLASHCARDS -->
+      <section id="view-flashcards" class="view">
         <div class="panel">
-          <h2 class="section-title">Sentence starters & structures</h2>
-          <p class="section-sub">Use these in ACC essays, Belonging comparisons, unseen and Language Q5.</p>
-
-          <div class="starters-grid">
-            <div class="box">
-              <h3>ACC & Lit paragraphs</h3>
-              <ul>
-                <li><code>Intro</code> – “In <em>A Christmas Carol</em>, Dickens presents <strong>[theme]</strong> as… in order to show that…”</li>
-                <li><code>Point</code> – “At the beginning of the novella, Scrooge is presented as…” / “Later on, Dickens develops this when…”</li>
-                <li><code>Evidence</code> – “This is shown when Dickens writes, ‘…’ ”</li>
-                <li><code>Zoom</code> – “The adjective ‘…’ suggests that…” / “The verb ‘…’ implies that…”</li>
-                <li><code>Effect</code> – “This makes the reader feel…” / “This highlights Dickens’ criticism of…”</li>
-                <li><code>Context</code> – “This would shock a Victorian reader because…”</li>
-                <li><code>Link</code> – “Overall, Dickens uses this to show that…”</li>
-              </ul>
+          <div class="panel-header">
+            <div>
+              <h2>Flashcards – study mode</h2>
+              <small>ACC · Belonging · English papers (pre-filled)</small>
+            </div>
+            <span class="badge">
+              <span class="badge-dot"></span>
+              Saved on this device only
+            </span>
+          </div>
+          <div class="panel-body">
+            <div class="fc-top-row">
+              <label>
+                Deck
+                <select id="deck-select"></select>
+              </label>
+              <span id="deck-info" class="muted-soft">0 cards</span>
             </div>
 
-            <div class="box">
-              <h3>Belonging anthology comparison</h3>
-              <ul>
-                <li><code>Compare start</code> – “Both poets explore <strong>[idea]</strong>, but in different ways.”</li>
-                <li><code>Similarity</code> – “Similarly, in <strong>[Poem B]</strong>, the poet also suggests that…”</li>
-                <li><code>Difference</code> – “However, unlike <strong>[Poem A]</strong>, <strong>[Poem B]</strong> presents…”</li>
-                <li><code>Method</code> – “The poet uses imagery such as ‘…’ to show that…”</li>
-                <li><code>Structure</code> – “The use of <strong>[enjambment / stanza break]</strong> here emphasises…”</li>
-                <li><code>Conclusion</code> – “Overall, while both poems present…, <strong>[Poem X]</strong> suggests it is…, whereas <strong>[Poem Y]</strong>…”</li>
-              </ul>
+            <div class="quick-decks">
+              <button class="soft" data-quick-deck="ACC – Key Quotes">ACC deck</button>
+              <button class="soft" data-quick-deck="Belonging – All 15 Poems">Belonging deck</button>
+              <button class="soft" data-quick-deck="English Papers – Overview">Papers deck</button>
+            </div>
+
+            <div class="flashcard-shell">
+              <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+              </div>
+
+              <div class="flashcard-box" id="study-card" title="Tap to flip">
+                <div class="flashcard-header">
+                  <div class="flashcard-tag">
+                    <span class="tag-dot"></span>
+                    <span id="card-side-label">Front · Question</span>
+                  </div>
+                  <span id="card-meta" class="muted-soft"></span>
+                </div>
+                <div class="flashcard-text empty" id="card-text">
+                  No cards yet in this deck.
+                </div>
+                <div class="flashcard-footer">
+                  <span><strong id="card-position">0 / 0</strong> · deck: <span id="deck-name-label">—</span></span>
+                  <span>Tap to flip · <code>space</code> flip · <code>← / →</code> move</span>
+                </div>
+              </div>
+
+              <div class="fc-controls">
+                <button id="fc-restart" class="primary">
+                  <span class="icon">▶</span> Start / restart
+                </button>
+                <button id="fc-prev" class="soft">◀ Prev</button>
+                <button id="fc-next" class="soft">Next ▶</button>
+                <button id="fc-flip" class="soft">⟲ Flip</button>
+                <div class="switch">
+                  <input type="checkbox" id="fc-shuffle" />
+                  <label for="fc-shuffle">Shuffle</label>
+                </div>
+              </div>
+
+              <div class="fc-status" id="fc-status"></div>
             </div>
           </div>
+        </div>
 
-          <div class="starters-grid" style="margin-top:10px;">
-            <div class="box">
-              <h3>Unseen poetry</h3>
-              <ul>
-                <li><code>Opening</code> – “The poet presents <strong>[feeling / situation]</strong> as… using imagery and structure to show that…”</li>
-                <li><code>Idea para</code> – “One important idea in the poem is that…”</li>
-                <li><code>Evidence</code> – “This is suggested by the phrase ‘…’ which implies that…”</li>
-                <li><code>Method</code> – “The poet’s use of <strong>[metaphor / rhyme / rhythm]</strong> creates a sense of…”</li>
-                <li><code>Effect</code> – “This makes the reader think about…”</li>
-                <li><code>Second poem</code> – “In the second poem, the poet also explores…, but presents it as more…”</li>
-              </ul>
-            </div>
-
-            <div class="box">
-              <h3>Language Paper 2 Q5</h3>
-              <ul>
-                <li><code>Intro</code> – “I strongly believe that… because…” / “In today’s society, it is essential that…”</li>
-                <li><code>Para starts</code> – “Firstly,…”, “Secondly,…”, “Most importantly,…”</li>
-                <li><code>Develop</code> – “For example,…”, “This shows that…”</li>
-                <li><code>Persuade</code> – “Surely we cannot ignore…?” / “Is it really fair that…?”</li>
-                <li><code>Counter</code> – “Some people might argue that…, however this is flawed because…”</li>
-                <li><code>Ending</code> – “In conclusion, if we want a future where…, we must…”</li>
-              </ul>
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Edit / add cards</h2>
+              <small>Optional – decks already built for you</small>
             </div>
           </div>
+          <div class="panel-body">
+            <details>
+              <summary>
+                <span class="summary-row">
+                  <span class="chevron">▸</span>
+                  <span>Open editor</span>
+                </span>
+              </summary>
+              <div>
+                <div class="edit-grid">
+                  <div>
+                    <div class="muted-soft">Front (question / cue)</div>
+                    <textarea id="edit-front" placeholder="e.g. Who says &quot;God bless us, every one!&quot;?"></textarea>
+                  </div>
+                  <div>
+                    <div class="muted-soft">Back (answer / explanation)</div>
+                    <textarea id="edit-back" placeholder="Tiny Tim – Stave 3, symbol of innocence and generosity."></textarea>
+                  </div>
+                </div>
+                <div class="edit-actions">
+                  <div>
+                    <button id="save-card" class="primary">
+                      <span class="icon">＋</span> Save card
+                    </button>
+                    <button id="clear-card" class="soft">Clear</button>
+                  </div>
+                  <div>
+                    Editing deck: <strong id="edit-deck-label">—</strong>
+                  </div>
+                </div>
 
-          <p class="small" style="margin-top:10px;">
-            There’s also a <strong>“Sentence Starters & Structures”</strong> deck in the Cards tab if you want these as flashcards.
-          </p>
+                <div class="card-list" id="card-list">
+                  <div class="card-list-header">
+                    <div>Front</div>
+                    <div>Back</div>
+                    <div>Actions</div>
+                  </div>
+                </div>
+
+                <p class="muted" style="margin-top:6px;">
+                  You can change any card or add new ones. Everything stays in <code>localStorage</code> on your phone.
+                </p>
+              </div>
+            </details>
+          </div>
         </div>
       </section>
 
-      <!-- CHECKLIST VIEW -->
-      <section class="view" id="view-checklist">
+      <!-- PAPERS VIEW -->
+      <section id="view-papers" class="view">
         <div class="panel">
-          <h2 class="section-title">Belonging anthology – checklist</h2>
-          <p class="section-sub">Tick poems when you’re happy with quotes + what they show.</p>
-          <ul class="poem-list" id="poem-list">
-            <!-- filled by JS -->
-          </ul>
-        </div>
-
-        <div class="panel">
-          <h2 class="section-title">AQA English – papers & countdown</h2>
-          <p class="section-sub">Quick reminder of what each paper has, plus your own countdown.</p>
-          <div class="two-col">
-            <div class="box">
-              <h3>Paper contents</h3>
-              <ul>
-                <li><strong>Eng Lit Paper 1:</strong> Shakespeare + 19th-century novel (ACC if your school chose it).</li>
-                <li><strong>Eng Lit Paper 2:</strong> Modern text + anthology (Belonging if on that spec) + unseen poetry.</li>
-                <li><strong>Eng Lang Paper 1:</strong> Fiction extract + descriptive / narrative writing.</li>
-                <li><strong>Eng Lang Paper 2:</strong> Non-fiction + viewpoint/transactional writing.</li>
-              </ul>
+          <div class="panel-header">
+            <div>
+              <h2>English papers – quick breakdown</h2>
+              <small>Matches the “English Papers – Overview” deck</small>
             </div>
-            <div class="box">
-              <h3>Exam countdown & stats</h3>
-              <div class="exam-row">
-                <span>Exam date:</span>
-                <input type="date" id="exam-date" />
-                <button class="btn" id="save-exam">Save</button>
+          </div>
+          <div class="panel-body">
+            <div class="grid-two">
+              <div>
+                <h3>Literature</h3>
+                <ul class="clean">
+                  <li><span class="b">Lit P1</span><span><strong>Shakespeare & 19th-century novel</strong> – one essay on Shakespeare, one on <strong>A Christmas Carol</strong>. Short extract on page + link to whole text.</span></li>
+                  <li><span class="b">Lit P2</span><span><strong>Modern text & poetry</strong> – modern text essay, anthology comparison (e.g. Belonging poems), then unseen poetry.</span></li>
+                </ul>
+                <p class="muted-soft" style="margin-top:8px;">
+                  Good card idea: front = paper name, back = sections + marks + main skills.
+                </p>
               </div>
-              <p class="small" id="exam-countdown" style="margin-top:6px;"></p>
-              <div class="stats-line" style="margin-top:6px;">
-                <span class="stat">Sessions: <span class="value" id="stat-sessions">0</span></span>
-                <span class="stat">Cards flipped: <span class="value" id="stat-cards">0</span></span>
+              <div>
+                <h3>Language</h3>
+                <ul class="clean">
+                  <li><span class="b">Lang P1</span><span>Creative reading & writing – fiction extract (Q1–4) + narrative/descriptive writing (Q5).</span></li>
+                  <li><span class="b">Lang P2</span><span>Viewpoints & perspectives – two non-fiction texts (Q1–4) + transactional writing (Q5).</span></li>
+                </ul>
+                <p class="muted-soft" style="margin-top:8px;">
+                  The <strong>English Papers – Overview</strong> deck already has timing tips and structures ready for you.
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
-    </main>
-  </div>
+    </div>
+  </main>
 
   <script>
-    const APP_VERSION = "4";
-
+    // ---------- PRELOADED DECKS ----------
     const DEFAULT_DECKS = {
-      "A Christmas Carol – Key Moments & Quotes": [
+      "ACC – Key Quotes": [
         {
-          front: "Stave 1 – overview\\n\\nMarley’s ghost warns Scrooge he’ll wear “chains” of his own selfish life.",
-          back:
-            "Stave 1 sets Scrooge up as cold and isolated (“solitary as an oyster”), rejecting charity and speaking cruelly about the poor. Marley arrives in chains to show that a life focused on money leads to punishment and regret."
+          front: "\"Marley was dead: to begin with.\"",
+          back: "Opening line. Establishes certainty of Marley's death and sets up the supernatural frame of the novella (Stave 1)."
         },
         {
-          front: "Stave 2 – overview\\n\\nGhost of Christmas Past shows Scrooge his younger self.",
-          back:
-            "We see his lonely schooldays, Fezziwig’s joyful party and Belle ending the engagement. This proves Scrooge wasn’t always heartless – greed slowly replaced love and belonging, which explains but doesn’t excuse his behaviour."
-        },
-        {
-          front: "Stave 3 – overview\\n\\nGhost of Christmas Present and the Cratchits.",
-          back:
-            "We visit the Cratchits’ poor but warm Christmas, see Tiny Tim’s fragility and meet Ignorance and Want. Dickens contrasts Scrooge’s wealth with their kindness to criticise selfish attitudes to the poor."
-        },
-        {
-          front: "Stave 4 – overview\\n\\nGhost of Christmas Yet to Come and Scrooge’s death.",
-          back:
-            "Scrooge witnesses businessmen mocking his death, thieves stealing his belongings and an unvisited grave. No one cares that he has died, warning that a life without generosity leads to a lonely, meaningless end."
-        },
-        {
-          front: "Stave 5 – overview\\n\\nScrooge wakes up changed.",
-          back:
-            "He wakes grateful to be alive, buys the prize turkey, donates to charity, goes to Fred’s party and raises Bob’s wages. Dickens ends by showing that true happiness comes from relationships and generosity, not money."
-        },
-        {
-          front: "\"solitary as an oyster\" (Stave 1)",
-          back:
-            "Simile emphasising Scrooge’s isolation and hard exterior. An oyster is closed and difficult to open, but it may hide a pearl – hinting that Scrooge has hidden potential for kindness and change."
+          front: "\"As solitary as an oyster.\"",
+          back: "Narrator describing Scrooge in Stave 1 – isolated, hard and closed off, but with potential for change (a 'pearl' inside)."
         },
         {
           front: "\"Bah! Humbug!\"",
-          back:
-            "Scrooge’s catchphrase dismissing Christmas as nonsense. It symbolises his rejection of joy, community and generosity – everything Dickens wants Victorian society to value."
+          back: "Scrooge rejecting Christmas in Stave 1 – shows cynicism and lack of empathy for others."
         },
         {
-          front: "\"Are there no prisons?\" / \"And the Union workhouses?\"",
-          back:
-            "Scrooge uses the names of cruel institutions instead of helping the poor. Dickens criticises the Victorian belief that poverty is a crime and that harsh workhouses are an acceptable ‘solution’."
+          front: "\"If they would rather die, they had better do it, and decrease the surplus population.\"",
+          back: "Scrooge talking about the poor in Stave 1 – cruel, Malthusian attitude that Dickens attacks."
         },
         {
-          front: "\"Mankind was my business!\" – Marley",
-          back:
-            "Marley regrets that he cared only about ‘trade’ instead of people. Dickens’ main moral: our real duty is to other human beings, not just making profit."
+          front: "\"Mankind was my business!\"",
+          back: "Marley's Ghost in Stave 1 – regrets focusing on money instead of caring for others."
         },
         {
-          front: "\"A solitary child, neglected by his friends\"",
-          back:
-            "Narrator describing young Scrooge. His childhood loneliness explains why he fears emotional pain and shuts people out, showing how lack of love and belonging can damage someone."
+          front: "\"A solitary child, neglected by his friends.\"",
+          back: "Narrator about young Scrooge in Stave 2 – explains the roots of his loneliness and bitterness."
         },
         {
-          front: "\"Another idol has displaced me… a golden one\" – Belle",
-          back:
-            "Belle tells Scrooge that money has replaced her in his heart. Calling wealth an ‘idol’ suggests he worships it like a false god – Dickens attacks greed as something people wrongly devote their lives to."
+          front: "\"Another idol has displaced me... a golden one.\"",
+          back: "Belle in Stave 2 – says money has replaced love in Scrooge's life."
         },
         {
-          front: "\"jolly Giant\" – Ghost of Christmas Present",
-          back:
-            "The spirit is huge, warm and full of food. He represents generosity, abundance and the true spirit of Christmas – sharing and caring for others."
+          front: "\"A jolly Giant, glorious to see.\"",
+          back: "Description of the Ghost of Christmas Present (Stave 3) – symbol of warmth, generosity and abundance."
+        },
+        {
+          front: "\"God bless us, every one!\"",
+          back: "Tiny Tim in Stave 3 – innocent, inclusive blessing; moral centre of the novella."
         },
         {
           front: "\"This boy is Ignorance. This girl is Want.\"",
-          back:
-            "The children personify social problems created by neglecting the poor. Dickens warns that if society ignores ignorance and extreme poverty, the future will be ‘doom’. It’s a direct attack on selfishness."
+          back: "Ghost of Christmas Present in Stave 3 – personifies social problems caused by neglecting the poor."
         },
         {
-          front: "\"deep black garment\" – Ghost of Christmas Yet to Come",
-          back:
-            "The faceless, dark robe makes the spirit look like Death and creates fear. It symbolises the unknown future and the judgement that awaits Scrooge if he does not change."
+          front: "\"I am not the man I was.\"",
+          back: "Scrooge in Stave 4 – openly admits he has changed after what he has seen."
         },
         {
-          front: "Scrooge at his grave – \"trembling\" and begging",
-          back:
-            "When Scrooge sees his own name on the grave, he realises this lonely death is the result of his choices. His fear and desperation show genuine regret and create the turning point for his redemption."
+          front: "\"I will honour Christmas in my heart, and try to keep it all the year.\"",
+          back: "Scrooge in Stave 4–5 – promises lasting generosity, not just a one-off gesture."
         },
         {
-          front: "\"I will honour Christmas in my heart\"",
-          back:
-            "Scrooge promises to live out the values of Christmas (kindness, generosity, empathy) all year round. Dickens suggests that Christmas is an attitude, not just a single day."
-        },
-        {
-          front: "\"as happy as an angel\" / \"as merry as a school-boy\" (Stave 5)",
-          back:
-            "Joyful similes show Scrooge’s complete transformation. Childlike happiness replaces his bitterness, proving that emotional change is possible even for someone as ‘hard’ as him."
-        },
-        {
-          front: "Tiny Tim – \"God bless us, every one!\"",
-          back:
-            "Tim’s blessing is repeated at the end of the novella. He represents innocence, faith and the vulnerable poor. Scrooge’s help saving Tim shows that individual kindness can literally save lives."
+          front: "\"He became as good a friend, as good a master, and as good a man.\"",
+          back: "Narrator in Stave 5 – confirms Scrooge's full redemption and new identity."
         }
       ],
-
       "Belonging – All 15 Poems": [
         {
-          front: "\"It is the first mild day of March\"",
-          back:
-            "To My Sister – nature and early spring symbolise new beginnings and hope. The speaker’s sense of belonging comes from sharing this simple outdoor moment with his sister, not from school or work."
+          front: "Captain Cook (To My Brother) – main idea",
+          back: "Speaker remembers childhood games about Captain Cook with her brother and realises adult life and class expectations have damaged their earlier closeness."
         },
         {
-          front: "\"There is a blessing in the air\"",
-          back:
-            "To My Sister – the ‘blessing’ suggests that nature itself is comforting and almost spiritual. Being outside together makes human relationships feel calmer and more meaningful."
+          front: "Clear and Gentle Stream – belonging",
+          back: "Nature and happiness. The stream and rural setting symbolise peace and a simple life where the speaker feels they belong."
         },
         {
-          front: "\"The morning road is thronged with merry boys\"",
-          back:
-            "Sunday Dip – ‘thronged’ shows a crowd of children; the plural ‘merry boys’ emphasises a shared, joyful community. Belonging here is about being part of a group tradition, not standing out."
+          front: "In Wales, Wanting to be Italian – identity",
+          back: "Speaker grows up in Wales but dreams of being Italian. Food, films and language show how we perform identities to feel confident and like we belong."
         },
         {
-          front: "\"And duck about, and try to lose their fears\"",
-          back:
-            "Sunday Dip – the boys try to ‘lose their fears’ in the water. Playing together helps them feel safer; the group gives them the confidence they don’t have alone."
+          front: "I Remember, I Remember – memory vs reality",
+          back: "Narrator revisits childhood home and realises his past was not as happy as he imagined, challenging nostalgic ideas of belonging."
         },
         {
-          front: "\"Mild the mist upon the hill\"",
-          back:
-            "Mild the Mist upon the Hill – the soft ‘mist’ matches the gentle mood. The familiar hill is a place where the speaker’s emotions are held and understood – a quiet kind of belonging to landscape."
+          front: "Island Man – split identity",
+          back: "Caribbean island dreams clash with grey London mornings. The speaker belongs to both places and neither completely."
         },
         {
-          front: "\"I am a child once more\"",
-          back:
-            "Mild the Mist upon the Hill – returning to childhood in memory shows how tied identity is to place. Even as an adult, the speaker mentally belongs to the hill where their younger self felt safe."
+          front: "Jamaican British – stereotypes",
+          back: "Accent, race and deafness all affect how people judge the speaker. Shows how labels like 'Jamaican British' can feel limiting and excluding."
         },
         {
-          front: "\"Clear and gentle stream! Known and loved so long\"",
-          back:
-            "Clear and Gentle Stream – the stream is personified as something the speaker ‘knows’ and ‘loves’. It feels like an old friend, showing that they belong to this landscape through long-term familiarity."
+          front: "Kumukanda – initiation",
+          back: "Title refers to a coming-of-age ritual. Speaker never completed it and feels 'unfinished', stuck between Zambian heritage and British life."
         },
         {
-          front: "\"Many an afternoon of the summer day dreaming here I lay\"",
-          back:
-            "Clear and Gentle Stream – the speaker daydreams at the stream as a child. It’s a private, imaginative space that shapes their sense of self, so they still feel attached to it later in life."
+          front: "Mild the Mist Upon the Hill – mood",
+          back: "Soft, misty landscape matches a thoughtful, slightly sad mood. Nature becomes a space of emotional belonging and peace."
         },
         {
-          front: "\"I remember, I remember, / The house where I was born\"",
-          back:
-            "I Remember, I Remember – repetition emphasises obsession with the childhood home. Even though adult life is disappointing, the speaker’s identity is still rooted in that original place."
+          front: "My Mother’s Kitchen – home",
+          back: "Objects in the kitchen (pots, jars, tins) symbolise culture and memory, showing how home can move but still hold the same sense of belonging."
         },
         {
-          front: "\"My spirit flew in feathers then, / That is so heavy now\"",
-          back:
-            "I Remember, I Remember – contrasts light ‘feathers’ with a ‘heavy’ spirit. Growing up has made the speaker feel weighed down and less free; adulthood feels less like home than childhood did."
+          front: "Peckham Rye Lane – city belonging",
+          back: "Busy London street filled with crowds and noise. Suggests belonging in a chaotic but lively, multicultural city environment."
         },
         {
-          front: "\"Wild seabirds / and fishermen pushing out to sea\"",
-          back:
-            "Island Man – lively, natural images of the Caribbean show an active, communal world. This is the place the speaker’s mind returns to, suggesting his true emotional home is there, not in London."
+          front: "To My Sister – nature & family",
+          back: "Speaker invites his sister to enjoy the spring morning. Belonging is found in shared experience of nature and family bonds."
         },
         {
-          front: "\"comes back to sands / of a grey metallic soar\"",
-          back:
-            "Island Man – the shift to ‘grey metallic’ London sounds harsh and industrial. The man is physically in the city but mentally on the island – he doesn’t fully belong in either place."
+          front: "The Émigrée – idealised city",
+          back: "Speaker remembers the city she left as a child. Even though it later becomes dangerous, her childhood love for it stays, showing how memory shapes belonging."
         },
         {
-          front: "\"We can all be refugees\"",
-          back:
-            "We Refugees – direct, inclusive statement that anyone could lose their home. Belonging here is fragile and conditional; it can be taken away suddenly, regardless of who you are."
+          front: "Sunday Dip – childhood freedom",
+          back: "Children swimming in a river. Water symbolises freedom, fun and community in a rural setting."
         },
         {
-          front: "\"We can be hated by someone / for being someone\"",
-          back:
-            "We Refugees – shows that people are targeted simply for their identity. It criticises prejudice and shows how belonging can be refused just because of who you are, not what you’ve done."
+          front: "Us – tiny word, big meaning",
+          back: "Explores the short word 'us' to show how a relationship creates its own world of belonging for a couple."
         },
         {
-          front: "\"Peckham Rye Lane is tight / As damp and crammed as a coconut shell\"",
-          back:
-            "Peckham Rye Lane – the simile makes the street seem crowded but full of life. The poem shows belonging in a busy, multicultural London setting where different people coexist closely."
-        },
-        {
-          front: "\"Each person is a sturdy hairbrush bristle\"",
-          back:
-            "Peckham Rye Lane – comparing people to bristles suggests they’re small individually but strong together. The image presents community as something made up of many different individuals working as one."
-        },
-        {
-          front: "\"Us takes in undulations – / each wave in the sea\"",
-          back:
-            "Us – the pronoun ‘us’ is compared to waves: constantly moving and hard to pin down. The speaker’s sense of belonging is fluid, not fixed; it shifts with language and relationships."
-        },
-        {
-          front: "\"Oi, you, tell us where yer from\"",
-          back:
-            "Us – the aggressive question shows how other people demand labels and clear answers. It suggests belonging is often something you have to justify or defend to others."
-        },
-        {
-          front: "\"Dying to be French, dying to shrug and pout\"",
-          back:
-            "In Wales, wanting to be Italian – teenage exaggeration (‘dying’) shows intense longing to be someone else. The speaker craves a more glamorous identity than her own, showing insecurity about where she belongs."
-        },
-        {
-          front: "\"Is there a name for that thing / you do when you are young?\"",
-          back:
-            "In Wales, wanting to be Italian – rhetorical question captures a universal teen behaviour: trying on different identities. It suggests belonging is something you experiment with, not something fixed."
-        },
-        {
-          front: "\"Being sixteen in Wales, longing to be Italian\"",
-          back:
-            "In Wales, wanting to be Italian – a very specific, personal moment: stuck in one place but imagining another life. Her feeling of ‘home’ is shaped as much by fantasy as by reality."
-        },
-        {
-          front: "\"think me unfinished – / a child who never sloughed off the childish estate\"",
-          back:
-            "Kumukanda – the speaker feels ‘unfinished’ without the traditional initiation ritual. He hasn’t fully crossed into adult status in his culture, leaving him unsure where he truly belongs."
-        },
-        {
-          front: "\"I was raised in a strange land\"",
-          back:
-            "Kumukanda – ‘strange’ emphasises distance from ancestral culture. He is shaped by two places at once, which complicates his identity and sense of belonging."
-        },
-        {
-          front: "\"Some people would deny that I’m Jamaican British\"",
-          back:
-            "Jamaican British – others question his identity, refusing him the label he chooses. It shows how belonging is controlled by social expectations about race, accent and nationality."
-        },
-        {
-          front: "\"you cannot love sugar and hate your sweetness\"",
-          back:
-            "Jamaican British – metaphor from his father: you can’t enjoy Jamaican culture (‘sugar’) but reject Jamaican people (‘sweetness’). It’s a reminder to accept your whole mixed identity."
-        },
-        {
-          front: "\"It may be at war, it may be sick with tyrants\"",
-          back:
-            "The Émigrée – the speaker’s homeland is politically damaged, but she still loves it. Her emotional belonging doesn’t disappear even when the place becomes dangerous and corrupted."
-        },
-        {
-          front: "\"I am branded by an impression of sunlight\"",
-          back:
-            "The Émigrée – ‘branded’ suggests a permanent mark, but ‘sunlight’ is positive. Her identity is stamped by a warm, idealised memory of home that cannot be erased."
-        },
-        {
-          front: "\"I comb its hair and love its shining eyes\"",
-          back:
-            "The Émigrée – treating the city like a child or friend shows deep affection. She nurtures the idea of her home place, even though she cannot safely live there."
-        },
-        {
-          front: "\"an ugly collection\"",
-          back:
-            "My Mother’s Kitchen – the mismatched plates are ‘ugly’, but they are full of history. They symbolise how migrant families carry bits of home with them and build belonging out of imperfect objects."
-        },
-        {
-          front: "\"Planning another escape\"",
-          back:
-            "My Mother’s Kitchen – repeated escapes show constant moving and instability. The kitchen becomes the only stable space where the family can feel at home for a while."
-        },
-        {
-          front: "\"I will never inherit my mother’s trees\"",
-          back:
-            "My Mother’s Kitchen – she can inherit kitchen objects but not the trees of the homeland. It shows that some parts of belonging (like landscape and deep roots) can’t be passed on fully to the next generation."
-        },
-        {
-          front: "\"Ah! We both of us are alter’d, and now we talk no more\"",
-          back:
-            "Captain Cook (To My Brother) – the siblings have changed and grown apart. Belonging in family is shown as something that can fade with time and distance."
-        },
-        {
-          front: "\"We leave in leaving childhood, life’s fairy land behind\"",
-          back:
-            "Captain Cook (To My Brother) – childhood is described as a magical ‘fairy land’ that is lost. Becoming an adult means losing that simple shared world where the siblings once belonged together."
+          front: "We Refugees – shared humanity",
+          back: "Reminds us anyone can become a refugee. Challenges stereotypes and emphasises that we all share a basic human identity."
         }
       ],
-
-      "Sentence Starters & Structures": [
+      "English Papers – Overview": [
         {
-          front: "Lit intro – ACC or anthology",
-          back:
-            "“In <text>, <author> presents <theme> as… in order to show that…”.\\n\\nExample: “In A Christmas Carol, Dickens presents greed as dangerous in order to show that caring for others is more important than money.”"
+          front: "Literature Paper 1 – structure",
+          back: "Shakespeare + 19th-century novel. One essay on your Shakespeare play and one on A Christmas Carol. You get an extract and must link it to the whole text."
         },
         {
-          front: "ACC paragraph – strong start",
-          back:
-            "“At the beginning of the novella, Scrooge is presented as…”\\n“Later on, Dickens develops this idea when…”\\n“By the end of the novella, Scrooge is shown to have…”"
+          front: "Literature Paper 2 – structure",
+          back: "Modern text, anthology poetry, unseen poetry. One essay on your modern text, one comparison of two anthology poems, then unseen poetry questions."
         },
         {
-          front: "Zoom in on a word / method",
-          back:
-            "“The adjective ‘…’ suggests that…”\\n“The verb ‘…’ implies that…”\\n“By using a simile here, Dickens shows…”"
+          front: "Language Paper 1 – focus",
+          back: "Q1–4: reading a fiction extract (information, language, structure, evaluation). Q5: descriptive or narrative writing based on a picture or prompt."
         },
         {
-          front: "Linking to reader / context",
-          back:
-            "“This would shock a Victorian reader because…”\\n“This reflects Victorian attitudes to…”\\n“For a modern reader, this might suggest that…”"
+          front: "Language Paper 2 – focus",
+          back: "Q1–4: reading two non-fiction texts and comparing ideas and methods. Q5: transactional writing (letter, article, speech) expressing a viewpoint."
         },
         {
-          front: "Comparison – Belonging poems",
-          back:
-            "“Both poets explore the idea of <theme>, but in different ways.”\\n“Similarly, in <poem B>, the poet also suggests that…”\\n“However, unlike <poem A>, <poem B> presents…”"
+          front: "Anthology comparison – what they want",
+          back: "Compare how two poets present the same theme. Discuss ideas, language methods, structure, and some context, with clear links between the poems."
         },
         {
-          front: "Unseen poetry – opening sentence",
-          back:
-            "“The poet presents <feeling / situation> as… using imagery and structure to suggest that…”"
+          front: "Unseen poetry – simple plan",
+          back: "Para 1: overall message and tone. Then 2–3 short paragraphs on key methods (imagery, structure, sound). Finish by linking back to the question."
         },
         {
-          front: "Unseen comparison – one line",
-          back:
-            "“While the first poem presents <theme> as…, the second poem suggests that it is more…”"
+          front: "Language Paper 2 Q5 – easy structure",
+          back: "Intro with clear viewpoint. 2–3 strong main paragraphs with examples. Use persuasive techniques. Finish with a confident conclusion."
         },
         {
-          front: "Lang Paper 2 Q5 – intro",
-          back:
-            "“I strongly believe that… because…”\\n“In today’s society, it is essential that…”\\n“It is unacceptable that…”"
-        },
-        {
-          front: "Lang Paper 2 Q5 – persuasive lines",
-          back:
-            "“Surely we cannot ignore…?”\\n“Is it really fair that…?”\\n“If we do nothing now, then in the future…”"
-        },
-        {
-          front: "Lang Paper 2 Q5 – conclusion",
-          back:
-            "“In conclusion, if we want a future where…, we must…”\\n“Ultimately, it is our responsibility to…”"
-        }
-      ],
-
-      "English Exams – Quick Info & Tips": [
-        {
-          front: "Eng Lit Paper 2 – overall structure",
-          back:
-            "Section A: Modern prose/drama.\\nSection B: Poetry anthology comparison.\\nSection C: Unseen poetry (single poem + comparison).\\n\\nUse this deck mainly to remind yourself what each section expects."
-        },
-        {
-          front: "Unseen poetry – 5-step plan",
-          back:
-            "1) Read once for vibe (emotion / situation).\\n2) Read again and highlight language, structure, form.\\n3) Jot 3–4 mini points (what + how + why).\\n4) Turn them into paragraphs.\\n5) Finish with a short conclusion about message + tone."
-        },
-        {
-          front: "Anthology comparison – what examiners want",
-          back:
-            "You must: (1) Answer the question. (2) Write about BOTH poems. (3) Compare similarities and differences. (4) Use quotes. (5) Comment on methods (language/structure) and some context where relevant."
-        },
-        {
-          front: "Timed essay – basic paragraph frame",
-          back:
-            "Point: answer the question.\\nEvidence: short, accurate quote.\\nMethod: zoom on a word / technique.\\nExplain: effect + what it suggests.\\nLink: back to question or compare to other poem."
+          front: "Timing tip – general",
+          back: "Try to keep at least 40% of the time for the big writing or essay question. If time is short, always write a quick conclusion."
         }
       ]
     };
 
-    const ACC_QUESTIONS = [
-      "How does Dickens present Scrooge’s attitude to the poor in Stave 1? Write about: • Scrooge • the poor • Dickens’ message.",
-      "How does Dickens show the importance of family in A Christmas Carol? Write about: • the Cratchits • Scrooge’s changing attitudes.",
-      "How does Dickens use the Ghost of Christmas Present to criticise Victorian society? Refer to: • what the spirit shows Scrooge • Ignorance and Want.",
-      "How is the theme of redemption presented in A Christmas Carol? Write about: • Scrooge at the start • key moments of change • Scrooge at the end.",
-      "How does Dickens present poverty in the novella? Refer to: • the Cratchits • Tiny Tim • any other characters of your choice."
-    ];
-
-    const BELONGING_POEMS = [
-      "To My Sister – William Wordsworth",
-      "Sunday Dip – John Clare",
-      "Mild the Mist upon the Hill – Emily Brontë",
-      "Clear and Gentle Stream – Robert Bridges",
-      "I Remember, I Remember – Thomas Hood",
-      "Island Man – Grace Nichols",
-      "Peckham Rye Lane – Amy Blakemore",
-      "We Refugees – Benjamin Zephaniah",
-      "Us – Zaffar Kunial",
-      "In Wales, wanting to be Italian – Imtiaz Dharker",
-      "Kumukanda – Kayo Chingonyi",
-      "Jamaican British – Raymond Antrobus",
-      "My Mother’s Kitchen – Choman Hardi",
-      "Captain Cook (To My Brother) – Letitia Elizabeth Landon",
-      "The Émigrée – Carol Rumens"
-    ];
+    const STORAGE_KEY = "revHubDecks_v2";
 
     let decks = {};
-    let currentDeckName = "";
-    let currentDeck = [];
+    let currentDeckName = null;
     let studyOrder = [];
-    let studyIndex = 0;
-    let showBack = false;
-    let orderedMode = false;
+    let currentStudyIndex = 0;
+    let showingFront = true;
 
-    let sessionCount = 0;
-    let cardFlipCount = 0;
-    let knownCount = 0;
-    let unsureCount = 0;
+    // basic per-deck session progress (not full stats, just last position)
+    let sessionProgress = {}; // { deckName: { index: number } }
 
-    function deepCopy(obj) {
-      return JSON.parse(JSON.stringify(obj));
+    // ---------- NAV ----------
+    const navTabs = document.querySelectorAll(".nav-tab");
+    const views = {
+      acc: document.getElementById("view-acc"),
+      anthology: document.getElementById("view-anthology"),
+      flashcards: document.getElementById("view-flashcards"),
+      papers: document.getElementById("view-papers")
+    };
+
+    function setView(name) {
+      Object.values(views).forEach(v => v.classList.remove("active"));
+      if (views[name]) views[name].classList.add("active");
+      navTabs.forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.view === name);
+      });
     }
 
-    function shuffle(arr) {
-      const out = arr.slice();
-      for (let i = out.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [out[i], out[j]] = [out[j], out[i]];
-      }
-      return out;
+    navTabs.forEach(btn => {
+      btn.addEventListener("click", () => {
+        setView(btn.dataset.view);
+      });
+    });
+
+    document.getElementById("acc-open-deck").addEventListener("click", () => {
+      setView("flashcards");
+      switchToDeck("ACC – Key Quotes");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("anthology-open-deck").addEventListener("click", () => {
+      setView("flashcards");
+      switchToDeck("Belonging – All 15 Poems");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    // ---------- STORAGE ----------
+    function deepCopyDefaults() {
+      return JSON.parse(JSON.stringify(DEFAULT_DECKS));
     }
 
-    function loadState() {
-      const raw = localStorage.getItem("rev_app_state");
-      if (raw) {
-        try {
+    function loadDecks() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
           const parsed = JSON.parse(raw);
-          if (parsed.version === APP_VERSION && parsed.decks) {
-            decks = parsed.decks;
-          } else {
-            decks = deepCopy(DEFAULT_DECKS);
-          }
-          sessionCount = parsed.sessions || 0;
-          cardFlipCount = parsed.cards || 0;
-        } catch {
-          decks = deepCopy(DEFAULT_DECKS);
+          decks = parsed && typeof parsed === "object" ? parsed : {};
+        } else {
+          decks = {};
         }
-      } else {
-        decks = deepCopy(DEFAULT_DECKS);
+      } catch {
+        decks = {};
       }
-      updateStats();
+
+      const defaults = deepCopyDefaults();
+      for (const name in defaults) {
+        if (!Object.prototype.hasOwnProperty.call(decks, name)) {
+          decks[name] = defaults[name];
+        }
+      }
+
+      const names = Object.keys(decks);
+      if (!names.length) {
+        decks = deepCopyDefaults();
+      }
+
+      if (!currentDeckName || !decks[currentDeckName]) {
+        currentDeckName = "ACC – Key Quotes";
+        if (!decks[currentDeckName]) {
+          currentDeckName = Object.keys(decks)[0];
+        }
+      }
+
+      saveDecks();
     }
 
-    function saveState() {
-      const payload = {
-        version: APP_VERSION,
-        decks,
-        sessions: sessionCount,
-        cards: cardFlipCount
-      };
-      localStorage.setItem("rev_app_state", JSON.stringify(payload));
+    function saveDecks() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
+      } catch {
+        // ignore
+      }
     }
 
-    function buildDeckSelect() {
-      const sel = document.getElementById("deck-select");
-      sel.innerHTML = "";
-      Object.keys(decks).forEach((name) => {
+    // ---------- FLASHCARD UI ----------
+
+    const deckSelectEl = document.getElementById("deck-select");
+    const deckInfoEl = document.getElementById("deck-info");
+    const deckNameLabelEl = document.getElementById("deck-name-label");
+    const cardTextEl = document.getElementById("card-text");
+    const cardSideLabelEl = document.getElementById("card-side-label");
+    const cardMetaEl = document.getElementById("card-meta");
+    const cardPositionEl = document.getElementById("card-position");
+    const progressFillEl = document.getElementById("progress-fill");
+    const statusEl = document.getElementById("fc-status");
+    const studyCardEl = document.getElementById("study-card");
+    const shuffleToggleEl = document.getElementById("fc-shuffle");
+
+    const editFrontEl = document.getElementById("edit-front");
+    const editBackEl = document.getElementById("edit-back");
+    const editDeckLabelEl = document.getElementById("edit-deck-label");
+    const cardListEl = document.getElementById("card-list");
+
+    function renderDeckOptions() {
+      deckSelectEl.innerHTML = "";
+      const names = Object.keys(decks).sort();
+      names.forEach(name => {
         const opt = document.createElement("option");
         opt.value = name;
         opt.textContent = name;
-        sel.appendChild(opt);
+        deckSelectEl.appendChild(opt);
       });
+      if (!currentDeckName || !decks[currentDeckName]) {
+        currentDeckName = names[0];
+      }
+      deckSelectEl.value = currentDeckName;
+      renderDeckInfo();
+      refreshStudyState();
+      renderCardList();
     }
 
-    function resetKnown() {
-      knownCount = 0;
-      unsureCount = 0;
-      document.getElementById("stat-known").textContent = knownCount;
-      document.getElementById("stat-unsure").textContent = unsureCount;
+    function renderDeckInfo() {
+      const cards = decks[currentDeckName] || [];
+      deckInfoEl.textContent = `${cards.length} card${cards.length === 1 ? "" : "s"}`;
+      deckNameLabelEl.textContent = currentDeckName || "—";
+      editDeckLabelEl.textContent = currentDeckName || "—";
+    }
+
+    function buildStudyOrder() {
+      const cards = decks[currentDeckName] || [];
+      studyOrder = cards.map((_, i) => i);
+      if (shuffleToggleEl.checked) {
+        for (let i = studyOrder.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [studyOrder[i], studyOrder[j]] = [studyOrder[j], studyOrder[i]];
+        }
+      }
     }
 
     function resetStudyOrder() {
-      if (!currentDeck || currentDeck.length === 0) {
-        studyOrder = [];
-        studyIndex = 0;
-        return;
+      const cards = decks[currentDeckName] || [];
+      buildStudyOrder();
+      currentStudyIndex = 0;
+
+      // if we have session progress saved, resume there
+      const prog = sessionProgress[currentDeckName];
+      if (prog && typeof prog.index === "number" && prog.index >= 0 && prog.index < cards.length) {
+        currentStudyIndex = prog.index;
       }
-      const sizeVal = document.getElementById("session-size").value;
-      const allIdx = [...Array(currentDeck.length).keys()];
-      const base = orderedMode ? allIdx : shuffle(allIdx);
-      const size = sizeVal === "all" ? base.length : Math.min(parseInt(sizeVal, 10), base.length);
-      studyOrder = base.slice(0, size);
-      studyIndex = 0;
-      showBack = document.getElementById("start-back").checked;
-      resetKnown();
+      showingFront = true;
+      refreshStudyState(true);
     }
 
-    function renderCard() {
-      const faceLabel = document.getElementById("face-label");
-      const faceText = document.getElementById("face-text");
-      const deckNameEl = document.getElementById("deck-name");
-      const cardIndexEl = document.getElementById("card-index");
-      const progressFill = document.getElementById("progress-fill");
-      const progressLabel = document.getElementById("progress-label");
+    function refreshStudyState(resetPosition = false) {
+      const cards = decks[currentDeckName] || [];
+      renderDeckInfo();
 
-      if (!currentDeck || currentDeck.length === 0 || studyOrder.length === 0) {
-        faceLabel.textContent = "Quote";
-        faceText.textContent = "No cards in this deck yet.";
-        deckNameEl.textContent = currentDeckName || "";
-        cardIndexEl.textContent = "";
-        progressFill.style.width = "0%";
-        progressLabel.textContent = "0 / 0";
+      if (!cards.length) {
+        cardTextEl.textContent = "No cards yet in this deck.";
+        cardTextEl.classList.add("empty");
+        cardSideLabelEl.textContent = "Front · Question";
+        cardMetaEl.textContent = "";
+        cardPositionEl.textContent = "0 / 0";
+        progressFillEl.style.width = "0%";
+        statusEl.textContent = "";
         return;
       }
 
-      const idx = studyOrder[studyIndex];
-      const card = currentDeck[idx];
-
-      faceLabel.textContent = showBack ? "Analysis" : "Quote";
-      faceText.textContent = showBack ? card.back : card.front;
-      deckNameEl.textContent = currentDeckName;
-      cardIndexEl.textContent = `${studyIndex + 1} / ${studyOrder.length}`;
-
-      const pct = ((studyIndex + 1) / studyOrder.length) * 100;
-      progressFill.style.width = pct + "%";
-      progressLabel.textContent = `${studyIndex + 1} / ${studyOrder.length}`;
-    }
-
-    function goNext() {
-      if (!studyOrder.length) return;
-      if (studyIndex < studyOrder.length - 1) {
-        studyIndex++;
+      if (!studyOrder.length || studyOrder.length !== cards.length) {
+        buildStudyOrder();
       }
-      showBack = false;
-      cardFlipCount++;
-      updateStats();
-      saveState();
-      renderCard();
-    }
 
-    function goPrev() {
-      if (!studyOrder.length) return;
-      if (studyIndex > 0) {
-        studyIndex--;
+      if (resetPosition) {
+        const prog = sessionProgress[currentDeckName];
+        if (prog && typeof prog.index === "number" && prog.index >= 0 && prog.index < cards.length) {
+          currentStudyIndex = prog.index;
+        } else {
+          currentStudyIndex = 0;
+        }
       }
-      showBack = false;
-      cardFlipCount++;
-      updateStats();
-      saveState();
-      renderCard();
+
+      if (currentStudyIndex < 0) currentStudyIndex = 0;
+      if (currentStudyIndex >= studyOrder.length) currentStudyIndex = studyOrder.length - 1;
+
+      const cardIndex = studyOrder[currentStudyIndex];
+      const card = cards[cardIndex];
+
+      const text = showingFront ? card.front : card.back;
+      cardTextEl.textContent = text || "(empty)";
+      cardTextEl.classList.toggle("empty", !text);
+
+      cardSideLabelEl.textContent = showingFront ? "Front · Question" : "Back · Answer";
+      cardMetaEl.textContent = `Card ${cardIndex + 1} in deck`;
+      cardPositionEl.textContent = `${currentStudyIndex + 1} / ${cards.length}`;
+
+      const progress = ((currentStudyIndex + 1) / cards.length) * 100;
+      progressFillEl.style.width = `${progress}%`;
+
+      statusEl.textContent = `Studying: ${currentDeckName}`;
+      sessionProgress[currentDeckName] = { index: currentStudyIndex };
     }
 
-    function restartSession() {
-      resetStudyOrder();
-      sessionCount++;
-      cardFlipCount++;
-      updateStats();
-      saveState();
-      renderCard();
+    function flipCard() {
+      const cards = decks[currentDeckName] || [];
+      if (!cards.length) return;
+      showingFront = !showingFront;
+      refreshStudyState();
     }
 
-    function selectDeck(name) {
-      const sel = document.getElementById("deck-select");
-      if (name && decks[name]) {
-        sel.value = name;
-      } else {
-        name = sel.value;
-      }
+    function moveCard(delta) {
+      const cards = decks[currentDeckName] || [];
+      if (!cards.length) return;
+      currentStudyIndex += delta;
+      if (currentStudyIndex < 0) currentStudyIndex = cards.length - 1;
+      if (currentStudyIndex >= cards.length) currentStudyIndex = 0;
+      showingFront = true;
+      refreshStudyState();
+    }
+
+    function switchToDeck(name) {
+      if (!decks[name]) return;
       currentDeckName = name;
-      currentDeck = decks[name] || [];
+      deckSelectEl.value = currentDeckName;
       resetStudyOrder();
-      renderCard();
+      renderCardList();
     }
 
-    function updateStats() {
-      document.getElementById("stat-sessions").textContent = sessionCount;
-      document.getElementById("stat-cards").textContent = cardFlipCount;
-      document.getElementById("stat-known").textContent = knownCount;
-      document.getElementById("stat-unsure").textContent = unsureCount;
+    // ---------- EDITOR ----------
+    function clearEditForm() {
+      editFrontEl.value = "";
+      editBackEl.value = "";
+      delete editFrontEl.dataset.index;
     }
 
-    function randomAccQuestion() {
-      const el = document.getElementById("acc-question");
-      const i = Math.floor(Math.random() * ACC_QUESTIONS.length);
-      el.textContent = ACC_QUESTIONS[i];
-    }
+    function renderCardList() {
+      const cards = decks[currentDeckName] || [];
+      const oldRows = Array.from(cardListEl.children).slice(1);
+      oldRows.forEach(r => r.remove());
 
-    function buildPoemChecklist() {
-      const list = document.getElementById("poem-list");
-      list.innerHTML = "";
-      BELONGING_POEMS.forEach((title) => {
-        const id = "poem_" + title.replace(/[^a-z0-9]+/gi, "_").toLowerCase();
-        const li = document.createElement("li");
-        li.className = "poem-item";
-        const cb = document.createElement("input");
-        cb.type = "checkbox";
-        cb.id = id;
-        cb.checked = localStorage.getItem(id) === "1";
-        cb.addEventListener("change", () => {
-          localStorage.setItem(id, cb.checked ? "1" : "0");
+      cards.forEach((card, idx) => {
+        const row = document.createElement("div");
+        row.className = "card-row";
+
+        const frontCell = document.createElement("div");
+        frontCell.className = "card-cell";
+        frontCell.textContent = card.front || "(front empty)";
+
+        const backCell = document.createElement("div");
+        backCell.className = "card-cell";
+        backCell.textContent = card.back || "(back empty)";
+
+        const actionsCell = document.createElement("div");
+
+        const editBtn = document.createElement("button");
+        editBtn.className = "soft";
+        editBtn.style.fontSize = "11px";
+        editBtn.textContent = "Edit";
+        editBtn.addEventListener("click", () => {
+          editFrontEl.value = card.front || "";
+          editBackEl.value = card.back || "";
+          editFrontEl.dataset.index = String(idx);
         });
-        const span = document.createElement("span");
-        span.textContent = title;
-        li.appendChild(cb);
-        li.appendChild(span);
-        list.appendChild(li);
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "soft";
+        delBtn.style.fontSize = "11px";
+        delBtn.textContent = "✕";
+        delBtn.addEventListener("click", () => {
+          if (!confirm("Delete this card?")) return;
+          decks[currentDeckName].splice(idx, 1);
+          saveDecks();
+          resetStudyOrder();
+          renderCardList();
+        });
+
+        actionsCell.appendChild(editBtn);
+        actionsCell.appendChild(delBtn);
+
+        row.appendChild(frontCell);
+        row.appendChild(backCell);
+        row.appendChild(actionsCell);
+
+        cardListEl.appendChild(row);
       });
     }
 
-    function updateCountdown() {
-      const input = document.getElementById("exam-date");
-      const out = document.getElementById("exam-countdown");
-      const val = input.value;
-      if (!val) {
-        out.textContent = "";
+    // ---------- EVENT LISTENERS ----------
+    deckSelectEl.addEventListener("change", () => {
+      currentDeckName = deckSelectEl.value;
+      resetStudyOrder();
+      renderCardList();
+    });
+
+    document.getElementById("fc-restart").addEventListener("click", () => {
+      resetStudyOrder();
+    });
+
+    document.getElementById("fc-prev").addEventListener("click", () => moveCard(-1));
+    document.getElementById("fc-next").addEventListener("click", () => moveCard(1));
+    document.getElementById("fc-flip").addEventListener("click", flipCard);
+    shuffleToggleEl.addEventListener("change", () => resetStudyOrder());
+    studyCardEl.addEventListener("click", flipCard);
+
+    document.querySelectorAll("[data-quick-deck]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.getAttribute("data-quick-deck");
+        switchToDeck(name);
+      });
+    });
+
+    document.getElementById("save-card").addEventListener("click", () => {
+      const front = editFrontEl.value.trim();
+      const back = editBackEl.value.trim();
+      if (!front && !back) {
+        alert("Add something to the front or back first.");
         return;
       }
-      const today = new Date();
-      const exam = new Date(val + "T00:00:00");
-      const diffMs = exam - today;
-      const diffDays = Math.ceil(diffMs / (1000 * 60 * 60 * 24));
-      if (diffDays > 0) {
-        out.textContent = `${diffDays} day(s) to go.`;
-      } else if (diffDays === 0) {
-        out.textContent = "Exam is today – focus and breathe.";
-      } else {
-        out.textContent = "That date is in the past.";
-      }
-    }
-
-    function setView(name) {
-      document.querySelectorAll(".view").forEach(v => {
-        v.classList.toggle("active", v.id === "view-" + name);
-      });
-      document.querySelectorAll(".tab").forEach(t => {
-        t.classList.toggle("active", t.dataset.view === name);
-      });
-    }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      loadState();
-      buildDeckSelect();
-      buildPoemChecklist();
-
-      const deckSelect = document.getElementById("deck-select");
-      const sessionSize = document.getElementById("session-size");
-      const orderToggle = document.getElementById("order-toggle");
-      const orderLabel = document.getElementById("order-label");
-      const startBack = document.getElementById("start-back");
-      const flashcard = document.getElementById("flashcard");
-
-      deckSelect.addEventListener("change", () => selectDeck());
-      sessionSize.addEventListener("change", () => {
-        resetStudyOrder();
-        renderCard();
-      });
-
-      orderToggle.addEventListener("click", () => {
-        orderedMode = !orderedMode;
-        orderLabel.textContent = orderedMode ? "In order" : "Shuffled";
-        resetStudyOrder();
-        renderCard();
-      });
-
-      startBack.addEventListener("change", () => {
-        showBack = startBack.checked;
-        renderCard();
-      });
-
-      flashcard.addEventListener("click", () => {
-        if (!studyOrder.length) return;
-        showBack = !showBack;
-        cardFlipCount++;
-        updateStats();
-        saveState();
-        renderCard();
-      });
-
-      document.getElementById("next-btn").addEventListener("click", goNext);
-      document.getElementById("prev-btn").addEventListener("click", goPrev);
-      document.getElementById("restart-btn").addEventListener("click", restartSession);
-
-      document.getElementById("got-btn").addEventListener("click", () => {
-        if (!studyOrder.length) return;
-        knownCount++;
-        cardFlipCount++;
-        updateStats();
-        saveState();
-        if (studyIndex < studyOrder.length - 1) {
-          studyIndex++;
-          showBack = false;
-          renderCard();
+      const cards = decks[currentDeckName] || [];
+      const idxStr = editFrontEl.dataset.index;
+      if (idxStr !== undefined) {
+        const idx = parseInt(idxStr, 10);
+        if (!Number.isNaN(idx) && cards[idx]) {
+          cards[idx] = { front, back };
         }
-      });
-
-      document.getElementById("not-btn").addEventListener("click", () => {
-        if (!studyOrder.length) return;
-        unsureCount++;
-        cardFlipCount++;
-        updateStats();
-        saveState();
-        if (studyIndex < studyOrder.length - 1) {
-          studyIndex++;
-          showBack = false;
-          renderCard();
-        }
-      });
-
-      document.getElementById("new-q-btn").addEventListener("click", randomAccQuestion);
-
-      document.getElementById("save-exam").addEventListener("click", () => {
-        const val = document.getElementById("exam-date").value;
-        if (!val) return;
-        localStorage.setItem("exam_date", val);
-        updateCountdown();
-      });
-
-      const storedExam = localStorage.getItem("exam_date");
-      if (storedExam) {
-        document.getElementById("exam-date").value = storedExam;
-        updateCountdown();
-      }
-
-      document.getElementById("exam-date").addEventListener("change", updateCountdown);
-
-      document.querySelectorAll(".tab").forEach(tab => {
-        tab.addEventListener("click", () => setView(tab.dataset.view));
-      });
-
-      document.getElementById("quick-acc").addEventListener("click", () => {
-        setView("cards");
-        selectDeck("A Christmas Carol – Key Moments & Quotes");
-        document.getElementById("view-cards").scrollIntoView({ behavior: "smooth" });
-      });
-
-      document.getElementById("quick-belonging").addEventListener("click", () => {
-        setView("cards");
-        selectDeck("Belonging – All 15 Poems");
-        document.getElementById("view-cards").scrollIntoView({ behavior: "smooth" });
-      });
-
-      document.getElementById("quick-starters").addEventListener("click", () => {
-        setView("starters");
-        selectDeck("Sentence Starters & Structures");
-        document.getElementById("view-starters").scrollIntoView({ behavior: "smooth" });
-      });
-
-      const defaultDeck = "A Christmas Carol – Key Moments & Quotes";
-      if (decks[defaultDeck]) {
-        selectDeck(defaultDeck);
       } else {
-        const firstName = Object.keys(decks)[0];
-        selectDeck(firstName);
+        cards.push({ front, back });
       }
-
-      randomAccQuestion();
+      decks[currentDeckName] = cards;
+      saveDecks();
+      clearEditForm();
+      resetStudyOrder();
+      renderCardList();
     });
+
+    document.getElementById("clear-card").addEventListener("click", clearEditForm);
+
+    window.addEventListener("keydown", (e) => {
+      const tag = e.target.tagName;
+      if (tag === "TEXTAREA" || tag === "INPUT" || tag === "SELECT") return;
+
+      if (e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        flipCard();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        moveCard(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        moveCard(-1);
+      } else if (e.key === "Enter") {
+        e.preventDefault();
+        resetStudyOrder();
+      }
+    });
+
+    // ---------- INIT ----------
+    loadDecks();
+    renderDeckOptions();
+    setView("acc");
   </script>
 </body>
 </html>
