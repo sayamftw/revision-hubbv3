@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Revision Hub – Neon Cards</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <style>
+    :root {
+      --bg: #05010b;
+      --bg-soft: #090316;
+      --bg-elevated: #100820;
+      --accent: #a855f7;
+      --accent-soft: rgba(168, 85, 247, 0.18);
+      --accent-strong: #c084fc;
+      --accent-border: #7c3aed;
+      --border: #221435;
+      --text: #f3e8ff;
+      --text-muted: #a78bfa;
+      --danger: #fb7185;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.8);
+      --transition-fast: 0.14s ease-out;
+      --transition-med: 0.22s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, #3b0764 0, transparent 55%),
+        radial-gradient(circle at top right, #4c1d95 0, transparent 60%),
+        radial-gradient(circle at bottom, #1e1b4b 0, #020014 60%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 10px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.3);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(129, 140, 248, 0.7);
+      border-radius: 999px;
+    }
+
+    header {
+      padding: 10px 16px;
+      border-bottom: 1px solid rgba(76, 29, 149, 0.7);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(
+        to right,
+        rgba(5, 0, 20, 0.9),
+        rgba(24, 0, 44, 0.85)
+      );
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.65);
+    }
+
+    header h1 {
+      font-size: 18px;
+      margin: 0;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @media (min-width: 900px) {
+      header h1 {
+        font-size: 20px;
+      }
+    }
+
+    .logo-orb {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 30% 30%, #f5f3ff, #c084fc 45%, #6d28d9 70%);
+      box-shadow:
+        0 0 20px rgba(192, 132, 252, 0.9),
+        0 0 40px rgba(147, 51, 234, 0.9);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-orb::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: inherit;
+      border: 1px solid rgba(248, 250, 252, 0.5);
+      opacity: 0.7;
+    }
+
+    header small {
+      color: var(--text-muted);
+      font-size: 11px;
+      margin-top: 2px;
+      display: block;
+    }
+
+    .tag {
+      padding: 4px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(147, 51, 234, 0.7);
+      font-size: 11px;
+      color: #f5f3ff;
+      background: radial-gradient(circle at top, #3b0764 0, #020014 70%);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .tag-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34, 197, 94, 0.9);
+    }
+
+    .app-shell {
+      flex: 1;
+      display: flex;
+      min-height: 0;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: radial-gradient(circle at top left, #120824 0, #050015 70%);
+      border-right: 1px solid rgba(76, 29, 149, 0.7);
+      padding: 14px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (max-width: 820px) {
+      .sidebar {
+        display: none;
+      }
+    }
+
+    .sidebar-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin: 0 8px 6px;
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-btn {
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      padding: 10px 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .nav-btn span.icon {
+      font-size: 15px;
+    }
+
+    .nav-btn:hover {
+      background: rgba(15, 6, 35, 0.9);
+      border-color: rgba(88, 28, 135, 0.7);
+      color: var(--text);
+      transform: translateY(-0.5px);
+    }
+
+    .nav-btn.active {
+      background: radial-gradient(circle at top left, #4c1d95 0, #020014 70%);
+      border-color: rgba(216, 180, 254, 0.95);
+      color: #fef9ff;
+    }
+
+    .main {
+      flex: 1;
+      padding: 12px 12px 16px;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      min-width: 0;
+    }
+
+    @media (min-width: 900px) {
+      .main {
+        padding: 18px;
+      }
+    }
+
+    .mobile-nav {
+      display: flex;
+      margin-bottom: 10px;
+      gap: 6px;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      position: sticky;
+      top: 44px;
+      z-index: 25;
+      background: linear-gradient(
+        to bottom,
+        rgba(5, 0, 20, 0.96),
+        rgba(5, 0, 20, 0.85),
+        transparent
+      );
+    }
+
+    .mobile-nav .nav-btn {
+      flex: 1;
+      justify-content: center;
+      white-space: nowrap;
+      font-size: 13px;
+      padding: 8px 10px;
+    }
+
+    @media (min-width: 821px) {
+      .mobile-nav {
+        display: none;
+      }
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    .panel {
+      background: linear-gradient(
+        145deg,
+        rgba(16, 8, 32, 0.98),
+        rgba(8, 2, 24, 0.98)
+      );
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(88, 28, 135, 0.9);
+      box-shadow: var(--shadow-soft);
+      padding: 12px 12px 14px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    @media (min-width: 900px) {
+      .panel {
+        padding: 14px 14px 16px;
+        margin-bottom: 14px;
+      }
+    }
+
+    .panel-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .panel-header h2 {
+      margin: 0;
+      font-size: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #e9d5ff;
+    }
+
+    @media (min-width: 900px) {
+      .panel-header h2 {
+        font-size: 16px;
+        letter-spacing: 0.16em;
+      }
+    }
+
+    .panel-header small {
+      color: var(--text-muted);
+      font-size: 11px;
+    }
+
+    .panel-body {
+      margin-top: 4px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: 1px solid rgba(88, 28, 135, 0.85);
+      background: radial-gradient(circle at top, #1e1034 0, #050014 80%);
+      color: var(--text);
+      padding: 8px 13px;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        border-color var(--transition-fast),
+        background var(--transition-fast),
+        color var(--transition-fast);
+    }
+
+    button span.icon {
+      font-size: 13px;
+      opacity: 0.92;
+    }
+
+    button:hover {
+      transform: translateY(-0.5px);
+      border-color: rgba(216, 180, 254, 0.9);
+      box-shadow: 0 0 12px rgba(168, 85, 247, 0.7);
+    }
+
+    button:active {
+      transform: translateY(0.4px) scale(0.98);
+      box-shadow: none;
+    }
+
+    button.primary {
+      border-color: rgba(192, 132, 252, 0.9);
+      background: linear-gradient(135deg, #7c3aed, #a855f7, #e879f9);
+      color: #fdf4ff;
+    }
+
+    button.danger {
+      border-color: rgba(248, 113, 113, 0.8);
+      background: radial-gradient(circle at top, #7f1d1d 0, #180006 80%);
+      color: #fee2e2;
+    }
+
+    button.ghost {
+      background: rgba(10, 5, 24, 0.95);
+      border-color: rgba(76, 29, 149, 0.7);
+    }
+
+    .small-text {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* DASHBOARD */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .stat-card {
+      flex: 1 1 130px;
+      min-width: 0;
+      background: rgba(15, 6, 35, 0.95);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(88, 28, 135, 0.9);
+      padding: 8px 10px;
+    }
+
+    .stat-label {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .stat-value {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--accent-strong);
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(88, 28, 135, 0.8);
+      background: rgba(12, 6, 30, 0.98);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      margin: 6px 0 0;
+      font-size: 12px;
+    }
+
+    .checklist li {
+      margin-bottom: 4px;
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+    }
+
+    .checklist span.bullet {
+      color: #4ade80;
+      margin-top: 1px;
+    }
+
+    /* FLASHCARDS LAYOUT */
+    .flashcards-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 980px) {
+      .flashcards-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .deck-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .deck-row label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .input-inline {
+      display: flex;
+      gap: 6px;
+    }
+    .input-inline input {
+      flex: 1;
+    }
+
+    select,
+    input[type="text"],
+    textarea {
+      background: rgba(16, 8, 32, 0.98);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 13px;
+      padding: 7px 10px;
+      outline: none;
+      width: 100%;
+      resize: vertical;
+      min-height: 0;
+      transition:
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+    }
+
+    select:hover,
+    input[type="text"]:hover,
+    textarea:hover {
+      border-color: rgba(168, 85, 247, 0.6);
+    }
+
+    select:focus,
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.7);
+      background: rgba(15, 6, 35, 1);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 4px 0 10px;
+    }
+
+    .chip {
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(15, 6, 35, 0.96);
+      border: 1px solid rgba(88, 28, 135, 0.7);
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .chip strong {
+      color: var(--accent-strong);
+    }
+
+    .section-title {
+      font-size: 12px;
+      margin: 8px 0 4px;
+      color: #e9d5ff;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    .card-form {
+      margin-top: 4px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 8px;
+    }
+
+    @media (max-width: 600px) {
+      .card-form {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card-form textarea {
+      min-height: 70px;
+      font-size: 12px;
+    }
+
+    .card-form-actions {
+      margin-top: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-list {
+      margin-top: 6px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(76, 29, 149, 0.9);
+      background: linear-gradient(
+        145deg,
+        rgba(15, 6, 35, 0.98),
+        rgba(10, 3, 24, 0.98)
+      );
+      max-height: 240px;
+      overflow: hidden auto;
+      font-size: 12px;
+    }
+
+    .card-list-header,
+    .card-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) 70px;
+      gap: 6px;
+      padding: 7px 9px;
+      align-items: center;
+    }
+
+    .card-list-header {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      background: rgba(24, 16, 48, 0.98);
+      border-bottom: 1px solid rgba(129, 140, 248, 0.85);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #a5b4fc;
+    }
+
+    .card-row:nth-child(odd) {
+      background: rgba(15, 6, 35, 0.96);
+    }
+
+    .card-row:nth-child(even) {
+      background: rgba(10, 3, 24, 0.98);
+    }
+
+    .card-row:hover {
+      background: rgba(24, 12, 50, 0.98);
+    }
+
+    .card-cell {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .upload-row {
+      margin-top: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    input[type="file"] {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .study-status {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+
+    .study-status strong {
+      color: #f5f3ff;
+    }
+
+    .study-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .switch input {
+      appearance: none;
+      width: 30px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(76, 29, 149, 0.8);
+      background: rgba(15, 6, 35, 0.95);
+      position: relative;
+      cursor: pointer;
+      outline: none;
+      transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast);
+    }
+
+    .switch input::before {
+      content: "";
+      width: 13px;
+      height: 13px;
+      border-radius: 999px;
+      background: #f4f4ff;
+      position: absolute;
+      top: 1px;
+      left: 2px;
+      transition: transform var(--transition-fast);
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.8);
+    }
+
+    .switch input:checked {
+      background: radial-gradient(circle at top, #7c3aed, #4338ca);
+      border-color: rgba(192, 132, 252, 0.95);
+    }
+
+    .switch input:checked::before {
+      transform: translateX(11px);
+    }
+
+    .flashcard {
+      margin-top: 4px;
+      border-radius: 20px;
+      padding: 16px 14px 16px;
+      background: radial-gradient(circle at top left, #13072b 0, #020014 70%);
+      border: 1px solid rgba(129, 140, 248, 0.85);
+      box-shadow: var(--shadow-soft);
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .flashcard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    .flashcard-header .pill {
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(15, 6, 35, 0.9);
+      border: 1px solid rgba(129, 140, 248, 0.9);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow:
+        0 0 12px rgba(168, 85, 247, 0.9),
+        0 0 24px rgba(129, 140, 248, 0.8);
+    }
+
+    .flashcard-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .flashcard-text {
+      font-size: 15px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .flashcard-text.empty {
+      color: var(--text-muted);
+      font-size: 13px;
+      font-style: italic;
+    }
+
+    .flashcard-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .flashcard-footer small strong {
+      color: #f5f3ff;
+    }
+
+    .study-nav {
+      margin-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(129, 140, 248, 0.7);
+      background: rgba(15, 6, 35, 0.95);
+      color: var(--text-muted);
+    }
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 11px rgba(34, 197, 94, 0.9);
+    }
+
+    .hint {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .hint code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+      background: rgba(15, 6, 35, 0.9);
+      border-radius: 999px;
+      border: 1px solid rgba(76, 29, 149, 0.9);
+      padding: 2px 7px;
+      color: #ddd6fe;
+    }
+
+    /* ACC QUOTES */
+    .quotes-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .quotes-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .quote-card {
+      background: rgba(15, 6, 35, 0.98);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(88, 28, 135, 0.9);
+      padding: 8px 10px;
+      margin-bottom: 6px;
+      font-size: 13px;
+    }
+
+    .quote-text {
+      font-style: italic;
+      color: #ede9fe;
+    }
+
+    .quote-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ENGLISH PAPERS */
+    .papers-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .papers-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .paper-card {
+      background: rgba(15, 6, 35, 0.98);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(88, 28, 135, 0.9);
+      padding: 9px 11px;
+      font-size: 13px;
+    }
+
+    .paper-title {
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #e9d5ff;
+      margin-bottom: 3px;
+    }
+
+    .paper-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .paper-card ul {
+      margin: 4px 0 0;
+      padding-left: 18px;
+      font-size: 12px;
+    }
+
+    .paper-card li {
+      margin-bottom: 3px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div>
+      <h1>
+        <span class="logo-orb"></span> REVISION HUB
+      </h1>
+      <small>Flashcards · A Christmas Carol · AQA English papers</small>
+    </div>
+    <div>
+      <span class="tag">
+        <span class="tag-dot"></span>
+        Dark · Purple · Local only
+      </span>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <nav class="sidebar">
+      <p class="sidebar-title">NAVIGATION</p>
+      <div class="nav-list">
+        <button class="nav-btn active" data-view="dashboard">
+          <span class="icon">🏠</span> Dashboard
+        </button>
+        <button class="nav-btn" data-view="flashcards">
+          <span class="icon">🃏</span> Flashcards
+        </button>
+        <button class="nav-btn" data-view="acc">
+          <span class="icon">📘</span> A Christmas Carol
+        </button>
+        <button class="nav-btn" data-view="english">
+          <span class="icon">📝</span> English Papers
+        </button>
+      </div>
+    </nav>
+
+    <main class="main">
+      <!-- Mobile nav -->
+      <div class="mobile-nav">
+        <button class="nav-btn active" data-view="dashboard">
+          <span class="icon">🏠</span> Dash
+        </button>
+        <button class="nav-btn" data-view="flashcards">
+          <span class="icon">🃏</span> Cards
+        </button>
+        <button class="nav-btn" data-view="acc">
+          <span class="icon">📘</span> ACC
+        </button>
+        <button class="nav-btn" data-view="english">
+          <span class="icon">📝</span> Papers
+        </button>
+      </div>
+
+      <!-- DASHBOARD -->
+      <section id="view-dashboard" class="view active">
+        <div class="dashboard-grid">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Overview</h2>
+                <small>Flashcards + English revision in one place</small>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="stats-row">
+                <div class="stat-card">
+                  <div class="stat-label">Decks</div>
+                  <div class="stat-value" id="stat-decks">0</div>
+                  <div class="small-text">Total flashcard decks saved</div>
+                </div>
+                <div class="stat-card">
+                  <div class="stat-label">Cards</div>
+                  <div class="stat-value" id="stat-cards">0</div>
+                  <div class="small-text">All cards across decks</div>
+                </div>
+              </div>
+              <div class="pill-row">
+                <span class="pill">Use cards for quotes, methods, formulas</span>
+                <span class="pill">Short daily sessions beat last-minute cramming</span>
+              </div>
+              <ul class="checklist">
+                <li>
+                  <span class="bullet">✓</span>
+                  <span>Turn key quotes into cards (front = quote, back = who / where / why).</span>
+                </li>
+                <li>
+                  <span class="bullet">✓</span>
+                  <span>Do 10–15 cards at a time, then take a break.</span>
+                </li>
+                <li>
+                  <span class="bullet">✓</span>
+                  <span>Use the ACC + Papers sections as reference while building decks.</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Today</h2>
+                <small>Simple plan for one session</small>
+              </div>
+            </div>
+            <div class="panel-body">
+              <ul class="checklist">
+                <li>
+                  <span class="bullet">①</span>
+                  <span>Pick <strong>one deck</strong> and run it once in Study mode.</span>
+                </li>
+                <li>
+                  <span class="bullet">②</span>
+                  <span>Read the <strong>ACC quotes</strong> tab and add 3–5 quotes you don’t know.</span>
+                </li>
+                <li>
+                  <span class="bullet">③</span>
+                  <span>Check the <strong>English Papers</strong> tab so you remember what’s in each paper.</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- FLASHCARDS -->
+      <section id="view-flashcards" class="view">
+        <div class="flashcards-layout">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Flashcards</h2>
+                <small>Manage decks and cards</small>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="deck-row">
+                <div style="flex: 1 1 180px;">
+                  <label for="deck-select">Deck</label>
+                  <select id="deck-select"></select>
+                </div>
+                <div class="input-inline" style="flex: 1 1 180px;">
+                  <input
+                    type="text"
+                    id="new-deck-name"
+                    placeholder="New deck (ACC Quotes, Paper 2, Maths...)"
+                  />
+                  <button id="create-deck-btn" class="primary" title="Create deck">
+                    <span class="icon">＋</span> Deck
+                  </button>
+                </div>
+              </div>
+              <div class="deck-row">
+                <button id="rename-deck-btn" class="ghost" title="Rename deck">
+                  Rename
+                </button>
+                <button id="delete-deck-btn" class="danger" title="Delete deck">
+                  Delete
+                </button>
+                <span class="small-text" id="deck-summary"></span>
+              </div>
+
+              <div class="chips" id="deck-chips"></div>
+
+              <p class="section-title">Add / edit card</p>
+              <form id="card-form">
+                <div class="card-form">
+                  <div>
+                    <label for="card-front" class="small-text">Front (question / cue)</label>
+                    <textarea id="card-front" placeholder="Who says 'Bah! Humbug!'?"></textarea>
+                  </div>
+                  <div>
+                    <label for="card-back" class="small-text">Back (answer)</label>
+                    <textarea id="card-back" placeholder="Scrooge – at the start of the novella."></textarea>
+                  </div>
+                </div>
+                <div class="card-form-actions">
+                  <div>
+                    <button type="submit" class="primary" id="add-card-btn">
+                      <span class="icon">＋</span> Save card
+                    </button>
+                    <button type="button" class="ghost" id="clear-form-btn">
+                      Clear
+                    </button>
+                  </div>
+                  <div class="small-text">
+                    One idea per card = easier to memorise.
+                  </div>
+                </div>
+              </form>
+
+              <p class="section-title">Cards in deck</p>
+              <div class="card-list" id="card-list">
+                <div class="card-list-header">
+                  <div>Front</div>
+                  <div>Back</div>
+                  <div>Actions</div>
+                </div>
+              </div>
+
+              <p class="section-title">Import / export</p>
+              <div class="upload-row">
+                <label class="small-text">
+                  Import JSON
+                  <input type="file" id="import-file" accept=".json" />
+                </label>
+                <button id="export-deck-btn" class="ghost">
+                  Export current deck (.json)
+                </button>
+              </div>
+              <p class="small-text">
+                JSON format:
+                <code>[{"front":"Q","back":"A"}, ...]</code> or
+                <code>{"name":"My deck","cards":[...]}</code>
+              </p>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Study mode</h2>
+                <small>Flip and step through cards</small>
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="study-status">
+                <span>Deck: <strong id="study-deck-name">—</strong></span>
+                <span>
+                  Cards: <strong id="study-count">0</strong> ·
+                  Card <strong id="study-position">0 / 0</strong>
+                </span>
+              </div>
+
+              <div class="study-controls">
+                <button id="restart-btn" class="primary">
+                  <span class="icon">▶</span> Start / restart
+                </button>
+                <button id="flip-btn" class="ghost">
+                  <span class="icon">⟲</span> Flip
+                </button>
+                <div class="switch">
+                  <input type="checkbox" id="shuffle-toggle" />
+                  <label for="shuffle-toggle">Shuffle deck</label>
+                </div>
+              </div>
+
+              <div
+                class="flashcard"
+                id="flashcard"
+                title="Tap card to flip"
+              >
+                <div class="flashcard-header">
+                  <div class="pill">
+                    <span class="pill-dot"></span>
+                    <span id="flashcard-side-label">Front · Question</span>
+                  </div>
+                  <span id="flashcard-meta" class="small-text"></span>
+                </div>
+                <div class="flashcard-content">
+                  <div class="flashcard-text empty" id="flashcard-text">
+                    No cards yet. Add some on the left.
+                  </div>
+                </div>
+                <div class="flashcard-footer">
+                  <small>
+                    Tap to flip · <strong>Space</strong> to flip ·
+                    <strong>← / →</strong> to move (if you use a keyboard)
+                  </small>
+                  <small id="flashcard-progress"></small>
+                </div>
+              </div>
+
+              <div class="study-nav">
+                <div>
+                  <button id="prev-btn" class="ghost">◀ Previous</button>
+                  <button id="next-btn" class="ghost">Next ▶</button>
+                </div>
+                <div>
+                  <span class="badge">
+                    <span class="badge-dot"></span>
+                    Keyboard shortcuts enabled
+                  </span>
+                </div>
+              </div>
+
+              <p class="hint">
+                Good pattern: run the whole deck, then remake a smaller deck of only the ones you got wrong.
+              </p>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- A CHRISTMAS CAROL -->
+      <section id="view-acc" class="view">
+        <div class="quotes-layout">
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>ACC quotes</h2>
+                <small>Key quotations by stave</small>
+              </div>
+            </div>
+            <div class="panel-body">
+              <!-- STAVE 1 -->
+              <p class="section-title">Stave 1 – Scrooge & Marley</p>
+              <div class="quote-card">
+                <div class="quote-text">“Marley was dead: to begin with.”</div>
+                <div class="quote-meta">
+                  Opens the novella; establishes certainty of death and sets up the supernatural.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“As solitary as an oyster.”</div>
+                <div class="quote-meta">
+                  Simile – Scrooge is closed, hard, isolated, but could contain a “pearl” of goodness.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“Are there no prisons? … And the Union workhouses?”</div>
+                <div class="quote-meta">
+                  Shows Scrooge’s cruel attitude to the poor and criticises Victorian poor laws.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“If they would rather die, they had better do it, and decrease the surplus population.”</div>
+                <div class="quote-meta">
+                  Inhuman, Malthusian language; Dickens attacks this lack of empathy.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“Mankind was my business!”</div>
+                <div class="quote-meta">
+                  Marley’s warning – business should be helping others, not just making money.
+                </div>
+              </div>
+
+              <!-- STAVE 2 -->
+              <p class="section-title">Stave 2 – Christmas Past</p>
+              <div class="quote-card">
+                <div class="quote-text">“A solitary child, neglected by his friends.”</div>
+                <div class="quote-meta">
+                  Explains Scrooge’s coldness – childhood loneliness as root of his behaviour.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“He has the power to render us happy or unhappy.”</div>
+                <div class="quote-meta">
+                  Scrooge on Fezziwig – realises good employers can change lives (contrast to himself).
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“Another idol has displaced me… a golden one.”</div>
+                <div class="quote-meta">
+                  Belle says money has replaced love in Scrooge’s life.
+                </div>
+              </div>
+
+              <!-- STAVE 3 -->
+              <p class="section-title">Stave 3 – Christmas Present</p>
+              <div class="quote-card">
+                <div class="quote-text">“A jolly Giant, glorious to see.”</div>
+                <div class="quote-meta">
+                  Ghost of Christmas Present – warmth, generosity, abundance of Christmas.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“God bless us, every one!”</div>
+                <div class="quote-meta">
+                  Tiny Tim – innocent, inclusive blessing; moral heart of the novella.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“This boy is Ignorance. This girl is Want.”</div>
+                <div class="quote-meta">
+                  Personification of social problems; warning about neglecting the poor.
+                </div>
+              </div>
+
+              <!-- STAVE 4 -->
+              <p class="section-title">Stave 4 – Christmas Yet to Come</p>
+              <div class="quote-card">
+                <div class="quote-text">“Shrouded in a deep black garment.”</div>
+                <div class="quote-meta">
+                  Ghost of Christmas Yet to Come – death, fear, mystery of the future.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“The Phantom… seemed to scatter gloom and mystery.”</div>
+                <div class="quote-meta">
+                  Creates dread; forces Scrooge to face the consequences of his life.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“I am not the man I was.”</div>
+                <div class="quote-meta">
+                  Scrooge’s turning point; he admits genuine inner change.
+                </div>
+              </div>
+
+              <!-- STAVE 5 -->
+              <p class="section-title">Stave 5 – Redemption</p>
+              <div class="quote-card">
+                <div class="quote-text">“I am as light as a feather, I am as happy as an angel.”</div>
+                <div class="quote-meta">
+                  Joyful similes – Scrooge’s emotional transformation and sense of freedom.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“I will honour Christmas in my heart, and try to keep it all the year.”</div>
+                <div class="quote-meta">
+                  Shows long-term change; message that generosity should last beyond one day.
+                </div>
+              </div>
+              <div class="quote-card">
+                <div class="quote-text">“He became as good a friend, as good a master, and as good a man.”</div>
+                <div class="quote-meta">
+                  Final narrator summary – proof that redemption is possible.
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>How to use</h2>
+                <small>Turn ACC quotes into marks</small>
+              </div>
+            </div>
+            <div class="panel-body">
+              <p class="small-text">
+                Make a deck called <strong>“ACC Quotes”</strong> and put these in.
+              </p>
+              <ul class="checklist">
+                <li>
+                  <span class="bullet">✓</span>
+                  <span>Front: the quote. Back: who says it, which stave, and what it shows.</span>
+                </li>
+                <li>
+                  <span class="bullet">✓</span>
+                  <span>Always link to themes: poverty, responsibility, family, Christmas, redemption.</span>
+                </li>
+                <li>
+                  <span class="bullet">✓</span>
+                  <span>Use short quotes – easier to embed inside your sentences in the exam.</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <!-- ENGLISH PAPERS -->
+      <section id="view-english" class="view">
+        <section class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>English Papers</h2>
+              <small>AQA GCSE – simple breakdown</small>
+            </div>
+          </div>
+          <div class="panel-body">
+            <div class="papers-grid">
+              <!-- LIT PAPER 1 -->
+              <div class="paper-card">
+                <div class="paper-title">Literature Paper 1</div>
+                <div class="paper-meta">Shakespeare & 19th-century novel (ACC)</div>
+                <ul>
+                  <li>Section A – Shakespeare: one essay question on your play.</li>
+                  <li>Section B – 19th-century novel: one essay on <strong>A Christmas Carol</strong>.</li>
+                  <li>Usually: short extract printed + link it to the whole text.</li>
+                  <li>Plan: 2–3 paragraphs on the extract, 2–3 on the rest of the novel.</li>
+                </ul>
+              </div>
+
+              <!-- LIT PAPER 2 -->
+              <div class="paper-card">
+                <div class="paper-title">Literature Paper 2</div>
+                <div class="paper-meta">Modern Texts & Poetry</div>
+                <ul>
+                  <li>Section A – Modern text (e.g. <em>An Inspector Calls</em>).</li>
+                  <li>Section B – Poetry Anthology (e.g. Belonging / Power & Conflict) – comparison essay.</li>
+                  <li>Section C – Unseen poetry: one question + a short comparison.</li>
+                  <li>Key skills: comparison, methods, and clear thesis about the question.</li>
+                </ul>
+              </div>
+
+              <!-- LANG PAPER 1 -->
+              <div class="paper-card">
+                <div class="paper-title">Language Paper 1</div>
+                <div class="paper-meta">Creative reading & writing</div>
+                <ul>
+                  <li>Q1–4 – Reading: one fiction extract (language + structure analysis).</li>
+                  <li>Q5 – Writing: narrative or descriptive piece based on an image / prompt.</li>
+                  <li>Big marks: structure (clear beginning–middle–end) and detailed description.</li>
+                </ul>
+              </div>
+
+              <!-- LANG PAPER 2 -->
+              <div class="paper-card">
+                <div class="paper-title">Language Paper 2</div>
+                <div class="paper-meta">Viewpoints & perspectives</div>
+                <ul>
+                  <li>Q1–4 – Reading: two non-fiction texts, compare ideas and how they’re presented.</li>
+                  <li>Q5 – Writing: transactional (letter, article, speech) giving your viewpoint.</li>
+                  <li>Use a clear structure for Q5: intro, 2–3 main points, strong conclusion.</li>
+                </ul>
+              </div>
+            </div>
+
+            <p class="section-title">Turning this into revision</p>
+            <ul class="checklist">
+              <li>
+                <span class="bullet">✓</span>
+                <span>Make one deck for each paper: “Lit P2 – Anthology”, “Lang P2 – Q5 structures”, etc.</span>
+              </li>
+              <li>
+                <span class="bullet">✓</span>
+                <span>Front: “Lit P2 Section B” · Back: “Anthology comparison, 30 marks, comparison + methods.”</span>
+              </li>
+              <li>
+                <span class="bullet">✓</span>
+                <span>Test yourself on <strong>what’s in each paper</strong> until you can list sections from memory.</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // ===== NAVIGATION (switch views) =========================
+    const navButtons = document.querySelectorAll(".nav-btn");
+    const views = {
+      dashboard: document.getElementById("view-dashboard"),
+      flashcards: document.getElementById("view-flashcards"),
+      acc: document.getElementById("view-acc"),
+      english: document.getElementById("view-english"),
+    };
+
+    function setActiveView(viewName) {
+      Object.values(views).forEach((v) => v.classList.remove("active"));
+      const target = views[viewName];
+      if (target) target.classList.add("active");
+
+      navButtons.forEach((btn) => {
+        if (btn.dataset.view === viewName) {
+          btn.classList.add("active");
+        } else {
+          btn.classList.remove("active");
+        }
+      });
+      updateDashboardStats();
+    }
+
+    navButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const view = btn.dataset.view;
+        if (view) setActiveView(view);
+      });
+    });
+
+    // ===== FLASHCARD DATA & STORAGE ==========================
+    const STORAGE_KEY = "flashcardStudioDecks_v1";
+    let decks = {};
+    let currentDeckName = null;
+    let studyOrder = [];
+    let currentStudyIndex = 0;
+    let showingFront = true;
+
+    function loadDecksFromStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) {
+          decks = { "Default deck": [] };
+          currentDeckName = "Default deck";
+          saveDecksToStorage();
+          return;
+        }
+        decks = JSON.parse(raw);
+        const names = Object.keys(decks);
+        if (names.length === 0) {
+          decks = { "Default deck": [] };
+          currentDeckName = "Default deck";
+        } else {
+          currentDeckName = names[0];
+        }
+      } catch (e) {
+        decks = { "Default deck": [] };
+        currentDeckName = "Default deck";
+      }
+    }
+
+    function saveDecksToStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(decks));
+      updateDashboardStats();
+    }
+
+    // ===== DASHBOARD STATS ===================================
+    const statDecksEl = document.getElementById("stat-decks");
+    const statCardsEl = document.getElementById("stat-cards");
+
+    function updateDashboardStats() {
+      const deckNames = Object.keys(decks || {});
+      const deckCount = deckNames.length;
+      let cardCount = 0;
+      deckNames.forEach((name) => {
+        cardCount += (decks[name] || []).length;
+      });
+      statDecksEl.textContent = deckCount;
+      statCardsEl.textContent = cardCount;
+    }
+
+    // ===== UI ELEMENTS (Flashcards) ==========================
+    const deckSelectEl = document.getElementById("deck-select");
+    const deckSummaryEl = document.getElementById("deck-summary");
+    const deckChipsEl = document.getElementById("deck-chips");
+    const cardListEl = document.getElementById("card-list");
+
+    const cardFrontEl = document.getElementById("card-front");
+    const cardBackEl = document.getElementById("card-back");
+    const cardFormEl = document.getElementById("card-form");
+
+    const studyDeckNameEl = document.getElementById("study-deck-name");
+    const studyCountEl = document.getElementById("study-count");
+    const studyPositionEl = document.getElementById("study-position");
+
+    const flashcardEl = document.getElementById("flashcard");
+    const flashcardTextEl = document.getElementById("flashcard-text");
+    const flashcardSideLabelEl = document.getElementById("flashcard-side-label");
+    const flashcardMetaEl = document.getElementById("flashcard-meta");
+    const flashcardProgressEl = document.getElementById("flashcard-progress");
+
+    function renderDeckOptions() {
+      deckSelectEl.innerHTML = "";
+      const names = Object.keys(decks);
+      if (names.length === 0) {
+        decks["Default deck"] = [];
+        currentDeckName = "Default deck";
+      }
+      Object.keys(decks).forEach((name) => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name;
+        deckSelectEl.appendChild(opt);
+      });
+      if (!currentDeckName || !decks[currentDeckName]) {
+        currentDeckName = Object.keys(decks)[0];
+      }
+      deckSelectEl.value = currentDeckName;
+      updateDeckSummaryAndChips();
+      renderCardList();
+      refreshStudyState();
+      updateDashboardStats();
+    }
+
+    function updateDeckSummaryAndChips() {
+      const cards = decks[currentDeckName] || [];
+      deckSummaryEl.textContent = `Cards in deck: ${cards.length}`;
+      deckChipsEl.innerHTML = "";
+
+      const chip1 = document.createElement("div");
+      chip1.className = "chip";
+      chip1.innerHTML = `<strong>${Object.keys(decks).length}</strong> decks total`;
+      deckChipsEl.appendChild(chip1);
+
+      const chip2 = document.createElement("div");
+      chip2.className = "chip";
+      chip2.innerHTML = `<strong>${cards.length}</strong> cards in “${currentDeckName}”`;
+      deckChipsEl.appendChild(chip2);
+    }
+
+    function renderCardList() {
+      const cards = decks[currentDeckName] || [];
+      const children = Array.from(cardListEl.children).slice(1);
+      children.forEach((c) => c.remove());
+
+      cards.forEach((card, idx) => {
+        const row = document.createElement("div");
+        row.className = "card-row";
+
+        const frontCell = document.createElement("div");
+        frontCell.className = "card-cell";
+        frontCell.textContent = card.front || "(empty front)";
+
+        const backCell = document.createElement("div");
+        backCell.className = "card-cell";
+        backCell.textContent = card.back || "(empty back)";
+
+        const actionsCell = document.createElement("div");
+
+        const editBtn = document.createElement("button");
+        editBtn.className = "ghost";
+        editBtn.style.fontSize = "11px";
+        editBtn.textContent = "Edit";
+        editBtn.addEventListener("click", () => {
+          cardFrontEl.value = card.front;
+          cardBackEl.value = card.back;
+          cardFrontEl.dataset.editIndex = String(idx);
+          cardBackEl.dataset.editIndex = String(idx);
+        });
+
+        const delBtn = document.createElement("button");
+        delBtn.className = "danger";
+        delBtn.style.fontSize = "11px";
+        delBtn.textContent = "✕";
+        delBtn.title = "Delete card";
+        delBtn.addEventListener("click", () => {
+          if (confirm("Delete this card?")) {
+            decks[currentDeckName].splice(idx, 1);
+            saveDecksToStorage();
+            renderCardList();
+            updateDeckSummaryAndChips();
+            refreshStudyState();
+          }
+        });
+
+        actionsCell.appendChild(editBtn);
+        actionsCell.appendChild(delBtn);
+
+        row.appendChild(frontCell);
+        row.appendChild(backCell);
+        row.appendChild(actionsCell);
+
+        cardListEl.appendChild(row);
+      });
+    }
+
+    // ===== STUDY MODE =======================================
+    function refreshStudyState() {
+      const cards = decks[currentDeckName] || [];
+      studyDeckNameEl.textContent = currentDeckName || "—";
+      studyCountEl.textContent = cards.length;
+      if (cards.length === 0) {
+        studyPositionEl.textContent = "0 / 0";
+        flashcardTextEl.textContent = "No cards in this deck yet.";
+        flashcardTextEl.classList.add("empty");
+        flashcardSideLabelEl.textContent = "Front · Question";
+        flashcardMetaEl.textContent = "";
+        flashcardProgressEl.textContent = "";
+        return;
+      }
+
+      if (!studyOrder || studyOrder.length !== cards.length) {
+        resetStudyOrder();
+      } else {
+        updateStudyCardDisplay();
+      }
+    }
+
+    function resetStudyOrder() {
+      const cards = decks[currentDeckName] || [];
+      studyOrder = cards.map((_, idx) => idx);
+      const shuffleToggle = document.getElementById("shuffle-toggle");
+      if (shuffleToggle.checked) shuffleArray(studyOrder);
+      currentStudyIndex = 0;
+      showingFront = true;
+      updateStudyCardDisplay();
+    }
+
+    function shuffleArray(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function updateStudyCardDisplay() {
+      const cards = decks[currentDeckName] || [];
+      if (!cards.length || currentStudyIndex >= cards.length) {
+        flashcardTextEl.textContent = "No cards in this deck.";
+        flashcardTextEl.classList.add("empty");
+        flashcardSideLabelEl.textContent = "Front · Question";
+        studyPositionEl.textContent = "0 / 0";
+        flashcardMetaEl.textContent = "";
+        flashcardProgressEl.textContent = "";
+        return;
+      }
+
+      const cardIndex = studyOrder[currentStudyIndex];
+      const card = cards[cardIndex];
+
+      const sideText = showingFront ? card.front : card.back;
+      flashcardTextEl.textContent = sideText || "(empty)";
+      flashcardTextEl.classList.toggle("empty", !sideText);
+
+      flashcardSideLabelEl.textContent = showingFront
+        ? "Front · Question"
+        : "Back · Answer";
+
+      studyPositionEl.textContent = `${currentStudyIndex + 1} / ${cards.length}`;
+      flashcardMetaEl.textContent = `Card #${cardIndex + 1} in deck`;
+      flashcardProgressEl.textContent = `Position ${currentStudyIndex + 1} of ${cards.length}`;
+    }
+
+    function flipCurrentCard() {
+      const cards = decks[currentDeckName] || [];
+      if (!cards.length) return;
+      showingFront = !showingFront;
+      updateStudyCardDisplay();
+    }
+
+    function moveStudy(delta) {
+      const cards = decks[currentDeckName] || [];
+      if (!cards.length) return;
+      currentStudyIndex += delta;
+      if (currentStudyIndex < 0) currentStudyIndex = cards.length - 1;
+      if (currentStudyIndex >= cards.length) currentStudyIndex = 0;
+      showingFront = true;
+      updateStudyCardDisplay();
+    }
+
+    // ===== EVENT LISTENERS ==================================
+    document.getElementById("create-deck-btn").addEventListener("click", () => {
+      const nameInput = document.getElementById("new-deck-name");
+      const rawName = nameInput.value.trim();
+      if (!rawName) {
+        alert("Enter a name for your new deck.");
+        return;
+      }
+      if (decks[rawName]) {
+        alert("A deck with that name already exists.");
+        return;
+      }
+      decks[rawName] = [];
+      currentDeckName = rawName;
+      nameInput.value = "";
+      saveDecksToStorage();
+      renderDeckOptions();
+    });
+
+    deckSelectEl.addEventListener("change", () => {
+      currentDeckName = deckSelectEl.value;
+      updateDeckSummaryAndChips();
+      renderCardList();
+      resetStudyOrder();
+    });
+
+    document.getElementById("rename-deck-btn").addEventListener("click", () => {
+      if (!currentDeckName) return;
+      const newName = prompt("New name for this deck:", currentDeckName);
+      if (!newName) return;
+      const trimmed = newName.trim();
+      if (!trimmed || trimmed === currentDeckName) return;
+      if (decks[trimmed]) {
+        alert("A deck with that name already exists.");
+        return;
+      }
+      decks[trimmed] = decks[currentDeckName];
+      delete decks[currentDeckName];
+      currentDeckName = trimmed;
+      saveDecksToStorage();
+      renderDeckOptions();
+    });
+
+    document.getElementById("delete-deck-btn").addEventListener("click", () => {
+      if (!currentDeckName) return;
+      if (!confirm(`Delete deck “${currentDeckName}”?`)) return;
+      delete decks[currentDeckName];
+      const names = Object.keys(decks);
+      if (!names.length) {
+        decks["Default deck"] = [];
+        currentDeckName = "Default deck";
+      } else {
+        currentDeckName = names[0];
+      }
+      saveDecksToStorage();
+      renderDeckOptions();
+    });
+
+    cardFormEl.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const front = cardFrontEl.value.trim();
+      const back = cardBackEl.value.trim();
+      if (!front && !back) {
+        alert("Add something on the front or back first.");
+        return;
+      }
+      const editIndexStr = cardFrontEl.dataset.editIndex;
+      const cards = decks[currentDeckName] || [];
+
+      if (editIndexStr !== undefined) {
+        const idx = parseInt(editIndexStr, 10);
+        if (!Number.isNaN(idx) && cards[idx]) {
+          cards[idx] = { front, back };
+        }
+      } else {
+        cards.push({ front, back });
+      }
+      decks[currentDeckName] = cards;
+      saveDecksToStorage();
+      cardFrontEl.value = "";
+      cardBackEl.value = "";
+      delete cardFrontEl.dataset.editIndex;
+      delete cardBackEl.dataset.editIndex;
+      renderCardList();
+      updateDeckSummaryAndChips();
+      resetStudyOrder();
+    });
+
+    document.getElementById("clear-form-btn").addEventListener("click", () => {
+      cardFrontEl.value = "";
+      cardBackEl.value = "";
+      delete cardFrontEl.dataset.editIndex;
+      delete cardBackEl.dataset.editIndex;
+    });
+
+    document.getElementById("import-file").addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const text = e.target.result;
+          const json = JSON.parse(text);
+
+          let importedName = currentDeckName;
+          let importedCards = [];
+
+          if (Array.isArray(json)) {
+            importedCards = json.filter(
+              (c) => c && typeof c.front === "string" && typeof c.back === "string"
+            );
+          } else if (json && typeof json === "object") {
+            if (json.name && typeof json.name === "string") {
+              importedName = json.name.trim() || currentDeckName;
+            }
+            if (Array.isArray(json.cards)) {
+              importedCards = json.cards.filter(
+                (c) =>
+                  c &&
+                  typeof c.front === "string" &&
+                  typeof c.back === "string"
+              );
+            }
+          }
+
+          if (!importedCards.length) {
+            alert("No cards found in file. Expected JSON with {front, back}.");
+            return;
+          }
+
+          const createNewDeck =
+            importedName && !decks[importedName]
+              ? confirm(
+                  `Create a new deck called “${importedName}” for these cards?`
+                )
+              : false;
+
+          if (createNewDeck) {
+            decks[importedName] = importedCards;
+            currentDeckName = importedName;
+          } else {
+            decks[currentDeckName] = [
+              ...(decks[currentDeckName] || []),
+              ...importedCards,
+            ];
+          }
+          saveDecksToStorage();
+          renderDeckOptions();
+          resetStudyOrder();
+          alert(
+            `Imported ${importedCards.length} card(s) ${
+              createNewDeck ? "into new deck" : "into current deck"
+            }.`
+          );
+        } catch (err) {
+          alert("Could not read file. Make sure it's valid JSON.");
+        } finally {
+          event.target.value = "";
+        }
+      };
+      reader.readAsText(file);
+    });
+
+    document.getElementById("export-deck-btn").addEventListener("click", () => {
+      const cards = decks[currentDeckName] || [];
+      const data = { name: currentDeckName, cards };
+      const blob = new Blob([JSON.stringify(data, null, 2)], {
+        type: "application/json",
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      const safeName = currentDeckName.replace(/[^a-z0-9\-]+/gi, "_");
+      a.download = `flashcards_${safeName}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("restart-btn").addEventListener("click", () => {
+      resetStudyOrder();
+    });
+
+    document.getElementById("flip-btn").addEventListener("click", () => {
+      flipCurrentCard();
+    });
+
+    document.getElementById("prev-btn").addEventListener("click", () => {
+      moveStudy(-1);
+    });
+
+    document.getElementById("next-btn").addEventListener("click", () => {
+      moveStudy(1);
+    });
+
+    document.getElementById("shuffle-toggle").addEventListener("change", () => {
+      resetStudyOrder();
+    });
+
+    flashcardEl.addEventListener("click", () => {
+      flipCurrentCard();
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (["INPUT", "TEXTAREA", "SELECT"].includes(e.target.tagName)) return;
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        moveStudy(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        moveStudy(-1);
+      } else if (e.key === " " || e.key === "Spacebar") {
+        e.preventDefault();
+        flipCurrentCard();
+      } else if (e.key === "Enter") {
+        resetStudyOrder();
+      }
+    });
+
+    // ===== INIT =============================================
+    loadDecksFromStorage();
+    renderDeckOptions();
+    setActiveView("dashboard");
+  </script>
+</body>
+</html
