@@ -964,7 +964,8 @@
           </div>
           <div class="panel-body">
             <div class="grid-two">
-              <div>
+              <!-- ENGLISH OVERVIEW -->
+              <div data-subject-section="english">
                 <h3>English content</h3>
                 <ul class="clean">
                   <li><span class="b">★</span><span><strong>A Christmas Carol</strong> – quotes, staves, themes, redemption (cards + search).</span></li>
@@ -975,7 +976,9 @@
                   <li><span class="b">★</span><span><strong>An Inspector Calls</strong> – quotes, themes, characters, responsibility (deck + search).</span></li>
                 </ul>
               </div>
-              <div>
+
+              <!-- SCIENCE OVERVIEW -->
+              <div data-subject-section="science">
                 <h3>Science content</h3>
                 <ul class="clean">
                   <li><span class="b">★</span><span><strong>Biology</strong> – cells, organisation, disease, health.</span></li>
@@ -1013,7 +1016,7 @@
         </div>
       </section>
 
-      <!-- GUIDES (English – left as is) -->
+      <!-- GUIDES (ENGLISH ONLY) -->
       <section id="view-guides" class="view">
         <div class="panel">
           <div class="panel-header">
@@ -1176,7 +1179,7 @@
         </div>
       </section>
 
-      <!-- ANTHOLOGY -->
+      <!-- ANTHOLOGY (ENGLISH ONLY) -->
       <section id="view-anthology" class="view">
         <div class="panel">
           <div class="panel-header">
@@ -1518,23 +1521,23 @@
   <!-- TAB BAR -->
   <footer class="tabbar">
     <div class="tabbar-inner">
-      <button class="tab-btn active" data-tab="home">
+      <button class="tab-btn active" data-tab="home" data-scope="both">
         <div class="tab-btn-icon">🏠</div>
         <div>Home</div>
       </button>
-      <button class="tab-btn" data-tab="guides">
+      <button class="tab-btn" data-tab="guides" data-scope="english">
         <div class="tab-btn-icon">📘</div>
         <div>Guides</div>
       </button>
-      <button class="tab-btn" data-tab="flashcards">
+      <button class="tab-btn" data-tab="flashcards" data-scope="both">
         <div class="tab-btn-icon">🃏</div>
         <div>Cards</div>
       </button>
-      <button class="tab-btn" data-tab="anthology">
+      <button class="tab-btn" data-tab="anthology" data-scope="english">
         <div class="tab-btn-icon">📚</div>
         <div>Anthology</div>
       </button>
-      <button class="tab-btn" data-tab="tools">
+      <button class="tab-btn" data-tab="tools" data-scope="both">
         <div class="tab-btn-icon">🛠</div>
         <div>Tools</div>
       </button>
@@ -1669,9 +1672,12 @@
       tools: document.getElementById("view-tools")
     };
 
+    let currentView = "home";
+
     const tabButtons = Array.from(document.querySelectorAll(".tab-btn"));
 
     function setView(name) {
+      currentView = name;
       Object.values(views).forEach(v => v.classList.remove("active"));
       if (views[name]) views[name].classList.add("active");
 
@@ -1711,6 +1717,17 @@
     const modeLabel = document.getElementById("mode-label");
     const quickDecksEl = document.getElementById("quick-decks");
 
+    function updateSubjectSections() {
+      document.querySelectorAll("[data-subject-section]").forEach(el => {
+        const s = el.getAttribute("data-subject-section");
+        if (s === currentSubject) {
+          el.style.display = "";
+        } else {
+          el.style.display = "none";
+        }
+      });
+    }
+
     function setSubject(subj) {
       if (subj === currentSubject) return;
       currentSubject = subj;
@@ -1719,11 +1736,32 @@
       });
       modeLabel.textContent =
         subj === "english" ? "English revision" : "Science revision";
+
+      // Show/hide English-specific nav (Guides, Anthology)
+      tabButtons.forEach(btn => {
+        const scope = btn.getAttribute("data-scope") || "both";
+        if (subj === "science" && scope === "english") {
+          btn.style.display = "none";
+        } else {
+          btn.style.display = "flex";
+        }
+      });
+
+      // If we are on an English-only view when switching to science, jump to flashcards
+      if (subj === "science" && (currentView === "guides" || currentView === "anthology")) {
+        setView("flashcards");
+      }
+
+      // Home overview columns
+      updateSubjectSections();
+
+      // Flashcard UI tweaks
       if (subj === "english") {
         quickDecksEl.style.display = "flex";
       } else {
         quickDecksEl.style.display = "none";
       }
+
       const decks = getActiveDecks();
       currentDeckName = Object.keys(decks)[0] || null;
       renderDeckOptions();
@@ -2377,6 +2415,8 @@
     timerResetBtn.addEventListener("click", resetTimer);
     renderTimer();
 
+    // set starting subject UI (english)
+    updateSubjectSections();
     // start on home
     setView("home");
   </script>
