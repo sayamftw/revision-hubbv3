@@ -21,7 +21,7 @@
       --radius-lg: 18px;
       --radius-md: 12px;
       --shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-      --fast: 0.1s ease-out;
+      --fast: 0.12s ease-out;
     }
 
     * { box-sizing: border-box; }
@@ -41,30 +41,16 @@
       -webkit-font-smoothing: antialiased;
       display: flex;
       flex-direction: column;
-      transition: background 0.3s ease-out;
     }
-
-    /* simple animations */
 
     @keyframes floatUp {
       from { opacity: 0; transform: translateY(6px) scale(0.99); }
       to   { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    @keyframes fadeInView {
-      from { opacity: 0; transform: translateY(4px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes pulseFab {
-      0% { transform: scale(1); box-shadow: 0 0 16px rgba(236,72,153,0.9), 0 10px 28px rgba(0,0,0,0.9); }
-      50% { transform: scale(1.05); box-shadow: 0 0 24px rgba(236,72,153,1), 0 14px 32px rgba(0,0,0,1); }
-      100% { transform: scale(1); box-shadow: 0 0 16px rgba(236,72,153,0.9), 0 10px 28px rgba(0,0,0,0.9); }
-    }
-
-    @keyframes fadeOverlay {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+    @keyframes tabPop {
+      from { transform: translateY(4px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
     }
 
     header {
@@ -72,7 +58,7 @@
       top: 0;
       z-index: 10;
       background: rgba(5, 1, 11, 0.98);
-      backdrop-filter: blur(16px);
+      backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(148, 27, 84, 0.5);
     }
 
@@ -82,20 +68,20 @@
       padding: 10px 14px 8px;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 6px;
     }
 
     .logo-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
     }
 
     .logo-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .logo-dot {
@@ -111,53 +97,16 @@
     }
 
     .app-name {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.22em;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
-    .app-title {
-      font-size: 13px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .subtitle {
+    .app-subtitle {
       font-size: 11px;
       color: var(--muted);
-      opacity: 0.9;
-    }
-
-    .header-pill-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 4px;
-    }
-
-    .pill {
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 27, 84, 0.7);
-      background: rgba(17, 24, 39, 0.96);
-      color: var(--muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      animation: floatUp 0.4s ease-out;
-    }
-
-    .pill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
     }
 
     .theme-wrap {
@@ -186,11 +135,53 @@
       transform: translateY(-1px);
     }
 
+    .search-shell {
+      margin-top: 4px;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: 999px;
+      padding: 7px 11px;
+      border: 1px solid rgba(148, 163, 184, 0.55);
+    }
+
+    .search-icon {
+      font-size: 15px;
+      opacity: 0.75;
+    }
+
+    .search-input {
+      border: none;
+      background: transparent;
+      outline: none;
+      color: var(--text);
+      font-size: 13px;
+      flex: 1;
+    }
+
+    .search-input::placeholder {
+      color: rgba(148, 163, 184, 0.9);
+    }
+
+    .search-btn {
+      border-radius: 999px;
+      border: none;
+      background: rgba(59, 130, 246, 0.95);
+      color: #eff6ff;
+      font-size: 11px;
+      padding: 4px 10px;
+      cursor: pointer;
+    }
+
     main {
       flex: 1;
       display: flex;
       justify-content: center;
-      padding: 10px 12px 80px;
+      padding: 8px 10px 70px;
     }
 
     .main-inner {
@@ -198,16 +189,61 @@
       width: 100%;
     }
 
+    .search-results-panel {
+      margin-top: 8px;
+      margin-bottom: 4px;
+      display: none;
+      animation: floatUp 0.25s ease-out;
+    }
+
+    .search-results-panel.open {
+      display: block;
+    }
+
+    .search-results-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .search-results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .search-result {
+      border-radius: 14px;
+      padding: 7px 9px;
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .search-result-title {
+      font-size: 12px;
+      margin-bottom: 2px;
+    }
+
+    .search-result-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
     section.view {
       display: none;
-      min-height: calc(100vh - 100px);
+      min-height: calc(100vh - 130px);
       opacity: 0;
       transform: translateY(4px);
     }
 
     section.view.active {
       display: block;
-      animation: fadeInView 0.25s ease-out forwards;
+      animation: floatUp 0.22s ease-out forwards;
     }
 
     .panel {
@@ -217,14 +253,6 @@
       box-shadow: var(--shadow);
       padding: 14px 14px 16px;
       margin-bottom: 12px;
-      animation: floatUp 0.3s ease-out;
-    }
-
-    @media (min-width: 900px) {
-      .panel {
-        padding: 16px 18px 18px;
-        margin-bottom: 18px;
-      }
     }
 
     .panel-header {
@@ -273,18 +301,6 @@
       font-size: 12px;
     }
 
-    .grid-two {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 10px;
-    }
-
-    @media (max-width: 900px) {
-      .grid-two {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
     ul.clean {
       list-style: none;
       padding-left: 0;
@@ -304,43 +320,16 @@
       margin-top: 1px;
     }
 
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
+    .grid-two {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 10px;
     }
 
-    .chip {
-      font-size: 11px;
-      padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 27, 84, 0.7);
-      background: rgba(17, 24, 39, 0.96);
-      color: var(--muted);
-      animation: floatUp 0.3s ease-out;
-    }
-
-    .quote-list {
-      border-radius: var(--radius-md);
-      border: 1px solid rgba(148, 27, 84, 0.6);
-      background: rgba(15, 23, 42, 0.8);
-      padding: 8px 10px;
-      margin-top: 4px;
-    }
-
-    .quote-item {
-      margin-bottom: 6px;
-    }
-
-    .quote-text {
-      font-style: italic;
-      font-size: 13px;
-    }
-
-    .quote-note {
-      font-size: 12px;
-      color: var(--muted);
+    @media (max-width: 900px) {
+      .grid-two {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     button {
@@ -362,8 +351,9 @@
         opacity var(--fast);
     }
 
-    button span.icon {
-      font-size: 14px;
+    button.small {
+      padding: 4px 9px;
+      font-size: 11px;
     }
 
     button.primary {
@@ -371,20 +361,10 @@
       background: linear-gradient(135deg, #f97316, #ec4899);
     }
 
-    button.soft {
-      border-color: rgba(148, 27, 84, 0.7);
-      background: rgba(17, 24, 39, 0.96);
-    }
-
-    button.small {
-      padding: 4px 9px;
-      font-size: 11px;
-    }
-
     button:hover {
       transform: translateY(-1px) scale(1.02);
       box-shadow: 0 0 12px rgba(148, 27, 84, 0.9);
-      opacity: 0.95;
+      opacity: 0.96;
     }
 
     button:active {
@@ -408,11 +388,6 @@
       font-family: inherit;
     }
 
-    textarea {
-      min-height: 60px;
-      resize: vertical;
-    }
-
     select:focus,
     input[type="text"]:focus,
     textarea:focus {
@@ -422,193 +397,65 @@
       transform: translateY(-1px);
     }
 
-    .fab-menu {
-      position: fixed;
-      right: 16px;
-      bottom: 22px;
-      width: 48px;
-      height: 48px;
-      border-radius: 999px;
-      border: 1px solid rgba(236, 72, 153, 0.9);
-      background: radial-gradient(circle at 30% 30%, #fecaca 0, #ec4899 35%, #4c1d95 80%);
-      box-shadow:
-        0 0 16px rgba(236, 72, 153, 0.9),
-        0 10px 28px rgba(0, 0, 0, 0.9);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      z-index: 30;
-      animation: pulseFab 2s infinite;
+    textarea {
+      min-height: 60px;
+      resize: vertical;
     }
 
-    .fab-menu span {
-      transform: translateY(-1px);
+    /* home cards */
+
+    .home-card-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 10px;
     }
 
-    @media (min-width: 900px) {
-      .fab-menu {
-        right: 40px;
-        bottom: 30px;
+    @media (min-width: 700px) {
+      .home-card-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
       }
     }
 
-    .nav-overlay {
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle at top, #1f032e 0, #05010b 45%, #010008 100%);
-      backdrop-filter: blur(18px);
-      z-index: 40;
-      display: none;
-      padding: 14px 14px 20px;
-    }
-
-    .nav-overlay.active {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: fadeOverlay 0.15s ease-out;
-    }
-
-    .nav-card {
-      max-width: 360px;
-      width: 100%;
-      border-radius: 24px;
-      border: 1px solid rgba(236, 72, 153, 0.9);
-      background: rgba(10, 6, 24, 0.96);
-      box-shadow:
-        0 20px 40px rgba(0, 0, 0, 1),
-        0 0 30px rgba(236, 72, 153, 0.4);
-      padding: 14px 14px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      animation: floatUp 0.3s ease-out;
-    }
-
-    .nav-card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .nav-card-title {
-      font-size: 14px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-    }
-
-    .nav-card-sub {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .nav-list {
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .nav-item-btn {
-      width: 100%;
-      justify-content: flex-start;
-      font-size: 13px;
-    }
-
-    .nav-item-btn span.icon {
-      font-size: 15px;
-    }
-
-    .nav-section-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-      color: var(--muted);
-      margin-top: 2px;
-      margin-bottom: 2px;
-    }
-
-    .nav-tools {
-      border-radius: 14px;
+    .home-card {
+      border-radius: 18px;
+      padding: 12px 12px 10px;
+      background: radial-gradient(circle at top left, #111827 0, #020617 70%);
       border: 1px solid rgba(148, 27, 84, 0.7);
-      padding: 8px 9px;
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 12px;
-      margin-top: 4px;
-    }
-
-    .timer-row {
+      font-size: 13px;
+      cursor: pointer;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-top: 4px;
+      min-height: 110px;
     }
 
-    .timer-display {
-      font-variant-numeric: tabular-nums;
-      font-size: 18px;
-    }
-
-    .timer-label {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .nav-formula-block {
-      margin-top: 6px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .nav-formula-line {
-      margin: 1px 0;
-    }
-
-    .nav-formula-key {
+    .home-card-title {
       font-weight: 600;
-      color: #fecaca;
+      margin-bottom: 4px;
     }
 
-    .more-block {
-      margin-top: 8px;
-    }
-
-    .more-content {
-      display: none;
-      margin-top: 6px;
-      animation: floatUp 0.25s ease-out;
-    }
-
-    .more-content.open {
-      display: block;
-    }
-
-    .fc-top-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 8px;
+    .home-card-sub {
+      font-size: 11px;
+      color: var(--muted);
       margin-bottom: 10px;
     }
 
-    .fc-top-row label {
-      font-size: 12px;
-      color: var(--muted);
+    .home-card-footer {
       display: flex;
-      flex-direction: column;
-      gap: 3px;
-      min-width: 160px;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
     }
 
-    .quick-decks {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
+    .home-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 27, 84, 0.7);
+      font-size: 11px;
     }
+
+    /* flashcards */
 
     .flashcard-shell {
       margin-top: 10px;
@@ -652,10 +499,6 @@
       background: radial-gradient(circle at top left, #1a082f 0, #050012 70%);
     }
 
-    .flashcard-box:active {
-      transform: scale(0.99);
-    }
-
     .flashcard-header {
       display: flex;
       justify-content: space-between;
@@ -680,9 +523,6 @@
       height: 7px;
       border-radius: 999px;
       background: var(--accent);
-      box-shadow:
-        0 0 10px rgba(236, 72, 153, 0.9),
-        0 0 18px rgba(248, 113, 113, 0.9);
     }
 
     .flashcard-text {
@@ -746,8 +586,8 @@
       list-style: none;
       cursor: pointer;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       font-size: 13px;
     }
 
@@ -778,16 +618,32 @@
       margin: 2px 0;
     }
 
-    .tools-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 10px;
+    /* tools */
+
+    .tool-card {
+      border-radius: 14px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.92);
+      padding: 8px 9px;
+      margin-top: 8px;
+      animation: floatUp 0.25s ease-out;
     }
 
-    @media (max-width: 900px) {
-      .tools-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
+    .tool-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-card-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .tool-card-body {
+      margin-top: 6px;
     }
 
     .mini-label {
@@ -796,19 +652,17 @@
       margin-top: 2px;
     }
 
-    .quote-result {
-      border-radius: 10px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      padding: 6px 8px;
-      margin-bottom: 6px;
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 12px;
+    .timer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
     }
 
-    .quote-result-source {
-      font-size: 11px;
-      color: var(--muted);
-      margin-top: 2px;
+    .timer-display {
+      font-variant-numeric: tabular-nums;
+      font-size: 18px;
     }
 
     .builder-grid {
@@ -836,6 +690,39 @@
       font-size: 13px;
     }
 
+    .sentence-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .sentence-chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .formula-box {
+      margin-top: 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 27, 84, 0.7);
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+    }
+
+    .formula-line {
+      margin: 2px 0;
+    }
+
+    .formula-key {
+      font-weight: 600;
+      color: #fecaca;
+    }
+
     .checklist-group details {
       border-radius: 12px;
       border: 1px solid rgba(55, 65, 81, 0.9);
@@ -859,10 +746,6 @@
       align-items: center;
     }
 
-    .checklist-group summary span {
-      font-weight: 500;
-    }
-
     .checklist-group ul {
       list-style: none;
       padding-left: 0;
@@ -876,75 +759,64 @@
       gap: 6px;
     }
 
-    .formula-box {
-      margin-top: 4px;
-      border-radius: 10px;
-      border: 1px solid rgba(148, 27, 84, 0.7);
-      padding: 8px 10px;
-      background: rgba(15, 23, 42, 0.9);
-      font-size: 12px;
+    /* tab bar */
+
+    .tab-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 20;
+      padding: 3px 14px 8px;
+      background: rgba(5, 1, 11, 0.96);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      display: flex;
+      justify-content: center;
     }
 
-    .formula-line {
-      margin: 2px 0;
-    }
-
-    .formula-key {
-      font-weight: 600;
-      color: #fecaca;
-    }
-
-    .tool-card {
-      border-radius: 14px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.92);
-      padding: 8px 9px;
-      margin-top: 8px;
-      animation: floatUp 0.3s ease-out;
-    }
-
-    .tool-card-header {
+    .tab-inner {
+      width: 100%;
+      max-width: 480px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: 8px;
     }
 
-    .tool-card-title {
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.16em;
-    }
-
-    .tool-card-body {
-      margin-top: 6px;
-    }
-
-    .sentence-chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .sentence-chip {
-      font-size: 11px;
-      padding: 3px 8px;
+    .tab-button {
+      flex: 1;
       border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.95);
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-size: 11px;
+      padding: 5px 4px 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      cursor: pointer;
+    }
+
+    .tab-icon {
+      font-size: 18px;
+    }
+
+    .tab-button.active {
+      background: rgba(31, 41, 55, 0.96);
+      color: var(--text);
+      box-shadow: 0 0 14px rgba(148, 27, 84, 0.8);
+      animation: tabPop 0.15s ease-out;
+    }
+
+    .tab-button.active .tab-icon {
+      transform: translateY(-1px);
     }
 
     @media (max-width: 480px) {
-      .header-inner {
-        padding-inline: 10px;
-      }
-      main {
-        padding-inline: 8px;
-      }
-      .panel {
-        padding-inline: 12px;
-      }
+      .header-inner { padding-inline: 10px; }
+      main { padding-inline: 8px; }
+      .panel { padding-inline: 12px; }
     }
   </style>
 </head>
@@ -956,8 +828,7 @@
           <div class="logo-dot"></div>
           <div>
             <div class="app-name">SAYAM AND SAFAS REVISION HUB</div>
-            <div class="app-title">ENGLISH GCSE</div>
-            <div class="subtitle">Language · Literature · ACC · Belonging Anthology</div>
+            <div class="app-subtitle">English GCSE · Language · Lit · ACC · Belonging</div>
           </div>
         </div>
         <div class="theme-wrap">
@@ -973,10 +844,17 @@
           </select>
         </div>
       </div>
-      <div class="header-pill-row">
-        <div class="pill">
-          <span class="pill-dot"></span>
-          <span id="today-focus">Today: ACC extract + 1 Lang card set</span>
+
+      <div class="search-shell">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input
+            id="global-search-input"
+            class="search-input"
+            type="text"
+            placeholder="Search quotes, decks and notes"
+          />
+          <button id="global-search-btn" class="search-btn">Search</button>
         </div>
       </div>
     </div>
@@ -984,90 +862,156 @@
 
   <main>
     <div class="main-inner">
-      <!-- ACC FRONT PAGE -->
-      <section id="view-acc" class="view active">
+      <div id="global-search-results" class="search-results-panel">
+        <div class="search-results-header">
+          <span id="search-results-label">Results</span>
+          <button id="search-clear-btn" class="search-btn">Clear</button>
+        </div>
+        <div id="search-results-list" class="search-results-list"></div>
+      </div>
+
+      <!-- HOME -->
+      <section id="view-home" class="view active">
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>A Christmas Carol – overview</h2>
-              <small>5 staves · main events · what Scrooge learns</small>
+              <h2>Home</h2>
+              <small>Quick overview · jump to what you need</small>
+            </div>
+          </div>
+          <div class="panel-body">
+            <p class="muted" id="today-focus"></p>
+
+            <div class="home-card-grid" style="margin-top:8px;">
+              <div class="home-card" data-open="acc">
+                <div>
+                  <div class="home-card-title">A Christmas Carol</div>
+                  <div class="home-card-sub">Staves, themes and key quotes.</div>
+                </div>
+                <div class="home-card-footer">
+                  <span class="home-pill">Open notes</span>
+                  <span>📘</span>
+                </div>
+              </div>
+
+              <div class="home-card" data-open="anthology">
+                <div>
+                  <div class="home-card-title">Belonging Anthology</div>
+                  <div class="home-card-sub">Poem summaries, quotes, themes.</div>
+                </div>
+                <div class="home-card-footer">
+                  <span class="home-pill">View poems</span>
+                  <span>📚</span>
+                </div>
+              </div>
+
+              <div class="home-card" data-open="flashcards">
+                <div>
+                  <div class="home-card-title">Flashcards</div>
+                  <div class="home-card-sub">ACC, Belonging, Language, Lit.</div>
+                </div>
+                <div class="home-card-footer">
+                  <span class="home-pill">Start deck</span>
+                  <span>🃏</span>
+                </div>
+              </div>
+
+              <div class="home-card" data-open="language">
+                <div>
+                  <div class="home-card-title">Language Papers</div>
+                  <div class="home-card-sub">Paper 1 & 2 timing + structure.</div>
+                </div>
+                <div class="home-card-footer">
+                  <span class="home-pill">View plan</span>
+                  <span>💬</span>
+                </div>
+              </div>
+
+              <div class="home-card" data-open="literature">
+                <div>
+                  <div class="home-card-title">Literature Papers</div>
+                  <div class="home-card-sub">Macbeth, AIC, ACC, poetry.</div>
+                </div>
+                <div class="home-card-footer">
+                  <span class="home-pill">View plan</span>
+                  <span>📖</span>
+                </div>
+              </div>
+
+              <div class="home-card" data-open="tools">
+                <div>
+                  <div class="home-card-title">Tools</div>
+                  <div class="home-card-sub">Timer, paragraph builder, questions.</div>
+                </div>
+                <div class="home-card-footer">
+                  <span class="home-pill">Open tools</span>
+                  <span>🛠</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ACC quick summary -->
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>A Christmas Carol</h2>
+              <small>Staves & themes overview</small>
             </div>
           </div>
           <div class="panel-body">
             <div class="grid-two">
               <div>
-                <h3>Quick stave map</h3>
+                <h3>Staves</h3>
                 <ul class="clean">
                   <li><span class="b">1</span><span><strong>Marley’s Ghost</strong> – Scrooge is cold and miserly; Marley warns him to change.</span></li>
                   <li><span class="b">2</span><span><strong>Past</strong> – lonely childhood, Fezziwig’s party, Belle leaving.</span></li>
                   <li><span class="b">3</span><span><strong>Present</strong> – Cratchits, Tiny Tim, Fred’s party, Ignorance and Want.</span></li>
-                  <li><span class="b">4</span><span><strong>Yet to Come</strong> – people steal his things; no one misses him; sees his grave.</span></li>
-                  <li><span class="b">5</span><span><strong>Redemption</strong> – Scrooge wakes changed, helps others and becomes generous.</span></li>
+                  <li><span class="b">4</span><span><strong>Yet to Come</strong> – people steal his things; no one misses him; grave.</span></li>
+                  <li><span class="b">5</span><span><strong>Redemption</strong> – Scrooge wakes changed, helps others, becomes generous.</span></li>
                 </ul>
               </div>
               <div>
-                <h3>Key themes</h3>
+                <h3>Themes</h3>
                 <ul class="clean">
-                  <li><span class="b">★</span><span><strong>Poverty & charity</strong> – attacks cruel ideas about the poor.</span></li>
-                  <li><span class="b">★</span><span><strong>Responsibility</strong> – we owe care to others (“Mankind was my business!”).</span></li>
-                  <li><span class="b">★</span><span><strong>Family & community</strong> – warmth of Fred & Cratchits vs Scrooge’s isolation.</span></li>
-                  <li><span class="b">★</span><span><strong>Change & redemption</strong> – even Scrooge can completely change.</span></li>
+                  <li><span class="b">★</span><span><strong>Poverty & charity</strong> – attacks cruel attitudes to the poor.</span></li>
+                  <li><span class="b">★</span><span><strong>Responsibility</strong> – “Mankind was my business!”</span></li>
+                  <li><span class="b">★</span><span><strong>Family & community</strong> – warmth of Fred and the Cratchits.</span></li>
+                  <li><span class="b">★</span><span><strong>Change & redemption</strong> – even Scrooge can change.</span></li>
                 </ul>
-                <div class="chip-row">
-                  <span class="chip">What does Scrooge learn in each stave?</span>
-                  <span class="chip">One quote per stave = basic paragraph.</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="more-block">
-              <button
-                class="soft small"
-                data-toggle="#acc-quotes"
-                data-closed="Show key quotes"
-                data-open="Hide quotes"
-              >Show key quotes</button>
-              <div id="acc-quotes" class="more-content">
-                <div class="quote-list" style="margin-top:6px;">
-                  <div class="quote-item">
-                    <div class="quote-text">“Marley was dead: to begin with.”</div>
-                    <div class="quote-note">Confirms Marley’s death and sets up the ghost story.</div>
-                  </div>
-                  <div class="quote-item">
-                    <div class="quote-text">“As solitary as an oyster.”</div>
-                    <div class="quote-note">Scrooge is shut off but could have goodness inside.</div>
-                  </div>
-                  <div class="quote-item">
-                    <div class="quote-text">“If they would rather die, they had better do it, and decrease the surplus population.”</div>
-                    <div class="quote-note">Cruel view of the poor that Dickens criticises.</div>
-                  </div>
-                  <div class="quote-item">
-                    <div class="quote-text">“Mankind was my business!”</div>
-                    <div class="quote-note">Marley regrets not caring for others; warning to Scrooge.</div>
-                  </div>
-                  <div class="quote-item">
-                    <div class="quote-text">“God bless us, every one!”</div>
-                    <div class="quote-note">Tiny Tim – innocent, hopeful blessing.</div>
-                  </div>
-                  <div class="quote-item">
-                    <div class="quote-text">“I am not the man I was.”</div>
-                    <div class="quote-note">Scrooge openly admits his change.</div>
-                  </div>
-                  <div class="quote-item">
-                    <div class="quote-text">“He became as good a friend, as good a master, and as good a man.”</div>
-                    <div class="quote-note">Narrator confirms Scrooge’s permanent redemption.</div>
-                  </div>
-                </div>
-                <p class="muted" style="margin-top:6px;">
-                  These are also in the ACC flashcard deck.
-                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- LANGUAGE PAPERS -->
+      <!-- ACC FULL (notes live on home already, so this just reuses) -->
+      <section id="view-acc" class="view">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>A Christmas Carol</h2>
+              <small>Detailed notes</small>
+            </div>
+          </div>
+          <div class="panel-body">
+            <h3>Key quotes</h3>
+            <ul class="clean">
+              <li><span class="b">1</span><span>“Marley was dead: to begin with.” – opens the ghost story.</span></li>
+              <li><span class="b">2</span><span>“As solitary as an oyster.” – Scrooge is isolated but could change.</span></li>
+              <li><span class="b">3</span><span>“Bah! Humbug!” – rejects Christmas and generosity.</span></li>
+              <li><span class="b">4</span><span>“If they would rather die, they had better do it, and decrease the surplus population.” – cruel attitude to the poor.</span></li>
+              <li><span class="b">5</span><span>“Mankind was my business!” – Marley regrets his life choices.</span></li>
+              <li><span class="b">6</span><span>“God bless us, every one!” – Tiny Tim’s hopeful blessing.</span></li>
+              <li><span class="b">7</span><span>“I am not the man I was.” – Scrooge admits his change.</span></li>
+              <li><span class="b">8</span><span>“He became as good a friend, as good a master, and as good a man.” – narrator confirms his redemption.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- LANGUAGE -->
       <section id="view-language" class="view">
         <div class="panel">
           <div class="panel-header">
@@ -1077,47 +1021,26 @@
             </div>
           </div>
           <div class="panel-body">
-            <h3>Top-level plan</h3>
+            <h3>Plan</h3>
             <ul class="clean">
-              <li><span class="b">1</span><span><strong>Start with Q5/6</strong> (imaginative writing) – about 45 minutes.</span></li>
-              <li><span class="b">2</span><span><strong>Read the extract</strong> for around 10 minutes.</span></li>
-              <li><span class="b">3</span><span>Answer <strong>Q1–4</strong> with timings: Q1 2 mins, Q2 4 mins, Q3 10 mins, Q4 35 mins.</span></li>
+              <li><span class="b">1</span><span>Start with Q5/6 (writing) – ~45 mins.</span></li>
+              <li><span class="b">2</span><span>Read extract – ~10 mins.</span></li>
+              <li><span class="b">3</span><span>Q1–4 with timings: Q1 2 mins, Q2 4 mins, Q3 10 mins, Q4 35 mins.</span></li>
             </ul>
-
-            <div class="more-block">
-              <button
-                class="soft small"
-                data-toggle="#lang-p1-more"
-                data-closed="Show full breakdown"
-                data-open="Hide breakdown"
-              >Show full breakdown</button>
-              <div id="lang-p1-more" class="more-content">
-                <h3>Q1–4 on the extract</h3>
-                <ul class="clean">
-                  <li><span class="b">Q1</span><span>Comprehension – 1 mark · ~2 mins. Short answer using a quote or paraphrase.</span></li>
-                  <li><span class="b">Q2</span><span>Inference – 2 marks · ~4 mins. 2 inferences with a quote or paraphrase each.</span></li>
-                  <li><span class="b">Q3</span><span>Analysis – 6 marks · ~10 mins. Two small paragraphs: one language, one structure (Point → Evidence → Technique → Effect).</span></li>
-                  <li><span class="b">Q4</span><span>Evaluation – 15 marks · ~35 mins. Two paragraphs using SPITTED and evaluative language like “the writer effectively creates…”.</span></li>
-                </ul>
-
-                <h3>Q5/6 – imaginative writing (40 marks · 45 mins)</h3>
-                <ul class="clean">
-                  <li><span class="b">DROP</span><span>Describe atmosphere (sensory + figurative language).</span></li>
-                  <li><span class="b">ZOOM</span><span>Zoom into the character in detail.</span></li>
-                  <li><span class="b">FLASHBACK</span><span>Why are they there? What led up to this moment?</span></li>
-                  <li><span class="b">ECHO</span><span>Return to present; echo or twist the opening image/line.</span></li>
-                </ul>
-
-                <h3>Checklist</h3>
-                <ul class="clean">
-                  <li><span class="b">Vocab</span><span>Precise, interesting words.</span></li>
-                  <li><span class="b">Punctuation</span><span>. , “ ” ! ? … - ; :</span></li>
-                  <li><span class="b">Sentences</span><span>One-word, adverb starter, dependent clause.</span></li>
-                  <li><span class="b">Language</span><span>Metaphors, similes, personification, hyperbole, alliteration, onomatopoeia, repetition, juxtaposition, imagery.</span></li>
-                  <li><span class="b">Structure</span><span>Foreshadowing, withholding info, cyclical ending, pathetic fallacy.</span></li>
-                </ul>
-              </div>
-            </div>
+            <h3>Q1–4</h3>
+            <ul class="clean">
+              <li><span class="b">Q1</span><span>Comprehension – 1 mark, use short phrase/quote.</span></li>
+              <li><span class="b">Q2</span><span>Inference – 2 marks, 2 inferences + evidence.</span></li>
+              <li><span class="b">Q3</span><span>Analysis – 6 marks, 2 short paragraphs (language + structure).</span></li>
+              <li><span class="b">Q4</span><span>Evaluation – 15 marks, 2 paragraphs using SPITTED and evaluative language.</span></li>
+            </ul>
+            <h3>Q5/6 – imaginative writing</h3>
+            <ul class="clean">
+              <li><span class="b">DROP</span><span>Describe atmosphere with senses + figurative language.</span></li>
+              <li><span class="b">ZOOM</span><span>Zoom into character.</span></li>
+              <li><span class="b">FLASHBACK</span><span>Why they are there.</span></li>
+              <li><span class="b">ECHO</span><span>Return to present, echo first line/image.</span></li>
+            </ul>
           </div>
         </div>
 
@@ -1129,60 +1052,31 @@
             </div>
           </div>
           <div class="panel-body">
-            <h3>Top-level plan</h3>
+            <h3>Plan</h3>
             <ul class="clean">
-              <li><span class="b">1</span><span><strong>Start with Q8/9</strong> (transactional writing) – about 45 minutes.</span></li>
-              <li><span class="b">2</span><span>Read Extract 1 · ~10 mins then Q1–3.</span></li>
-              <li><span class="b">3</span><span>Read Extract 2 · ~10 mins then Q4–7a/7b.</span></li>
+              <li><span class="b">1</span><span>Start with Q8/9 transactional – ~45 mins.</span></li>
+              <li><span class="b">2</span><span>Read Extract 1 → Q1–3.</span></li>
+              <li><span class="b">3</span><span>Read Extract 2 → Q4–7a/7b.</span></li>
             </ul>
-
-            <div class="more-block">
-              <button
-                class="soft small"
-                data-toggle="#lang-p2-more"
-                data-closed="Show full breakdown"
-                data-open="Hide breakdown"
-              >Show full breakdown</button>
-              <div id="lang-p2-more" class="more-content">
-                <h3>Reading questions</h3>
-                <ul class="clean">
-                  <li><span class="b">Q1</span><span>Comprehension – 2 marks · ~1 min.</span></li>
-                  <li><span class="b">Q2</span><span>Comprehension – 2 marks · ~1 min.</span></li>
-                  <li><span class="b">Q3</span><span>Analysis (Extract 1) – 15 marks · ~15 mins. Two paragraphs on language + structure.</span></li>
-                  <li><span class="b">Q4</span><span>Comprehension (Extract 2) – 1 mark · ~1 min.</span></li>
-                  <li><span class="b">Q5</span><span>Comprehension (Extract 2) – 1 mark · ~1 min.</span></li>
-                  <li><span class="b">Q6</span><span>Evaluation (Extract 2) – 15 marks · ~15 mins. Two paragraphs using SPITTED and writer’s intentions.</span></li>
-                  <li><span class="b">Q7a</span><span>Synthesis – 6 marks · ~6 mins. Three mini paragraphs: similarity + quote from each text.</span></li>
-                  <li><span class="b">Q7b</span><span>Comparison – 14 marks · ~15 mins. Two paragraphs comparing ideas + techniques.</span></li>
-                </ul>
-
-                <h3>Q8/9 – transactional writing (40 marks · 45 mins)</h3>
-                <ul class="clean">
-                  <li><span class="b">Statement</span><span>Make your view clear.</span></li>
-                  <li><span class="b">Counter</span><span>Acknowledge other side and show why it’s weaker.</span></li>
-                  <li><span class="b">Anecdote</span><span>Short story/example.</span></li>
-                  <li><span class="b">Reasons</span><span>Stats / expert opinions.</span></li>
-                  <li><span class="b">Final plea</span><span>Imperatives to push audience to act.</span></li>
-                </ul>
-
-                <h3>DAFOREST</h3>
-                <ul class="clean">
-                  <li><span class="b">D</span><span>Direct address</span></li>
-                  <li><span class="b">A</span><span>Alliteration</span></li>
-                  <li><span class="b">F</span><span>Fact</span></li>
-                  <li><span class="b">O</span><span>Opinion</span></li>
-                  <li><span class="b">R</span><span>Rhetorical question</span></li>
-                  <li><span class="b">E</span><span>Emotive language</span></li>
-                  <li><span class="b">S</span><span>Statistics</span></li>
-                  <li><span class="b">T</span><span>Tripling</span></li>
-                </ul>
-              </div>
-            </div>
+            <h3>Reading questions</h3>
+            <ul class="clean">
+              <li><span class="b">Q1–2</span><span>Comprehension – short factual answers.</span></li>
+              <li><span class="b">Q3</span><span>Analysis Extract 1 – 15 marks, language + structure.</span></li>
+              <li><span class="b">Q4–5</span><span>Comprehension on Extract 2.</span></li>
+              <li><span class="b">Q6</span><span>Evaluation Extract 2 – 15 marks.</span></li>
+              <li><span class="b">Q7a</span><span>Synthesis – 6 marks, short similarities with quotes from both.</span></li>
+              <li><span class="b">Q7b</span><span>Comparison – 14 marks, ideas + methods.</span></li>
+            </ul>
+            <h3>Q8/9 – transactional</h3>
+            <ul class="clean">
+              <li><span class="b">Structure</span><span>Statement → Counter → Anecdote → Reasons → Final plea.</span></li>
+              <li><span class="b">Techniques</span><span>DAFOREST throughout.</span></li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <!-- LITERATURE PAPERS -->
+      <!-- LITERATURE -->
       <section id="view-literature" class="view">
         <div class="panel">
           <div class="panel-header">
@@ -1192,45 +1086,17 @@
             </div>
           </div>
           <div class="panel-body">
-            <p class="muted">Total time: 1 hour 45 minutes.</p>
             <ul class="clean">
               <li><span class="b">Macbeth A</span><span>Extract – 20 marks · ~30 mins.</span></li>
-              <li><span class="b">Macbeth B</span><span>Whole-play essay – 20 marks · ~30 mins.</span></li>
+              <li><span class="b">Macbeth B</span><span>Whole play – 20 marks · ~30 mins.</span></li>
               <li><span class="b">AIC</span><span>Essay – 40 marks · ~45 mins.</span></li>
             </ul>
-
-            <div class="more-block">
-              <button
-                class="soft small"
-                data-toggle="#lit-p1-more"
-                data-closed="Show full breakdown"
-                data-open="Hide breakdown"
-              >Show full breakdown</button>
-              <div id="lit-p1-more" class="more-content">
-                <h3>Macbeth Part A – extract</h3>
-                <ul class="clean">
-                  <li><span class="b">Focus</span><span>Only the extract. No context.</span></li>
-                  <li><span class="b">Paragraphs</span><span>At least two. Point → Quote → Technique → Effect.</span></li>
-                </ul>
-                <p class="muted">Look for: metaphors, blood as guilt, questions, soliloquies, asides.</p>
-
-                <h3>Macbeth Part B – essay</h3>
-                <ul class="clean">
-                  <li><span class="b">Focus</span><span>Whole play. Don’t reuse extract quotes.</span></li>
-                  <li><span class="b">Paragraph</span><span>“Shakespeare presents…” → Quote → Explanation → Context → Shakespeare’s purpose.</span></li>
-                </ul>
-                <p class="muted">
-                  Context: James I, witches, tragic heroes, Gunpowder Plot, Divine Right of Kings, Great Chain of Being, Jacobean gender roles.
-                </p>
-
-                <h3>An Inspector Calls</h3>
-                <ul class="clean">
-                  <li><span class="b">Choice</span><span>Two questions – answer one.</span></li>
-                  <li><span class="b">Structure</span><span>Intro · 3 body paragraphs · conclusion.</span></li>
-                  <li><span class="b">Paragraph</span><span>“Priestley presents…” → Quote → Explanation → Context (1912 vs 1945) → Priestley’s purpose.</span></li>
-                </ul>
-              </div>
-            </div>
+            <h3>Macbeth A</h3>
+            <p>Extract only; paragraphs: Point → Quote → Technique → Effect.</p>
+            <h3>Macbeth B</h3>
+            <p>Whole play; add context + Shakespeare’s purpose.</p>
+            <h3>AIC</h3>
+            <p>Intro · 3 paragraphs · conclusion; Priestley presents… → Quote → Explanation → Context → Purpose.</p>
           </div>
         </div>
 
@@ -1238,44 +1104,21 @@
           <div class="panel-header">
             <div>
               <h2>Literature Paper 2</h2>
-              <small>ACC · Belonging Anthology · Unseen Poetry</small>
+              <small>ACC · Belonging · Unseen Poetry</small>
             </div>
           </div>
           <div class="panel-body">
-            <p class="muted">Total time: 2 hours 15 minutes.</p>
             <ul class="clean">
               <li><span class="b">ACC A</span><span>Extract – 20 marks · ~25 mins.</span></li>
               <li><span class="b">ACC B</span><span>Essay – 20 marks · ~25 mins.</span></li>
               <li><span class="b">Anthology</span><span>Comparison – 20 marks · ~30 mins.</span></li>
               <li><span class="b">Unseen</span><span>Two poems – 20 marks · ~45 mins.</span></li>
             </ul>
-
-            <div class="more-block">
-              <button
-                class="soft small"
-                data-toggle="#lit-p2-more"
-                data-closed="Show full breakdown"
-                data-open="Hide breakdown"
-              >Show full breakdown</button>
-              <div id="lit-p2-more" class="more-content">
-                <h3>ACC Part A</h3>
-                <p>Extract only; paragraphs are Point → Quote → Technique → Effect.</p>
-
-                <h3>ACC Part B</h3>
-                <p>Whole novella; no extract quotes. “Dickens presents…” → Quote → Explanation → Dickens’ purpose.</p>
-
-                <h3>Belonging Anthology</h3>
-                <p>Compare given poem with one you choose. Comparative point → quotes + techniques + effect + context/intentions for both poems.</p>
-
-                <h3>Unseen Poetry</h3>
-                <p>Compare two unseen poems. Comparative point → quote + technique + effect from each poem.</p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
 
-      <!-- BELONGING ANTHOLOGY -->
+      <!-- ANTHOLOGY -->
       <section id="view-anthology" class="view">
         <div class="panel">
           <div class="panel-header">
@@ -1289,18 +1132,17 @@
               <details class="poem-details">
                 <summary class="poem-summary">
                   <span class="poem-title">Island Man – Grace Nichols</span>
-                  <span class="poem-chevron">tap ▾</span>
+                  <span class="poem-chevron">▾</span>
                 </summary>
                 <div class="poem-body">
                   <div class="poem-sub">About</div>
-                  <div class="poem-detail">A man wakes thinking he is in the Caribbean but is actually in London.</div>
+                  <div class="poem-detail">Man wakes thinking he is in the Caribbean, but is actually in London.</div>
                   <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“his small emerald island” – metaphor makes the island precious and beautiful.</div>
-                  <div class="poem-detail">“dull north circular roar” – imagery makes London oppressive and overwhelming.</div>
+                  <div class="poem-detail">“his small emerald island” vs “dull north circular roar” – contrast beauty vs noisy city.</div>
                   <div class="poem-sub">Structure & form</div>
-                  <div class="poem-detail">Free verse, no punctuation – dreamy flow between sleep and waking.</div>
+                  <div class="poem-detail">Free verse, no punctuation – dreamy feeling.</div>
                   <div class="poem-sub">Context</div>
-                  <div class="poem-detail">Grace Nichols moved from the Caribbean to London; dual identity experience.</div>
+                  <div class="poem-detail">Nichols moved from Caribbean to London.</div>
                   <div class="poem-sub">Themes</div>
                   <div class="poem-detail">Youth, nature, nostalgia, dual identity, London as home.</div>
                 </div>
@@ -1309,17 +1151,17 @@
               <details class="poem-details">
                 <summary class="poem-summary">
                   <span class="poem-title">To My Sister – William Wordsworth</span>
-                  <span class="poem-chevron">tap ▾</span>
+                  <span class="poem-chevron">▾</span>
                 </summary>
                 <div class="poem-body">
                   <div class="poem-sub">About</div>
-                  <div class="poem-detail">A man tells his sister to come and enjoy the power of nature in spring.</div>
+                  <div class="poem-detail">Speaker tells sister to come and enjoy nature in spring.</div>
                   <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“Our minds shall drink at every pore the spirit of the season” – personification; nature gives them energy and refreshment.</div>
+                  <div class="poem-detail">“Our minds shall drink at every pore the spirit of the season” – personification, nature gives energy.</div>
                   <div class="poem-sub">Structure & form</div>
                   <div class="poem-detail">ABAB rhyme, short stanzas – enthusiastic tone.</div>
                   <div class="poem-sub">Context</div>
-                  <div class="poem-detail">Wordsworth was a Romantic: valued nature, youth, freedom, emotion.</div>
+                  <div class="poem-detail">Wordsworth was a Romantic: nature, youth, emotion.</div>
                   <div class="poem-sub">Themes</div>
                   <div class="poem-detail">Nature, family, exploration of self.</div>
                 </div>
@@ -1328,17 +1170,15 @@
               <details class="poem-details">
                 <summary class="poem-summary">
                   <span class="poem-title">Sunday Dip – John Clare</span>
-                  <span class="poem-chevron">tap ▾</span>
+                  <span class="poem-chevron">▾</span>
                 </summary>
                 <div class="poem-body">
                   <div class="poem-sub">About</div>
                   <div class="poem-detail">Boys enjoy their only day off by swimming in a river.</div>
                   <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“And Laugh to hear the thunder in their ears” – metaphor; their noise is like thunder.</div>
+                  <div class="poem-detail">“And Laugh to hear the thunder in their ears” – metaphor; noise like thunder.</div>
                   <div class="poem-sub">Structure & form</div>
-                  <div class="poem-detail">Repetition of “And” builds excitement and energy.</div>
-                  <div class="poem-sub">Context</div>
-                  <div class="poem-detail">Clare is a Romantic; simple form to be accessible.</div>
+                  <div class="poem-detail">Repetition of “And” builds excitement.</div>
                   <div class="poem-sub">Themes</div>
                   <div class="poem-detail">Youth, nature, nostalgia, community.</div>
                 </div>
@@ -1347,1045 +1187,9 @@
               <details class="poem-details">
                 <summary class="poem-summary">
                   <span class="poem-title">I Remember, I Remember – Thomas Hood</span>
-                  <span class="poem-chevron">tap ▾</span>
+                  <span class="poem-chevron">▾</span>
                 </summary>
                 <div class="poem-body">
                   <div class="poem-sub">About</div>
-                  <div class="poem-detail">A chronically ill man remembers childhood as joyful and perfect.</div>
-                  <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“My spirit flew in feathers then, / That is so heavy now” – metaphor; free when young, weighed down now.</div>
-                  <div class="poem-sub">Structure & form</div>
-                  <div class="poem-detail">Repetition of “I remember, I remember” shows deep nostalgia.</div>
-                  <div class="poem-sub">Context</div>
-                  <div class="poem-detail">Hood was actually chronically ill.</div>
-                  <div class="poem-sub">Themes</div>
-                  <div class="poem-detail">Youth, nature, nostalgia, exploration of self.</div>
-                </div>
-              </details>
-
-              <details class="poem-details">
-                <summary class="poem-summary">
-                  <span class="poem-title">We Refugees – Benjamin Zephaniah</span>
-                  <span class="poem-chevron">tap ▾</span>
-                </summary>
-                <div class="poem-body">
-                  <div class="poem-sub">About</div>
-                  <div class="poem-detail">Different refugees describe their experiences.</div>
-                  <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“We can all be refugees” – collective pronoun; it could happen to anyone.</div>
-                  <div class="poem-sub">Structure & form</div>
-                  <div class="poem-detail">Stanzas starting with “I” give different voices.</div>
-                  <div class="poem-sub">Context</div>
-                  <div class="poem-detail">Zephaniah is an activist for refugees and human rights.</div>
-                  <div class="poem-sub">Themes</div>
-                  <div class="poem-detail">Nostalgia, family, dual identity, community.</div>
-                </div>
-              </details>
-
-              <details class="poem-details">
-                <summary class="poem-summary">
-                  <span class="poem-title">Jamaican British – James Berry</span>
-                  <span class="poem-chevron">tap ▾</span>
-                </summary>
-                <div class="poem-body">
-                  <div class="poem-sub">About</div>
-                  <div class="poem-detail">A mixed-race speaker remembers bullying at school and later appreciates his Jamaican heritage.</div>
-                  <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“the English boys at school made me choose Jamaican, British?” – question + caesura show pressure and identity conflict.</div>
-                  <div class="poem-sub">Structure & form</div>
-                  <div class="poem-detail">Repetition of “Jamaican British” shows identity focus.</div>
-                  <div class="poem-sub">Context</div>
-                  <div class="poem-detail">Autobiographical – based on Berry’s experience.</div>
-                  <div class="poem-sub">Themes</div>
-                  <div class="poem-detail">Youth, family, dual identity, London as home, community, exploration of self.</div>
-                </div>
-              </details>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FLASHCARDS -->
-      <section id="view-flashcards" class="view">
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2>Flashcards</h2>
-              <small>ACC · Belonging · Language · Literature</small>
-            </div>
-          </div>
-          <div class="panel-body">
-            <div class="fc-top-row">
-              <label>
-                Deck
-                <select id="deck-select"></select>
-              </label>
-              <span id="deck-info" class="muted">0 cards</span>
-            </div>
-
-            <div class="quick-decks">
-              <button class="soft small" data-quick-deck="ACC – Key Quotes">ACC</button>
-              <button class="soft small" data-quick-deck="Belonging – Poems">Belonging</button>
-              <button class="soft small" data-quick-deck="Language Paper 1 – Structure">Lang P1</button>
-              <button class="soft small" data-quick-deck="Language Paper 2 – Structure">Lang P2</button>
-              <button class="soft small" data-quick-deck="Literature Paper 1 – Structure">Lit P1</button>
-              <button class="soft small" data-quick-deck="Literature Paper 2 – Structure">Lit P2</button>
-            </div>
-
-            <div class="flashcard-shell">
-              <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-              </div>
-
-              <div class="flashcard-box" id="study-card" title="Tap to flip">
-                <div class="flashcard-header">
-                  <div class="flashcard-tag">
-                    <span class="tag-dot"></span>
-                    <span id="card-side-label">Front · Question</span>
-                  </div>
-                  <span id="card-meta" class="muted"></span>
-                </div>
-                <div class="flashcard-text empty" id="card-text">
-                  No cards yet in this deck.
-                </div>
-                <div class="flashcard-footer">
-                  <span><strong id="card-position">0 / 0</strong> · deck: <span id="deck-name-label">—</span></span>
-                  <span>Tap card to flip</span>
-                </div>
-              </div>
-
-              <div class="fc-controls">
-                <button id="fc-restart" class="primary small">
-                  <span class="icon">▶</span> Start
-                </button>
-                <button id="fc-prev" class="soft small">◀ Prev</button>
-                <button id="fc-next" class="soft small">Next ▶</button>
-                <button id="fc-flip" class="soft small">⟲ Flip</button>
-                <label style="display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);">
-                  <input type="checkbox" id="fc-shuffle" />
-                  Shuffle
-                </label>
-              </div>
-
-              <div class="fc-status" id="fc-status"></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- TOOLS -->
-      <section id="view-tools" class="view">
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2>Tools</h2>
-              <small>Clean layout · all the helpers in one place</small>
-            </div>
-          </div>
-          <div class="panel-body">
-            <!-- TOOL 1: QUOTE FINDER -->
-            <div class="tool-card">
-              <div class="tool-card-header">
-                <div class="tool-card-title">Quote finder</div>
-                <button
-                  class="soft small"
-                  data-toggle="#tool-quote"
-                  data-closed="Open"
-                  data-open="Close"
-                >Open</button>
-              </div>
-              <div class="tool-card-body more-content" id="tool-quote">
-                <div class="grid-two">
-                  <div>
-                    <label class="mini-label">Search term</label>
-                    <input type="text" id="quote-search-input" placeholder="e.g. ghost, responsibility, island..." />
-                  </div>
-                  <div>
-                    <label class="mini-label">Scope</label>
-                    <select id="quote-scope">
-                      <option value="all">All</option>
-                      <option value="ACC">ACC</option>
-                      <option value="Belonging">Belonging</option>
-                      <option value="Language">Language</option>
-                      <option value="Literature">Literature</option>
-                    </select>
-                  </div>
-                </div>
-                <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
-                  <button class="soft small" id="quote-search-btn">Search</button>
-                  <button class="soft small" id="quote-clear-btn">Clear</button>
-                </div>
-                <div class="mini-label" style="margin-top:4px;">Tap “Search” or press Enter.</div>
-                <div id="quote-results" style="margin-top:6px;"></div>
-              </div>
-            </div>
-
-            <!-- TOOL 2: PARAGRAPH BUILDER -->
-            <div class="tool-card">
-              <div class="tool-card-header">
-                <div class="tool-card-title">Paragraph builder</div>
-                <button
-                  class="soft small"
-                  data-toggle="#tool-builder"
-                  data-closed="Open"
-                  data-open="Close"
-                >Open</button>
-              </div>
-              <div class="tool-card-body more-content" id="tool-builder">
-                <div class="builder-grid">
-                  <label>
-                    <span class="mini-label">Type</span>
-                    <select id="builder-type">
-                      <option value="lang">Language analysis</option>
-                      <option value="lit">Literature essay</option>
-                      <option value="poetry">Poetry comparison</option>
-                      <option value="tx">Transactional writing</option>
-                    </select>
-                  </label>
-                  <label>
-                    <span class="mini-label">Point</span>
-                    <textarea id="builder-point" placeholder="e.g. The writer presents Scrooge as stubborn and cruel..."></textarea>
-                  </label>
-                  <label>
-                    <span class="mini-label">Evidence</span>
-                    <textarea id="builder-evidence" placeholder="Short quotation."></textarea>
-                  </label>
-                  <label>
-                    <span class="mini-label">Technique</span>
-                    <textarea id="builder-technique" placeholder="metaphor, simile, rhetorical question..."></textarea>
-                  </label>
-                  <label>
-                    <span class="mini-label">Effect</span>
-                    <textarea id="builder-effect" placeholder="What the reader thinks/feels."></textarea>
-                  </label>
-                  <label>
-                    <span class="mini-label">Context / purpose (if needed)</span>
-                    <textarea id="builder-context" placeholder="Context or writer’s aim."></textarea>
-                  </label>
-                </div>
-                <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
-                  <button class="primary small" id="builder-generate">Build paragraph</button>
-                  <button class="soft small" id="builder-clear">Clear</button>
-                </div>
-                <div id="builder-output" class="builder-output" style="margin-top:6px;"></div>
-              </div>
-            </div>
-
-            <!-- TOOL 3: RANDOM QUESTIONS -->
-            <div class="tool-card">
-              <div class="tool-card-header">
-                <div class="tool-card-title">Random questions</div>
-                <button
-                  class="soft small"
-                  data-toggle="#tool-questions"
-                  data-closed="Open"
-                  data-open="Close"
-                >Open</button>
-              </div>
-              <div class="tool-card-body more-content" id="tool-questions">
-                <div class="mini-label">Tap for a practice question:</div>
-                <div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;">
-                  <button class="soft small" data-qset="lang-p1">Lang P1</button>
-                  <button class="soft small" data-qset="lang-p2">Lang P2</button>
-                  <button class="soft small" data-qset="acc">ACC</button>
-                  <button class="soft small" data-qset="macbeth">Macbeth</button>
-                  <button class="soft small" data-qset="aic">AIC</button>
-                  <button class="soft small" data-qset="belonging">Belonging</button>
-                  <button class="soft small" data-qset="unseen">Unseen</button>
-                </div>
-                <div id="question-output" class="question-output" style="margin-top:8px;"></div>
-              </div>
-            </div>
-
-            <!-- TOOL 4: SENTENCE OPENERS -->
-            <div class="tool-card">
-              <div class="tool-card-header">
-                <div class="tool-card-title">Sentence openers bank</div>
-                <button
-                  class="soft small"
-                  data-toggle="#tool-openers"
-                  data-closed="Open"
-                  data-open="Close"
-                >Open</button>
-              </div>
-              <div class="tool-card-body more-content" id="tool-openers">
-                <div class="mini-label">Tap any opener and copy it into your writing:</div>
-                <div class="sentence-chip-row">
-                  <div class="sentence-chip">Reluctantly, I realised that...</div>
-                  <div class="sentence-chip">For a brief moment,...</div>
-                  <div class="sentence-chip">Without warning,...</div>
-                  <div class="sentence-chip">From the shadows,...</div>
-                  <div class="sentence-chip">In the distance, I could see...</div>
-                  <div class="sentence-chip">Surprisingly, it seemed that...</div>
-                  <div class="sentence-chip">On the other hand, some may argue that...</div>
-                  <div class="sentence-chip">It is impossible to ignore that...</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- TOOL 5: STRUCTURES / ACRONYMS -->
-            <div class="tool-card">
-              <div class="tool-card-header">
-                <div class="tool-card-title">Structures & acronyms</div>
-                <button
-                  class="soft small"
-                  data-toggle="#tool-structures"
-                  data-closed="Open"
-                  data-open="Close"
-                >Open</button>
-              </div>
-              <div class="tool-card-body more-content" id="tool-structures">
-                <div class="formula-box">
-                  <div class="formula-line">
-                    <span class="formula-key">SPITTED</span> – Setting, People, Ideas, Tone, Theme, Events, Description.
-                  </div>
-                  <div class="formula-line">
-                    <span class="formula-key">DAFOREST</span> – Direct address, Alliteration, Fact, Opinion, Rhetorical questions, Emotive language, Statistics, Tripling.
-                  </div>
-                  <div class="formula-line">
-                    <span class="formula-key">Paragraph</span> – Point → Evidence → Technique → Effect → Context/Purpose.
-                  </div>
-                  <div class="formula-line">
-                    <span class="formula-key">Story</span> – DROP → ZOOM → FLASHBACK → ECHO.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- TOOL 6: CHECKLISTS -->
-            <div class="tool-card">
-              <div class="tool-card-header">
-                <div class="tool-card-title">Exam checklists</div>
-                <button
-                  class="soft small"
-                  data-toggle="#tool-checklists"
-                  data-closed="Open"
-                  data-open="Close"
-                >Open</button>
-              </div>
-              <div class="tool-card-body more-content" id="tool-checklists">
-                <div class="checklist-group">
-                  <details>
-                    <summary>
-                      <span>Lang Paper 1 – Q5 imaginative</span>
-                      <span class="poem-chevron">tap ▾</span>
-                    </summary>
-                    <ul>
-                      <li><input type="checkbox" /> DROP atmosphere at start.</li>
-                      <li><input type="checkbox" /> ZOOM on character feelings.</li>
-                      <li><input type="checkbox" /> FLASHBACK explains situation.</li>
-                      <li><input type="checkbox" /> ECHO at end (cyclical feel).</li>
-                      <li><input type="checkbox" /> Range of punctuation + sentences.</li>
-                      <li><input type="checkbox" /> At least 3–4 strong techniques.</li>
-                    </ul>
-                  </details>
-
-                  <details>
-                    <summary>
-                      <span>Lang Paper 2 – Q8/9 transactional</span>
-                      <span class="poem-chevron">tap ▾</span>
-                    </summary>
-                    <ul>
-                      <li><input type="checkbox" /> Clear viewpoint statement.</li>
-                      <li><input type="checkbox" /> Counter argument handled.</li>
-                      <li><input type="checkbox" /> Anecdote/example included.</li>
-                      <li><input type="checkbox" /> Reasons with stats/experts.</li>
-                      <li><input type="checkbox" /> DAFOREST used several times.</li>
-                    </ul>
-                  </details>
-
-                  <details>
-                    <summary>
-                      <span>Lit – ACC / Macbeth / AIC essays</span>
-                      <span class="poem-chevron">tap ▾</span>
-                    </summary>
-                    <ul>
-                      <li><input type="checkbox" /> Every paragraph starts with a clear point.</li>
-                      <li><input type="checkbox" /> Short, relevant quotations.</li>
-                      <li><input type="checkbox" /> Techniques + effects explained.</li>
-                      <li><input type="checkbox" /> Context/purpose used when needed.</li>
-                      <li><input type="checkbox" /> Intro + conclusion answer question.</li>
-                    </ul>
-                  </details>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
-
-  <!-- FLOATING MENU BUTTON -->
-  <button class="fab-menu" id="fab-menu" aria-label="Open menu">
-    <span>☰</span>
-  </button>
-
-  <!-- NAV OVERLAY -->
-  <div class="nav-overlay" id="nav-overlay">
-    <div class="nav-card">
-      <div class="nav-card-header">
-        <div>
-          <div class="nav-card-title">REVISION MENU</div>
-          <div class="nav-card-sub">Jump to sections & tools</div>
-        </div>
-        <button class="soft small" id="nav-close">✕</button>
-      </div>
-
-      <div class="nav-list">
-        <div class="nav-section-label">Sections</div>
-        <button class="soft nav-item-btn" data-goto="acc">
-          <span class="icon">📘</span> A Christmas Carol
-        </button>
-        <button class="soft nav-item-btn" data-goto="language">
-          <span class="icon">💬</span> Language Papers
-        </button>
-        <button class="soft nav-item-btn" data-goto="literature">
-          <span class="icon">📖</span> Literature Papers
-        </button>
-        <button class="soft nav-item-btn" data-goto="anthology">
-          <span class="icon">📚</span> Belonging Anthology
-        </button>
-        <button class="soft nav-item-btn" data-goto="flashcards">
-          <span class="icon">🃏</span> Flashcards
-        </button>
-        <button class="soft nav-item-btn" data-goto="tools">
-          <span class="icon">🛠</span> Tools
-        </button>
-      </div>
-
-      <div class="nav-section-label" style="margin-top:6px;">Quick tools</div>
-      <div class="nav-tools">
-        <div class="timer-label">Focus timer (25 minutes)</div>
-        <div class="timer-row">
-          <div class="timer-display" id="timer-display">25:00</div>
-          <div style="display:flex;gap:6px;">
-            <button class="soft small" id="timer-start">Start</button>
-            <button class="soft small" id="timer-reset">Reset</button>
-          </div>
-        </div>
-        <div class="nav-formula-block">
-          <div class="nav-formula-line">
-            <span class="nav-formula-key">SPITTED</span> – Setting, People, Ideas, Tone, Theme, Events, Description.
-          </div>
-          <div class="nav-formula-line">
-            <span class="nav-formula-key">DAFOREST</span> – Direct address, Alliteration, Fact, Opinion, Rhetorical questions, Emotive language, Statistics, Tripling.
-          </div>
-          <div class="nav-formula-line">
-            <span class="nav-formula-key">DROP–ZOOM–FLASHBACK–ECHO</span> – story structure.
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // ---------- THEMES ----------
-    const THEMES = {
-      neon: {
-        bodyBg: "radial-gradient(circle at top, #160322 0, #05010b 45%, #020009 100%)",
-        "--panel": "#090317",
-        "--panel-soft": "#0b041b",
-        "--border": "#26163b",
-        "--accent": "#ec4899",
-        "--accent-soft": "rgba(236,72,153,0.16)",
-        "--accent-strong": "#f97316",
-        "--text": "#f9fafb",
-        "--muted": "#9ca3af"
-      },
-      ocean: {
-        bodyBg: "radial-gradient(circle at top, #022c3a 0, #020617 45%, #000814 100%)",
-        "--panel": "#020617",
-        "--panel-soft": "#02081f",
-        "--border": "#0f172a",
-        "--accent": "#38bdf8",
-        "--accent-soft": "rgba(56,189,248,0.16)",
-        "--accent-strong": "#06b6d4",
-        "--text": "#f9fafb",
-        "--muted": "#94a3b8"
-      },
-      sunset: {
-        bodyBg: "radial-gradient(circle at top, #4c0519 0, #111827 45%, #020617 100%)",
-        "--panel": "#111827",
-        "--panel-soft": "#020617",
-        "--border": "#7f1d1d",
-        "--accent": "#f97316",
-        "--accent-soft": "rgba(249,115,22,0.16)",
-        "--accent-strong": "#ec4899",
-        "--text": "#fefce8",
-        "--muted": "#d1d5db"
-      },
-      mono: {
-        bodyBg: "radial-gradient(circle at top, #020617 0, #020617 45%, #000000 100%)",
-        "--panel": "#020617",
-        "--panel-soft": "#020617",
-        "--border": "#374151",
-        "--accent": "#e5e7eb",
-        "--accent-soft": "rgba(229,231,235,0.12)",
-        "--accent-strong": "#facc15",
-        "--text": "#f9fafb",
-        "--muted": "#9ca3af"
-      },
-      matrix: {
-        bodyBg: "radial-gradient(circle at top, #022c22 0, #020617 45%, #000000 100%)",
-        "--panel": "#020617",
-        "--panel-soft": "#00110f",
-        "--border": "#047857",
-        "--accent": "#22c55e",
-        "--accent-soft": "rgba(34,197,94,0.16)",
-        "--accent-strong": "#a3e635",
-        "--text": "#e5f9f0",
-        "--muted": "#6ee7b7"
-      },
-      darkred: {
-        bodyBg: "radial-gradient(circle at top, #3b0a0a 0, #111827 45%, #020202 100%)",
-        "--panel": "#111827",
-        "--panel-soft": "#090314",
-        "--border": "#7f1d1d",
-        "--accent": "#ef4444",
-        "--accent-soft": "rgba(239,68,68,0.16)",
-        "--accent-strong": "#b91c1c",
-        "--text": "#fee2e2",
-        "--muted": "#fca5a5"
-      },
-      cats: {
-        bodyBg: "radial-gradient(circle at top, #2b1b0e 0, #0f172a 45%, #020617 100%)",
-        "--panel": "#0f172a",
-        "--panel-soft": "#020617",
-        "--border": "#92400e",
-        "--accent": "#fbbf24",
-        "--accent-soft": "rgba(251,191,36,0.16)",
-        "--accent-strong": "#f97316",
-        "--text": "#fffbeb",
-        "--muted": "#facc15"
-      }
-    };
-
-    function applyTheme(key) {
-      const theme = THEMES[key] || THEMES.neon;
-      document.body.style.background = theme.bodyBg;
-      Object.keys(theme).forEach(k => {
-        if (k.startsWith("--")) {
-          document.documentElement.style.setProperty(k, theme[k]);
-        }
-      });
-      try {
-        localStorage.setItem("revisionTheme", key);
-      } catch (e) {}
-    }
-
-    const themeSelectEl = document.getElementById("theme-select");
-    themeSelectEl.addEventListener("change", () => {
-      applyTheme(themeSelectEl.value);
-    });
-
-    (function initTheme() {
-      let saved = null;
-      try {
-        saved = localStorage.getItem("revisionTheme");
-      } catch (e) {}
-      if (!saved || !THEMES[saved]) saved = "neon";
-      themeSelectEl.value = saved;
-      applyTheme(saved);
-    })();
-
-    // ---------- TODAY FOCUS ----------
-    const todayFocusEl = document.getElementById("today-focus");
-    const focusOptions = [
-      "Today: ACC extract + 1 Lang card set",
-      "Today: 10 ACC cards + 1 Belonging comparison",
-      "Today: Lang Paper 1 plan + 10 min Belonging",
-      "Today: 1 Macbeth essay plan + 10 flashcards",
-      "Today: Unseen poetry paragraph + 10 Lang cards"
-    ];
-    todayFocusEl.textContent = focusOptions[Math.floor(Math.random() * focusOptions.length)];
-
-    // ---------- VIEWS / NAV ----------
-    const views = {
-      acc: document.getElementById("view-acc"),
-      language: document.getElementById("view-language"),
-      literature: document.getElementById("view-literature"),
-      anthology: document.getElementById("view-anthology"),
-      flashcards: document.getElementById("view-flashcards"),
-      tools: document.getElementById("view-tools")
-    };
-
-    function setView(name) {
-      Object.values(views).forEach(v => v.classList.remove("active"));
-      if (views[name]) views[name].classList.add("active");
-      // instant jump to top (feels snappier)
-      window.scrollTo(0, 0);
-    }
-
-    const fabMenu = document.getElementById("fab-menu");
-    const navOverlay = document.getElementById("nav-overlay");
-    const navClose = document.getElementById("nav-close");
-
-    fabMenu.addEventListener("click", () => {
-      navOverlay.classList.add("active");
-    });
-
-    navClose.addEventListener("click", () => {
-      navOverlay.classList.remove("active");
-    });
-
-    navOverlay.addEventListener("click", e => {
-      if (e.target === navOverlay) {
-        navOverlay.classList.remove("active");
-      }
-    });
-
-    document.querySelectorAll(".nav-item-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const view = btn.getAttribute("data-goto");
-        setView(view);
-        navOverlay.classList.remove("active");
-      });
-    });
-
-    // ---------- SHOW MORE / LESS ----------
-    document.querySelectorAll("[data-toggle]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const sel = btn.getAttribute("data-toggle");
-        const target = document.querySelector(sel);
-        if (!target) return;
-        const isOpen = target.classList.toggle("open");
-        const closedLabel = btn.getAttribute("data-closed") || "Show more";
-        const openLabel = btn.getAttribute("data-open") || "Show less";
-        btn.textContent = isOpen ? openLabel : closedLabel;
-        btn.classList.add("soft", "small");
-      });
-    });
-
-    // ---------- FOCUS TIMER ----------
-    const timerDisplay = document.getElementById("timer-display");
-    const timerStartBtn = document.getElementById("timer-start");
-    const timerResetBtn = document.getElementById("timer-reset");
-
-    let timerSecondsDefault = 25 * 60;
-    let timerSeconds = timerSecondsDefault;
-    let timerInterval = null;
-
-    function renderTimer() {
-      const mins = Math.floor(timerSeconds / 60);
-      const secs = timerSeconds % 60;
-      const mm = String(mins).padStart(2, "0");
-      const ss = String(secs).padStart(2, "0");
-      timerDisplay.textContent = `${mm}:${ss}`;
-    }
-
-    function startTimer() {
-      if (timerInterval) return;
-      timerInterval = setInterval(() => {
-        timerSeconds--;
-        if (timerSeconds <= 0) {
-          timerSeconds = 0;
-          clearInterval(timerInterval);
-          timerInterval = null;
-        }
-        renderTimer();
-      }, 1000);
-    }
-
-    function resetTimer() {
-      if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-      }
-      timerSeconds = timerSecondsDefault;
-      renderTimer();
-    }
-
-    timerStartBtn.addEventListener("click", startTimer);
-    timerResetBtn.addEventListener("click", resetTimer);
-    renderTimer();
-
-    // ---------- DECKS ----------
-    const DECKS = {
-      "ACC – Key Quotes": [
-        { front: "\"Marley was dead: to begin with.\"", back: "Opening line. Confirms Marley is dead and sets up the ghost story (Stave 1)." },
-        { front: "\"As solitary as an oyster.\"", back: "Narrator describing Scrooge – isolated, but with potential for change (a 'pearl' inside)." },
-        { front: "\"Bah! Humbug!\"", back: "Scrooge rejecting Christmas in Stave 1 – shows cynicism and lack of empathy." },
-        { front: "\"If they would rather die, they had better do it, and decrease the surplus population.\"", back: "Scrooge talking about the poor – cruel attitude Dickens criticises." },
-        { front: "\"Mankind was my business!\"", back: "Marley's Ghost – regrets focusing on money instead of caring for others; message to Scrooge." },
-        { front: "\"A solitary child, neglected by his friends.\"", back: "Young Scrooge – lonely upbringing explains his later coldness." },
-        { front: "\"Another idol has displaced me... a golden one.\"", back: "Belle – says money has replaced love in Scrooge's life." },
-        { front: "\"A jolly Giant, glorious to see.\"", back: "Ghost of Christmas Present – symbol of warmth, generosity and abundance." },
-        { front: "\"God bless us, every one!\"", back: "Tiny Tim – innocent, hopeful blessing; moral centre of the novella." },
-        { front: "\"This boy is Ignorance. This girl is Want.\"", back: "Personification of social problems caused by neglecting the poor (Stave 3)." },
-        { front: "\"I am not the man I was.\"", back: "Scrooge in Stave 4 – clear moment of change." },
-        { front: "\"I will honour Christmas in my heart, and try to keep it all the year.\"", back: "Scrooge – promises lasting change, not just for one day." },
-        { front: "\"He became as good a friend, as good a master, and as good a man.\"", back: "Narrator – confirms Scrooge’s full redemption and new identity." }
-      ],
-      "Belonging – Poems": [
-        { front: "Island Man – about?", back: "A man wakes thinking he is back in the Caribbean but is actually in London. Shows split identity and homesickness." },
-        { front: "Island Man – key quotes", back: "\"his small emerald island\" vs \"dull north circular roar\" – contrast between beautiful home and oppressive London." },
-        { front: "Island Man – structure/context/themes", back: "Free verse, no punctuation; Nichols moved from Caribbean to London. Themes: youth, nature, nostalgia, dual identity, London as home." },
-        { front: "To My Sister – about?", back: "Speaker tells his sister to come and enjoy the power of nature in spring." },
-        { front: "To My Sister – key quote", back: "\"Our minds shall drink at every pore the spirit of the season\" – personification; nature refreshing and empowering them." },
-        { front: "Sunday Dip – about?", back: "Boys enjoy their only day off by swimming in a river." },
-        { front: "Sunday Dip – key quote", back: "\"And Laugh to hear the thunder in their ears\" – metaphor; their noise is like thunder, showing excitement." },
-        { front: "I Remember – about?", back: "A chronically ill man remembers childhood as joyful and perfect compared to now." },
-        { front: "I Remember – key quote", back: "\"My spirit flew in feathers then, / That is so heavy now\" – metaphor; free when young, weighed down now." },
-        { front: "We Refugees – key idea", back: "\"We can all be refugees\" – shows it could happen to anyone; builds empathy." },
-        { front: "Jamaican British – key quote", back: "\"the English boys at school made me choose Jamaican, British?\" – question + caesura show pressure and identity conflict." }
-      ],
-      "Language Paper 1 – Structure": [
-        { front: "Lang Paper 1 – order", back: "1) Q5/6 (writing) – 45 mins.\n2) Read extract – 10 mins.\n3) Q1–4 with set timings." },
-        { front: "Lang P1 – Q1 & Q2", back: "Q1: 1 mark, comprehension.\nQ2: 2 marks, inference using 2 quotes." },
-        { front: "Lang P1 – Q3", back: "6 marks – 2 paragraphs (language + structure). Point → Evidence → Technique → Effect." },
-        { front: "Lang P1 – Q4", back: "15 marks – evaluation using SPITTED and evaluative language." },
-        { front: "Lang P1 – Q5/6 plan", back: "DROP → ZOOM → FLASHBACK → ECHO story pattern." }
-      ],
-      "Language Paper 2 – Structure": [
-        { front: "Lang Paper 2 – order", back: "1) Q8/9 transactional – 45 mins.\n2) Extract 1 → Q1–3.\n3) Extract 2 → Q4–7a/7b." },
-        { front: "Lang P2 – Q3", back: "15 marks – analysis of Extract 1 (language + structure)." },
-        { front: "Lang P2 – Q6", back: "15 marks – evaluation of Extract 2 using SPITTED and intentions." },
-        { front: "Lang P2 – Q7a & Q7b", back: "Q7a: synthesis similarities.\nQ7b: comparison of ideas + methods." },
-        { front: "Lang P2 – Q8/9", back: "Statement → Counter → Anecdote → Reasons → Final plea. Use DAFOREST." }
-      ],
-      "Literature Paper 1 – Structure": [
-        { front: "Lit Paper 1 overview", back: "Macbeth A 20m, Macbeth B 20m, AIC 40m. Total 1h45." },
-        { front: "Macbeth Part A", back: "Extract only; paragraphs: Point → Quote → Technique → Effect." },
-        { front: "Macbeth Part B", back: "Whole play; add context + Shakespeare’s purpose." },
-        { front: "AIC essay", back: "Intro · 3 paragraphs · conclusion; Priestley presents… → Quote → Explanation → Context → Purpose." }
-      ],
-      "Literature Paper 2 – Structure": [
-        { front: "Lit Paper 2 overview", back: "ACC extract 20m; ACC essay 20m; Anthology 20m; Unseen 20m. Total 2h15." },
-        { front: "ACC Part A", back: "Extract only; paragraphs: Point → Quote → Technique → Effect." },
-        { front: "ACC Part B", back: "Whole novella; Dickens’ purpose instead of context." },
-        { front: "Anthology comparison", back: "Comparative point → quotes + techniques + effect + intentions for both poems." },
-        { front: "Unseen comparison", back: "Compare two unseen poems via ideas + methods + effects." }
-      ]
-    };
-
-    const DECK_SOURCE = {
-      "ACC – Key Quotes": "ACC",
-      "Belonging – Poems": "Belonging",
-      "Language Paper 1 – Structure": "Language",
-      "Language Paper 2 – Structure": "Language",
-      "Literature Paper 1 – Structure": "Literature",
-      "Literature Paper 2 – Structure": "Literature"
-    };
-
-    const QUOTE_INDEX = [];
-    Object.entries(DECKS).forEach(([deckName, cards]) => {
-      const source = DECK_SOURCE[deckName] || "Other";
-      cards.forEach(card => {
-        const text = `${card.front} ${card.back}`.trim();
-        QUOTE_INDEX.push({ text, source, deck: deckName });
-      });
-    });
-
-    // ---------- FLASHCARDS ----------
-    const deckSelectEl = document.getElementById("deck-select");
-    const deckInfoEl = document.getElementById("deck-info");
-    const deckNameLabelEl = document.getElementById("deck-name-label");
-    const cardTextEl = document.getElementById("card-text");
-    const cardSideLabelEl = document.getElementById("card-side-label");
-    const cardMetaEl = document.getElementById("card-meta");
-    const cardPositionEl = document.getElementById("card-position");
-    const progressFillEl = document.getElementById("progress-fill");
-    const statusEl = document.getElementById("fc-status");
-    const studyCardEl = document.getElementById("study-card");
-    const shuffleToggleEl = document.getElementById("fc-shuffle");
-
-    let currentDeckName = Object.keys(DECKS)[0] || null;
-    let studyOrder = [];
-    let currentStudyIndex = 0;
-    let showingFront = true;
-
-    function renderDeckOptions() {
-      deckSelectEl.innerHTML = "";
-      const names = Object.keys(DECKS);
-      names.forEach(name => {
-        const opt = document.createElement("option");
-        opt.value = name;
-        opt.textContent = name;
-        deckSelectEl.appendChild(opt);
-      });
-      if (!currentDeckName || !DECKS[currentDeckName]) {
-        currentDeckName = names[0];
-      }
-      deckSelectEl.value = currentDeckName;
-      resetStudyOrder();
-      renderDeckInfo();
-    }
-
-    function renderDeckInfo() {
-      const cards = DECKS[currentDeckName] || [];
-      deckInfoEl.textContent = `${cards.length} card${cards.length === 1 ? "" : "s"}`;
-      deckNameLabelEl.textContent = currentDeckName || "—";
-    }
-
-    function buildStudyOrder() {
-      const cards = DECKS[currentDeckName] || [];
-      studyOrder = cards.map((_, i) => i);
-      if (shuffleToggleEl.checked) {
-        for (let i = studyOrder.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [studyOrder[i], studyOrder[j]] = [studyOrder[j], studyOrder[i]];
-        }
-      }
-    }
-
-    function resetStudyOrder() {
-      const cards = DECKS[currentDeckName] || [];
-      buildStudyOrder();
-      currentStudyIndex = 0;
-      showingFront = true;
-      refreshStudyState();
-    }
-
-    function refreshStudyState() {
-      const cards = DECKS[currentDeckName] || [];
-      renderDeckInfo();
-
-      if (!cards.length) {
-        cardTextEl.textContent = "No cards yet in this deck.";
-        cardTextEl.classList.add("empty");
-        cardSideLabelEl.textContent = "Front · Question";
-        cardMetaEl.textContent = "";
-        cardPositionEl.textContent = "0 / 0";
-        progressFillEl.style.width = "0%";
-        statusEl.textContent = "";
-        return;
-      }
-
-      if (!studyOrder.length || studyOrder.length !== cards.length) {
-        buildStudyOrder();
-      }
-
-      if (currentStudyIndex < 0) currentStudyIndex = 0;
-      if (currentStudyIndex >= studyOrder.length) currentStudyIndex = studyOrder.length - 1;
-
-      const cardIndex = studyOrder[currentStudyIndex];
-      const card = cards[cardIndex];
-
-      const text = showingFront ? card.front : card.back;
-      cardTextEl.textContent = text || "(empty)";
-      cardTextEl.classList.toggle("empty", !text);
-
-      cardSideLabelEl.textContent = showingFront ? "Front · Question" : "Back · Answer";
-      cardMetaEl.textContent = `Card ${cardIndex + 1}`;
-      cardPositionEl.textContent = `${currentStudyIndex + 1} / ${cards.length}`;
-
-      const progress = ((currentStudyIndex + 1) / cards.length) * 100;
-      progressFillEl.style.width = `${progress}%`;
-
-      statusEl.textContent = `Deck: ${currentDeckName}`;
-    }
-
-    function flipCard() {
-      const cards = DECKS[currentDeckName] || [];
-      if (!cards.length) return;
-      showingFront = !showingFront;
-      refreshStudyState();
-    }
-
-    function moveCard(delta) {
-      const cards = DECKS[currentDeckName] || [];
-      if (!cards.length) return;
-      currentStudyIndex += delta;
-      if (currentStudyIndex < 0) currentStudyIndex = cards.length - 1;
-      if (currentStudyIndex >= cards.length) currentStudyIndex = 0;
-      showingFront = true;
-      refreshStudyState();
-    }
-
-    function switchToDeck(name) {
-      if (!DECKS[name]) return;
-      currentDeckName = name;
-      deckSelectEl.value = currentDeckName;
-      resetStudyOrder();
-    }
-
-    deckSelectEl.addEventListener("change", () => {
-      currentDeckName = deckSelectEl.value;
-      resetStudyOrder();
-    });
-
-    document.getElementById("fc-restart").addEventListener("click", resetStudyOrder);
-    document.getElementById("fc-prev").addEventListener("click", () => moveCard(-1));
-    document.getElementById("fc-next").addEventListener("click", () => moveCard(1));
-    document.getElementById("fc-flip").addEventListener("click", flipCard);
-    shuffleToggleEl.addEventListener("change", resetStudyOrder);
-    studyCardEl.addEventListener("click", flipCard);
-
-    document.querySelectorAll("[data-quick-deck]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const name = btn.getAttribute("data-quick-deck");
-        switchToDeck(name);
-      });
-    });
-
-    renderDeckOptions();
-    setView("acc");
-
-    // ---------- QUOTE FINDER ----------
-    const quoteInputEl = document.getElementById("quote-search-input");
-    const quoteScopeEl = document.getElementById("quote-scope");
-    const quoteResultsEl = document.getElementById("quote-results");
-    const quoteSearchBtn = document.getElementById("quote-search-btn");
-    const quoteClearBtn = document.getElementById("quote-clear-btn");
-
-    function renderQuoteResults(results, term) {
-      quoteResultsEl.innerHTML = "";
-      if (!term) {
-        const div = document.createElement("div");
-        div.className = "mini-label";
-        div.textContent = "Type a word or phrase, then tap Search.";
-        quoteResultsEl.appendChild(div);
-        return;
-      }
-      if (!results.length) {
-        const div = document.createElement("div");
-        div.className = "mini-label";
-        div.textContent = "No matches found.";
-        quoteResultsEl.appendChild(div);
-        return;
-      }
-      results.slice(0, 30).forEach(r => {
-        const wrap = document.createElement("div");
-        wrap.className = "quote-result";
-        const snippet = r.text.length > 220 ? r.text.slice(0, 220) + "…" : r.text;
-        wrap.innerHTML = `<div>${snippet}</div><div class="quote-result-source">${r.source} · ${r.deck}</div>`;
-        quoteResultsEl.appendChild(wrap);
-      });
-    }
-
-    function doQuoteSearch() {
-      const term = quoteInputEl.value.trim().toLowerCase();
-      const scope = quoteScopeEl.value;
-      if (!term) {
-        renderQuoteResults([], "");
-        return;
-      }
-      const results = QUOTE_INDEX.filter(item => {
-        if (scope !== "all" && item.source !== scope) return false;
-        return item.text.toLowerCase().includes(term);
-      });
-      renderQuoteResults(results, term);
-    }
-
-    quoteSearchBtn.addEventListener("click", doQuoteSearch);
-    quoteClearBtn.addEventListener("click", () => {
-      quoteInputEl.value = "";
-      renderQuoteResults([], "");
-    });
-    quoteInputEl.addEventListener("keydown", e => {
-      if (e.key === "Enter") {
-        e.preventDefault();
-        doQuoteSearch();
-      }
-    });
-
-    renderQuoteResults([], "");
-
-    // ---------- PARAGRAPH BUILDER ----------
-    const builderTypeEl = document.getElementById("builder-type");
-    const builderPointEl = document.getElementById("builder-point");
-    const builderEvidenceEl = document.getElementById("builder-evidence");
-    const builderTechniqueEl = document.getElementById("builder-technique");
-    const builderEffectEl = document.getElementById("builder-effect");
-    const builderContextEl = document.getElementById("builder-context");
-    const builderGenerateBtn = document.getElementById("builder-generate");
-    const builderClearBtn = document.getElementById("builder-clear");
-    const builderOutputEl = document.getElementById("builder-output");
-
-    function buildParagraph() {
-      const type = builderTypeEl.value;
-      const P = builderPointEl.value.trim();
-      const E = builderEvidenceEl.value.trim();
-      const T = builderTechniqueEl.value.trim();
-      const F = builderEffectEl.value.trim();
-      const C = builderContextEl.value.trim();
-
-      if (!P && !E && !T && !F && !C) {
-        builderOutputEl.textContent = "Fill in at least a point and evidence.";
-        return;
-      }
-
-      let paragraph = "";
-
-      if (type === "lang") {
-        paragraph = `${P} This is shown in the quotation ${E}. The use of ${T} helps to create this because ${F}. Overall, the writer makes the reader ${F || "respond in a particular way"} by focusing on this detail.`;
-      } else if (type === "lit") {
-        paragraph = `Shakespeare presents ${P} This is evident in the quotation ${E}. The use of ${T} suggests ${F}. This is notable in the context of ${C || "Jacobean society"}, and Shakespeare may be trying to show that ${F || "this behaviour has serious consequences"}.`;
-      } else if (type === "poetry") {
-        paragraph = `${P} In the first poem, this is shown in the quotation ${E}, where the use of ${T} makes the reader ${F}. In the context of ${C || "the poet’s background"}, this suggests a wider message about the theme. You could then compare how the second poem uses a different method to present a similar or contrasting idea.`;
-      } else if (type === "tx") {
-        paragraph = `${P} For example, ${E}. The use of ${T} helps to convince the reader because ${F}. In a wider sense, this supports my argument that ${C || "this issue needs to be taken seriously by everyone"}.`;
-      } else {
-        paragraph = `${P} ${E} ${T} ${F} ${C}`;
-      }
-
-      builderOutputEl.textContent = paragraph.trim();
-    }
-
-    builderGenerateBtn.addEventListener("click", buildParagraph);
-    builderClearBtn.addEventListener("click", () => {
-      builderPointEl.value = "";
-      builderEvidenceEl.value = "";
-      builderTechniqueEl.value = "";
-      builderEffectEl.value = "";
-      builderContextEl.value = "";
-      builderOutputEl.textContent = "";
-    });
-
-    // ---------- RANDOM QUESTIONS ----------
-    const QUESTION_SETS = {
-      "lang-p1": [
-        "Write the opening to a story where a character returns to a place from their childhood that now feels completely different.",
-        "Describe a stormy night in a city, focusing on how the weather affects the people who live there.",
-        "Explain how a writer presents a character’s fear of change in a 19th century extract."
-      ],
-      "lang-p2": [
-        "Write an article arguing that mobile phones should be banned for under 16s.",
-        "Write a speech to your year group about the importance of sleep for teenagers.",
-        "Compare how two writers present strong opinions about education in non-fiction texts."
-      ],
-      "acc": [
-        "How does Dickens present Scrooge as an outsider in A Christmas Carol?",
-        "How does Dickens present the Cratchit family in the novella?",
-        "How does Dickens show the importance of memory and the past in A Christmas Carol?"
-      ],
-      "macbeth": [
-        "How does Shakespeare present Macbeth as a tragic hero?",
-        "How does Shakespeare present Lady Macbeth’s ambition?",
-        "How does Shakespeare explore the theme of guilt in Macbeth?"
-      ],
-      "aic": [
-        "How does Priestley present Mr Birling in An Inspector Calls?",
-        "How does Priestley present Sheila’s change over the course of the play?",
-        "How does Priestley present the idea of social responsibility in An Inspector Calls?"
-      ],
-      "belonging": [
-        "Compare how belonging to a place is presented in Island Man and one other poem of your choice.",
-        "Compare how childhood is presented in Sunday Dip and one other poem of your choice.",
-        "Compare how dual identity is presented in Jamaican British and one other poem of your choice."
-      ],
-      "unseen": [
-        "Compare how two unseen poems present different attitudes towards nature.",
-        "Compare how two unseen poems present different views about growing up.",
-        "Compare how two unseen poems present people feeling out of place."
-      ]
-    };
-
-    const questionOutputEl = document.getElementById("question-output");
-    document.querySelectorAll("[data-qset]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const key = btn.getAttribute("data-qset");
-        const arr = QUESTION_SETS[key] || [];
-        if (!arr.length) {
-          questionOutputEl.textContent = "No questions stored for this set yet.";
-          return;
-        }
-        const q = arr[Math.floor(Math.random() * arr.length)];
-        questionOutputEl.textContent = q;
-      });
-    });
-  </script>
-</body>
-</html>
+                  <div class="poem-detail">Chronically ill man remembers childhood as joyful and perfect.</div>
+                  <
