@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>SAYAM & SAFAS – REVISION HUB</title>
+  <title>GCSE English – Study Space</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05010b" />
   <style>
@@ -80,21 +80,21 @@
     .brand-block {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .brand-dot {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
       border-radius: 999px;
       background: radial-gradient(circle at 30% 30%, #fee2e2 0, #ec4899 40%, #4c1d95 80%);
       box-shadow:
-        0 0 18px rgba(236, 72, 153, 0.9),
-        0 0 30px rgba(147, 51, 234, 0.8);
+        0 0 20px rgba(236, 72, 153, 0.9),
+        0 0 34px rgba(147, 51, 234, 0.8);
     }
 
     .brand-text-main {
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.18em;
@@ -193,7 +193,7 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      padding: 8px 12px 72px;
+      padding: 10px 14px 72px;
     }
 
     .main-inner {
@@ -215,18 +215,18 @@
 
     .panel {
       background: linear-gradient(145deg, var(--panel) 0%, var(--panel-soft) 100%);
-      border-radius: var(--radius-lg);
+      border-radius: 20px;
       border: 1px solid rgba(148, 27, 84, 0.6);
       box-shadow: var(--shadow);
-      padding: 14px 14px 16px;
-      margin-bottom: 12px;
-      animation: floatUp 0.3s ease-out;
+      padding: 16px 16px 18px;
+      margin-bottom: 16px;
+      animation: floatUp 0.25s ease-out;
     }
 
     @media (min-width: 900px) {
       .panel {
-        padding: 16px 18px 18px;
-        margin-bottom: 18px;
+        padding: 18px 20px 20px;
+        margin-bottom: 20px;
       }
     }
 
@@ -264,7 +264,7 @@
       color: #fecaca;
     }
 
-    p { margin: 4px 0; line-height: 1.55; }
+    p { margin: 4px 0; line-height: 1.6; }
 
     .muted { font-size: 12px; color: var(--muted); }
 
@@ -345,6 +345,14 @@
       font-size: 12px;
       margin-bottom: 6px;
       cursor: pointer;
+      transition: transform var(--fast), box-shadow var(--fast), border var(--fast), background var(--fast);
+    }
+
+    .search-result-item:hover {
+      transform: translateY(-1px);
+      border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(148, 27, 84, 0.7);
+      background: rgba(15, 23, 42, 1);
     }
 
     .search-result-meta {
@@ -847,8 +855,8 @@
 
     @media (max-width: 480px) {
       .app-header-inner { padding-inline: 10px; }
-      main { padding-inline: 8px; }
-      .panel { padding-inline: 12px; }
+      main { padding-inline: 10px; }
+      .panel { padding-inline: 14px; }
     }
   </style>
 </head>
@@ -860,8 +868,8 @@
         <div class="brand-block">
           <div class="brand-dot"></div>
           <div>
-            <div class="brand-text-main">SAYAM & SAFAS</div>
-            <div class="brand-text-sub">REVISION HUB</div>
+            <div class="brand-text-main">GCSE ENGLISH</div>
+            <div class="brand-text-sub">STUDY SPACE</div>
           </div>
         </div>
         <div class="theme-select-wrap">
@@ -920,12 +928,12 @@
               <div>
                 <h3>Content</h3>
                 <ul class="clean">
-                  <li><span class="b">★</span><span><strong>A Christmas Carol</strong> – key quotes, staves, themes, redemption (via cards & search).</span></li>
-                  <li><span class="b">★</span><span><strong>Belonging Anthology</strong> – core poems with meaning, language and context.</span></li>
+                  <li><span class="b">★</span><span><strong>A Christmas Carol</strong> – quotes, staves, themes, redemption (cards + search).</span></li>
+                  <li><span class="b">★</span><span><strong>Belonging Anthology</strong> – core poems with meaning, language, context.</span></li>
                   <li><span class="b">★</span><span><strong>Language Paper 1</strong> – question structures, timings, story planning.</span></li>
                   <li><span class="b">★</span><span><strong>Language Paper 2</strong> – comparison, evaluation, transactional writing.</span></li>
-                  <li><span class="b">★</span><span><strong>Macbeth</strong> – key quotes, moments, themes, characters (Macbeth deck + search).</span></li>
-                  <li><span class="b">★</span><span><strong>An Inspector Calls</strong> – key quotes, themes, characters, responsibility (AIC deck + search).</span></li>
+                  <li><span class="b">★</span><span><strong>Macbeth</strong> – quotes, moments, themes, characters (deck + search).</span></li>
+                  <li><span class="b">★</span><span><strong>An Inspector Calls</strong> – quotes, themes, characters, responsibility (deck + search).</span></li>
                 </ul>
                 <div class="chip-row">
                   <span class="chip">Use search to pull up Macbeth and AIC notes when you need them.</span>
@@ -934,15 +942,14 @@
               <div>
                 <h3>Sections</h3>
                 <ul class="clean">
-                  <li><span class="b">1</span><span><strong>Flashcards</strong> – ACC, Belonging, Lang, Lit, Macbeth, AIC decks.</span></li>
+                  <li><span class="b">1</span><span><strong>Flashcards</strong> – ACC, Belonging, Language, Literature, Macbeth, AIC.</span></li>
                   <li><span class="b">2</span><span><strong>Guides</strong> – step-by-step structures for every English paper.</span></li>
-                  <li><span class="b">3</span><span><strong>Anthology</strong> – belonging poems with key quotes + context.</span></li>
-                  <li><span class="b">4</span><span><strong>Tools</strong> – quote finder, paragraph builder, random questions, sentence openers, checklists, timer.</span></li>
-                  <li><span class="b">5</span><span><strong>Search</strong> – finds hidden notes and cards for Macbeth, AIC, ACC, Lang, Lit.</span></li>
-                  <li><span class="b">6</span><span><strong>Themes & characters</strong> – searched when needed, not cluttering the page.</span></li>
+                  <li><span class="b">3</span><span><strong>Anthology</strong> – belonging poems with quotes + context.</span></li>
+                  <li><span class="b">4</span><span><strong>Tools</strong> – quote finder, builder, random questions, openers, checklists, timer.</span></li>
+                  <li><span class="b">5</span><span><strong>Search</strong> – finds hidden notes/cards for Macbeth, AIC, ACC, Lang, Lit.</span></li>
                 </ul>
                 <div class="chip-row">
-                  <span class="chip">Pick a theme you like at the top and get started.</span>
+                  <span class="chip">Pick a theme at the top and start with one small task.</span>
                 </div>
               </div>
             </div>
@@ -953,7 +960,7 @@
           <div class="panel-header">
             <div>
               <h2>Start now</h2>
-              <small>Jump into a task</small>
+              <small>Quick shortcuts</small>
             </div>
           </div>
           <div class="panel-body">
@@ -2078,7 +2085,7 @@
       if (type === "lang") {
         paragraph = `${P} This is shown in the quotation ${E}. The use of ${T} helps to create this because ${F}. Overall, the writer makes the reader ${F || "respond in a particular way"} by focusing on this detail.`;
       } else if (type === "lit") {
-        paragraph = `Shakespeare or Priestley presents ${P} This is evident in the quotation ${E}. The use of ${T} suggests ${F}. This is notable in the context of ${C || "the time the text was produced"}, and the writer may be trying to show that ${F || "this behaviour has serious consequences"}.`;
+        paragraph = `The writer presents ${P} This is evident in the quotation ${E}. The use of ${T} suggests ${F}. This is notable in the context of ${C || "the time the text was produced"}, and the writer may be trying to show that ${F || "this behaviour has serious consequences"}.`;
       } else if (type === "poetry") {
         paragraph = `${P} In the first poem, this is shown in the quotation ${E}, where the use of ${T} makes the reader ${F}. In the context of ${C || "the poet’s background"}, this suggests a wider message about the theme. You could then compare how the second poem uses a different method to present a similar or contrasting idea.`;
       } else if (type === "tx") {
