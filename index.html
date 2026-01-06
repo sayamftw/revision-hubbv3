@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>GCSE English – Study Space</title>
+  <title>GCSE Study – English & Science</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#05010b" />
   <style>
@@ -107,13 +107,46 @@
       letter-spacing: 0.14em;
     }
 
+    .header-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .subject-toggle {
+      display: flex;
+      background: rgba(15, 23, 42, 0.96);
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 2px;
+      gap: 2px;
+    }
+
+    .subject-btn {
+      border: none;
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 11px;
+      color: var(--muted);
+      background: transparent;
+      cursor: pointer;
+      transition: background var(--fast), color var(--fast), transform var(--fast);
+    }
+
+    .subject-btn.active {
+      background: var(--accent-soft);
+      color: var(--text);
+      transform: translateY(-1px);
+    }
+
     .theme-select-wrap {
       display: flex;
       flex-direction: column;
       gap: 2px;
       font-size: 11px;
       color: var(--muted);
-      flex-shrink: 0;
     }
 
     .theme-select-wrap select {
@@ -868,28 +901,34 @@
         <div class="brand-block">
           <div class="brand-dot"></div>
           <div>
-            <div class="brand-text-main">GCSE ENGLISH</div>
-            <div class="brand-text-sub">STUDY SPACE</div>
+            <div class="brand-text-main">GCSE STUDY</div>
+            <div class="brand-text-sub" id="mode-label">English revision</div>
           </div>
         </div>
-        <div class="theme-select-wrap">
-          <span>Theme</span>
-          <select id="theme-select">
-            <option value="neon">Neon Purple</option>
-            <option value="ocean">Deep Ocean</option>
-            <option value="sunset">Sunset Glow</option>
-            <option value="mono">Clean Mono</option>
-            <option value="matrix">Matrix Green</option>
-            <option value="darkred">Dark Red</option>
-            <option value="cats">Cat Mode</option>
-          </select>
+        <div class="header-right">
+          <div class="subject-toggle">
+            <button class="subject-btn active" data-subject="english">English</button>
+            <button class="subject-btn" data-subject="science">Science</button>
+          </div>
+          <div class="theme-select-wrap">
+            <span>Theme</span>
+            <select id="theme-select">
+              <option value="neon">Neon Purple</option>
+              <option value="ocean">Deep Ocean</option>
+              <option value="sunset">Sunset Glow</option>
+              <option value="mono">Clean Mono</option>
+              <option value="matrix">Matrix Green</option>
+              <option value="darkred">Dark Red</option>
+              <option value="cats">Cat Mode</option>
+            </select>
+          </div>
         </div>
       </div>
 
       <div class="header-row-search">
         <div class="search-bar">
           <span>🔍</span>
-          <input id="global-search-input" type="text" placeholder="Search Macbeth, AIC, ACC, structures..." />
+          <input id="global-search-input" type="text" placeholder="Search ACC, Macbeth, AIC, poems, science topics..." />
         </div>
         <button id="global-search-btn" class="search-button">Search</button>
       </div>
@@ -920,13 +959,13 @@
           <div class="panel-header">
             <div>
               <h2>Overview</h2>
-              <small>English revision – key areas</small>
+              <small>English & Combined Science revision</small>
             </div>
           </div>
           <div class="panel-body">
             <div class="grid-two">
               <div>
-                <h3>Content</h3>
+                <h3>English content</h3>
                 <ul class="clean">
                   <li><span class="b">★</span><span><strong>A Christmas Carol</strong> – quotes, staves, themes, redemption (cards + search).</span></li>
                   <li><span class="b">★</span><span><strong>Belonging Anthology</strong> – core poems with meaning, language, context.</span></li>
@@ -935,21 +974,17 @@
                   <li><span class="b">★</span><span><strong>Macbeth</strong> – quotes, moments, themes, characters (deck + search).</span></li>
                   <li><span class="b">★</span><span><strong>An Inspector Calls</strong> – quotes, themes, characters, responsibility (deck + search).</span></li>
                 </ul>
-                <div class="chip-row">
-                  <span class="chip">Use search to pull up Macbeth and AIC notes when you need them.</span>
-                </div>
               </div>
               <div>
-                <h3>Sections</h3>
+                <h3>Science content</h3>
                 <ul class="clean">
-                  <li><span class="b">1</span><span><strong>Flashcards</strong> – ACC, Belonging, Language, Literature, Macbeth, AIC.</span></li>
-                  <li><span class="b">2</span><span><strong>Guides</strong> – step-by-step structures for every English paper.</span></li>
-                  <li><span class="b">3</span><span><strong>Anthology</strong> – belonging poems with quotes + context.</span></li>
-                  <li><span class="b">4</span><span><strong>Tools</strong> – quote finder, builder, random questions, openers, checklists, timer.</span></li>
-                  <li><span class="b">5</span><span><strong>Search</strong> – finds hidden notes/cards for Macbeth, AIC, ACC, Lang, Lit.</span></li>
+                  <li><span class="b">★</span><span><strong>Biology</strong> – cells, organisation, disease, health.</span></li>
+                  <li><span class="b">★</span><span><strong>Chemistry</strong> – atoms, bonding, reactions, energy changes.</span></li>
+                  <li><span class="b">★</span><span><strong>Physics</strong> – energy, electricity, forces, waves.</span></li>
+                  <li><span class="b">★</span><span><strong>Decks</strong> – built for AQA Combined Science topics.</span></li>
                 </ul>
                 <div class="chip-row">
-                  <span class="chip">Pick a theme at the top and start with one small task.</span>
+                  <span class="chip">Use the subject toggle for English / Science cards.</span>
                 </div>
               </div>
             </div>
@@ -972,13 +1007,13 @@
               <button class="soft small" data-goto="tools">Tools</button>
             </div>
             <p class="muted" style="margin-top:8px;">
-              Try: “Macbeth ambition”, “AIC Eva Smith”, “ACC redemption”, “Island Man imagery”.
+              Try: “Macbeth ambition”, “AIC Eva Smith”, “ACC redemption”, “cells”, “energy stores”.
             </p>
           </div>
         </div>
       </section>
 
-      <!-- GUIDES -->
+      <!-- GUIDES (English – left as is) -->
       <section id="view-guides" class="view">
         <div class="panel">
           <div class="panel-header">
@@ -1079,7 +1114,7 @@
           <div class="panel-header">
             <div>
               <h2>Flashcards</h2>
-              <small>ACC · Belonging · Language · Literature · Macbeth · AIC</small>
+              <small>Switch English / Science at the top</small>
             </div>
           </div>
           <div class="panel-body">
@@ -1091,7 +1126,7 @@
               <span id="deck-info" class="muted">0 cards</span>
             </div>
 
-            <div class="quick-decks">
+            <div id="quick-decks" class="quick-decks">
               <button class="soft small" data-quick-deck="ACC – Key Quotes">ACC</button>
               <button class="soft small" data-quick-deck="Belonging – Poems">Belonging</button>
               <button class="soft small" data-quick-deck="Language Paper 1 – Structure">Lang P1</button>
@@ -1284,14 +1319,14 @@
             <!-- QUOTE FINDER -->
             <div class="tool-card">
               <div class="tool-card-header">
-                <div class="tool-card-title">Quote finder</div>
+                <div class="tool-card-title">Quote / fact finder</div>
                 <button class="soft small" data-toggle="#tool-quote" data-closed="Open" data-open="Close">Open</button>
               </div>
               <div class="tool-card-body more-content" id="tool-quote">
                 <div class="grid-two">
                   <div>
                     <label class="mini-label">Search term</label>
-                    <input id="quote-search-input" type="text" placeholder="e.g. 'Macbeth guilt', 'Eva Smith', 'ghost', 'island'..." />
+                    <input id="quote-search-input" type="text" placeholder="e.g. 'Macbeth guilt', 'Eva Smith', 'cells', 'energy'..." />
                   </div>
                   <div>
                     <label class="mini-label">Scope</label>
@@ -1301,6 +1336,7 @@
                       <option value="Belonging">Belonging</option>
                       <option value="Language">Language</option>
                       <option value="Literature">Literature</option>
+                      <option value="Science">Science</option>
                     </select>
                   </div>
                 </div>
@@ -1374,6 +1410,7 @@
                   <button class="soft small" data-qset="aic">AIC</button>
                   <button class="soft small" data-qset="belonging">Belonging</button>
                   <button class="soft small" data-qset="unseen">Unseen</button>
+                  <button class="soft small" data-qset="science">Science</button>
                 </div>
                 <div id="question-output" class="question-output"></div>
               </div>
@@ -1614,11 +1651,11 @@
     // ---------- TODAY FOCUS ----------
     const todayText = document.getElementById("today-focus");
     const focusOptions = [
-      "Today: ACC extract + 10 flashcards.",
-      "Today: 1 Lang Paper 1 plan + 10 ACC cards.",
-      "Today: Belonging comparison + 10 Language cards.",
+      "Today: ACC extract + 10 English cards.",
+      "Today: 1 Lang Paper 1 plan + 10 cards.",
+      "Today: Belonging comparison + 10 cards.",
       "Today: Macbeth quote drill + AIC paragraph.",
-      "Today: Unseen poetry practice + 10 cards."
+      "Today: Science – energy + cells cards."
     ];
     todayText.textContent =
       focusOptions[Math.floor(Math.random() * focusOptions.length)];
@@ -1659,7 +1696,6 @@
       });
     });
 
-    // focus search from Home quick action
     const globalSearchInput = document.getElementById("global-search-input");
     document.querySelectorAll('[data-action="focus-search"]').forEach(btn => {
       btn.addEventListener("click", () => {
@@ -1669,8 +1705,40 @@
       });
     });
 
-    // ---------- DECKS ----------
-    const DECKS = {
+    // ---------- SUBJECT TOGGLE ----------
+    let currentSubject = "english";
+    const subjectButtons = document.querySelectorAll(".subject-btn");
+    const modeLabel = document.getElementById("mode-label");
+    const quickDecksEl = document.getElementById("quick-decks");
+
+    function setSubject(subj) {
+      if (subj === currentSubject) return;
+      currentSubject = subj;
+      subjectButtons.forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-subject") === subj);
+      });
+      modeLabel.textContent =
+        subj === "english" ? "English revision" : "Science revision";
+      if (subj === "english") {
+        quickDecksEl.style.display = "flex";
+      } else {
+        quickDecksEl.style.display = "none";
+      }
+      const decks = getActiveDecks();
+      currentDeckName = Object.keys(decks)[0] || null;
+      renderDeckOptions();
+      resetStudyOrder();
+    }
+
+    subjectButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const subj = btn.getAttribute("data-subject");
+        setSubject(subj);
+      });
+    });
+
+    // ---------- DECKS (ENGLISH) ----------
+    const DECKS_EN = {
       "ACC – Key Quotes": [
         { front: "\"Marley was dead: to begin with.\"", back: "Opening line. Confirms Marley is dead and sets up the ghost story (Stave 1)." },
         { front: "\"As solitary as an oyster.\"", back: "Narrator describing Scrooge – isolated, but with potential for change." },
@@ -1729,37 +1797,34 @@
       ],
 
       "Macbeth – Key Quotes & Ideas": [
-        { front: "\"Fair is foul, and foul is fair.\"", back: "Witches in Act 1. Theme of appearance vs reality and moral confusion. Suggests that what looks good may be evil." },
-        { front: "\"Brave Macbeth – well he deserves that name.\"", back: "Macbeth at the start – loyal, heroic soldier. Shows how far he will fall from this point." },
+        { front: "\"Fair is foul, and foul is fair.\"", back: "Witches in Act 1. Theme of appearance vs reality and moral confusion." },
+        { front: "\"Brave Macbeth – well he deserves that name.\"", back: "Macbeth at the start – loyal, heroic soldier." },
         { front: "\"Let not light see my black and deep desires.\"", back: "Macbeth hides his ambition to kill Duncan. Light vs dark imagery links ambition with evil." },
-        { front: "\"Unsex me here.\"", back: "Lady Macbeth rejects stereotypical femininity to gain power and cruelty. Shows her ambition and desire to be more 'masculine'." },
-        { front: "\"Look like th' innocent flower, but be the serpent under't.\"", back: "Lady Macbeth tells Macbeth to hide his true intentions. Appearance vs reality; biblical reference to the serpent." },
+        { front: "\"Unsex me here.\"", back: "Lady Macbeth rejects stereotypical femininity to gain power and cruelty." },
+        { front: "\"Look like th' innocent flower, but be the serpent under't.\"", back: "Lady Macbeth tells Macbeth to hide his true intentions. Appearance vs reality; serpent image." },
         { front: "\"Is this a dagger which I see before me?\"", back: "Macbeth hallucinates before killing Duncan. Symbol of guilt and his unstable mind." },
         { front: "\"Will all great Neptune's ocean wash this blood clean from my hand?\"", back: "Hyperbole – guilt so huge it cannot be washed away. Blood symbolises guilt." },
-        { front: "\"O full of scorpions is my mind, dear wife!\"", back: "Macbeth’s mind is poisoned with fear and paranoia after killing Duncan." },
-        { front: "\"Out, damned spot!\"", back: "Lady Macbeth in Act 5 – she imagines blood on her hands. Her earlier confidence collapses into guilt and madness." },
-        { front: "\"Life's but a walking shadow... a tale told by an idiot.\"", back: "Macbeth’s nihilism after Lady Macbeth’s death. He feels life is meaningless after all his crimes." },
-        { front: "Macbeth – key moments", back: "Witches’ prophecies; Macbeth rewarded by Duncan; pressure from Lady Macbeth; Duncan’s murder; Banquo’s murder and ghost at the banquet; visit to witches again; Macduff’s family killed; Lady Macbeth’s sleepwalking; final battle where Macbeth is killed by Macduff." },
-        { front: "Macbeth – main themes", back: "Ambition; guilt; fate vs free will; appearance vs reality; masculinity and power; kingship and the destruction of natural order." },
-        { front: "Macbeth – key characters", back: "Macbeth (tragic hero who falls from brave to tyrant); Lady Macbeth (ambitious, manipulative, then broken by guilt); Banquo (honourable contrast to Macbeth); Macduff (avenger and figure of justice); Duncan (good king whose murder breaks order); the Witches (represent fate, temptation and evil)." }
+        { front: "\"O full of scorpions is my mind, dear wife!\"", back: "Macbeth’s mind is poisoned with fear and paranoia." },
+        { front: "\"Out, damned spot!\"", back: "Lady Macbeth imagines blood on her hands. Her earlier confidence collapses into guilt and madness." },
+        { front: "\"Life's but a walking shadow... a tale told by an idiot.\"", back: "Macbeth’s nihilism after Lady Macbeth’s death; life feels meaningless." },
+        { front: "Macbeth – key moments", back: "Witches’ prophecies; Duncan’s murder; Banquo’s murder and ghost; second visit to witches; Macduff’s family killed; Lady Macbeth’s sleepwalking; final battle." },
+        { front: "Macbeth – main themes", back: "Ambition; guilt; fate vs free will; appearance vs reality; masculinity and power; kingship and natural order." }
       ],
 
       "AIC – Key Quotes & Ideas": [
-        { front: "\"Unsinkable, absolutely unsinkable.\"", back: "Mr Birling about the Titanic. Dramatic irony; shows his arrogance, overconfidence and ignorance. Priestley makes him look foolish." },
-        { front: "\"A man has to make his own way.\"", back: "Birling’s capitalist view – everyone should look after themselves only. Opposite of Inspector’s message of social responsibility." },
-        { front: "\"Girls of that class.\"", back: "Mrs Birling – class prejudice and lack of empathy for working-class women like Eva Smith." },
-        { front: "\"Sheila: 'But these girls aren't cheap labour – they're people.'\"", back: "Sheila begins to reject her parents’ attitudes; shows moral development and empathy for workers." },
-        { front: "\"We are members of one body. We are responsible for each other.\"", back: "Inspector’s core message – socialist idea of collective responsibility; Priestley’s main theme." },
-        { front: "\"Each of you helped to kill her.\"", back: "Inspector sums up how all of them are linked to Eva’s death. No one is fully innocent." },
-        { front: "\"You lot may be letting yourselves out nicely, but I can't.\"", back: "Eric accepts guilt while his parents try to escape blame. Shows generational divide." },
-        { front: "\"The famous younger generation who know it all.\"", back: "Birling mocks Sheila and Eric – but audience sees the younger generation are actually the ones learning." },
-        { front: "AIC – key moments", back: "Birling’s speech at start; Inspector arrives; Eva’s sacking from Birling’s factory; Sheila and the dress shop; Gerald and Daisy Renton; Mrs Birling and the charity; Eric’s involvement; Inspector’s final speech; phone call at the end hinting a real inspector may still come." },
-        { front: "AIC – main themes", back: "Social responsibility; class and inequality; gender and treatment of women; generation gap; guilt and denial; public reputation vs private morality." },
-        { front: "AIC – key characters", back: "Arthur Birling (rich businessman, capitalist, stubborn and wrong); Sybil Birling (cold, snobbish, refuses responsibility); Sheila (begins shallow but becomes moral and self-aware); Eric (flawed but accepts guilt); Gerald (in-between, tries to help but still protects himself); Inspector Goole (moral voice, possibly supernatural, pushes them to face the truth)." }
+        { front: "\"Unsinkable, absolutely unsinkable.\"", back: "Mr Birling about the Titanic. Dramatic irony; shows arrogance and ignorance." },
+        { front: "\"A man has to make his own way.\"", back: "Birling’s capitalist view – everyone looks after themselves only." },
+        { front: "\"Girls of that class.\"", back: "Mrs Birling – class prejudice and lack of empathy for working-class women." },
+        { front: "\"But these girls aren't cheap labour – they're people.\"", back: "Sheila begins to reject her parents’ attitudes; shows moral development." },
+        { front: "\"We are members of one body. We are responsible for each other.\"", back: "Inspector’s core message – socialist idea of collective responsibility." },
+        { front: "\"Each of you helped to kill her.\"", back: "Inspector sums up how all of them are linked to Eva’s death." },
+        { front: "\"You lot may be letting yourselves out nicely, but I can't.\"", back: "Eric accepts guilt while his parents try to escape blame." },
+        { front: "\"The famous younger generation who know it all.\"", back: "Birling mocks Sheila and Eric – but audience sees younger generation learn more." },
+        { front: "AIC – key themes", back: "Social responsibility; class and inequality; gender; generation gap; guilt and denial." }
       ]
     };
 
-    const DECK_SOURCE = {
+    const DECK_SOURCE_EN = {
       "ACC – Key Quotes": "ACC",
       "Belonging – Poems": "Belonging",
       "Language Paper 1 – Structure": "Language",
@@ -1770,13 +1835,98 @@
       "AIC – Key Quotes & Ideas": "Literature"
     };
 
-    // search index
+    // ---------- DECKS (SCIENCE – AQA COMBINED SCIENCE STYLE) ----------
+    const DECKS_SCI = {
+      "Sci – Biology: Cells & Organisation": [
+        { front: "Cell", back: "Basic unit of life. Similar cells form tissues, tissues form organs, organs form organ systems, which make an organism." },
+        { front: "Eukaryotic vs prokaryotic", back: "Eukaryotic cells (animal/plant) have a nucleus with DNA. Prokaryotic cells (bacteria) have no true nucleus; DNA is free in cytoplasm." },
+        { front: "Animal cell structures", back: "Cell membrane, cytoplasm, nucleus, mitochondria, ribosomes." },
+        { front: "Plant cell extra structures", back: "Chloroplasts (photosynthesis), permanent vacuole (cell sap), cell wall (support). Also have membrane, cytoplasm, nucleus." },
+        { front: "Diffusion", back: "Net movement of particles from an area of higher concentration to an area of lower concentration (down a concentration gradient)." },
+        { front: "Osmosis", back: "Diffusion of water through a partially permeable membrane from a dilute solution to a more concentrated solution." },
+        { front: "Active transport", back: "Movement of particles from low to high concentration using energy from respiration." },
+        { front: "Mitosis", back: "Cell division that produces two genetically identical daughter cells for growth and repair." },
+        { front: "Stem cells", back: "Undifferentiated cells that can divide and become specialised cells. Found in embryos and some adult tissues." }
+      ],
+
+      "Sci – Biology: Health & Disease": [
+        { front: "Pathogen", back: "Microorganism that causes infectious disease (bacteria, viruses, fungi, protists)." },
+        { front: "Immune system basics", back: "White blood cells ingest pathogens, produce antibodies (specific to antigens) and antitoxins." },
+        { front: "Vaccination", back: "Dead or weakened pathogen injected; body makes memory cells so antibodies can be produced quickly if infected later." },
+        { front: "Antibiotics", back: "Drugs that kill bacteria (not viruses). Overuse can lead to resistant strains." },
+        { front: "Non-communicable disease", back: "Not spread from person to person (e.g. cancer, heart disease). Linked to risk factors such as diet, smoking, alcohol." }
+      ],
+
+      "Sci – Chemistry: Atoms & Bonding": [
+        { front: "Structure of atom", back: "Nucleus with protons (+1) and neutrons (0). Electrons (–1) in shells around nucleus." },
+        { front: "Atomic number & mass number", back: "Atomic number = protons. Mass number = protons + neutrons." },
+        { front: "Isotopes", back: "Atoms of the same element with the same number of protons but different numbers of neutrons." },
+        { front: "Group 1 metals", back: "Alkali metals – very reactive, soft, react with water to make hydrogen + alkali solution." },
+        { front: "Group 7 halogens", back: "Non-metals; reactivity decreases down the group. Form salts with metals." },
+        { front: "Ionic bonding", back: "Transfer of electrons from metal to non-metal. Oppositely charged ions attract strongly." },
+        { front: "Covalent bonding", back: "Sharing pairs of electrons between non-metal atoms." },
+        { front: "Metallic bonding", back: "Positive metal ions in a lattice with delocalised electrons – strong attractions, conduct electricity." }
+      ],
+
+      "Sci – Chemistry: Reactions & Energy": [
+        { front: "Conservation of mass", back: "No atoms are created or destroyed in a chemical reaction; total mass of reactants equals products." },
+        { front: "pH scale", back: "0–6 acidic, 7 neutral, 8–14 alkaline. Universal indicator shows colour changes." },
+        { front: "Acid + metal", back: "Acid + metal → salt + hydrogen (e.g. HCl + magnesium → magnesium chloride + hydrogen)." },
+        { front: "Exothermic reaction", back: "Transfers energy to surroundings (temperature rises). E.g. combustion, many oxidations." },
+        { front: "Endothermic reaction", back: "Takes in energy from surroundings (temperature falls). E.g. thermal decomposition, some sports pack reactions." },
+        { front: "Electrolysis basics", back: "Decomposition of an ionic compound using electricity. Positive ions move to the negative electrode (cathode)." }
+      ],
+
+      "Sci – Physics: Energy & Electricity": [
+        { front: "Energy stores", back: "Chemical, kinetic, gravitational potential, elastic, thermal, nuclear, magnetic, electrostatic." },
+        { front: "Conservation of energy", back: "Energy cannot be created or destroyed, only transferred between stores." },
+        { front: "Efficiency", back: "Efficiency = useful output energy ÷ total input energy (× 100%)." },
+        { front: "Power", back: "Power (W) = energy transferred (J) ÷ time (s). Tells you how quickly energy is transferred." },
+        { front: "Series vs parallel circuits", back: "Series: one loop, same current everywhere. Parallel: branches, current splits, components independently controlled." },
+        { front: "Ohm's law", back: "For a resistor at constant temperature: V = I × R (voltage = current × resistance)." },
+        { front: "Mains electricity (UK)", back: "Alternating current (a.c.), about 230 V, frequency 50 Hz." }
+      ],
+
+      "Sci – Physics: Forces & Waves": [
+        { front: "Scalar vs vector", back: "Scalar has size only (speed, mass). Vector has size and direction (velocity, force)." },
+        { front: "Weight equation", back: "Weight (N) = mass (kg) × gravitational field strength (N/kg). On Earth g ≈ 9.8 N/kg (often 10 N/kg in GCSE)." },
+        { front: "Hooke's law (basic)", back: "Extension of a spring is directly proportional to the force up to the limit of proportionality." },
+        { front: "Speed", back: "Speed (m/s) = distance (m) ÷ time (s). On distance–time graphs, gradient = speed." },
+        { front: "Transverse vs longitudinal waves", back: "Transverse: oscillations at 90° to direction of travel (light, water waves). Longitudinal: oscillations parallel (sound)." },
+        { front: "Wave equation", back: "Wave speed v (m/s) = frequency f (Hz) × wavelength λ (m)." }
+      ]
+    };
+
+    const DECK_SOURCE_SCI = {
+      "Sci – Biology: Cells & Organisation": "Science",
+      "Sci – Biology: Health & Disease": "Science",
+      "Sci – Chemistry: Atoms & Bonding": "Science",
+      "Sci – Chemistry: Reactions & Energy": "Science",
+      "Sci – Physics: Energy & Electricity": "Science",
+      "Sci – Physics: Forces & Waves": "Science"
+    };
+
+    function getActiveDecks() {
+      return currentSubject === "english" ? DECKS_EN : DECKS_SCI;
+    }
+
+    function getActiveSourceMap() {
+      return currentSubject === "english" ? DECK_SOURCE_EN : DECK_SOURCE_SCI;
+    }
+
+    // ---------- SEARCH INDEX ----------
+    const ALL_DECKS = { english: DECKS_EN, science: DECKS_SCI };
+    const ALL_DECK_SOURCES = { english: DECK_SOURCE_EN, science: DECK_SOURCE_SCI };
     const QUOTE_INDEX = [];
-    Object.entries(DECKS).forEach(([deckName, cards]) => {
-      const source = DECK_SOURCE[deckName] || "Other";
-      cards.forEach(card => {
-        const text = `${card.front} ${card.back}`.trim();
-        QUOTE_INDEX.push({ text, source, deck: deckName });
+
+    Object.entries(ALL_DECKS).forEach(([subject, decks]) => {
+      const sourceMap = ALL_DECK_SOURCES[subject] || {};
+      Object.entries(decks).forEach(([deckName, cards]) => {
+        const source = sourceMap[deckName] || (subject === "science" ? "Science" : "Other");
+        cards.forEach(card => {
+          const text = `${card.front} ${card.back}`.trim();
+          QUOTE_INDEX.push({ text, source, deck: deckName, subject });
+        });
       });
     });
 
@@ -1802,36 +1952,42 @@
     const studyCardEl = document.getElementById("study-card");
     const shuffleToggleEl = document.getElementById("fc-shuffle");
 
-    let currentDeckName = Object.keys(DECKS)[0] || null;
+    let currentDeckName = Object.keys(DECKS_EN)[0] || null;
     let studyOrder = [];
     let currentStudyIndex = 0;
     let showingFront = true;
 
     function renderDeckOptions() {
+      const decks = getActiveDecks();
       deckSelectEl.innerHTML = "";
-      const names = Object.keys(DECKS);
+      const names = Object.keys(decks);
       names.forEach(name => {
         const opt = document.createElement("option");
         opt.value = name;
         opt.textContent = name;
         deckSelectEl.appendChild(opt);
       });
-      if (!currentDeckName || !DECKS[currentDeckName]) {
+      if (!names.length) {
+        currentDeckName = null;
+      } else if (!currentDeckName || !decks[currentDeckName]) {
         currentDeckName = names[0];
       }
-      deckSelectEl.value = currentDeckName;
-      resetStudyOrder();
+      if (currentDeckName) {
+        deckSelectEl.value = currentDeckName;
+      }
       renderDeckInfo();
     }
 
     function renderDeckInfo() {
-      const cards = DECKS[currentDeckName] || [];
+      const decks = getActiveDecks();
+      const cards = decks[currentDeckName] || [];
       deckInfoEl.textContent = `${cards.length} card${cards.length === 1 ? "" : "s"}`;
       deckNameLabelEl.textContent = currentDeckName || "—";
     }
 
     function buildStudyOrder() {
-      const cards = DECKS[currentDeckName] || [];
+      const decks = getActiveDecks();
+      const cards = decks[currentDeckName] || [];
       studyOrder = cards.map((_, i) => i);
       if (shuffleToggleEl.checked) {
         for (let i = studyOrder.length - 1; i > 0; i--) {
@@ -1842,7 +1998,8 @@
     }
 
     function resetStudyOrder() {
-      const cards = DECKS[currentDeckName] || [];
+      const decks = getActiveDecks();
+      const cards = decks[currentDeckName] || [];
       buildStudyOrder();
       currentStudyIndex = 0;
       showingFront = true;
@@ -1850,7 +2007,8 @@
     }
 
     function refreshStudyState() {
-      const cards = DECKS[currentDeckName] || [];
+      const decks = getActiveDecks();
+      const cards = decks[currentDeckName] || [];
       renderDeckInfo();
 
       if (!cards.length) {
@@ -1885,18 +2043,21 @@
       const progress = ((currentStudyIndex + 1) / cards.length) * 100;
       progressFillEl.style.width = `${progress}%`;
 
-      statusEl.textContent = `Deck: ${currentDeckName}`;
+      const subjectLabel = currentSubject === "english" ? "English" : "Science";
+      statusEl.textContent = `${subjectLabel} · ${currentDeckName}`;
     }
 
     function flipCard() {
-      const cards = DECKS[currentDeckName] || [];
+      const decks = getActiveDecks();
+      const cards = decks[currentDeckName] || [];
       if (!cards.length) return;
       showingFront = !showingFront;
       refreshStudyState();
     }
 
     function moveCard(delta) {
-      const cards = DECKS[currentDeckName] || [];
+      const decks = getActiveDecks();
+      const cards = decks[currentDeckName] || [];
       if (!cards.length) return;
       currentStudyIndex += delta;
       if (currentStudyIndex < 0) currentStudyIndex = cards.length - 1;
@@ -1906,7 +2067,8 @@
     }
 
     function switchToDeck(name) {
-      if (!DECKS[name]) return;
+      const decks = getActiveDecks();
+      if (!decks[name]) return;
       currentDeckName = name;
       deckSelectEl.value = currentDeckName;
       resetStudyOrder();
@@ -1926,12 +2088,14 @@
     document.querySelectorAll("[data-quick-deck]").forEach(btn => {
       btn.addEventListener("click", () => {
         const name = btn.getAttribute("data-quick-deck");
+        if (currentSubject !== "english") setSubject("english");
         switchToDeck(name);
         setView("flashcards");
       });
     });
 
     renderDeckOptions();
+    resetStudyOrder();
 
     // ---------- GLOBAL SEARCH ----------
     const globalSearchBtn = document.getElementById("global-search-btn");
@@ -1964,15 +2128,17 @@
         item.className = "search-result-item";
         const snippet =
           r.text.length > 170 ? r.text.slice(0, 170) + "…" : r.text;
+        const subjectTag = r.subject === "science" ? "Science" : "English";
         item.innerHTML = `
           <div>${snippet}</div>
-          <div class="search-result-meta">${r.source} · ${r.deck}</div>
+          <div class="search-result-meta">${subjectTag} · ${r.source} · ${r.deck}</div>
         `;
         item.addEventListener("click", () => {
-          if (DECKS[r.deck]) {
-            switchToDeck(r.deck);
-            setView("flashcards");
+          if (r.subject && r.subject !== currentSubject) {
+            setSubject(r.subject);
           }
+          switchToDeck(r.deck);
+          setView("flashcards");
         });
         searchResults.appendChild(item);
       });
@@ -2036,9 +2202,10 @@
         div.className = "quote-result";
         const snippet =
           r.text.length > 160 ? r.text.slice(0, 160) + "…" : r.text;
+        const subjectTag = r.subject === "science" ? "Science" : "English";
         div.innerHTML = `
           <div>${snippet}</div>
-          <div class="quote-result-source">${r.source} · ${r.deck}</div>
+          <div class="quote-result-source">${subjectTag} · ${r.source} · ${r.deck}</div>
         `;
         quoteResults.appendChild(div);
       });
@@ -2143,6 +2310,14 @@
         "Compare how two unseen poems present different attitudes towards nature.",
         "Compare how two unseen poems present different views about growing up.",
         "Compare how two unseen poems present people feeling out of place."
+      ],
+      "science": [
+        "Explain the difference between diffusion, osmosis and active transport, giving one example of each.",
+        "Describe the structure of an atom and explain what is meant by an isotope.",
+        "Compare series and parallel circuits and explain when each might be useful.",
+        "Explain the difference between exothermic and endothermic reactions, with one example of each.",
+        "Describe how vaccination helps to protect people from infectious disease.",
+        "Explain the difference between transverse and longitudinal waves, giving one example of each."
       ]
     };
 
