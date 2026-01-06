@@ -331,6 +331,36 @@
       box-shadow: none;
     }
 
+    /* INPUTS / TEXTAREAS */
+
+    select,
+    input[type="text"],
+    textarea {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 7px 10px;
+      font-size: 13px;
+      outline: none;
+      width: 100%;
+      transition: border var(--fast), box-shadow var(--fast), background var(--fast);
+      font-family: inherit;
+    }
+
+    textarea {
+      min-height: 60px;
+      resize: vertical;
+    }
+
+    select:focus,
+    input[type="text"]:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.9);
+      background: #020013;
+    }
+
     /* FLOATING MENU BUTTON */
 
     .fab-menu {
@@ -446,6 +476,7 @@
       padding: 8px 9px;
       background: rgba(15, 23, 42, 0.9);
       font-size: 12px;
+      margin-top: 4px;
     }
 
     .timer-row {
@@ -464,6 +495,21 @@
     .timer-label {
       font-size: 11px;
       color: var(--muted);
+    }
+
+    .nav-formula-block {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-formula-line {
+      margin: 1px 0;
+    }
+
+    .nav-formula-key {
+      font-weight: 600;
+      color: #fecaca;
     }
 
     /* COLLAPSE / SHOW MORE */
@@ -498,24 +544,6 @@
       flex-direction: column;
       gap: 3px;
       min-width: 160px;
-    }
-
-    select {
-      background: rgba(15, 23, 42, 0.95);
-      border-radius: var(--radius-md);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: 7px 10px;
-      font-size: 13px;
-      outline: none;
-      width: 100%;
-      transition: border var(--fast), box-shadow var(--fast), background var(--fast);
-    }
-
-    select:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.9);
-      background: #020013;
     }
 
     .quick-decks {
@@ -683,6 +711,118 @@
 
     .poem-detail {
       margin: 2px 0;
+    }
+
+    /* TOOLS SECTION */
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .tools-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .mini-label {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .quote-result {
+      border-radius: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+    }
+
+    .quote-result-source {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .builder-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 6px;
+    }
+
+    .builder-output {
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 27, 84, 0.7);
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 13px;
+      white-space: pre-wrap;
+    }
+
+    .question-output {
+      margin-top: 6px;
+      border-radius: 10px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 13px;
+    }
+
+    .checklist-group details {
+      border-radius: 12px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      padding: 6px 8px;
+      margin-bottom: 6px;
+      font-size: 12px;
+    }
+
+    .checklist-group summary {
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .checklist-group summary span {
+      font-weight: 500;
+    }
+
+    .checklist-group ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 4px;
+    }
+
+    .checklist-group li {
+      margin-bottom: 3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .formula-box {
+      margin-top: 4px;
+      border-radius: 10px;
+      border: 1px solid rgba(148, 27, 84, 0.7);
+      padding: 8px 10px;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
+    }
+
+    .formula-line {
+      margin: 2px 0;
+    }
+
+    .formula-key {
+      font-weight: 600;
+      color: #fecaca;
     }
 
     @media (max-width: 480px) {
@@ -1203,6 +1343,165 @@
           </div>
         </div>
       </section>
+
+      <!-- TOOLS -->
+      <section id="view-tools" class="view">
+        <div class="panel">
+          <div class="panel-header">
+            <div>
+              <h2>Tools</h2>
+              <small>Search · Build paragraphs · Generate questions</small>
+            </div>
+          </div>
+          <div class="panel-body">
+            <!-- QUOTE FINDER -->
+            <h3>Quote finder</h3>
+            <div class="grid-two">
+              <div>
+                <label class="mini-label">Search term</label>
+                <input type="text" id="quote-search-input" placeholder="e.g. ghost, responsibility, island, thunder..." />
+              </div>
+              <div>
+                <label class="mini-label">Scope</label>
+                <select id="quote-scope">
+                  <option value="all">All</option>
+                  <option value="ACC">ACC</option>
+                  <option value="Belonging">Belonging</option>
+                  <option value="Language">Language</option>
+                  <option value="Literature">Literature</option>
+                </select>
+              </div>
+            </div>
+            <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+              <button class="soft small" id="quote-search-btn">Search</button>
+              <button class="soft small" id="quote-clear-btn">Clear</button>
+            </div>
+            <div class="mini-label" style="margin-top:4px;">Tap “Search” or press Enter. Shows matches from cards and notes.</div>
+            <div id="quote-results" style="margin-top:6px;"></div>
+
+            <!-- PARAGRAPH BUILDER + QUESTION GENERATOR -->
+            <div class="tools-grid" style="margin-top:10px;">
+              <div>
+                <h3>Paragraph builder</h3>
+                <div class="builder-grid">
+                  <label>
+                    <span class="mini-label">Type</span>
+                    <select id="builder-type">
+                      <option value="lang">Language analysis</option>
+                      <option value="lit">Literature essay</option>
+                      <option value="poetry">Poetry comparison</option>
+                      <option value="tx">Transactional writing</option>
+                    </select>
+                  </label>
+                  <label>
+                    <span class="mini-label">Point</span>
+                    <textarea id="builder-point" placeholder="e.g. The writer presents Scrooge as stubborn and cruel..."></textarea>
+                  </label>
+                  <label>
+                    <span class="mini-label">Evidence</span>
+                    <textarea id="builder-evidence" placeholder="Short quotation you’ll use."></textarea>
+                  </label>
+                  <label>
+                    <span class="mini-label">Technique</span>
+                    <textarea id="builder-technique" placeholder="e.g. metaphor, simile, rhetorical question..."></textarea>
+                  </label>
+                  <label>
+                    <span class="mini-label">Effect</span>
+                    <textarea id="builder-effect" placeholder="What it makes the reader think/feel."></textarea>
+                  </label>
+                  <label>
+                    <span class="mini-label">Context / purpose (if needed)</span>
+                    <textarea id="builder-context" placeholder="For lit/poetry/tx: context or writer’s purpose."></textarea>
+                  </label>
+                </div>
+                <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+                  <button class="primary small" id="builder-generate">Build paragraph</button>
+                  <button class="soft small" id="builder-clear">Clear</button>
+                </div>
+                <div id="builder-output" class="builder-output" style="margin-top:6px;"></div>
+              </div>
+
+              <div>
+                <h3>Random questions</h3>
+                <div class="mini-label">Tap for a practice question:</div>
+                <div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;">
+                  <button class="soft small" data-qset="lang-p1">Lang P1</button>
+                  <button class="soft small" data-qset="lang-p2">Lang P2</button>
+                  <button class="soft small" data-qset="acc">ACC</button>
+                  <button class="soft small" data-qset="macbeth">Macbeth</button>
+                  <button class="soft small" data-qset="aic">AIC</button>
+                  <button class="soft small" data-qset="belonging">Belonging</button>
+                  <button class="soft small" data-qset="unseen">Unseen poetry</button>
+                </div>
+                <div id="question-output" class="question-output" style="margin-top:8px;"></div>
+
+                <h3 style="margin-top:10px;">Structures & acronyms</h3>
+                <div class="formula-box">
+                  <div class="formula-line">
+                    <span class="formula-key">SPITTED</span> – Setting, People, Ideas, Tone, Theme, Events, Description.
+                  </div>
+                  <div class="formula-line">
+                    <span class="formula-key">DAFOREST</span> – Direct address, Alliteration, Fact, Opinion, Rhetorical question, Emotive language, Statistics, Tripling.
+                  </div>
+                  <div class="formula-line">
+                    <span class="formula-key">Paragraph</span> – Point → Evidence → Technique → Effect → Context/Purpose.
+                  </div>
+                  <div class="formula-line">
+                    <span class="formula-key">Story</span> – DROP → ZOOM → FLASHBACK → ECHO.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CHECKLISTS -->
+            <h3 style="margin-top:10px;">Checklists</h3>
+            <div class="checklist-group">
+              <details>
+                <summary>
+                  <span>Lang Paper 1 – Q5 imaginative</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <ul>
+                  <li><input type="checkbox" /> Clear atmosphere (DROP) at start.</li>
+                  <li><input type="checkbox" /> Character zoomed in with feelings (ZOOM).</li>
+                  <li><input type="checkbox" /> Flashback explains the situation.</li>
+                  <li><input type="checkbox" /> Ending echoes the start (ECHO/cyclical).</li>
+                  <li><input type="checkbox" /> Range of punctuation and sentence types.</li>
+                  <li><input type="checkbox" /> At least 3–4 strong language techniques.</li>
+                </ul>
+              </details>
+
+              <details>
+                <summary>
+                  <span>Lang Paper 2 – Q8/9 transactional</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <ul>
+                  <li><input type="checkbox" /> Clear statement of viewpoint.</li>
+                  <li><input type="checkbox" /> Counter argument is acknowledged and challenged.</li>
+                  <li><input type="checkbox" /> Anecdote or example included.</li>
+                  <li><input type="checkbox" /> Reasons backed by stats/experts.</li>
+                  <li><input type="checkbox" /> DAFOREST used several times.</li>
+                </ul>
+              </details>
+
+              <details>
+                <summary>
+                  <span>Lit – ACC / Macbeth / AIC essays</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <ul>
+                  <li><input type="checkbox" /> Every paragraph starts with a clear point.</li>
+                  <li><input type="checkbox" /> Quotations are short and relevant.</li>
+                  <li><input type="checkbox" /> Techniques and effects are explained.</li>
+                  <li><input type="checkbox" /> Context/purpose used where needed.</li>
+                  <li><input type="checkbox" /> Intro + conclusion link back to question.</li>
+                </ul>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   </main>
 
@@ -1241,6 +1540,9 @@
         <button class="soft nav-item-btn" data-goto="flashcards">
           <span class="icon">🃏</span> Flashcards
         </button>
+        <button class="soft nav-item-btn" data-goto="tools">
+          <span class="icon">🛠</span> Tools
+        </button>
       </div>
 
       <div class="nav-section-label" style="margin-top:6px;">Tools</div>
@@ -1251,6 +1553,17 @@
           <div style="display:flex;gap:6px;">
             <button class="soft small" id="timer-start">Start</button>
             <button class="soft small" id="timer-reset">Reset</button>
+          </div>
+        </div>
+        <div class="nav-formula-block">
+          <div class="nav-formula-line">
+            <span class="nav-formula-key">SPITTED</span> – Setting, People, Ideas, Tone, Theme, Events, Description.
+          </div>
+          <div class="nav-formula-line">
+            <span class="nav-formula-key">DAFOREST</span> – Direct address, Alliteration, Fact, Opinion, Rhetorical question, Emotive language, Statistics, Tripling.
+          </div>
+          <div class="nav-formula-line">
+            <span class="nav-formula-key">DROP–ZOOM–FLASHBACK–ECHO</span> – Story structure.
           </div>
         </div>
       </div>
@@ -1516,19 +1829,42 @@
       ]
     };
 
+    // ---------- QUOTE INDEX (for search) ----------
+    const DECK_SOURCE = {
+      "ACC – Key Quotes": "ACC",
+      "Belonging – Poems": "Belonging",
+      "Language Paper 1 – Structure": "Language",
+      "Language Paper 2 – Structure": "Language",
+      "Literature Paper 1 – Structure": "Literature",
+      "Literature Paper 2 – Structure": "Literature"
+    };
+
+    const QUOTE_INDEX = [];
+    Object.entries(DECKS).forEach(([deckName, cards]) => {
+      const source = DECK_SOURCE[deckName] || "Other";
+      cards.forEach(card => {
+        const text = `${card.front} ${card.back}`.trim();
+        QUOTE_INDEX.push({
+          text,
+          source,
+          deck: deckName
+        });
+      });
+    });
+
     // ---------- STATE ----------
     let currentDeckName = Object.keys(DECKS)[0] || null;
     let studyOrder = [];
     let currentStudyIndex = 0;
     let showingFront = true;
 
-    const navTabs = []; // we navigate using menu, not header tabs
     const views = {
       acc: document.getElementById("view-acc"),
       language: document.getElementById("view-language"),
       literature: document.getElementById("view-literature"),
       anthology: document.getElementById("view-anthology"),
-      flashcards: document.getElementById("view-flashcards")
+      flashcards: document.getElementById("view-flashcards"),
+      tools: document.getElementById("view-tools")
     };
 
     function setView(name) {
@@ -1682,94 +2018,4 @@
     document.querySelectorAll("[data-quick-deck]").forEach(btn => {
       btn.addEventListener("click", () => {
         const name = btn.getAttribute("data-quick-deck");
-        switchToDeck(name);
-      });
-    });
-
-    // ---------- NAV OVERLAY / FAB ----------
-    const fabMenu = document.getElementById("fab-menu");
-    const navOverlay = document.getElementById("nav-overlay");
-    const navClose = document.getElementById("nav-close");
-
-    fabMenu.addEventListener("click", () => {
-      navOverlay.classList.add("active");
-    });
-
-    navClose.addEventListener("click", () => {
-      navOverlay.classList.remove("active");
-    });
-
-    navOverlay.addEventListener("click", e => {
-      if (e.target === navOverlay) {
-        navOverlay.classList.remove("active");
-      }
-    });
-
-    document.querySelectorAll(".nav-item-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const view = btn.getAttribute("data-goto");
-        setView(view);
-        navOverlay.classList.remove("active");
-      });
-    });
-
-    // ---------- FOCUS TIMER ----------
-    const timerDisplay = document.getElementById("timer-display");
-    const timerStartBtn = document.getElementById("timer-start");
-    const timerResetBtn = document.getElementById("timer-reset");
-
-    let timerSecondsDefault = 25 * 60;
-    let timerSeconds = timerSecondsDefault;
-    let timerInterval = null;
-
-    function renderTimer() {
-      const mins = Math.floor(timerSeconds / 60);
-      const secs = timerSeconds % 60;
-      const mm = String(mins).padStart(2, "0");
-      const ss = String(secs).padStart(2, "0");
-      timerDisplay.textContent = `${mm}:${ss}`;
-    }
-
-    function startTimer() {
-      if (timerInterval) return;
-      timerInterval = setInterval(() => {
-        timerSeconds--;
-        if (timerSeconds <= 0) {
-          timerSeconds = 0;
-          clearInterval(timerInterval);
-          timerInterval = null;
-        }
-        renderTimer();
-      }, 1000);
-    }
-
-    function resetTimer() {
-      if (timerInterval) {
-        clearInterval(timerInterval);
-        timerInterval = null;
-      }
-      timerSeconds = timerSecondsDefault;
-      renderTimer();
-    }
-
-    timerStartBtn.addEventListener("click", startTimer);
-    timerResetBtn.addEventListener("click", resetTimer);
-
-    // ---------- TODAY FOCUS (simple text) ----------
-    const todayFocusEl = document.getElementById("today-focus");
-    const focusOptions = [
-      "Today: ACC extract + 1 Lang card set",
-      "Today: 10 ACC cards + 1 Belonging comparison",
-      "Today: Lang Paper 1 plan + 10 min Belonging",
-      "Today: 1 Macbeth essay plan + 10 flashcards",
-      "Today: Unseen poetry paragraph + 10 Lang cards"
-    ];
-    todayFocusEl.textContent = focusOptions[Math.floor(Math.random() * focusOptions.length)];
-
-    // ---------- INIT ----------
-    renderDeckOptions();
-    setView("acc");
-    renderTimer();
-  </script>
-</body>
-</html>
+        switchToDeck(name
