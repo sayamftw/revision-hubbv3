@@ -9,7 +9,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <style>
     :root {
-      /* default (neon) – overridden by JS theme switcher */
       --bg: #05010b;
       --panel: #090317;
       --panel-soft: #0b041b;
@@ -22,7 +21,7 @@
       --radius-lg: 18px;
       --radius-md: 12px;
       --shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-      --fast: 0.14s ease-out;
+      --fast: 0.1s ease-out;
     }
 
     * { box-sizing: border-box; }
@@ -42,6 +41,30 @@
       -webkit-font-smoothing: antialiased;
       display: flex;
       flex-direction: column;
+      transition: background 0.3s ease-out;
+    }
+
+    /* simple animations */
+
+    @keyframes floatUp {
+      from { opacity: 0; transform: translateY(6px) scale(0.99); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @keyframes fadeInView {
+      from { opacity: 0; transform: translateY(4px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulseFab {
+      0% { transform: scale(1); box-shadow: 0 0 16px rgba(236,72,153,0.9), 0 10px 28px rgba(0,0,0,0.9); }
+      50% { transform: scale(1.05); box-shadow: 0 0 24px rgba(236,72,153,1), 0 14px 32px rgba(0,0,0,1); }
+      100% { transform: scale(1); box-shadow: 0 0 16px rgba(236,72,153,0.9), 0 10px 28px rgba(0,0,0,0.9); }
+    }
+
+    @keyframes fadeOverlay {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
 
     header {
@@ -84,10 +107,11 @@
       box-shadow:
         0 0 18px rgba(236, 72, 153, 0.9),
         0 0 30px rgba(147, 51, 234, 0.8);
+      animation: floatUp 0.4s ease-out;
     }
 
     .app-name {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.22em;
@@ -125,6 +149,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      animation: floatUp 0.4s ease-out;
     }
 
     .pill-dot {
@@ -151,6 +176,14 @@
       padding: 5px 9px;
       font-size: 11px;
       outline: none;
+      transition: border var(--fast), box-shadow var(--fast), background var(--fast), transform var(--fast);
+    }
+
+    .theme-wrap select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px var(--accent);
+      background: #020013;
+      transform: translateY(-1px);
     }
 
     main {
@@ -168,10 +201,13 @@
     section.view {
       display: none;
       min-height: calc(100vh - 100px);
+      opacity: 0;
+      transform: translateY(4px);
     }
 
     section.view.active {
       display: block;
+      animation: fadeInView 0.25s ease-out forwards;
     }
 
     .panel {
@@ -181,6 +217,7 @@
       box-shadow: var(--shadow);
       padding: 14px 14px 16px;
       margin-bottom: 12px;
+      animation: floatUp 0.3s ease-out;
     }
 
     @media (min-width: 900px) {
@@ -281,6 +318,7 @@
       border: 1px solid rgba(148, 27, 84, 0.7);
       background: rgba(17, 24, 39, 0.96);
       color: var(--muted);
+      animation: floatUp 0.3s ease-out;
     }
 
     .quote-list {
@@ -320,7 +358,8 @@
         transform var(--fast),
         box-shadow var(--fast),
         border var(--fast),
-        background var(--fast);
+        background var(--fast),
+        opacity var(--fast);
     }
 
     button span.icon {
@@ -343,13 +382,15 @@
     }
 
     button:hover {
-      transform: translateY(-0.5px);
+      transform: translateY(-1px) scale(1.02);
       box-shadow: 0 0 12px rgba(148, 27, 84, 0.9);
+      opacity: 0.95;
     }
 
     button:active {
       transform: translateY(0.5px) scale(0.98);
       box-shadow: none;
+      opacity: 0.9;
     }
 
     select,
@@ -363,7 +404,7 @@
       font-size: 13px;
       outline: none;
       width: 100%;
-      transition: border var(--fast), box-shadow var(--fast), background var(--fast);
+      transition: border var(--fast), box-shadow var(--fast), background var(--fast), transform var(--fast);
       font-family: inherit;
     }
 
@@ -378,6 +419,7 @@
       border-color: var(--accent);
       box-shadow: 0 0 0 1px rgba(236, 72, 153, 0.9);
       background: #020013;
+      transform: translateY(-1px);
     }
 
     .fab-menu {
@@ -397,6 +439,7 @@
       justify-content: center;
       font-size: 20px;
       z-index: 30;
+      animation: pulseFab 2s infinite;
     }
 
     .fab-menu span {
@@ -424,6 +467,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      animation: fadeOverlay 0.15s ease-out;
     }
 
     .nav-card {
@@ -439,6 +483,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      animation: floatUp 0.3s ease-out;
     }
 
     .nav-card-header {
@@ -534,6 +579,7 @@
     .more-content {
       display: none;
       margin-top: 6px;
+      animation: floatUp 0.25s ease-out;
     }
 
     .more-content.open {
@@ -596,7 +642,14 @@
       transition:
         border var(--fast),
         box-shadow var(--fast),
-        transform var(--fast);
+        transform var(--fast),
+        background var(--fast);
+    }
+
+    .flashcard-box:hover {
+      transform: translateY(-2px) scale(1.01);
+      box-shadow: 0 0 18px rgba(148, 27, 84, 0.9);
+      background: radial-gradient(circle at top left, #1a082f 0, #050012 70%);
     }
 
     .flashcard-box:active {
@@ -680,10 +733,13 @@
       border-radius: 12px;
       padding: 6px 8px;
       margin: 2px 0;
+      transition: background var(--fast), border var(--fast), transform var(--fast);
     }
 
     details.poem-details[open] {
       background: rgba(15, 23, 42, 0.95);
+      border-color: var(--accent);
+      transform: translateY(-1px);
     }
 
     .poem-summary {
@@ -787,6 +843,12 @@
       padding: 6px 8px;
       margin-bottom: 6px;
       font-size: 12px;
+      transition: border var(--fast), background var(--fast), transform var(--fast);
+    }
+
+    .checklist-group details[open] {
+      border-color: var(--accent);
+      transform: translateY(-1px);
     }
 
     .checklist-group summary {
@@ -832,6 +894,47 @@
       color: #fecaca;
     }
 
+    .tool-card {
+      border-radius: 14px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.92);
+      padding: 8px 9px;
+      margin-top: 8px;
+      animation: floatUp 0.3s ease-out;
+    }
+
+    .tool-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .tool-card-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .tool-card-body {
+      margin-top: 6px;
+    }
+
+    .sentence-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .sentence-chip {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.95);
+    }
+
     @media (max-width: 480px) {
       .header-inner {
         padding-inline: 10px;
@@ -865,6 +968,8 @@
             <option value="sunset">Sunset Glow</option>
             <option value="mono">Clean Mono</option>
             <option value="matrix">Matrix Green</option>
+            <option value="darkred">Dark Red</option>
+            <option value="cats">Cat Mode</option>
           </select>
         </div>
       </div>
@@ -942,7 +1047,7 @@
                   </div>
                   <div class="quote-item">
                     <div class="quote-text">“God bless us, every one!”</div>
-                    <div class="quote-note">Tiny Tim – hopeful, kind, moral centre.</div>
+                    <div class="quote-note">Tiny Tim – innocent, hopeful blessing.</div>
                   </div>
                   <div class="quote-item">
                     <div class="quote-text">“I am not the man I was.”</div>
@@ -1208,7 +1313,7 @@
                 </summary>
                 <div class="poem-body">
                   <div class="poem-sub">About</div>
-                  <div class="poem-detail">A man tells his sister to enjoy the power of nature in spring.</div>
+                  <div class="poem-detail">A man tells his sister to come and enjoy the power of nature in spring.</div>
                   <div class="poem-sub">Key quotation</div>
                   <div class="poem-detail">“Our minds shall drink at every pore the spirit of the season” – personification; nature gives them energy and refreshment.</div>
                   <div class="poem-sub">Structure & form</div>
@@ -1246,9 +1351,9 @@
                 </summary>
                 <div class="poem-body">
                   <div class="poem-sub">About</div>
-                  <div class="poem-detail">A chronically ill man remembers his childhood as joyful and perfect.</div>
+                  <div class="poem-detail">A chronically ill man remembers childhood as joyful and perfect.</div>
                   <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“My spirit flew in feathers then, / That is so heavy now” – metaphor; free and powerful when young, weighed down now.</div>
+                  <div class="poem-detail">“My spirit flew in feathers then, / That is so heavy now” – metaphor; free when young, weighed down now.</div>
                   <div class="poem-sub">Structure & form</div>
                   <div class="poem-detail">Repetition of “I remember, I remember” shows deep nostalgia.</div>
                   <div class="poem-sub">Context</div>
@@ -1286,7 +1391,7 @@
                   <div class="poem-sub">About</div>
                   <div class="poem-detail">A mixed-race speaker remembers bullying at school and later appreciates his Jamaican heritage.</div>
                   <div class="poem-sub">Key quotation</div>
-                  <div class="poem-detail">“the English boys at school made me choose Jamaican, British?” – question mark + caesura show pressure and confusion.</div>
+                  <div class="poem-detail">“the English boys at school made me choose Jamaican, British?” – question + caesura show pressure and identity conflict.</div>
                   <div class="poem-sub">Structure & form</div>
                   <div class="poem-detail">Repetition of “Jamaican British” shows identity focus.</div>
                   <div class="poem-sub">Context</div>
@@ -1374,37 +1479,59 @@
           <div class="panel-header">
             <div>
               <h2>Tools</h2>
-              <small>Search · Build paragraphs · Questions</small>
+              <small>Clean layout · all the helpers in one place</small>
             </div>
           </div>
           <div class="panel-body">
-            <h3>Quote finder</h3>
-            <div class="grid-two">
-              <div>
-                <label class="mini-label">Search term</label>
-                <input type="text" id="quote-search-input" placeholder="e.g. ghost, responsibility, island..." />
+            <!-- TOOL 1: QUOTE FINDER -->
+            <div class="tool-card">
+              <div class="tool-card-header">
+                <div class="tool-card-title">Quote finder</div>
+                <button
+                  class="soft small"
+                  data-toggle="#tool-quote"
+                  data-closed="Open"
+                  data-open="Close"
+                >Open</button>
               </div>
-              <div>
-                <label class="mini-label">Scope</label>
-                <select id="quote-scope">
-                  <option value="all">All</option>
-                  <option value="ACC">ACC</option>
-                  <option value="Belonging">Belonging</option>
-                  <option value="Language">Language</option>
-                  <option value="Literature">Literature</option>
-                </select>
+              <div class="tool-card-body more-content" id="tool-quote">
+                <div class="grid-two">
+                  <div>
+                    <label class="mini-label">Search term</label>
+                    <input type="text" id="quote-search-input" placeholder="e.g. ghost, responsibility, island..." />
+                  </div>
+                  <div>
+                    <label class="mini-label">Scope</label>
+                    <select id="quote-scope">
+                      <option value="all">All</option>
+                      <option value="ACC">ACC</option>
+                      <option value="Belonging">Belonging</option>
+                      <option value="Language">Language</option>
+                      <option value="Literature">Literature</option>
+                    </select>
+                  </div>
+                </div>
+                <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
+                  <button class="soft small" id="quote-search-btn">Search</button>
+                  <button class="soft small" id="quote-clear-btn">Clear</button>
+                </div>
+                <div class="mini-label" style="margin-top:4px;">Tap “Search” or press Enter.</div>
+                <div id="quote-results" style="margin-top:6px;"></div>
               </div>
             </div>
-            <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap;">
-              <button class="soft small" id="quote-search-btn">Search</button>
-              <button class="soft small" id="quote-clear-btn">Clear</button>
-            </div>
-            <div class="mini-label" style="margin-top:4px;">Tap “Search” or press Enter.</div>
-            <div id="quote-results" style="margin-top:6px;"></div>
 
-            <div class="tools-grid" style="margin-top:10px;">
-              <div>
-                <h3>Paragraph builder</h3>
+            <!-- TOOL 2: PARAGRAPH BUILDER -->
+            <div class="tool-card">
+              <div class="tool-card-header">
+                <div class="tool-card-title">Paragraph builder</div>
+                <button
+                  class="soft small"
+                  data-toggle="#tool-builder"
+                  data-closed="Open"
+                  data-open="Close"
+                >Open</button>
+              </div>
+              <div class="tool-card-body more-content" id="tool-builder">
                 <div class="builder-grid">
                   <label>
                     <span class="mini-label">Type</span>
@@ -1442,9 +1569,20 @@
                 </div>
                 <div id="builder-output" class="builder-output" style="margin-top:6px;"></div>
               </div>
+            </div>
 
-              <div>
-                <h3>Random questions</h3>
+            <!-- TOOL 3: RANDOM QUESTIONS -->
+            <div class="tool-card">
+              <div class="tool-card-header">
+                <div class="tool-card-title">Random questions</div>
+                <button
+                  class="soft small"
+                  data-toggle="#tool-questions"
+                  data-closed="Open"
+                  data-open="Close"
+                >Open</button>
+              </div>
+              <div class="tool-card-body more-content" id="tool-questions">
                 <div class="mini-label">Tap for a practice question:</div>
                 <div style="margin-top:4px;display:flex;flex-wrap:wrap;gap:6px;">
                   <button class="soft small" data-qset="lang-p1">Lang P1</button>
@@ -1456,8 +1594,47 @@
                   <button class="soft small" data-qset="unseen">Unseen</button>
                 </div>
                 <div id="question-output" class="question-output" style="margin-top:8px;"></div>
+              </div>
+            </div>
 
-                <h3 style="margin-top:10px;">Structures & acronyms</h3>
+            <!-- TOOL 4: SENTENCE OPENERS -->
+            <div class="tool-card">
+              <div class="tool-card-header">
+                <div class="tool-card-title">Sentence openers bank</div>
+                <button
+                  class="soft small"
+                  data-toggle="#tool-openers"
+                  data-closed="Open"
+                  data-open="Close"
+                >Open</button>
+              </div>
+              <div class="tool-card-body more-content" id="tool-openers">
+                <div class="mini-label">Tap any opener and copy it into your writing:</div>
+                <div class="sentence-chip-row">
+                  <div class="sentence-chip">Reluctantly, I realised that...</div>
+                  <div class="sentence-chip">For a brief moment,...</div>
+                  <div class="sentence-chip">Without warning,...</div>
+                  <div class="sentence-chip">From the shadows,...</div>
+                  <div class="sentence-chip">In the distance, I could see...</div>
+                  <div class="sentence-chip">Surprisingly, it seemed that...</div>
+                  <div class="sentence-chip">On the other hand, some may argue that...</div>
+                  <div class="sentence-chip">It is impossible to ignore that...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TOOL 5: STRUCTURES / ACRONYMS -->
+            <div class="tool-card">
+              <div class="tool-card-header">
+                <div class="tool-card-title">Structures & acronyms</div>
+                <button
+                  class="soft small"
+                  data-toggle="#tool-structures"
+                  data-closed="Open"
+                  data-open="Close"
+                >Open</button>
+              </div>
+              <div class="tool-card-body more-content" id="tool-structures">
                 <div class="formula-box">
                   <div class="formula-line">
                     <span class="formula-key">SPITTED</span> – Setting, People, Ideas, Tone, Theme, Events, Description.
@@ -1475,51 +1652,65 @@
               </div>
             </div>
 
-            <h3 style="margin-top:10px;">Checklists</h3>
-            <div class="checklist-group">
-              <details>
-                <summary>
-                  <span>Lang Paper 1 – Q5 imaginative</span>
-                  <span class="poem-chevron">tap ▾</span>
-                </summary>
-                <ul>
-                  <li><input type="checkbox" /> DROP atmosphere at start.</li>
-                  <li><input type="checkbox" /> ZOOM on character feelings.</li>
-                  <li><input type="checkbox" /> FLASHBACK explains situation.</li>
-                  <li><input type="checkbox" /> ECHO at end (cyclical feel).</li>
-                  <li><input type="checkbox" /> Range of punctuation + sentences.</li>
-                  <li><input type="checkbox" /> At least 3–4 strong techniques.</li>
-                </ul>
-              </details>
+            <!-- TOOL 6: CHECKLISTS -->
+            <div class="tool-card">
+              <div class="tool-card-header">
+                <div class="tool-card-title">Exam checklists</div>
+                <button
+                  class="soft small"
+                  data-toggle="#tool-checklists"
+                  data-closed="Open"
+                  data-open="Close"
+                >Open</button>
+              </div>
+              <div class="tool-card-body more-content" id="tool-checklists">
+                <div class="checklist-group">
+                  <details>
+                    <summary>
+                      <span>Lang Paper 1 – Q5 imaginative</span>
+                      <span class="poem-chevron">tap ▾</span>
+                    </summary>
+                    <ul>
+                      <li><input type="checkbox" /> DROP atmosphere at start.</li>
+                      <li><input type="checkbox" /> ZOOM on character feelings.</li>
+                      <li><input type="checkbox" /> FLASHBACK explains situation.</li>
+                      <li><input type="checkbox" /> ECHO at end (cyclical feel).</li>
+                      <li><input type="checkbox" /> Range of punctuation + sentences.</li>
+                      <li><input type="checkbox" /> At least 3–4 strong techniques.</li>
+                    </ul>
+                  </details>
 
-              <details>
-                <summary>
-                  <span>Lang Paper 2 – Q8/9 transactional</span>
-                  <span class="poem-chevron">tap ▾</span>
-                </summary>
-                <ul>
-                  <li><input type="checkbox" /> Clear viewpoint statement.</li>
-                  <li><input type="checkbox" /> Counter argument handled.</li>
-                  <li><input type="checkbox" /> Anecdote/example included.</li>
-                  <li><input type="checkbox" /> Reasons with stats/experts.</li>
-                  <li><input type="checkbox" /> DAFOREST used several times.</li>
-                </ul>
-              </details>
+                  <details>
+                    <summary>
+                      <span>Lang Paper 2 – Q8/9 transactional</span>
+                      <span class="poem-chevron">tap ▾</span>
+                    </summary>
+                    <ul>
+                      <li><input type="checkbox" /> Clear viewpoint statement.</li>
+                      <li><input type="checkbox" /> Counter argument handled.</li>
+                      <li><input type="checkbox" /> Anecdote/example included.</li>
+                      <li><input type="checkbox" /> Reasons with stats/experts.</li>
+                      <li><input type="checkbox" /> DAFOREST used several times.</li>
+                    </ul>
+                  </details>
 
-              <details>
-                <summary>
-                  <span>Lit – ACC / Macbeth / AIC essays</span>
-                  <span class="poem-chevron">tap ▾</span>
-                </summary>
-                <ul>
-                  <li><input type="checkbox" /> Every paragraph starts with a clear point.</li>
-                  <li><input type="checkbox" /> Short, relevant quotations.</li>
-                  <li><input type="checkbox" /> Techniques + effects explained.</li>
-                  <li><input type="checkbox" /> Context/purpose used when needed.</li>
-                  <li><input type="checkbox" /> Intro + conclusion answer question.</li>
-                </ul>
-              </details>
+                  <details>
+                    <summary>
+                      <span>Lit – ACC / Macbeth / AIC essays</span>
+                      <span class="poem-chevron">tap ▾</span>
+                    </summary>
+                    <ul>
+                      <li><input type="checkbox" /> Every paragraph starts with a clear point.</li>
+                      <li><input type="checkbox" /> Short, relevant quotations.</li>
+                      <li><input type="checkbox" /> Techniques + effects explained.</li>
+                      <li><input type="checkbox" /> Context/purpose used when needed.</li>
+                      <li><input type="checkbox" /> Intro + conclusion answer question.</li>
+                    </ul>
+                  </details>
+                </div>
+              </div>
             </div>
+
           </div>
         </div>
       </section>
@@ -1564,7 +1755,7 @@
         </button>
       </div>
 
-      <div class="nav-section-label" style="margin-top:6px;">Tools</div>
+      <div class="nav-section-label" style="margin-top:6px;">Quick tools</div>
       <div class="nav-tools">
         <div class="timer-label">Focus timer (25 minutes)</div>
         <div class="timer-row">
@@ -1646,6 +1837,28 @@
         "--accent-strong": "#a3e635",
         "--text": "#e5f9f0",
         "--muted": "#6ee7b7"
+      },
+      darkred: {
+        bodyBg: "radial-gradient(circle at top, #3b0a0a 0, #111827 45%, #020202 100%)",
+        "--panel": "#111827",
+        "--panel-soft": "#090314",
+        "--border": "#7f1d1d",
+        "--accent": "#ef4444",
+        "--accent-soft": "rgba(239,68,68,0.16)",
+        "--accent-strong": "#b91c1c",
+        "--text": "#fee2e2",
+        "--muted": "#fca5a5"
+      },
+      cats: {
+        bodyBg: "radial-gradient(circle at top, #2b1b0e 0, #0f172a 45%, #020617 100%)",
+        "--panel": "#0f172a",
+        "--panel-soft": "#020617",
+        "--border": "#92400e",
+        "--accent": "#fbbf24",
+        "--accent-soft": "rgba(251,191,36,0.16)",
+        "--accent-strong": "#f97316",
+        "--text": "#fffbeb",
+        "--muted": "#facc15"
       }
     };
 
@@ -1667,7 +1880,6 @@
       applyTheme(themeSelectEl.value);
     });
 
-    // load saved theme
     (function initTheme() {
       let saved = null;
       try {
@@ -1702,7 +1914,8 @@
     function setView(name) {
       Object.values(views).forEach(v => v.classList.remove("active"));
       if (views[name]) views[name].classList.add("active");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      // instant jump to top (feels snappier)
+      window.scrollTo(0, 0);
     }
 
     const fabMenu = document.getElementById("fab-menu");
@@ -1810,7 +2023,7 @@
         { front: "Island Man – key quotes", back: "\"his small emerald island\" vs \"dull north circular roar\" – contrast between beautiful home and oppressive London." },
         { front: "Island Man – structure/context/themes", back: "Free verse, no punctuation; Nichols moved from Caribbean to London. Themes: youth, nature, nostalgia, dual identity, London as home." },
         { front: "To My Sister – about?", back: "Speaker tells his sister to come and enjoy the power of nature in spring." },
-        { front: "To My Sister – key quote", back: "\"Our minds shall drink at every pore the spirit of the season\" – personification shows nature refreshing and empowering them." },
+        { front: "To My Sister – key quote", back: "\"Our minds shall drink at every pore the spirit of the season\" – personification; nature refreshing and empowering them." },
         { front: "Sunday Dip – about?", back: "Boys enjoy their only day off by swimming in a river." },
         { front: "Sunday Dip – key quote", back: "\"And Laugh to hear the thunder in their ears\" – metaphor; their noise is like thunder, showing excitement." },
         { front: "I Remember – about?", back: "A chronically ill man remembers childhood as joyful and perfect compared to now." },
