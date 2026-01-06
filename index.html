@@ -881,7 +881,7 @@
       <div class="header-row-search">
         <div class="search-bar">
           <span>🔍</span>
-          <input id="global-search-input" type="text" placeholder="Search quotes, decks, structures..." />
+          <input id="global-search-input" type="text" placeholder="Search Macbeth, AIC, ACC, structures..." />
         </div>
         <button id="global-search-btn" class="search-button">Search</button>
       </div>
@@ -901,7 +901,7 @@
         </div>
       </div>
 
-      <!-- HOME -->
+      <!-- HOME: SUMMARY ONLY -->
       <section id="view-home" class="view active">
         <span class="today-pill">
           <span class="today-pill-dot"></span>
@@ -911,34 +911,40 @@
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>A Christmas Carol</h2>
-              <small>Main events · themes · quick map</small>
+              <h2>What this hub does</h2>
+              <small>Quick overview of all the sections</small>
             </div>
-            <button class="soft small" data-goto="flashcards">Open ACC deck</button>
           </div>
           <div class="panel-body">
             <div class="grid-two">
               <div>
-                <h3>Staves (story map)</h3>
+                <h3>Revision content</h3>
                 <ul class="clean">
-                  <li><span class="b">1</span><span><strong>Marley’s Ghost</strong> – Scrooge is cold and miserly; Marley warns him to change.</span></li>
-                  <li><span class="b">2</span><span><strong>Past</strong> – lonely childhood, Fezziwig’s party, Belle leaving.</span></li>
-                  <li><span class="b">3</span><span><strong>Present</strong> – Cratchits, Tiny Tim, Fred’s party, Ignorance & Want.</span></li>
-                  <li><span class="b">4</span><span><strong>Yet to Come</strong> – no one misses Scrooge; people steal his things; grave.</span></li>
-                  <li><span class="b">5</span><span><strong>Redemption</strong> – Scrooge wakes changed; generous and kind.</span></li>
-                </ul>
-              </div>
-              <div>
-                <h3>Big themes</h3>
-                <ul class="clean">
-                  <li><span class="b">★</span><span><strong>Poverty & charity</strong> – Dickens attacks cruel views on the poor.</span></li>
-                  <li><span class="b">★</span><span><strong>Responsibility</strong> – “Mankind was my business!”</span></li>
-                  <li><span class="b">★</span><span><strong>Family & community</strong> – warmth of Fred/Cratchits vs Scrooge’s isolation.</span></li>
-                  <li><span class="b">★</span><span><strong>Change & redemption</strong> – even Scrooge can completely change.</span></li>
+                  <li><span class="b">★</span><span><strong>A Christmas Carol</strong> – key quotes, staves, themes, redemption (via cards & search).</span></li>
+                  <li><span class="b">★</span><span><strong>Belonging Anthology</strong> – core poems with meaning, language and context (Anthology tab).</span></li>
+                  <li><span class="b">★</span><span><strong>Language Paper 1</strong> – question structures, timings, story planning (Guides tab + cards).</span></li>
+                  <li><span class="b">★</span><span><strong>Language Paper 2</strong> – comparison, evaluation, transactional writing (Guides tab + cards).</span></li>
+                  <li><span class="b">★</span><span><strong>Macbeth</strong> – key quotes, moments, themes, characters (Macbeth deck + search only).</span></li>
+                  <li><span class="b">★</span><span><strong>An Inspector Calls</strong> – key quotes, themes, characters, responsibility (AIC deck + search only).</span></li>
                 </ul>
                 <div class="chip-row">
-                  <span class="chip">One quote per stave = basic paragraph.</span>
-                  <span class="chip">ACC deck for quick recap.</span>
+                  <span class="chip">To see detailed Macbeth / AIC notes: use the search bar.</span>
+                  <span class="chip">Type things like “Macbeth ambition”, “AIC responsibility”.</span>
+                </div>
+              </div>
+              <div>
+                <h3>Tools & features</h3>
+                <ul class="clean">
+                  <li><span class="b">1</span><span><strong>Flashcards</strong> – ACC, Belonging, Lang, Lit, Macbeth, AIC decks.</span></li>
+                  <li><span class="b">2</span><span><strong>Guides</strong> – step-by-step structures for every English paper.</span></li>
+                  <li><span class="b">3</span><span><strong>Anthology</strong> – belonging poems with key quotes + context.</span></li>
+                  <li><span class="b">4</span><span><strong>Tools</strong> – quote finder, paragraph builder, random questions, sentence openers, checklists, timer.</span></li>
+                  <li><span class="b">5</span><span><strong>Global search</strong> – pulls hidden notes and cards for Macbeth, AIC, ACC, Lang, Lit.</span></li>
+                  <li><span class="b">6</span><span><strong>Themes & characters</strong> – not listed as big pages; search them when you need them.</span></li>
+                </ul>
+                <div class="chip-row">
+                  <span class="chip">Everything is designed for phone / tablet.</span>
+                  <span class="chip">Pick a theme you like and spam cards.</span>
                 </div>
               </div>
             </div>
@@ -948,17 +954,22 @@
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>Quick links</h2>
-              <small>Jump to what you need</small>
+              <h2>Quick actions</h2>
+              <small>Jump straight into something</small>
             </div>
           </div>
           <div class="panel-body">
             <div class="chip-row">
-              <button class="soft small" data-goto="guides">Language & Lit structures</button>
-              <button class="soft small" data-goto="flashcards">Flashcards</button>
-              <button class="soft small" data-goto="anthology">Belonging Anthology</button>
-              <button class="soft small" data-goto="tools">Tools</button>
+              <button class="soft small" data-action="focus-search">Search content</button>
+              <button class="soft small" data-goto="flashcards">Open flashcards</button>
+              <button class="soft small" data-goto="guides">Exam structures</button>
+              <button class="soft small" data-goto="anthology">Belonging poems</button>
+              <button class="soft small" data-goto="tools">Open tools</button>
             </div>
+            <p class="muted" style="margin-top:8px;">
+              To get Macbeth or AIC revision: search things like
+              “Macbeth key quotes”, “AIC Eva Smith”, “Macbeth guilt”, “AIC generation gap”.
+            </p>
           </div>
         </div>
       </section>
@@ -1036,7 +1047,7 @@
           <div class="panel-header">
             <div>
               <h2>Literature Papers</h2>
-              <small>Macbeth · AIC · ACC · Poetry</small>
+              <small>Macbeth · An Inspector Calls · ACC · Poetry</small>
             </div>
           </div>
           <div class="panel-body">
@@ -1064,7 +1075,7 @@
           <div class="panel-header">
             <div>
               <h2>Flashcards</h2>
-              <small>ACC · Belonging · Language · Literature</small>
+              <small>ACC · Belonging · Language · Literature · Macbeth · AIC</small>
             </div>
           </div>
           <div class="panel-body">
@@ -1083,6 +1094,8 @@
               <button class="soft small" data-quick-deck="Language Paper 2 – Structure">Lang P2</button>
               <button class="soft small" data-quick-deck="Literature Paper 1 – Structure">Lit P1</button>
               <button class="soft small" data-quick-deck="Literature Paper 2 – Structure">Lit P2</button>
+              <button class="soft small" data-quick-deck="Macbeth – Key Quotes & Ideas">Macbeth</button>
+              <button class="soft small" data-quick-deck="AIC – Key Quotes & Ideas">AIC</button>
             </div>
 
             <div class="flashcard-shell">
@@ -1274,7 +1287,7 @@
                 <div class="grid-two">
                   <div>
                     <label class="mini-label">Search term</label>
-                    <input id="quote-search-input" type="text" placeholder="e.g. ghost, responsibility, island..." />
+                    <input id="quote-search-input" type="text" placeholder="e.g. 'Macbeth guilt', 'Eva Smith', 'ghost', 'island'..." />
                   </div>
                   <div>
                     <label class="mini-label">Scope</label>
@@ -1601,7 +1614,7 @@
       "Today: ACC extract + 10 flashcards.",
       "Today: 1 Lang Paper 1 plan + 10 ACC cards.",
       "Today: Belonging comparison + 10 Language cards.",
-      "Today: Macbeth paragraph + ACC revision.",
+      "Today: Macbeth quote drill + AIC paragraph.",
       "Today: Unseen poetry practice + 10 cards."
     ];
     todayText.textContent =
@@ -1639,12 +1652,21 @@
     document.querySelectorAll("[data-goto]").forEach(btn => {
       btn.addEventListener("click", () => {
         const v = btn.getAttribute("data-goto");
-        if (v === "flashcards") switchToDeck("ACC – Key Quotes");
         setView(v);
       });
     });
 
-    // ---------- DECKS ----------
+    // focus search from Home quick action
+    const globalSearchInput = document.getElementById("global-search-input");
+    document.querySelectorAll('[data-action="focus-search"]').forEach(btn => {
+      btn.addEventListener("click", () => {
+        setView("home");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        globalSearchInput.focus();
+      });
+    });
+
+    // ---------- DECKS & HIDDEN MACBETH/AIC REVISION ----------
     const DECKS = {
       "ACC – Key Quotes": [
         { front: "\"Marley was dead: to begin with.\"", back: "Opening line. Confirms Marley is dead and sets up the ghost story (Stave 1)." },
@@ -1661,6 +1683,7 @@
         { front: "\"I will honour Christmas in my heart, and try to keep it all the year.\"", back: "Scrooge – promises lasting change." },
         { front: "\"He became as good a friend, as good a master, and as good a man.\"", back: "Narrator – confirms Scrooge’s full redemption." }
       ],
+
       "Belonging – Poems": [
         { front: "Island Man – about?", back: "Man wakes thinking he is back in the Caribbean but is actually in London; split identity and homesickness." },
         { front: "Island Man – key quotes", back: "\"his small emerald island\" vs \"dull north circular roar\" – contrast between beautiful home and noisy city." },
@@ -1668,8 +1691,9 @@
         { front: "Sunday Dip – about?", back: "Boys enjoy their only day off by swimming in a river; joy and community." },
         { front: "I Remember – key quote", back: "\"My spirit flew in feathers then, / That is so heavy now\" – metaphor for freedom vs burden." },
         { front: "We Refugees – key idea", back: "\"We can all be refugees\" – it could happen to anyone; builds empathy." },
-        { front: "Jamaican British – key quote", back: "\"the English boys at school made me choose Jamaican, British?\" – pressure and identity conflict." }
+        { front: "Jamaican British – key quote", back: "\"the English boys at school made me choose Jamaican, British?\" – question + caesura show pressure and identity conflict." }
       ],
+
       "Language Paper 1 – Structure": [
         { front: "Lang Paper 1 – order", back: "1) Q5/6 (writing) – 45 mins.\n2) Read extract – 10 mins.\n3) Q1–4 with timings." },
         { front: "Lang P1 – Q1 & Q2", back: "Q1: 1 mark, comprehension.\nQ2: 2 marks, inference using 2 quotes." },
@@ -1677,6 +1701,7 @@
         { front: "Lang P1 – Q4", back: "15 marks – evaluation using SPITTED and evaluative language." },
         { front: "Lang P1 – Q5/6 plan", back: "DROP → ZOOM → FLASHBACK → ECHO story pattern." }
       ],
+
       "Language Paper 2 – Structure": [
         { front: "Lang Paper 2 – order", back: "1) Q8/9 transactional – 45 mins.\n2) Extract 1 → Q1–3.\n3) Extract 2 → Q4–7a/7b." },
         { front: "Lang P2 – Q3", back: "15 marks – analysis of Extract 1 (language + structure)." },
@@ -1684,18 +1709,50 @@
         { front: "Lang P2 – Q7a & Q7b", back: "Q7a: synthesis similarities.\nQ7b: comparison of ideas + methods." },
         { front: "Lang P2 – Q8/9", back: "Statement → Counter → Anecdote → Reasons → Final plea. Use DAFOREST." }
       ],
+
       "Literature Paper 1 – Structure": [
         { front: "Lit Paper 1 overview", back: "Macbeth A 20m, Macbeth B 20m, AIC 40m. Total 1h45." },
         { front: "Macbeth Part A", back: "Extract only; paragraphs: Point → Quote → Technique → Effect." },
         { front: "Macbeth Part B", back: "Whole play; add context + Shakespeare’s purpose." },
         { front: "AIC essay", back: "Intro · 3 paragraphs · conclusion; Priestley presents… → Quote → Explanation → Context → Purpose." }
       ],
+
       "Literature Paper 2 – Structure": [
         { front: "Lit Paper 2 overview", back: "ACC extract 20m; ACC essay 20m; Anthology 20m; Unseen 20m. Total 2h15." },
         { front: "ACC Part A", back: "Extract only; paragraphs: Point → Quote → Technique → Effect." },
         { front: "ACC Part B", back: "Whole novella; Dickens’ purpose instead of context." },
         { front: "Anthology comparison", back: "Comparative point → quotes + techniques + effect + intentions for both poems." },
         { front: "Unseen comparison", back: "Compare two unseen poems via ideas + methods + effects." }
+      ],
+
+      "Macbeth – Key Quotes & Ideas": [
+        { front: "\"Fair is foul, and foul is fair.\"", back: "Witches in Act 1. Theme of appearance vs reality and moral confusion. Suggests that what looks good may be evil." },
+        { front: "\"Brave Macbeth – well he deserves that name.\"", back: "Macbeth at the start – loyal, heroic soldier. Shows how far he will fall from this point." },
+        { front: "\"Let not light see my black and deep desires.\"", back: "Macbeth hides his ambition to kill Duncan. Light vs dark imagery links ambition with evil." },
+        { front: "\"Unsex me here.\"", back: "Lady Macbeth rejects stereotypical femininity to gain power and cruelty. Shows her ambition and desire to be more 'masculine'." },
+        { front: "\"Look like th' innocent flower, but be the serpent under't.\"", back: "Lady Macbeth tells Macbeth to hide his true intentions. Appearance vs reality; biblical reference to the serpent." },
+        { front: "\"Is this a dagger which I see before me?\"", back: "Macbeth hallucinates before killing Duncan. Symbol of guilt and his unstable mind." },
+        { front: "\"Will all great Neptune's ocean wash this blood clean from my hand?\"", back: "Hyperbole – guilt so huge it cannot be washed away. Blood symbolises guilt." },
+        { front: "\"O full of scorpions is my mind, dear wife!\"", back: "Macbeth’s mind is poisoned with fear and paranoia after killing Duncan." },
+        { front: "\"Out, damned spot!\"", back: "Lady Macbeth in Act 5 – she imagines blood on her hands. Her earlier confidence collapses into guilt and madness." },
+        { front: "\"Life's but a walking shadow... a tale told by an idiot.\"", back: "Macbeth’s nihilism after Lady Macbeth’s death. He feels life is meaningless after all his crimes." },
+        { front: "Macbeth – key moments", back: "Witches’ prophecies; Macbeth rewarded by Duncan; pressure from Lady Macbeth; Duncan’s murder; Banquo’s murder and ghost at the banquet; visit to witches again; Macduff’s family killed; Lady Macbeth’s sleepwalking; final battle where Macbeth is killed by Macduff." },
+        { front: "Macbeth – main themes", back: "Ambition; guilt; fate vs free will; appearance vs reality; masculinity and power; kingship and the destruction of natural order." },
+        { front: "Macbeth – key characters", back: "Macbeth (tragic hero who falls from brave to tyrant); Lady Macbeth (ambitious, manipulative, then broken by guilt); Banquo (honourable contrast to Macbeth); Macduff (avenger and figure of justice); Duncan (good king whose murder breaks order); the Witches (represent fate, temptation and evil)." }
+      ],
+
+      "AIC – Key Quotes & Ideas": [
+        { front: "\"Unsinkable, absolutely unsinkable.\"", back: "Mr Birling about the Titanic. Dramatic irony; shows his arrogance, overconfidence and ignorance. Priestley makes him look foolish." },
+        { front: "\"A man has to make his own way.\"", back: "Birling’s capitalist view – everyone should look after themselves only. Opposite of Inspector’s message of social responsibility." },
+        { front: "\"Girls of that class.\"", back: "Mrs Birling – class prejudice and lack of empathy for working-class women like Eva Smith." },
+        { front: "\"Sheila: 'But these girls aren't cheap labour – they're people.'\"", back: "Sheila begins to reject her parents’ attitudes; shows moral development and empathy for workers." },
+        { front: "\"We are members of one body. We are responsible for each other.\"", back: "Inspector’s core message – socialist idea of collective responsibility; Priestley’s main theme." },
+        { front: "\"Each of you helped to kill her.\"", back: "Inspector sums up how all of them are linked to Eva’s death. No one is fully innocent." },
+        { front: "\"You lot may be letting yourselves out nicely, but I can't.\"", back: "Eric accepts guilt while his parents try to escape blame. Shows generational divide." },
+        { front: "\"The famous younger generation who know it all.\"", back: "Birling mocks Sheila and Eric – but audience sees the younger generation are actually the ones learning." },
+        { front: "AIC – key moments", back: "Birling’s speech at start; Inspector arrives; Eva’s sacking from Birling’s factory; Sheila and the dress shop; Gerald and Daisy Renton; Mrs Birling and the charity; Eric’s involvement; Inspector’s final speech; phone call at the end hinting a real inspector may still come." },
+        { front: "AIC – main themes", back: "Social responsibility; class and inequality; gender and treatment of women; generation gap; guilt and denial; public reputation vs private morality." },
+        { front: "AIC – key characters", back: "Arthur Birling (rich businessman, capitalist, stubborn and wrong); Sybil Birling (cold, snobbish, refuses responsibility); Sheila (begins shallow but becomes moral and self-aware); Eric (flawed but accepts guilt); Gerald (in-between, tries to help but still protects himself); Inspector Goole (moral voice, possibly supernatural, pushes them to face the truth)." }
       ]
     };
 
@@ -1705,10 +1762,12 @@
       "Language Paper 1 – Structure": "Language",
       "Language Paper 2 – Structure": "Language",
       "Literature Paper 1 – Structure": "Literature",
-      "Literature Paper 2 – Structure": "Literature"
+      "Literature Paper 2 – Structure": "Literature",
+      "Macbeth – Key Quotes & Ideas": "Literature",
+      "AIC – Key Quotes & Ideas": "Literature"
     };
 
-    // build search index from decks
+    // build search index from decks (this includes hidden Macbeth & AIC revision)
     const QUOTE_INDEX = [];
     Object.entries(DECKS).forEach(([deckName, cards]) => {
       const source = DECK_SOURCE[deckName] || "Other";
@@ -1872,7 +1931,6 @@
     renderDeckOptions();
 
     // ---------- GLOBAL SEARCH ----------
-    const globalSearchInput = document.getElementById("global-search-input");
     const globalSearchBtn = document.getElementById("global-search-btn");
     const globalSearchPanel = document.getElementById("global-search-panel");
     const searchTitle = document.getElementById("search-title");
@@ -1898,7 +1956,7 @@
         return;
       }
 
-      results.slice(0, 40).forEach(r => {
+      results.slice(0, 50).forEach(r => {
         const item = document.createElement("div");
         item.className = "search-result-item";
         const snippet =
@@ -2024,7 +2082,7 @@
       if (type === "lang") {
         paragraph = `${P} This is shown in the quotation ${E}. The use of ${T} helps to create this because ${F}. Overall, the writer makes the reader ${F || "respond in a particular way"} by focusing on this detail.`;
       } else if (type === "lit") {
-        paragraph = `Shakespeare presents ${P} This is evident in the quotation ${E}. The use of ${T} suggests ${F}. This is notable in the context of ${C || "Jacobean society"}, and Shakespeare may be trying to show that ${F || "this behaviour has serious consequences"}.`;
+        paragraph = `Shakespeare or Priestley presents ${P} This is evident in the quotation ${E}. The use of ${T} suggests ${F}. This is notable in the context of ${C || "the time the text was produced"}, and the writer may be trying to show that ${F || "this behaviour has serious consequences"}.`;
       } else if (type === "poetry") {
         paragraph = `${P} In the first poem, this is shown in the quotation ${E}, where the use of ${T} makes the reader ${F}. In the context of ${C || "the poet’s background"}, this suggests a wider message about the theme. You could then compare how the second poem uses a different method to present a similar or contrasting idea.`;
       } else if (type === "tx") {
@@ -2065,13 +2123,13 @@
       ],
       "macbeth": [
         "How does Shakespeare present Macbeth as a tragic hero?",
-        "How does Shakespeare present Lady Macbeth’s ambition?",
-        "How does Shakespeare explore the theme of guilt in Macbeth?"
+        "How does Shakespeare present the theme of ambition in Macbeth?",
+        "How does Shakespeare present guilt in Macbeth?"
       ],
       "aic": [
-        "How does Priestley present Mr Birling in An Inspector Calls?",
-        "How does Priestley present Sheila’s change over the course of the play?",
-        "How does Priestley present the idea of social responsibility in An Inspector Calls?"
+        "How does Priestley present Arthur Birling in An Inspector Calls?",
+        "How does Priestley present the younger generation in An Inspector Calls?",
+        "How does Priestley explore social responsibility in An Inspector Calls?"
       ],
       "belonging": [
         "Compare how belonging to a place is presented in Island Man and one other poem of your choice.",
