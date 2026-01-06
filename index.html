@@ -4,13 +4,16 @@
   <meta charset="UTF-8" />
   <title>Revision Hub – English & Belonging</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#05010b" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <style>
     :root {
       --bg: #05010b;
       --panel: #090317;
       --panel-soft: #0b041b;
       --border: #26163b;
-      --accent: #ec4899;     /* pink/red */
+      --accent: #ec4899;
       --accent-soft: rgba(236, 72, 153, 0.16);
       --accent-strong: #f97316;
       --text: #f9fafb;
@@ -40,15 +43,15 @@
       flex-direction: column;
     }
 
-    /* HEADER / NAV */
+    /* HEADER */
 
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(5, 1, 11, 0.96);
+      z-index: 10;
+      background: rgba(5, 1, 11, 0.98);
       backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(148, 27, 84, 0.6);
+      border-bottom: 1px solid rgba(148, 27, 84, 0.5);
     }
 
     .header-inner {
@@ -56,27 +59,26 @@
       margin: 0 auto;
       padding: 10px 14px 8px;
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .title-block {
-      display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
 
     .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .logo-left {
       display: flex;
       align-items: center;
       gap: 8px;
     }
 
     .logo-dot {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       border-radius: 999px;
       background:
         radial-gradient(circle at 30% 30%, #fee2e2 0, #ec4899 40%, #4c1d95 80%);
@@ -87,71 +89,50 @@
 
     .app-title {
       font-size: 18px;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
     }
 
     .subtitle {
       font-size: 11px;
       color: var(--muted);
+      opacity: 0.9;
     }
 
-    .nav-tabs {
+    .header-pill-row {
       display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       flex-wrap: wrap;
-      gap: 6px;
-      padding: 4px;
-      background: rgba(17, 24, 39, 0.96);
-      border-radius: 999px;
-      border: 1px solid rgba(148, 27, 84, 0.6);
+      margin-top: 4px;
     }
 
-    .nav-tab {
-      border: none;
-      background: transparent;
-      color: var(--muted);
-      padding: 7px 12px;
-      font-size: 12px;
+    .pill {
+      font-size: 11px;
+      padding: 3px 9px;
       border-radius: 999px;
-      cursor: pointer;
-      white-space: nowrap;
+      border: 1px solid rgba(148, 27, 84, 0.7);
+      background: rgba(17, 24, 39, 0.96);
+      color: var(--muted);
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition:
-        background var(--fast),
-        color var(--fast),
-        transform var(--fast);
     }
 
-    .nav-tab span.icon {
-      font-size: 14px;
-    }
-
-    .nav-tab.active {
-      background: var(--accent-soft);
-      color: var(--text);
-      transform: translateY(-0.5px);
-    }
-
-    @media (max-width: 600px) {
-      .nav-tabs {
-        width: 100%;
-        justify-content: space-between;
-      }
-      .nav-tab {
-        flex: 1;
-        justify-content: center;
-        padding-inline: 6px;
-        font-size: 11px;
-      }
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
     }
 
     main {
       flex: 1;
       display: flex;
       justify-content: center;
-      padding: 10px 12px 16px;
+      padding: 10px 12px 80px;
     }
 
     .main-inner {
@@ -161,7 +142,7 @@
 
     section.view {
       display: none;
-      min-height: calc(100vh - 90px);
+      min-height: calc(100vh - 100px);
     }
 
     section.view.active {
@@ -282,7 +263,7 @@
     .quote-list {
       border-radius: var(--radius-md);
       border: 1px solid rgba(148, 27, 84, 0.6);
-      background: rgba(15, 23, 42, 0.75);
+      background: rgba(15, 23, 42, 0.8);
       padding: 8px 10px;
       margin-top: 4px;
     }
@@ -335,6 +316,11 @@
       background: rgba(17, 24, 39, 0.96);
     }
 
+    button.small {
+      padding: 4px 9px;
+      font-size: 11px;
+    }
+
     button:hover {
       transform: translateY(-0.5px);
       box-shadow: 0 0 12px rgba(148, 27, 84, 0.9);
@@ -345,67 +331,154 @@
       box-shadow: none;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      padding: 3px 9px;
+    /* FLOATING MENU BUTTON */
+
+    .fab-menu {
+      position: fixed;
+      right: 16px;
+      bottom: 22px;
+      width: 48px;
+      height: 48px;
       border-radius: 999px;
+      border: 1px solid rgba(236, 72, 153, 0.9);
+      background: radial-gradient(circle at 30% 30%, #fecaca 0, #ec4899 35%, #4c1d95 80%);
+      box-shadow:
+        0 0 16px rgba(236, 72, 153, 0.9),
+        0 10px 28px rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 30;
+    }
+
+    .fab-menu span {
+      transform: translateY(-1px);
+    }
+
+    @media (min-width: 900px) {
+      .fab-menu {
+        right: 40px;
+        bottom: 30px;
+      }
+    }
+
+    /* NAV OVERLAY */
+
+    .nav-overlay {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #1f032e 0, #05010b 45%, #010008 100%);
+      backdrop-filter: blur(18px);
+      z-index: 40;
+      display: none;
+      padding: 14px 14px 20px;
+    }
+
+    .nav-overlay.active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-card {
+      max-width: 360px;
+      width: 100%;
+      border-radius: 24px;
+      border: 1px solid rgba(236, 72, 153, 0.9);
+      background: rgba(10, 6, 24, 0.96);
+      box-shadow:
+        0 20px 40px rgba(0, 0, 0, 1),
+        0 0 30px rgba(236, 72, 153, 0.4);
+      padding: 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .nav-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-card-title {
+      font-size: 14px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .nav-card-sub {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .nav-item-btn {
+      width: 100%;
+      justify-content: flex-start;
+      font-size: 13px;
+    }
+
+    .nav-item-btn span.icon {
+      font-size: 15px;
+    }
+
+    .nav-section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--muted);
+      margin-top: 2px;
+      margin-bottom: 2px;
+    }
+
+    .nav-tools {
+      border-radius: 14px;
       border: 1px solid rgba(148, 27, 84, 0.7);
-      background: rgba(17, 24, 39, 0.96);
-      color: var(--muted);
+      padding: 8px 9px;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 12px;
     }
 
-    .badge-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 10px rgba(34, 197, 94, 0.9);
-    }
-
-    .switch {
-      display: inline-flex;
+    .timer-row {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .timer-display {
+      font-variant-numeric: tabular-nums;
+      font-size: 18px;
+    }
+
+    .timer-label {
       font-size: 11px;
       color: var(--muted);
     }
 
-    .switch input {
-      appearance: none;
-      width: 30px;
-      height: 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.95);
-      position: relative;
-      cursor: pointer;
-      outline: none;
-      transition: background var(--fast), border var(--fast);
+    /* COLLAPSE / SHOW MORE */
+
+    .more-block {
+      margin-top: 8px;
     }
 
-    .switch input::before {
-      content: "";
-      position: absolute;
-      top: 1px;
-      left: 2px;
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: #f9fafb;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.7);
-      transition: transform var(--fast);
+    .more-content {
+      display: none;
+      margin-top: 6px;
     }
 
-    .switch input:checked {
-      background: linear-gradient(135deg, #ec4899, #f97316);
-      border-color: rgba(248, 113, 113, 0.9);
-    }
-
-    .switch input:checked::before {
-      transform: translateX(12px);
+    .more-content.open {
+      display: block;
     }
 
     /* FLASHCARDS */
@@ -563,33 +636,52 @@
       border-radius: var(--radius-md);
       border: 1px solid rgba(148, 27, 84, 0.7);
       background: rgba(15, 23, 42, 0.8);
-      padding: 8px 10px;
+      padding: 6px 8px;
     }
 
-    .poem-block {
-      margin-bottom: 8px;
-      padding-bottom: 6px;
-      border-bottom: 1px solid rgba(55, 65, 81, 0.7);
+    details.poem-details {
+      border-radius: 12px;
+      padding: 6px 8px;
+      margin: 2px 0;
     }
 
-    .poem-block:last-child {
-      border-bottom: none;
+    details.poem-details[open] {
+      background: rgba(15, 23, 42, 0.95);
+    }
+
+    .poem-summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
     }
 
     .poem-title {
-      font-size: 13px;
       font-weight: 600;
-      margin-bottom: 2px;
+    }
+
+    .poem-chevron {
+      font-size: 11px;
+      color: var(--muted);
+      margin-left: 8px;
+    }
+
+    .poem-body {
+      margin-top: 4px;
+      font-size: 12px;
     }
 
     .poem-sub {
-      font-size: 12px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
       color: var(--muted);
-      margin-bottom: 2px;
+      margin-top: 4px;
     }
 
     .poem-detail {
-      font-size: 12px;
       margin: 2px 0;
     }
 
@@ -609,30 +701,21 @@
 <body>
   <header>
     <div class="header-inner">
-      <div class="title-block">
-        <div class="logo-row">
+      <div class="logo-row">
+        <div class="logo-left">
           <div class="logo-dot"></div>
-          <div class="app-title">REVISION HUB</div>
+          <div>
+            <div class="app-title">REVISION HUB</div>
+            <div class="subtitle">Language · Literature · ACC · Belonging Anthology</div>
+          </div>
         </div>
-        <div class="subtitle">Language · Literature · ACC · Belonging Anthology</div>
       </div>
-      <nav class="nav-tabs">
-        <button class="nav-tab active" data-view="acc">
-          <span class="icon">📘</span> ACC
-        </button>
-        <button class="nav-tab" data-view="language">
-          <span class="icon">💬</span> Language
-        </button>
-        <button class="nav-tab" data-view="literature">
-          <span class="icon">📖</span> Literature
-        </button>
-        <button class="nav-tab" data-view="anthology">
-          <span class="icon">📚</span> Belonging
-        </button>
-        <button class="nav-tab" data-view="flashcards">
-          <span class="icon">🃏</span> Flashcards
-        </button>
-      </nav>
+      <div class="header-pill-row">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span id="today-focus">Today: ACC extract + 1 Lang card set</span>
+        </div>
+      </div>
     </div>
   </header>
 
@@ -643,80 +726,75 @@
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>A Christmas Carol – core</h2>
-              <small>5 staves · what happens · what Scrooge learns</small>
+              <h2>A Christmas Carol – overview</h2>
+              <small>5 staves · main events · what Scrooge learns</small>
             </div>
           </div>
           <div class="panel-body">
             <div class="grid-two">
               <div>
-                <h3>Stave by stave</h3>
+                <h3>Quick stave map</h3>
                 <ul class="clean">
-                  <li><span class="b">1</span><span><strong>Marley’s Ghost</strong> – Scrooge is rude and miserly, rejects charity, and is warned by Marley that his greed has built a “chain” he must escape.</span></li>
-                  <li><span class="b">2</span><span><strong>Ghost of Christmas Past</strong> – lonely schoolboy Scrooge, loving sister, Fezziwig’s party, Belle ending the engagement when he chooses money.</span></li>
-                  <li><span class="b">3</span><span><strong>Ghost of Christmas Present</strong> – Cratchit family and Tiny Tim, Fred’s party, and the shocking figures of Ignorance and Want.</span></li>
-                  <li><span class="b">4</span><span><strong>Ghost of Christmas Yet to Come</strong> – people steal his things, nobody mourns him; he sees his neglected grave and is terrified.</span></li>
-                  <li><span class="b">5</span><span><strong>Redemption</strong> – he wakes joyful, donates, raises Bob’s wages and becomes “as good a friend… and as good a man”.</span></li>
+                  <li><span class="b">1</span><span><strong>Marley’s Ghost</strong> – Scrooge is cold and miserly; Marley warns him to change.</span></li>
+                  <li><span class="b">2</span><span><strong>Past</strong> – lonely childhood, Fezziwig’s party, Belle leaving.</span></li>
+                  <li><span class="b">3</span><span><strong>Present</strong> – Cratchits, Tiny Tim, Fred’s party, Ignorance and Want.</span></li>
+                  <li><span class="b">4</span><span><strong>Yet to Come</strong> – people steal his things; no one misses him; sees his grave.</span></li>
+                  <li><span class="b">5</span><span><strong>Redemption</strong> – Scrooge wakes changed, helps others and becomes generous.</span></li>
                 </ul>
               </div>
               <div>
-                <h3>Main themes</h3>
+                <h3>Key themes</h3>
                 <ul class="clean">
-                  <li><span class="b">★</span><span><strong>Poverty & charity</strong> – attacks cruel attitudes like workhouses and “surplus population”.</span></li>
-                  <li><span class="b">★</span><span><strong>Responsibility</strong> – “Mankind was my business!”; we owe care to others, not just money-making.</span></li>
-                  <li><span class="b">★</span><span><strong>Family & community</strong> – contrast between warm families (Fred, Cratchits) and Scrooge’s isolation.</span></li>
-                  <li><span class="b">★</span><span><strong>Change & redemption</strong> – proves even Scrooge can change completely.</span></li>
+                  <li><span class="b">★</span><span><strong>Poverty & charity</strong> – attacks cruel ideas about the poor.</span></li>
+                  <li><span class="b">★</span><span><strong>Responsibility</strong> – we owe care to others (“Mankind was my business!”).</span></li>
+                  <li><span class="b">★</span><span><strong>Family & community</strong> – warmth of Fred & Cratchits vs Scrooge’s isolation.</span></li>
+                  <li><span class="b">★</span><span><strong>Change & redemption</strong> – even Scrooge can completely change.</span></li>
                 </ul>
                 <div class="chip-row">
-                  <span class="chip">One quote per stave is enough for a basic paragraph.</span>
-                  <span class="chip">Always link: event → what Scrooge learns.</span>
+                  <span class="chip">Think: what does Scrooge learn in each stave?</span>
+                  <span class="chip">One quote per stave = basic paragraph.</span>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="panel">
-          <div class="panel-header">
-            <div>
-              <h2>ACC quotes (in cards)</h2>
-              <small>Short, easy quotes already loaded in the ACC deck</small>
+            <div class="more-block">
+              <button class="soft small" data-toggle="#acc-quotes">Show key quotes</button>
+              <div id="acc-quotes" class="more-content">
+                <div class="quote-list" style="margin-top:6px;">
+                  <div class="quote-item">
+                    <div class="quote-text">“Marley was dead: to begin with.”</div>
+                    <div class="quote-note">Confirms Marley’s death and sets up the ghost story.</div>
+                  </div>
+                  <div class="quote-item">
+                    <div class="quote-text">“As solitary as an oyster.”</div>
+                    <div class="quote-note">Scrooge is shut off but could have goodness inside.</div>
+                  </div>
+                  <div class="quote-item">
+                    <div class="quote-text">“If they would rather die, they had better do it, and decrease the surplus population.”</div>
+                    <div class="quote-note">Cruel view of the poor that Dickens criticises.</div>
+                  </div>
+                  <div class="quote-item">
+                    <div class="quote-text">“Mankind was my business!”</div>
+                    <div class="quote-note">Marley regrets not caring for others; warning to Scrooge.</div>
+                  </div>
+                  <div class="quote-item">
+                    <div class="quote-text">“God bless us, every one!”</div>
+                    <div class="quote-note">Tiny Tim – hopeful, kind, moral centre.</div>
+                  </div>
+                  <div class="quote-item">
+                    <div class="quote-text">“I am not the man I was.”</div>
+                    <div class="quote-note">Scrooge openly admits his change.</div>
+                  </div>
+                  <div class="quote-item">
+                    <div class="quote-text">“He became as good a friend, as good a master, and as good a man.”</div>
+                    <div class="quote-note">Narrator confirms Scrooge’s permanent redemption.</div>
+                  </div>
+                </div>
+                <p class="muted" style="margin-top:6px;">
+                  All of these are also in the ACC flashcard deck.
+                </p>
+              </div>
             </div>
-          </div>
-          <div class="panel-body">
-            <div class="quote-list">
-              <div class="quote-item">
-                <div class="quote-text">“Marley was dead: to begin with.”</div>
-                <div class="quote-note">Confirms Marley’s death and sets up the ghost story.</div>
-              </div>
-              <div class="quote-item">
-                <div class="quote-text">“As solitary as an oyster.”</div>
-                <div class="quote-note">Scrooge is shut off, but could have goodness inside.</div>
-              </div>
-              <div class="quote-item">
-                <div class="quote-text">“If they would rather die, they had better do it, and decrease the surplus population.”</div>
-                <div class="quote-note">Cruel view of the poor that Dickens criticises.</div>
-              </div>
-              <div class="quote-item">
-                <div class="quote-text">“Mankind was my business!”</div>
-                <div class="quote-note">Marley regrets his life; message about responsibility.</div>
-              </div>
-              <div class="quote-item">
-                <div class="quote-text">“God bless us, every one!”</div>
-                <div class="quote-note">Tiny Tim – hopeful, kind, moral centre.</div>
-              </div>
-              <div class="quote-item">
-                <div class="quote-text">“I am not the man I was.”</div>
-                <div class="quote-note">Scrooge admits real change.</div>
-              </div>
-              <div class="quote-item">
-                <div class="quote-text">“He became as good a friend, as good a master, and as good a man.”</div>
-                <div class="quote-note">Narrator confirms his redemption is permanent.</div>
-              </div>
-            </div>
-            <p class="muted" style="margin-top:8px;">
-              These are all in the <strong>ACC – Key Quotes</strong> deck in the Flashcards tab.
-            </p>
           </div>
         </div>
       </section>
@@ -726,94 +804,99 @@
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>Language Paper 1 – structure</h2>
-              <small>19th-century fiction + imaginative writing</small>
+              <h2>Language Paper 1</h2>
+              <small>19th century extract + imaginative writing</small>
             </div>
           </div>
           <div class="panel-body">
-            <h3>Order & timing</h3>
+            <h3>Top-level plan</h3>
             <ul class="clean">
               <li><span class="b">1</span><span><strong>Start with Q5/6</strong> (imaginative writing) – about 45 minutes.</span></li>
-              <li><span class="b">2</span><span><strong>Read the 19th century extract</strong> for <strong>10 minutes</strong>.</span></li>
-              <li><span class="b">3</span><span>Then answer <strong>Q1–4</strong> on the extract following the timings below.</span></li>
+              <li><span class="b">2</span><span><strong>Read the extract</strong> for around 10 minutes.</span></li>
+              <li><span class="b">3</span><span>Answer <strong>Q1–4</strong> using the timings: Q1 2mins, Q2 4mins, Q3 10mins, Q4 35mins.</span></li>
             </ul>
 
-            <h3>Questions 1–4 on the extract</h3>
-            <ul class="clean">
-              <li><span class="b">Q1</span><span><strong>Comprehension</strong> – 1 mark · ~2 minutes. Use a short quotation or paraphrase from the text to answer exactly what’s asked.</span></li>
-              <li><span class="b">Q2</span><span><strong>Inference</strong> – 2 marks · ~4 minutes. Make 2 inferences and support each with a quote or paraphrase.</span></li>
-              <li><span class="b">Q3</span><span><strong>Analysis</strong> – 6 marks · ~10 minutes. Write <strong>two short paragraphs</strong>: one on language, one on structure. Each paragraph: Point → Evidence → Technique → Effect.</span></li>
-              <li><span class="b">Q4</span><span><strong>Evaluation</strong> – 15 marks · ~35 minutes. Write <strong>two paragraphs</strong> evaluating different aspects using <strong>SPITTED</strong> (Setting, People, Ideas, Tone, Theme, Events, Description).</span></li>
-            </ul>
-            <p class="muted">
-              For evaluation: use phrases like “the writer effectively creates…” and explain why the quote is effective, what it makes the reader think/feel, and the writer’s intention.
-            </p>
+            <div class="more-block">
+              <button class="soft small" data-toggle="#lang-p1-more">Show full breakdown</button>
+              <div id="lang-p1-more" class="more-content">
+                <h3>Q1–4 on the extract</h3>
+                <ul class="clean">
+                  <li><span class="b">Q1</span><span><strong>Comprehension</strong> – 1 mark · ~2 mins. Short answer using a quote or paraphrase.</span></li>
+                  <li><span class="b">Q2</span><span><strong>Inference</strong> – 2 marks · ~4 mins. 2 inferences, each backed with a quote or paraphrase.</span></li>
+                  <li><span class="b">Q3</span><span><strong>Analysis</strong> – 6 marks · ~10 mins. Two small paragraphs: one language, one structure. Each: Point → Evidence → Technique → Effect.</span></li>
+                  <li><span class="b">Q4</span><span><strong>Evaluation</strong> – 15 marks · ~35 mins. Two paragraphs using SPITTED (Setting, People, Ideas, Tone, Theme, Events, Description) and evaluative language like “the writer effectively creates…”.</span></li>
+                </ul>
 
-            <h3>Q5/6 – imaginative writing (40 marks · 45 minutes)</h3>
-            <p class="muted">You can use the DROP / ZOOM / FLASHBACK / ECHO structure:</p>
-            <ul class="clean">
-              <li><span class="b">DROP</span><span>Describe the atmosphere using strong sensory language + figurative language.</span></li>
-              <li><span class="b">ZOOM</span><span>Zoom into your character – appearance, feelings, small details.</span></li>
-              <li><span class="b">FLASHBACK</span><span>Show why they are there; what led them to this moment.</span></li>
-              <li><span class="b">ECHO</span><span>Back to your character now – what’s changed because of the flashback? Echo an earlier image/line.</span></li>
-            </ul>
+                <h3>Q5/6 – imaginative writing (40 marks · 45 mins)</h3>
+                <p class="muted">Use this story pattern:</p>
+                <ul class="clean">
+                  <li><span class="b">DROP</span><span>Describe the atmosphere: sensory and figurative language.</span></li>
+                  <li><span class="b">ZOOM</span><span>Zoom into your character – close detail and feelings.</span></li>
+                  <li><span class="b">FLASHBACK</span><span>Explain why they are there; what led them to this moment.</span></li>
+                  <li><span class="b">ECHO</span><span>Back to your character now; repeat or twist an image/line from the start.</span></li>
+                </ul>
 
-            <h3>What you must include</h3>
-            <ul class="clean">
-              <li><span class="b">Vocab</span><span>Strong word choices (precise adjectives and verbs).</span></li>
-              <li><span class="b">Punctuation</span><span>Use a range: <code>. , " " ! ? … - ; :</code>.</span></li>
-              <li><span class="b">Sentences</span><span>Include a one-word sentence, a sentence starting with an adverb, and a sentence with a dependent clause.</span></li>
-              <li><span class="b">Language techniques</span><span>Metaphors, similes, personification, hyperbole, alliteration, onomatopoeia, repetition, juxtaposition, imagery.</span></li>
-              <li><span class="b">Structure</span><span>Foreshadowing, withholding information, cyclical ending, pathetic fallacy.</span></li>
-            </ul>
+                <h3>What to include in your writing</h3>
+                <ul class="clean">
+                  <li><span class="b">Vocab</span><span>Precise, interesting word choices.</span></li>
+                  <li><span class="b">Punctuation</span><span>Use a range: . , “ ” ! ? … - ; :</span></li>
+                  <li><span class="b">Sentences</span><span>At least: a one-word sentence, an adverb starter, a sentence with a dependent clause.</span></li>
+                  <li><span class="b">Language</span><span>Metaphors, similes, personification, hyperbole, alliteration, onomatopoeia, repetition, juxtaposition, imagery.</span></li>
+                  <li><span class="b">Structure</span><span>Foreshadowing, withholding information, cyclical ending, pathetic fallacy.</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>Language Paper 2 – structure</h2>
+              <h2>Language Paper 2</h2>
               <small>Non-fiction + transactional writing</small>
             </div>
           </div>
           <div class="panel-body">
-            <h3>Order & timing</h3>
+            <h3>Top-level plan</h3>
             <ul class="clean">
               <li><span class="b">1</span><span><strong>Start with Q8/9</strong> (transactional writing) – about 45 minutes.</span></li>
-              <li><span class="b">2</span><span>Read <strong>Extract 1</strong> for ~10 minutes.</span></li>
-              <li><span class="b">3</span><span>Answer Q1–3 on Extract 1.</span></li>
-              <li><span class="b">4</span><span>Read <strong>Extract 2</strong> for ~10 minutes.</span></li>
-              <li><span class="b">5</span><span>Answer Q4–7a/7b using both extracts.</span></li>
+              <li><span class="b">2</span><span>Read Extract 1 for about 10 minutes, then answer Q1–3.</span></li>
+              <li><span class="b">3</span><span>Read Extract 2 for about 10 minutes, then answer Q4–7a/7b.</span></li>
             </ul>
 
-            <h3>Questions on Extract 1 & 2</h3>
-            <ul class="clean">
-              <li><span class="b">Q1</span><span><strong>Comprehension</strong> – 2 marks · ~1 minute.</span></li>
-              <li><span class="b">Q2</span><span><strong>Comprehension</strong> – 2 marks · ~1 minute.</span></li>
-              <li><span class="b">Q3</span><span><strong>Analysis</strong> (Extract 1) – 15 marks · ~15 minutes. Two paragraphs; mix language & structure using Point → Evidence → Technique → Effect.</span></li>
-              <li><span class="b">Q4</span><span><strong>Comprehension</strong> (Extract 2) – 1 mark · ~1 minute.</span></li>
-              <li><span class="b">Q5</span><span><strong>Comprehension</strong> (Extract 2) – 1 mark · ~1 minute.</span></li>
-              <li><span class="b">Q6</span><span><strong>Evaluation</strong> (Extract 2) – 15 marks · ~15 minutes. Two paragraphs using SPITTED and evaluative language (“the writer effectively…”).</span></li>
-              <li><span class="b">Q7a</span><span><strong>Synthesis</strong> – 6 marks · ~6 minutes. Three mini paragraphs comparing similarities with a quote from each extract.</span></li>
-              <li><span class="b">Q7b</span><span><strong>Comparison</strong> – 14 marks · ~15 minutes. Two paragraphs comparing ideas/methods with quotes and techniques from both texts.</span></li>
-            </ul>
+            <div class="more-block">
+              <button class="soft small" data-toggle="#lang-p2-more">Show full breakdown</button>
+              <div id="lang-p2-more" class="more-content">
+                <h3>Reading questions</h3>
+                <ul class="clean">
+                  <li><span class="b">Q1</span><span>Comprehension – 2 marks · ~1 min.</span></li>
+                  <li><span class="b">Q2</span><span>Comprehension – 2 marks · ~1 min.</span></li>
+                  <li><span class="b">Q3</span><span>Analysis (Extract 1) – 15 marks · ~15 mins. Two paragraphs on language + structure. Use Point → Evidence → Technique → Effect.</span></li>
+                  <li><span class="b">Q4</span><span>Comprehension (Extract 2) – 1 mark · ~1 min.</span></li>
+                  <li><span class="b">Q5</span><span>Comprehension (Extract 2) – 1 mark · ~1 min.</span></li>
+                  <li><span class="b">Q6</span><span>Evaluation (Extract 2) – 15 marks · ~15 mins. Two paragraphs using SPITTED and evaluative phrases like “the writer effectively creates…”.</span></li>
+                  <li><span class="b">Q7a</span><span>Synthesis – 6 marks · ~6 mins. Three mini paragraphs: similarity + quote from each extract.</span></li>
+                  <li><span class="b">Q7b</span><span>Comparison – 14 marks · ~15 mins. Two paragraphs comparing ideas/methods from both texts with quotes and techniques.</span></li>
+                </ul>
 
-            <h3>Q8/9 – transactional writing (40 marks · 45 minutes)</h3>
-            <p class="muted">Use this basic plan:</p>
-            <ul class="clean">
-              <li><span class="b">Statement</span><span>Make your view clear straight away.</span></li>
-              <li><span class="b">Counter</span><span>Acknowledge the other side, then show why it’s wrong or weaker.</span></li>
-              <li><span class="b">Anecdote</span><span>Short story or example linked to the topic.</span></li>
-              <li><span class="b">Reasons</span><span>Use statistics or expert opinions to back you up.</span></li>
-              <li><span class="b">Final plea</span><span>Use imperatives to push the audience to agree / act.</span></li>
-            </ul>
+                <h3>Q8/9 – transactional writing (40 marks · 45 mins)</h3>
+                <p class="muted">Simple structure:</p>
+                <ul class="clean">
+                  <li><span class="b">Statement</span><span>Make your view clear.</span></li>
+                  <li><span class="b">Counter</span><span>Acknowledge the other side, then show why it’s weaker.</span></li>
+                  <li><span class="b">Anecdote</span><span>Short story/example linked to the topic.</span></li>
+                  <li><span class="b">Reasons</span><span>Use statistics or expert opinions.</span></li>
+                  <li><span class="b">Final plea</span><span>Use imperatives to push the audience to agree/act.</span></li>
+                </ul>
 
-            <h3>What you must include</h3>
-            <ul class="clean">
-              <li><span class="b">Vocab</span><span>Same “good vocab” as Paper 1.</span></li>
-              <li><span class="b">Sentences</span><span>Use a one-word sentence, an adverb opener, and a sentence with a dependent clause.</span></li>
-              <li><span class="b">DAFOREST</span><span>Direct address, alliteration, fact, opinion, rhetorical questions, emotive language, statistics, tripling.</span></li>
-            </ul>
+                <h3>What to include</h3>
+                <ul class="clean">
+                  <li><span class="b">Vocab</span><span>Same high-level vocab as Paper 1.</span></li>
+                  <li><span class="b">Sentences</span><span>One-word sentence, adverb starter, dependent clause.</span></li>
+                  <li><span class="b">DAFOREST</span><span>Direct address, alliteration, fact, opinion, rhetorical questions, emotive language, statistics, tripling.</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -823,85 +906,102 @@
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>Literature Paper 1 – structure</h2>
+              <h2>Literature Paper 1</h2>
               <small>Macbeth + An Inspector Calls</small>
             </div>
           </div>
           <div class="panel-body">
-            <p class="muted">Total time: <strong>1 hour 45 minutes</strong>.</p>
+            <p class="muted">Total time: 1 hour 45 minutes.</p>
 
-            <h3>Macbeth Part A – extract (20 marks · 30 minutes)</h3>
+            <h3>Simple timing</h3>
             <ul class="clean">
-              <li><span class="b">Focus</span><span>Analyse the extract only. No context here.</span></li>
-              <li><span class="b">Paragraphs</span><span>Write at least two paragraphs responding clearly to the question.</span></li>
-              <li><span class="b">Each paragraph</span><span>Point → Quote → Technique → Effect on reader.</span></li>
+              <li><span class="b">Macbeth A</span><span>Extract – 20 marks · ~30 mins.</span></li>
+              <li><span class="b">Macbeth B</span><span>Whole-play essay – 20 marks · ~30 mins.</span></li>
+              <li><span class="b">AIC</span><span>Essay – 40 marks · ~45 mins.</span></li>
             </ul>
-            <p class="muted">
-              Techniques to look for: metaphors, blood as symbol of guilt, questions, soliloquies, asides.
-            </p>
 
-            <h3>Macbeth Part B – essay (20 marks · 30 minutes)</h3>
-            <ul class="clean">
-              <li><span class="b">Focus</span><span>Whole play, not the extract scene. Use context.</span></li>
-              <li><span class="b">Paragraphs</span><span>Two or more strong paragraphs on the theme/character in the question.</span></li>
-              <li><span class="b">Each paragraph</span><span>Point → Quote → Explanation → Context → Shakespeare’s purpose.</span></li>
-            </ul>
-            <p class="muted">
-              Context areas: James I, witches, tragic heroes, Gunpowder Plot, Divine Right of Kings, Great Chain of Being, Jacobean gender roles.
-            </p>
+            <div class="more-block">
+              <button class="soft small" data-toggle="#lit-p1-more">Show full breakdown</button>
+              <div id="lit-p1-more" class="more-content">
+                <h3>Macbeth Part A – extract</h3>
+                <ul class="clean">
+                  <li><span class="b">Focus</span><span>Only the extract. No context here.</span></li>
+                  <li><span class="b">Paragraphs</span><span>At least two paragraphs responding to the question.</span></li>
+                  <li><span class="b">Each paragraph</span><span>Point → Quote → Technique → Effect on the reader.</span></li>
+                </ul>
+                <p class="muted">Look for: metaphors, blood as guilt, questions, soliloquies, asides.</p>
 
-            <h3>An Inspector Calls essay (40 marks · 45 minutes)</h3>
-            <ul class="clean">
-              <li><span class="b">Choice</span><span>Two questions (usually character and theme) – pick <strong>one</strong>.</span></li>
-              <li><span class="b">Structure</span><span>Intro · 3 body paragraphs · conclusion.</span></li>
-              <li><span class="b">Each body paragraph</span><span>Point → Quote → Explanation → Context (1912 vs 1945) → Priestley’s purpose.</span></li>
-            </ul>
-            <p class="muted">
-              Context areas: Capitalism vs socialism, class, women’s rights, workers’ rights, alcoholism.
-            </p>
+                <h3>Macbeth Part B – essay</h3>
+                <ul class="clean">
+                  <li><span class="b">Focus</span><span>Whole play. Don’t reuse extract quotes.</span></li>
+                  <li><span class="b">Each paragraph</span><span>Point (“Shakespeare presents…”) → Quote → Explanation → Context → Shakespeare’s purpose.</span></li>
+                </ul>
+                <p class="muted">
+                  Context: James I, witches, tragic heroes, Gunpowder Plot, Divine Right of Kings, Great Chain of Being, Jacobean gender roles.
+                </p>
+
+                <h3>An Inspector Calls – essay</h3>
+                <ul class="clean">
+                  <li><span class="b">Choice</span><span>Two questions (usually character + theme). Answer one.</span></li>
+                  <li><span class="b">Structure</span><span>Intro · 3 main paragraphs · conclusion.</span></li>
+                  <li><span class="b">Each paragraph</span><span>Point (“Priestley presents…”) → Quote → Explanation → Context (1912 vs 1945) → Priestley’s purpose.</span></li>
+                </ul>
+                <p class="muted">
+                  Context: capitalism vs socialism, class, women’s rights, workers’ rights, alcoholism.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>Literature Paper 2 – structure</h2>
-              <small>ACC · Belonging anthology · Unseen poetry</small>
+              <h2>Literature Paper 2</h2>
+              <small>ACC · Belonging Anthology · Unseen Poetry</small>
             </div>
           </div>
           <div class="panel-body">
-            <p class="muted">Total time: <strong>2 hours 15 minutes</strong>.</p>
+            <p class="muted">Total time: 2 hours 15 minutes.</p>
 
-            <h3>ACC Part A – extract (20 marks · 25 minutes)</h3>
+            <h3>Simple timing</h3>
             <ul class="clean">
-              <li><span class="b">Focus</span><span>Analyse the extract only. No context.</span></li>
-              <li><span class="b">Each paragraph</span><span>Point → Quote → Technique → Effect on reader.</span></li>
-            </ul>
-            <p class="muted">
-              Techniques: listing, exclamation marks, metaphors, similes, imagery.
-            </p>
-
-            <h3>ACC Part B – essay (20 marks · 25 minutes)</h3>
-            <ul class="clean">
-              <li><span class="b">Focus</span><span>Whole novella; do not reuse quotes from the extract.</span></li>
-              <li><span class="b">Each paragraph</span><span>Point (“Dickens presents…”) → Quote → Explanation → Dickens’ purpose.</span></li>
-              <li><span class="b">Context</span><span>Not needed here – focus on ideas and message.</span></li>
+              <li><span class="b">ACC A</span><span>Extract – 20 marks · ~25 mins.</span></li>
+              <li><span class="b">ACC B</span><span>Whole-novella essay – 20 marks · ~25 mins.</span></li>
+              <li><span class="b">Anthology</span><span>Comparison – 20 marks · ~30 mins.</span></li>
+              <li><span class="b">Unseen</span><span>Two poems – 20 marks · ~45 mins.</span></li>
             </ul>
 
-            <h3>Belonging Poetry Anthology (20 marks · 30 minutes)</h3>
-            <ul class="clean">
-              <li><span class="b">Task</span><span>Compare the printed poem with one poem you choose from the anthology on the same theme.</span></li>
-              <li><span class="b">Each paragraph</span><span>Comparative point → Quote Poem 1 → Technique + effect → Context/intentions → Quote Poem 2 → Technique + effect → Context/intentions.</span></li>
-            </ul>
-            <p class="muted">
-              Think about: language, rhyme, caesura, enjambment, and form.
-            </p>
+            <div class="more-block">
+              <button class="soft small" data-toggle="#lit-p2-more">Show full breakdown</button>
+              <div id="lit-p2-more" class="more-content">
+                <h3>ACC Part A – extract</h3>
+                <ul class="clean">
+                  <li><span class="b">Focus</span><span>Only the extract; no context.</span></li>
+                  <li><span class="b">Each paragraph</span><span>Point → Quote → Technique → Effect.</span></li>
+                </ul>
+                <p class="muted">Look for listing, exclamation marks, metaphors, similes, imagery.</p>
 
-            <h3>Unseen Poetry (20 marks · 45 minutes)</h3>
-            <ul class="clean">
-              <li><span class="b">Task</span><span>Compare two unseen poems on a theme once you understand them.</span></li>
-              <li><span class="b">Each paragraph</span><span>Comparative point → Quote Poem 1 (technique + effect) → Quote Poem 2 (technique + effect).</span></li>
-            </ul>
+                <h3>ACC Part B – essay</h3>
+                <ul class="clean">
+                  <li><span class="b">Focus</span><span>Whole novella; don’t reuse extract quotes.</span></li>
+                  <li><span class="b">Each paragraph</span><span>“Dickens presents…” → Quote → Explanation → Dickens’ purpose.</span></li>
+                  <li><span class="b">Context</span><span>Not needed – focus on ideas and message.</span></li>
+                </ul>
+
+                <h3>Belonging Anthology</h3>
+                <ul class="clean">
+                  <li><span class="b">Task</span><span>Compare the given poem with one you choose from the collection on the same theme.</span></li>
+                  <li><span class="b">Paragraph</span><span>Comparative point → quote + technique + effect from Poem 1 → context/intentions → quote + technique + effect from Poem 2 → context/intentions.</span></li>
+                </ul>
+
+                <h3>Unseen Poetry</h3>
+                <ul class="clean">
+                  <li><span class="b">Task</span><span>Compare two unseen poems once you understand the theme.</span></li>
+                  <li><span class="b">Paragraph</span><span>Comparative point → quote + technique + effect from Poem 1 → quote + technique + effect from Poem 2.</span></li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -911,115 +1011,139 @@
         <div class="panel">
           <div class="panel-header">
             <div>
-              <h2>Belonging Anthology – key poems</h2>
-              <small>Detailed notes for core comparison poems</small>
+              <h2>Belonging Anthology</h2>
+              <small>Tap a poem to see full notes</small>
             </div>
           </div>
           <div class="panel-body">
-            <p class="muted">
-              These match the content of your anthology notes and are easy to turn into comparison paragraphs or cards.
-            </p>
             <div class="poem-list">
-              <div class="poem-block">
-                <div class="poem-title">Island Man – Grace Nichols</div>
-                <div class="poem-sub">About</div>
-                <div class="poem-detail">A man wakes thinking he is back in the Caribbean, but he is actually in London.</div>
-                <div class="poem-sub">Key quotations</div>
-                <div class="poem-detail">1. “his small emerald island” – metaphor makes the island seem precious and beautiful.</div>
-                <div class="poem-detail">2. “dull north circular roar” – imagery makes London seem oppressive and overwhelming.</div>
-                <div class="poem-sub">Structure & form</div>
-                <div class="poem-detail">Free verse and no punctuation. This makes the poem flow and feel dreamy, like drifting between sleep and waking.</div>
-                <div class="poem-sub">Context</div>
-                <div class="poem-detail">Grace Nichols moved from the Caribbean to London, so she understands dual identity and homesickness.</div>
-                <div class="poem-sub">Themes</div>
-                <div class="poem-detail">Youth, nature, nostalgia, dual identity/being in a foreign place, London as home.</div>
-              </div>
+              <details class="poem-details">
+                <summary class="poem-summary">
+                  <span class="poem-title">Island Man – Grace Nichols</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <div class="poem-body">
+                  <div class="poem-sub">About</div>
+                  <div class="poem-detail">A man wakes thinking he is back in the Caribbean, but he is actually in London.</div>
+                  <div class="poem-sub">Key quotation</div>
+                  <div class="poem-detail">“his small emerald island” – metaphor makes the island seem precious and beautiful.</div>
+                  <div class="poem-detail">“dull north circular roar” – imagery makes London seem oppressive and overwhelming.</div>
+                  <div class="poem-sub">Structure & form</div>
+                  <div class="poem-detail">Free verse and no punctuation – gives the poem a dreamy, drifting feeling between sleep and waking.</div>
+                  <div class="poem-sub">Context</div>
+                  <div class="poem-detail">Grace Nichols moved from the Caribbean to London; she writes from experience of dual identity.</div>
+                  <div class="poem-sub">Themes</div>
+                  <div class="poem-detail">Youth, nature, nostalgia, dual identity/in a foreign place, London as home.</div>
+                </div>
+              </details>
 
-              <div class="poem-block">
-                <div class="poem-title">To My Sister – William Wordsworth</div>
-                <div class="poem-sub">About</div>
-                <div class="poem-detail">A man tells his adult sister to come out and enjoy the power of nature in spring.</div>
-                <div class="poem-sub">Key quotation</div>
-                <div class="poem-detail">“Our minds shall drink at every pore the spirit of the season” – personification shows that, by being in nature, they will absorb its power and energy. “Drink” makes it sound refreshing and wholesome.</div>
-                <div class="poem-sub">Structure & form</div>
-                <div class="poem-detail">ABAB rhyme scheme and short stanzas give it an enthusiastic, lively feeling.</div>
-                <div class="poem-sub">Context</div>
-                <div class="poem-detail">Wordsworth was a Romantic. He believed in nature, innocence of youth, freedom and emotions being more important than logic.</div>
-                <div class="poem-sub">Themes</div>
-                <div class="poem-detail">Nature, family, exploration of self.</div>
-              </div>
+              <details class="poem-details">
+                <summary class="poem-summary">
+                  <span class="poem-title">To My Sister – William Wordsworth</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <div class="poem-body">
+                  <div class="poem-sub">About</div>
+                  <div class="poem-detail">A man encourages his adult sister to enjoy the power of nature during spring.</div>
+                  <div class="poem-sub">Key quotation</div>
+                  <div class="poem-detail">“Our minds shall drink at every pore the spirit of the season” – personification; nature gives them power and energy. “Drink” makes it sound refreshing and wholesome.</div>
+                  <div class="poem-sub">Structure & form</div>
+                  <div class="poem-detail">ABAB rhyme scheme and short stanzas give an enthusiastic, lively feeling.</div>
+                  <div class="poem-sub">Context</div>
+                  <div class="poem-detail">Wordsworth was a Romantic: valued nature, youth, freedom and emotion over logic.</div>
+                  <div class="poem-sub">Themes</div>
+                  <div class="poem-detail">Nature, family, exploration of self.</div>
+                </div>
+              </details>
 
-              <div class="poem-block">
-                <div class="poem-title">Sunday Dip – John Clare</div>
-                <div class="poem-sub">About</div>
-                <div class="poem-detail">A group of boys enjoy their only day off by swimming in a river.</div>
-                <div class="poem-sub">Key quotation</div>
-                <div class="poem-detail">“And Laugh to hear the thunder in their ears” – metaphor showing they are so loud and happy that it is like thunder.</div>
-                <div class="poem-sub">Structure & form</div>
-                <div class="poem-detail">Repetition of “And” builds excitement and energy.</div>
-                <div class="poem-sub">Context</div>
-                <div class="poem-detail">Clare was a Romantic poet. He uses a simple form (sonnet) to be accessible to both educated and poorer readers.</div>
-                <div class="poem-sub">Themes</div>
-                <div class="poem-detail">Youth, nature, nostalgia, community.</div>
-              </div>
+              <details class="poem-details">
+                <summary class="poem-summary">
+                  <span class="poem-title">Sunday Dip – John Clare</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <div class="poem-body">
+                  <div class="poem-sub">About</div>
+                  <div class="poem-detail">A group of boys enjoy their only day off by swimming in a river.</div>
+                  <div class="poem-sub">Key quotation</div>
+                  <div class="poem-detail">“And Laugh to hear the thunder in their ears” – metaphor shows their loud, joyful noise like thunder.</div>
+                  <div class="poem-sub">Structure & form</div>
+                  <div class="poem-detail">Repetition of “And” builds excitement and energy.</div>
+                  <div class="poem-sub">Context</div>
+                  <div class="poem-detail">Clare was a Romantic, using a simple sonnet form to be accessible to both rich and poor readers.</div>
+                  <div class="poem-sub">Themes</div>
+                  <div class="poem-detail">Youth, nature, nostalgia, community.</div>
+                </div>
+              </details>
 
-              <div class="poem-block">
-                <div class="poem-title">I Remember, I Remember – Thomas Hood</div>
-                <div class="poem-sub">About</div>
-                <div class="poem-detail">A chronically ill man remembers his childhood as wonderful and perfect.</div>
-                <div class="poem-sub">Key quotation</div>
-                <div class="poem-detail">“My spirit flew in feathers then, / That is so heavy now,” – metaphor for feeling joyful and free when young, but weighed down now.</div>
-                <div class="poem-sub">Structure & form</div>
-                <div class="poem-detail">Repetition of “I remember, I remember” shows how deeply he feels the loss and how much he loved his childhood.</div>
-                <div class="poem-sub">Context</div>
-                <div class="poem-detail">Thomas Hood was himself chronically ill, which adds truth to the contrast between past and present.</div>
-                <div class="poem-sub">Themes</div>
-                <div class="poem-detail">Youth, nature, nostalgia, exploration of self.</div>
-              </div>
+              <details class="poem-details">
+                <summary class="poem-summary">
+                  <span class="poem-title">I Remember, I Remember – Thomas Hood</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <div class="poem-body">
+                  <div class="poem-sub">About</div>
+                  <div class="poem-detail">A chronically ill man remembers his childhood as wonderful and perfect.</div>
+                  <div class="poem-sub">Key quotation</div>
+                  <div class="poem-detail">“My spirit flew in feathers then, / That is so heavy now,” – metaphor; he felt free and powerful when young, but weighed down now.</div>
+                  <div class="poem-sub">Structure & form</div>
+                  <div class="poem-detail">Repetition of “I remember, I remember” shows deep nostalgia and love for his childhood.</div>
+                  <div class="poem-sub">Context</div>
+                  <div class="poem-detail">Thomas Hood was actually chronically ill, giving truth to the contrast between past and present.</div>
+                  <div class="poem-sub">Themes</div>
+                  <div class="poem-detail">Youth, nature, nostalgia, exploration of self.</div>
+                </div>
+              </details>
 
-              <div class="poem-block">
-                <div class="poem-title">We Refugees – Benjamin Zephaniah</div>
-                <div class="poem-sub">About</div>
-                <div class="poem-detail">Different refugees explain what they have gone through.</div>
-                <div class="poem-sub">Key quotation</div>
-                <div class="poem-detail">“We can all be refugees” – collective pronoun shows it could happen to anyone and makes the reader feel involved.</div>
-                <div class="poem-sub">Structure & form</div>
-                <div class="poem-detail">Each stanza starting with “I” is from a different refugee’s perspective, making it personal but also showing many experiences.</div>
-                <div class="poem-sub">Context</div>
-                <div class="poem-detail">Zephaniah is an activist for refugees (and against racism, animal cruelty, etc.). He shows being a refugee is part of shared human experience.</div>
-                <div class="poem-sub">Themes</div>
-                <div class="poem-detail">Nostalgia, family, dual identity/in a foreign place, community.</div>
-              </div>
+              <details class="poem-details">
+                <summary class="poem-summary">
+                  <span class="poem-title">We Refugees – Benjamin Zephaniah</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <div class="poem-body">
+                  <div class="poem-sub">About</div>
+                  <div class="poem-detail">Different refugees explain what they have gone through.</div>
+                  <div class="poem-sub">Key quotation</div>
+                  <div class="poem-detail">“We can all be refugees” – collective pronoun shows it could happen to anyone and makes the reader feel involved.</div>
+                  <div class="poem-sub">Structure & form</div>
+                  <div class="poem-detail">Each stanza starting with “I” is from a different refugee’s perspective, making the poem personal but varied.</div>
+                  <div class="poem-sub">Context</div>
+                  <div class="poem-detail">Zephaniah is an activist for refugees. He shows being a refugee is part of shared human experience.</div>
+                  <div class="poem-sub">Themes</div>
+                  <div class="poem-detail">Nostalgia, family, dual identity/in a foreign place, community.</div>
+                </div>
+              </details>
 
-              <div class="poem-block">
-                <div class="poem-title">Jamaican British – James Berry</div>
-                <div class="poem-sub">About</div>
-                <div class="poem-detail">A mixed-race speaker remembers being bullied at school and how going to Jamaica made him value his heritage.</div>
-                <div class="poem-sub">Key quotation</div>
-                <div class="poem-detail">“the English boys at school made me choose Jamaican, British?” – question mark and caesura show how bullying made him question the two sides of himself.</div>
-                <div class="poem-sub">Structure & form</div>
-                <div class="poem-detail">Repetition of “Jamaican British” shows how important this label is to his identity and how he works through it.</div>
-                <div class="poem-sub">Context</div>
-                <div class="poem-detail">Autobiographical poem – Berry writes from his own experience.</div>
-                <div class="poem-sub">Themes</div>
-                <div class="poem-detail">Youth, family, dual identity/in a foreign place, London as home, community, exploration of self.</div>
-              </div>
+              <details class="poem-details">
+                <summary class="poem-summary">
+                  <span class="poem-title">Jamaican British – James Berry</span>
+                  <span class="poem-chevron">tap ▾</span>
+                </summary>
+                <div class="poem-body">
+                  <div class="poem-sub">About</div>
+                  <div class="poem-detail">A mixed race speaker remembers being bullied at school and later appreciating his heritage after going to Jamaica.</div>
+                  <div class="poem-sub">Key quotation</div>
+                  <div class="poem-detail">“the English boys at school made me choose Jamaican, British?” – question mark and caesura show bullying makes him question both sides of his identity.</div>
+                  <div class="poem-sub">Structure & form</div>
+                  <div class="poem-detail">Repetition of “Jamaican British” shows how important the label is to him.</div>
+                  <div class="poem-sub">Context</div>
+                  <div class="poem-detail">Autobiographical poem – Berry writes about his own experience.</div>
+                  <div class="poem-sub">Themes</div>
+                  <div class="poem-detail">Youth, family, dual identity/in a foreign place, London as home, community, exploration of self.</div>
+                </div>
+              </details>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- FLASHCARDS (FIXED) -->
+      <!-- FLASHCARDS -->
       <section id="view-flashcards" class="view">
         <div class="panel">
           <div class="panel-header">
             <div>
               <h2>Flashcards</h2>
-              <small>Fixed decks for ACC, Belonging & exam structure</small>
+              <small>ACC · Belonging · Language · Literature</small>
             </div>
-            <span class="badge">
-              <span class="badge-dot"></span> Pre-set cards · no editing
-            </span>
           </div>
           <div class="panel-body">
             <div class="fc-top-row">
@@ -1031,12 +1155,12 @@
             </div>
 
             <div class="quick-decks">
-              <button class="soft" data-quick-deck="ACC – Key Quotes">ACC quotes</button>
-              <button class="soft" data-quick-deck="Belonging – Poems">Belonging poems</button>
-              <button class="soft" data-quick-deck="Language Paper 1 – Structure">Lang P1</button>
-              <button class="soft" data-quick-deck="Language Paper 2 – Structure">Lang P2</button>
-              <button class="soft" data-quick-deck="Literature Paper 1 – Structure">Lit P1</button>
-              <button class="soft" data-quick-deck="Literature Paper 2 – Structure">Lit P2</button>
+              <button class="soft small" data-quick-deck="ACC – Key Quotes">ACC</button>
+              <button class="soft small" data-quick-deck="Belonging – Poems">Belonging</button>
+              <button class="soft small" data-quick-deck="Language Paper 1 – Structure">Lang P1</button>
+              <button class="soft small" data-quick-deck="Language Paper 2 – Structure">Lang P2</button>
+              <button class="soft small" data-quick-deck="Literature Paper 1 – Structure">Lit P1</button>
+              <button class="soft small" data-quick-deck="Literature Paper 2 – Structure">Lit P2</button>
             </div>
 
             <div class="flashcard-shell">
@@ -1062,15 +1186,15 @@
               </div>
 
               <div class="fc-controls">
-                <button id="fc-restart" class="primary">
-                  <span class="icon">▶</span> Start / restart
+                <button id="fc-restart" class="primary small">
+                  <span class="icon">▶</span> Start
                 </button>
-                <button id="fc-prev" class="soft">◀ Prev</button>
-                <button id="fc-next" class="soft">Next ▶</button>
-                <button id="fc-flip" class="soft">⟲ Flip</button>
+                <button id="fc-prev" class="soft small">◀ Prev</button>
+                <button id="fc-next" class="soft small">Next ▶</button>
+                <button id="fc-flip" class="soft small">⟲ Flip</button>
                 <div class="switch">
                   <input type="checkbox" id="fc-shuffle" />
-                  <label for="fc-shuffle">Shuffle</label>
+                  <label for="fc-shuffle" class="muted" style="font-size:11px;">Shuffle</label>
                 </div>
               </div>
 
@@ -1082,6 +1206,57 @@
     </div>
   </main>
 
+  <!-- FLOATING MENU BUTTON -->
+  <button class="fab-menu" id="fab-menu" aria-label="Open menu">
+    <span>☰</span>
+  </button>
+
+  <!-- NAV OVERLAY -->
+  <div class="nav-overlay" id="nav-overlay">
+    <div class="nav-card">
+      <div class="nav-card-header">
+        <div>
+          <div class="nav-card-title">REVISION MENU</div>
+          <div class="nav-card-sub">Jump to sections & use tools</div>
+        </div>
+        <button class="soft small" id="nav-close">
+          ✕
+        </button>
+      </div>
+
+      <div class="nav-list">
+        <div class="nav-section-label">Sections</div>
+        <button class="soft nav-item-btn" data-goto="acc">
+          <span class="icon">📘</span> A Christmas Carol
+        </button>
+        <button class="soft nav-item-btn" data-goto="language">
+          <span class="icon">💬</span> Language Papers
+        </button>
+        <button class="soft nav-item-btn" data-goto="literature">
+          <span class="icon">📖</span> Literature Papers
+        </button>
+        <button class="soft nav-item-btn" data-goto="anthology">
+          <span class="icon">📚</span> Belonging Anthology
+        </button>
+        <button class="soft nav-item-btn" data-goto="flashcards">
+          <span class="icon">🃏</span> Flashcards
+        </button>
+      </div>
+
+      <div class="nav-section-label" style="margin-top:6px;">Tools</div>
+      <div class="nav-tools">
+        <div class="timer-label">Focus timer (25 minutes)</div>
+        <div class="timer-row">
+          <div class="timer-display" id="timer-display">25:00</div>
+          <div style="display:flex;gap:6px;">
+            <button class="soft small" id="timer-start">Start</button>
+            <button class="soft small" id="timer-reset">Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // ---------- FIXED DECKS ----------
     const DECKS = {
@@ -1092,7 +1267,7 @@
         },
         {
           front: "\"As solitary as an oyster.\"",
-          back: "Narrator describing Scrooge – isolated and closed off, but with potential for change (a 'pearl' inside)."
+          back: "Narrator describing Scrooge – isolated, but with potential for change (a 'pearl' inside)."
         },
         {
           front: "\"Bah! Humbug!\"",
@@ -1143,7 +1318,7 @@
       "Belonging – Poems": [
         {
           front: "Island Man – what is it about?",
-          back: "A man wakes thinking he is in the Caribbean again but is actually in London. Shows split identity and homesickness."
+          back: "A man wakes thinking he is back in the Caribbean but is actually in London. Shows split identity and homesickness."
         },
         {
           front: "Island Man – key quotes & effect",
@@ -1151,20 +1326,20 @@
         },
         {
           front: "Island Man – structure, context, themes",
-          back: "Free verse, no punctuation – dreamy flow between sleep and waking. Grace Nichols moved from Caribbean to London. Themes: youth, nature, nostalgia, dual identity, London as home."
+          back: "Free verse, no punctuation – dreamy flow. Grace Nichols moved from Caribbean to London. Themes: youth, nature, nostalgia, dual identity, London as home."
         },
 
         {
           front: "To My Sister – what is it about?",
-          back: "A man tells his adult sister to come with him and enjoy the power of nature in spring."
+          back: "A man tells his adult sister to come out and enjoy the power of nature in spring."
         },
         {
           front: "To My Sister – key quote & effect",
-          back: "\"Our minds shall drink at every pore the spirit of the season\" – personification shows nature giving energy and power; 'drink' sounds refreshing and wholesome."
+          back: "\"Our minds shall drink at every pore the spirit of the season\" – personification shows nature giving energy; 'drink' sounds refreshing and wholesome."
         },
         {
           front: "To My Sister – structure, context, themes",
-          back: "ABAB rhyme and short stanzas create enthusiasm. Wordsworth is a Romantic – nature, youth, freedom, emotion over reason. Themes: nature, family, exploration of self."
+          back: "ABAB rhyme, short stanzas = enthusiastic tone. Wordsworth is a Romantic. Themes: nature, family, exploration of self."
         },
 
         {
@@ -1173,170 +1348,170 @@
         },
         {
           front: "Sunday Dip – key quote & effect",
-          back: "\"And Laugh to hear the thunder in their ears\" – metaphor shows they are so loud and joyful it sounds like thunder."
+          back: "\"And Laugh to hear the thunder in their ears\" – metaphor; their loud fun is like thunder."
         },
         {
           front: "Sunday Dip – structure, context, themes",
-          back: "Repetition of \"And\" builds excitement. Clare is a Romantic, using a simple sonnet form for both rich and poor readers. Themes: youth, nature, nostalgia, community."
+          back: "Repetition of \"And\" builds excitement. Clare is a Romantic using a simple sonnet form. Themes: youth, nature, nostalgia, community."
         },
 
         {
           front: "I Remember, I Remember – what is it about?",
-          back: "A chronically ill man remembers his childhood as joyful and perfect compared to his present."
+          back: "A chronically ill man remembers his childhood as joyful and perfect compared to now."
         },
         {
           front: "I Remember – key quote & effect",
-          back: "\"My spirit flew in feathers then, / That is so heavy now\" – metaphor for feeling free and powerful when young, but weighed down now."
+          back: "\"My spirit flew in feathers then, / That is so heavy now\" – metaphor; free and powerful when young, weighed down now."
         },
         {
           front: "I Remember – structure, context, themes",
-          back: "Repetition of \"I remember, I remember\" shows deep nostalgia. Thomas Hood was actually chronically ill. Themes: youth, nature, nostalgia, exploration of self."
+          back: "Repetition of \"I remember, I remember\" shows deep nostalgia. Hood was chronically ill. Themes: youth, nature, nostalgia, exploration of self."
         },
 
         {
           front: "We Refugees – what is it about?",
-          back: "Different refugees explain what they have gone through; shows the refugee experience is varied but human."
+          back: "Different refugees explain what they have gone through; shows refugee experience is varied but human."
         },
         {
           front: "We Refugees – key quote & effect",
-          back: "\"We can all be refugees\" – collective pronoun shows it could happen to anyone and makes the reader feel involved."
+          back: "\"We can all be refugees\" – collective pronoun shows it could happen to anyone and involves the reader."
         },
         {
           front: "We Refugees – structure, context, themes",
-          back: "Stanzas starting with \"I\" give different voices. Zephaniah is an activist for refugees. Themes: nostalgia, family, dual identity, community."
+          back: "Stanzas starting with \"I\" give different voices. Zephaniah is a refugee activist. Themes: nostalgia, family, dual identity, community."
         },
 
         {
           front: "Jamaican British – what is it about?",
-          back: "Mixed-race speaker remembers being bullied at school and later appreciates his Jamaican heritage after visiting Jamaica."
+          back: "Mixed-race speaker remembers being bullied at school, later appreciating Jamaican heritage after visiting Jamaica."
         },
         {
           front: "Jamaican British – key quote & effect",
-          back: "\"the English boys at school made me choose Jamaican, British?\" – question mark and caesura show bullying makes him question his two sides."
+          back: "\"the English boys at school made me choose Jamaican, British?\" – question mark and caesura show bullying makes him question both sides."
         },
         {
           front: "Jamaican British – structure, context, themes",
-          back: "Repetition of \"Jamaican British\" shows how important the label is to his identity. Autobiographical. Themes: youth, family, dual identity, London as home, community, exploration of self."
+          back: "Repetition of \"Jamaican British\" shows how central this label is. Autobiographical. Themes: youth, family, dual identity, London as home, community, exploration of self."
         }
       ],
 
       "Language Paper 1 – Structure": [
         {
-          front: "Lang Paper 1 – order of questions",
-          back: "1) Start with Q5/6 (imaginative writing) – 45 mins.\n2) Then read the 19th century extract for 10 mins.\n3) Answer Q1–4 using the timings: Q1 2 mins, Q2 4 mins, Q3 10 mins, Q4 35 mins."
+          front: "Lang Paper 1 – order",
+          back: "1) Start with Q5/6 (imaginative writing) – ~45 mins.\n2) Read 19th century extract – ~10 mins.\n3) Answer Q1–4 (Q1 2 mins, Q2 4 mins, Q3 10 mins, Q4 35 mins)."
         },
         {
-          front: "Lang P1 – Q1 Comprehension",
-          back: "1 mark · about 2 minutes.\nSimply answer the question using a short quote or paraphrase from the text."
+          front: "Lang P1 – Q1",
+          back: "Comprehension – 1 mark · ~2 mins.\nShort answer using a quote or paraphrase from the text."
         },
         {
-          front: "Lang P1 – Q2 Inference",
-          back: "2 marks · about 4 minutes.\nMake 2 inferences and support each with a quote or paraphrase from the extract."
+          front: "Lang P1 – Q2",
+          back: "Inference – 2 marks · ~4 mins.\nMake 2 inferences, each backed with a quote or paraphrase."
         },
         {
-          front: "Lang P1 – Q3 Analysis (6 marks)",
-          back: "6 marks · about 10 minutes.\nWrite 2 short paragraphs: one on language, one on structure.\nEach = Point → Evidence → Technique → Effect."
+          front: "Lang P1 – Q3",
+          back: "Analysis – 6 marks · ~10 mins.\nTwo short paragraphs: one on language, one on structure.\nEach: Point → Evidence → Technique → Effect."
         },
         {
-          front: "Lang P1 – Q4 Evaluation (15 marks)",
-          back: "15 marks · about 35 minutes.\nWrite 2 evaluative paragraphs using SPITTED (Setting, People, Ideas, Tone, Theme, Events, Description).\nUse phrases like “the writer effectively creates…” and explain effect + intention."
+          front: "Lang P1 – Q4",
+          back: "Evaluation – 15 marks · ~35 mins.\nTwo paragraphs using SPITTED and evaluative language like \"the writer effectively creates…\"."
         },
         {
-          front: "Lang P1 – Q5/6 structure",
-          back: "Imaginative writing (40 marks · 45 mins).\nUse DROP (atmosphere) → ZOOM (character) → FLASHBACK (why they’re there) → ECHO (back to character and what changed)."
+          front: "Lang P1 – Q5/6 plan",
+          back: "Imaginative writing – 40 marks · 45 mins.\nUse DROP (atmosphere) → ZOOM (character) → FLASHBACK (why they’re there) → ECHO (return to present with change)."
         },
         {
-          front: "Lang P1 – what to include in writing",
-          back: "Good vocab; range of punctuation (. , \"\" ! ? … - ; :); varied sentence structures (one word sentence, adverb starter, dependent clause); language techniques (metaphor, simile, personification, etc.); structural techniques (foreshadowing, withholding, cyclical ending, pathetic fallacy)."
+          front: "Lang P1 – writing checklist",
+          back: "Good vocab, varied punctuation (. , \"\" ! ? … - ; :), varied sentences (one-word, adverb starter, dependent clause), language techniques (metaphor, simile, personification, etc.), structural techniques (foreshadowing, withholding info, cyclical ending, pathetic fallacy)."
         }
       ],
 
       "Language Paper 2 – Structure": [
         {
-          front: "Lang Paper 2 – order of questions",
-          back: "1) Start with Q8/9 (transactional writing) – 45 mins.\n2) Read Extract 1 for ~10 mins then answer Q1–3.\n3) Read Extract 2 for ~10 mins then answer Q4–7a/7b."
+          front: "Lang Paper 2 – order",
+          back: "1) Start with Q8/9 (transactional) – ~45 mins.\n2) Read Extract 1 – ~10 mins then Q1–3.\n3) Read Extract 2 – ~10 mins then Q4–7a/7b."
         },
         {
           front: "Lang P2 – Q1 & Q2",
-          back: "Q1: 2 marks · 1 min · basic comprehension.\nQ2: 2 marks · 1 min · basic comprehension.\nAnswer directly using the text."
+          back: "Q1: 2 marks · ~1 min (comprehension).\nQ2: 2 marks · ~1 min (comprehension)."
         },
         {
-          front: "Lang P2 – Q3 Analysis (15 marks)",
-          back: "15 marks · about 15 mins.\nTwo paragraphs analysing language and structure in Extract 1.\nEach = Point → Evidence → Technique → Effect."
+          front: "Lang P2 – Q3",
+          back: "Analysis (Extract 1) – 15 marks · ~15 mins.\nTwo paragraphs on language + structure. Each: Point → Evidence → Technique → Effect."
         },
         {
           front: "Lang P2 – Q4 & Q5",
-          back: "Q4: 1 mark · 1 min · basic comprehension on Extract 2.\nQ5: 1 mark · 1 min · basic comprehension on Extract 2."
+          back: "Q4: 1 mark · ~1 min (comprehension on Extract 2).\nQ5: 1 mark · ~1 min (comprehension on Extract 2)."
         },
         {
-          front: "Lang P2 – Q6 Evaluation (15 marks)",
-          back: "15 marks · about 15 mins.\nTwo evaluative paragraphs on Extract 2 using SPITTED.\nPoint with evaluative language → Evidence → Explanation (effect + writer’s intention)."
+          front: "Lang P2 – Q6",
+          back: "Evaluation (Extract 2) – 15 marks · ~15 mins.\nTwo paragraphs using SPITTED and clear evaluative phrases; explain effect and writer’s intention."
         },
         {
-          front: "Lang P2 – Q7a Synthesis (6 marks)",
-          back: "6 marks · about 6 mins.\nWrite 3 mini paragraphs: each has a similarity point + quote from Extract 1 + quote from Extract 2."
+          front: "Lang P2 – Q7a",
+          back: "Synthesis – 6 marks · ~6 mins.\nThree mini paragraphs: similarity point + quote from Extract 1 + quote from Extract 2."
         },
         {
-          front: "Lang P2 – Q7b Comparison (14 marks)",
-          back: "14 marks · about 15 mins.\n2 paragraphs. Each: comparative point → quote + technique + effect from Extract 1 → quote + technique + effect from Extract 2."
+          front: "Lang P2 – Q7b",
+          back: "Comparison – 14 marks · ~15 mins.\nTwo paragraphs: comparative point → quote + technique + effect from Extract 1 → quote + technique + effect from Extract 2."
         },
         {
-          front: "Lang P2 – Q8/9 structure",
-          back: "Transactional writing (40 marks · 45 mins).\nPlan: Statement → Counter argument → Anecdote → Reasons (stats/experts) → Final plea."
+          front: "Lang P2 – Q8/9 plan",
+          back: "Transactional writing – 40 marks · 45 mins.\nStatement → Counter argument → Anecdote → Reasons (stats/experts) → Final plea."
         },
         {
-          front: "Lang P2 – what to include in writing",
-          back: "Good vocab; varied sentence structures; DAFOREST: direct address, alliteration, fact, opinion, rhetorical questions, emotive language, statistics, tripling."
+          front: "Lang P2 – writing checklist",
+          back: "Good vocab; varied sentences; DAFOREST: direct address, alliteration, fact, opinion, rhetorical questions, emotive language, statistics, tripling."
         }
       ],
 
       "Literature Paper 1 – Structure": [
         {
           front: "Lit Paper 1 – overview",
-          back: "Total 1h45. Macbeth Part A (extract) 20 marks · 30 mins, Macbeth Part B (essay) 20 marks · 30 mins, An Inspector Calls essay 40 marks · 45 mins."
+          back: "Total 1h45.\nMacbeth Part A (extract) 20 marks · 30 mins.\nMacbeth Part B (essay) 20 marks · 30 mins.\nAn Inspector Calls essay 40 marks · 45 mins."
         },
         {
-          front: "Macbeth Part A – extract",
-          back: "20 marks · 30 mins.\nAnalyse the extract only (no context). 2+ paragraphs.\nEach paragraph: Point → Quote → Technique → Effect on reader."
+          front: "Macbeth Part A",
+          back: "Extract – 20 marks · 30 mins.\nAnalyse the extract only (no context).\nEach paragraph: Point → Quote → Technique → Effect on reader."
         },
         {
-          front: "Macbeth Part B – essay",
-          back: "20 marks · 30 mins.\nWhole play (no extract quotes). Use context.\nEach paragraph: Point (Shakespeare presents…) → Quote → Explanation → Context (Jacobean ideas) → Shakespeare’s purpose."
+          front: "Macbeth Part B",
+          back: "Whole-play essay – 20 marks · 30 mins.\nEach paragraph: Shakespeare presents… → Quote → Explanation → Context → Shakespeare’s purpose."
         },
         {
-          front: "Macbeth – useful context",
-          back: "James I; witches and superstition; tragic heroes; Gunpowder Plot; Divine Right of Kings; Great Chain of Being; Jacobean gender roles."
+          front: "Macbeth – context list",
+          back: "James I; witches; tragic heroes; Gunpowder Plot; Divine Right of Kings; Great Chain of Being; Jacobean gender roles."
         },
         {
           front: "An Inspector Calls – essay structure",
-          back: "40 marks · 45 mins.\nIntro + 3 body paragraphs + conclusion.\nEach body: Point (Priestley presents…) → Quote → Explanation → Context (1912 vs 1945) → Priestley’s purpose."
+          back: "40 marks · 45 mins.\nIntro · 3 main paragraphs · conclusion.\nEach main paragraph: Priestley presents… → Quote → Explanation → Context (1912 vs 1945) → Priestley’s purpose."
         },
         {
-          front: "An Inspector Calls – useful context",
-          back: "Capitalism vs socialism; class; women’s rights; workers’ rights; alcoholism; post-war change in attitudes."
+          front: "AIC – context ideas",
+          back: "Capitalism vs socialism; class; women’s rights; workers’ rights; alcoholism; post-war change."
         }
       ],
 
       "Literature Paper 2 – Structure": [
         {
           front: "Lit Paper 2 – overview",
-          back: "Total 2h15. ACC Part A (extract) 20 marks · 25 mins, ACC Part B (essay) 20 marks · 25 mins, Belonging anthology 20 marks · 30 mins, Unseen poetry 20 marks · 45 mins."
+          back: "Total 2h15.\nACC extract 20 marks · 25 mins.\nACC essay 20 marks · 25 mins.\nBelonging anthology 20 marks · 30 mins.\nUnseen poetry 20 marks · 45 mins."
         },
         {
           front: "ACC Part A – extract",
-          back: "20 marks · 25 mins.\nAnalyse the extract only. No context.\nEach paragraph: Point → Quote → Technique → Effect."
+          back: "20 marks · 25 mins.\nAnalyse the extract only (no context).\nEach paragraph: Point → Quote → Technique → Effect."
         },
         {
           front: "ACC Part B – essay",
-          back: "20 marks · 25 mins.\nWhole novella (do not reuse extract quotes). No context.\nEach paragraph: “Dickens presents…” → Quote → Explanation → Dickens’ purpose."
+          back: "20 marks · 25 mins.\nWhole novella; don’t reuse extract quotes.\nEach paragraph: Dickens presents… → Quote → Explanation → Dickens’ purpose."
         },
         {
-          front: "Belonging anthology – comparison structure",
-          back: "20 marks · 30 mins.\nCompare set poem with a chosen poem on the same theme.\nParagraph: comparative point → quote + technique + effect from Poem 1 → context/intentions → quote + technique + effect from Poem 2 → context/intentions."
+          front: "Belonging anthology – comparison plan",
+          back: "20 marks · 30 mins.\nCompare given poem with one you choose.\nParagraph: comparative point → quote + technique + effect from Poem 1 → context/intentions → quote + technique + effect from Poem 2 → context/intentions."
         },
         {
-          front: "Unseen poetry – comparison structure",
-          back: "20 marks · 45 mins.\nTwo unseen poems.\nEach paragraph: comparative point → quote + technique + effect from Poem 1 → quote + technique + effect from Poem 2."
+          front: "Unseen poetry – comparison plan",
+          back: "20 marks · 45 mins.\nCompare two unseen poems.\nEach paragraph: comparative point → quote + technique + effect from Poem 1 → quote + technique + effect from Poem 2."
         }
       ]
     };
@@ -1347,8 +1522,7 @@
     let currentStudyIndex = 0;
     let showingFront = true;
 
-    // NAV
-    const navTabs = document.querySelectorAll(".nav-tab");
+    const navTabs = []; // we navigate using menu, not header tabs
     const views = {
       acc: document.getElementById("view-acc"),
       language: document.getElementById("view-language"),
@@ -1360,16 +1534,22 @@
     function setView(name) {
       Object.values(views).forEach(v => v.classList.remove("active"));
       if (views[name]) views[name].classList.add("active");
-      navTabs.forEach(btn => {
-        btn.classList.toggle("active", btn.dataset.view === name);
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    navTabs.forEach(btn => {
-      btn.addEventListener("click", () => setView(btn.dataset.view));
+    // ---------- COLLAPSE / SHOW MORE ----------
+    document.querySelectorAll("[data-toggle]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const sel = btn.getAttribute("data-toggle");
+        const target = document.querySelector(sel);
+        if (!target) return;
+        const open = target.classList.toggle("open");
+        btn.textContent = open ? "Show less" : "Show full breakdown";
+        btn.classList.add("soft", "small");
+      });
     });
 
-    // FLASHCARDS ELEMENTS
+    // ---------- FLASHCARDS ----------
     const deckSelectEl = document.getElementById("deck-select");
     const deckInfoEl = document.getElementById("deck-info");
     const deckNameLabelEl = document.getElementById("deck-name-label");
@@ -1454,13 +1634,13 @@
       cardTextEl.classList.toggle("empty", !text);
 
       cardSideLabelEl.textContent = showingFront ? "Front · Question" : "Back · Answer";
-      cardMetaEl.textContent = `Card ${cardIndex + 1} in deck`;
+      cardMetaEl.textContent = `Card ${cardIndex + 1}`;
       cardPositionEl.textContent = `${currentStudyIndex + 1} / ${cards.length}`;
 
       const progress = ((currentStudyIndex + 1) / cards.length) * 100;
       progressFillEl.style.width = `${progress}%`;
 
-      statusEl.textContent = `Studying: ${currentDeckName}`;
+      statusEl.textContent = `Deck: ${currentDeckName}`;
     }
 
     function flipCard() {
@@ -1487,7 +1667,6 @@
       resetStudyOrder();
     }
 
-    // EVENTS
     deckSelectEl.addEventListener("change", () => {
       currentDeckName = deckSelectEl.value;
       resetStudyOrder();
@@ -1507,9 +1686,90 @@
       });
     });
 
-    // INIT
+    // ---------- NAV OVERLAY / FAB ----------
+    const fabMenu = document.getElementById("fab-menu");
+    const navOverlay = document.getElementById("nav-overlay");
+    const navClose = document.getElementById("nav-close");
+
+    fabMenu.addEventListener("click", () => {
+      navOverlay.classList.add("active");
+    });
+
+    navClose.addEventListener("click", () => {
+      navOverlay.classList.remove("active");
+    });
+
+    navOverlay.addEventListener("click", e => {
+      if (e.target === navOverlay) {
+        navOverlay.classList.remove("active");
+      }
+    });
+
+    document.querySelectorAll(".nav-item-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const view = btn.getAttribute("data-goto");
+        setView(view);
+        navOverlay.classList.remove("active");
+      });
+    });
+
+    // ---------- FOCUS TIMER ----------
+    const timerDisplay = document.getElementById("timer-display");
+    const timerStartBtn = document.getElementById("timer-start");
+    const timerResetBtn = document.getElementById("timer-reset");
+
+    let timerSecondsDefault = 25 * 60;
+    let timerSeconds = timerSecondsDefault;
+    let timerInterval = null;
+
+    function renderTimer() {
+      const mins = Math.floor(timerSeconds / 60);
+      const secs = timerSeconds % 60;
+      const mm = String(mins).padStart(2, "0");
+      const ss = String(secs).padStart(2, "0");
+      timerDisplay.textContent = `${mm}:${ss}`;
+    }
+
+    function startTimer() {
+      if (timerInterval) return;
+      timerInterval = setInterval(() => {
+        timerSeconds--;
+        if (timerSeconds <= 0) {
+          timerSeconds = 0;
+          clearInterval(timerInterval);
+          timerInterval = null;
+        }
+        renderTimer();
+      }, 1000);
+    }
+
+    function resetTimer() {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+      }
+      timerSeconds = timerSecondsDefault;
+      renderTimer();
+    }
+
+    timerStartBtn.addEventListener("click", startTimer);
+    timerResetBtn.addEventListener("click", resetTimer);
+
+    // ---------- TODAY FOCUS (simple text) ----------
+    const todayFocusEl = document.getElementById("today-focus");
+    const focusOptions = [
+      "Today: ACC extract + 1 Lang card set",
+      "Today: 10 ACC cards + 1 Belonging comparison",
+      "Today: Lang Paper 1 plan + 10 min Belonging",
+      "Today: 1 Macbeth essay plan + 10 flashcards",
+      "Today: Unseen poetry paragraph + 10 Lang cards"
+    ];
+    todayFocusEl.textContent = focusOptions[Math.floor(Math.random() * focusOptions.length)];
+
+    // ---------- INIT ----------
     renderDeckOptions();
     setView("acc");
+    renderTimer();
   </script>
 </body>
 </html>
